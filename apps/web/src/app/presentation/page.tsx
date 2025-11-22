@@ -17,7 +17,6 @@ export default function PresentationListPage() {
 					return (
 						<Link
 							key={presentation.id}
-							// @ts-expect-error Dynamic route with typedRoutes
 							href={presentation.href}
 							style={{ textDecoration: "none", color: "inherit" }}
 						>
