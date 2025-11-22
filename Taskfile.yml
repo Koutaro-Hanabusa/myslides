@@ -1,0 +1,112 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+  PRESENTATION_DIR: apps/web/src/app/presentation
+  DEFAULT_SLIDE_COUNT: 5
+
+tasks:
+  default:
+    cmds:
+      - echo "{{.GREETING}}"
+    silent: true
+
+  new-slide:
+    desc: Create a new presentation template with slides
+    summary: |
+      Usage:
+        task new-slide -- --name=<name> [--slides=<count>]
+        task new-slide  (interactive mode)
+
+      Examples:
+        task new-slide -- --name=my-presentation
+        task new-slide -- --name=demo --slides=10
+    cmds:
+      - |
+        # CLIオプションをパース
+        NAME=""
+        SLIDE_COUNT="{{.DEFAULT_SLIDE_COUNT}}"
+
+        for arg in {{.CLI_ARGS}}; do
+          case $arg in
+            --name=*)
+              NAME="${arg#*=}"
+              ;;
+            --slides=*)
+              SLIDE_COUNT="${arg#*=}"
+              ;;
+          esac
+        done
+
+        # 名前が指定されていない場合、ユーザーに入力を求める
+        if [ -z "$NAME" ]; then
+          echo "Enter presentation name:"
+          read NAME
+        fi
+
+        if [ -z "$NAME" ]; then
+          echo "Error: Presentation name is required"
+          exit 1
+        fi
+
+        TARGET_DIR="{{.PRESENTATION_DIR}}/$NAME"
+
+        # ディレクトリが既に存在するかチェック
+        if [ -d "$TARGET_DIR" ]; then
+          echo "Error: Presentation '$NAME' already exists"
+          exit 1
+        fi
+
+        # ディレクトリ作成
+        mkdir -p "$TARGET_DIR/slides"
+
+        # page.tsx を作成
+        {
+          echo '"use client";'
+          echo ''
+          echo 'import RevealPresentation from "@/components/reveal-presentation";'
+          for i in $(seq 1 $SLIDE_COUNT); do
+            echo "import Slide$i from \"./slides/slide$i\";"
+          done
+          echo ''
+          echo 'export default function PresentationPage() {'
+          echo '	return ('
+          echo '		<div style={{ "{{" }} width: "100%", height: "100%" {{ "}}" }}>'
+          echo '			<RevealPresentation transition="slide">'
+          for i in $(seq 1 $SLIDE_COUNT); do
+            echo "				<Slide$i />"
+          done
+          echo '			</RevealPresentation>'
+          echo '		</div>'
+          echo '	);'
+          echo '}'
+        } > "$TARGET_DIR/page.tsx"
+
+        # 各スライドファイルを作成
+        for i in $(seq 1 $SLIDE_COUNT); do
+          if [ $i -eq 1 ]; then
+            TITLE="Welcome to $NAME"
+            CONTENT="A presentation built with Reveal.js and Next.js"
+            HTAG="h1"
+          else
+            TITLE="Slide $i"
+            CONTENT="This is slide $i"
+            HTAG="h2"
+          fi
+          {
+            echo "export default function Slide$i() {"
+            echo '	return ('
+            echo '		<section>'
+            echo "			<$HTAG>$TITLE</$HTAG>"
+            echo "			<p>$CONTENT</p>"
+            echo '		</section>'
+            echo '	);'
+            echo '}'
+          } > "$TARGET_DIR/slides/slide$i.tsx"
+        done
+
+        echo "✓ Created presentation '$NAME' with $SLIDE_COUNT slides"
+        echo "  Location: $TARGET_DIR"
+    silent: false
