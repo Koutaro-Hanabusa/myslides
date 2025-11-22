@@ -1,5 +1,7 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { trpc } from "@/utils/trpc";
 
 const TITLE_TEXT = `
@@ -31,7 +33,7 @@ export default function Home() {
 						<div
 							className={`h-2 w-2 rounded-full ${healthCheck.data ? "bg-green-500" : "bg-red-500"}`}
 						/>
-						<span className="text-sm text-muted-foreground">
+						<span className="text-muted-foreground text-sm">
 							{healthCheck.isLoading
 								? "Checking..."
 								: healthCheck.data
@@ -39,6 +41,15 @@ export default function Home() {
 									: "Disconnected"}
 						</span>
 					</div>
+				</section>
+				<section className="rounded-lg border p-4">
+					<h2 className="mb-2 font-medium">Presentation</h2>
+					<p className="mb-4 text-muted-foreground text-sm">
+						View the Reveal.js presentation demo
+					</p>
+					<Link href="/presentation">
+						<Button>Open Presentation</Button>
+					</Link>
 				</section>
 			</div>
 		</div>
