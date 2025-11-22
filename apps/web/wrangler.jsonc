@@ -4,6 +4,9 @@
   "name": "myslides",
   "compatibility_date": "2025-07-05",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "vars": {
+    "NEXT_PUBLIC_SERVER_URL": "https://myslides-server.koutarouhanabusa.workers.dev"
+  },
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
