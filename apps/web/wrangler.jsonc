@@ -10,7 +10,10 @@
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
-  }
+  },
+  // Fix next-themes __name is not defined error
+  // See: https://opennext.js.org/cloudflare/howtos/keep_names
+  "keep_names": false
   // "r2_buckets": [
   // 	// Use R2 incremental cache
   // 	// See https://opennext.js.org/cloudflare/caching
