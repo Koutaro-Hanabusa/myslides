@@ -14,6 +14,11 @@ export const presentations = [
 		name: "Welcome to My Slides",
 		href: "/presentation/tacos" as const,
 	},
+	{
+		id: "sencorp",
+		name: "sencorp",
+		href: "/presentation/sencorp" as const,
+	},
 ] as const;
 
 export type Presentation = (typeof presentations)[number];
