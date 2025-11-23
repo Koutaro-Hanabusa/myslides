@@ -40,18 +40,18 @@ jobs:
           CURRENT_DATE=$(date '+%Y-%m-%d %H:%M:%S')
           COMMITS=$(git log main..staging --pretty=format:"- %s (%h)" --reverse 2>/dev/null || echo "- Initial release")
 
-          cat > /tmp/pr_body.md <<EOF
-          ## Release PR
-
-          **Created at:** ${CURRENT_DATE}
-
-          ### Changes included in this release
-
-          ${COMMITS}
-
-          ---
-          *This PR was automatically created by GitHub Actions.*
-          EOF
+          {
+            echo "## Release PR"
+            echo ""
+            echo "**Created at:** ${CURRENT_DATE}"
+            echo ""
+            echo "### Changes included in this release"
+            echo ""
+            echo "${COMMITS}"
+            echo ""
+            echo "---"
+            echo "*This PR was automatically created by GitHub Actions.*"
+          } > /tmp/pr_body.md
 
           gh pr create \
             --base main \
@@ -67,18 +67,18 @@ jobs:
           CURRENT_DATE=$(date '+%Y-%m-%d %H:%M:%S')
           COMMITS=$(git log main..staging --pretty=format:"- %s (%h)" --reverse 2>/dev/null || echo "- Initial release")
 
-          cat > /tmp/comment_body.md <<EOF
-          ## PR Updated
-
-          **Updated at:** ${CURRENT_DATE}
-
-          ### Latest changes
-
-          ${COMMITS}
-
-          ---
-          *This comment was automatically added by GitHub Actions.*
-          EOF
+          {
+            echo "## PR Updated"
+            echo ""
+            echo "**Updated at:** ${CURRENT_DATE}"
+            echo ""
+            echo "### Latest changes"
+            echo ""
+            echo "${COMMITS}"
+            echo ""
+            echo "---"
+            echo "*This comment was automatically added by GitHub Actions.*"
+          } > /tmp/comment_body.md
 
           gh pr comment ${{ steps.check-pr.outputs.existing_pr }} --body-file /tmp/comment_body.md
           echo "Added update comment to PR #${{ steps.check-pr.outputs.existing_pr }}"
