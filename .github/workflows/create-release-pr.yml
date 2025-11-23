@@ -1,0 +1,81 @@
+name: Create Release PR
+
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  create-release-pr:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for existing PR
+        id: check-pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          EXISTING_PR=$(gh pr list --base main --head staging --state open --json number --jq '.[0].number // empty')
+          if [ -n "$EXISTING_PR" ]; then
+            echo "existing_pr=$EXISTING_PR" >> $GITHUB_OUTPUT
+            echo "PR #$EXISTING_PR already exists for staging -> main"
+          else
+            echo "existing_pr=" >> $GITHUB_OUTPUT
+            echo "No existing PR found"
+          fi
+
+      - name: Create Pull Request
+        if: steps.check-pr.outputs.existing_pr == ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Get current date for PR body
+          CURRENT_DATE=$(date '+%Y-%m-%d %H:%M:%S')
+
+          # Get commit messages since last release
+          COMMITS=$(git log main..staging --pretty=format:"- %s (%h)" --reverse 2>/dev/null || echo "- Initial release")
+
+          gh pr create \
+            --base main \
+            --head staging \
+            --title "Release: staging to main" \
+            --body "## Release PR
+
+**Created at:** ${CURRENT_DATE}
+
+### Changes included in this release
+
+${COMMITS}
+
+---
+*This PR was automatically created by GitHub Actions.*"
+
+      - name: Update existing PR
+        if: steps.check-pr.outputs.existing_pr != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          CURRENT_DATE=$(date '+%Y-%m-%d %H:%M:%S')
+          COMMITS=$(git log main..staging --pretty=format:"- %s (%h)" --reverse 2>/dev/null || echo "- Initial release")
+
+          gh pr comment ${{ steps.check-pr.outputs.existing_pr }} \
+            --body "## PR Updated
+
+**Updated at:** ${CURRENT_DATE}
+
+### Latest changes
+
+${COMMITS}
+
+---
+*This comment was automatically added by GitHub Actions.*"
+
+          echo "Added update comment to PR #${{ steps.check-pr.outputs.existing_pr }}"

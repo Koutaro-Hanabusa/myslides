@@ -17,12 +17,12 @@ tasks:
     desc: Create a new presentation template with slides
     summary: |
       Usage:
-        task new-slide -- --name=<name> [--slides=<count>]
+        task new-slide -- <name> [slides=<count>]
         task new-slide  (interactive mode)
 
       Examples:
-        task new-slide -- --name=my-presentation
-        task new-slide -- --name=demo --slides=10
+        task new-slide -- my-presentation
+        task new-slide -- demo slides=10
     cmds:
       - |
         # CLIオプションをパース
@@ -31,11 +31,14 @@ tasks:
 
         for arg in {{.CLI_ARGS}}; do
           case $arg in
-            --name=*)
-              NAME="${arg#*=}"
-              ;;
-            --slides=*)
+            slides=*)
               SLIDE_COUNT="${arg#*=}"
+              ;;
+            *)
+              # 最初の引数を名前として扱う
+              if [ -z "$NAME" ]; then
+                NAME="$arg"
+              fi
               ;;
           esac
         done
@@ -107,6 +110,36 @@ tasks:
           } > "$TARGET_DIR/slides/slide$i.tsx"
         done
 
+        # layout.tsx を作成
+        {
+          echo 'import type { Metadata } from "next";'
+          echo 'import { createPresentationMetadata } from "@/lib/presentation-metadata";'
+          echo ''
+          echo 'export async function generateMetadata(): Promise<Metadata> {'
+          echo "	return createPresentationMetadata(\"$NAME\");"
+          echo '}'
+          echo ''
+          echo 'export default function Layout({ children }: { children: React.ReactNode }) {'
+          echo '	return <>{children}</>;'
+          echo '}'
+        } > "$TARGET_DIR/layout.tsx"
+
+        # presentations.ts にエントリを追加
+        PRESENTATIONS_FILE="{{.PRESENTATION_DIR}}/presentations.ts"
+        DISPLAY_NAME="Welcome to $NAME"
+
+        # ] as const; の行番号を取得して、その前に挿入
+        LINE_NUM=$(grep -n '^] as const;$' "$PRESENTATIONS_FILE" | cut -d: -f1)
+        head -n $((LINE_NUM - 1)) "$PRESENTATIONS_FILE" > "$PRESENTATIONS_FILE.tmp"
+        echo "	{" >> "$PRESENTATIONS_FILE.tmp"
+        echo "		id: \"$NAME\"," >> "$PRESENTATIONS_FILE.tmp"
+        echo "		name: \"$DISPLAY_NAME\"," >> "$PRESENTATIONS_FILE.tmp"
+        echo "		href: \"/presentation/$NAME\" as const," >> "$PRESENTATIONS_FILE.tmp"
+        echo "	}," >> "$PRESENTATIONS_FILE.tmp"
+        tail -n +$LINE_NUM "$PRESENTATIONS_FILE" >> "$PRESENTATIONS_FILE.tmp"
+        mv "$PRESENTATIONS_FILE.tmp" "$PRESENTATIONS_FILE"
+
         echo "✓ Created presentation '$NAME' with $SLIDE_COUNT slides"
         echo "  Location: $TARGET_DIR"
+        echo "✓ Added entry to presentations.ts"
     silent: false
