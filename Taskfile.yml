@@ -6,6 +6,8 @@ vars:
   GREETING: Hello, World!
   PRESENTATION_DIR: apps/web/src/app/presentation
   DEFAULT_SLIDE_COUNT: 5
+  R2_BASE_URL: https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev
+  TEMPLATE_PATH: 外部登壇資料テンプレ
 
 tasks:
   default:
@@ -14,7 +16,7 @@ tasks:
     silent: true
 
   new-slide:
-    desc: Create a new presentation template with slides
+    desc: Create a new presentation with R2 background templates
     summary: |
       Usage:
         task new-slide -- <name> [slides=<count>]
@@ -23,6 +25,15 @@ tasks:
       Examples:
         task new-slide -- my-presentation
         task new-slide -- demo slides=10
+
+      Structure:
+        - cover.tsx (表紙)
+        - corporate-philosophy.tsx (企業理念)
+        - business-content.tsx (事業内容)
+        - self-introduction.tsx (自己紹介)
+        - heading.tsx (見出し)
+        - slide1.tsx ~ slideN.tsx (本文)
+        - back-cover.tsx (裏表紙)
     cmds:
       - |
         # CLIオプションをパース
@@ -35,7 +46,6 @@ tasks:
               SLIDE_COUNT="${arg#*=}"
               ;;
             *)
-              # 最初の引数を名前として扱う
               if [ -z "$NAME" ]; then
                 NAME="$arg"
               fi
@@ -43,7 +53,6 @@ tasks:
           esac
         done
 
-        # 名前が指定されていない場合、ユーザーに入力を求める
         if [ -z "$NAME" ]; then
           echo "Enter presentation name:"
           read NAME
@@ -55,14 +64,13 @@ tasks:
         fi
 
         TARGET_DIR="{{.PRESENTATION_DIR}}/$NAME"
+        R2_BASE="{{.R2_BASE_URL}}/{{.TEMPLATE_PATH}}"
 
-        # ディレクトリが既に存在するかチェック
         if [ -d "$TARGET_DIR" ]; then
           echo "Error: Presentation '$NAME' already exists"
           exit 1
         fi
 
-        # ディレクトリ作成
         mkdir -p "$TARGET_DIR/slides"
 
         # page.tsx を作成
@@ -70,45 +78,135 @@ tasks:
           echo '"use client";'
           echo ''
           echo 'import RevealPresentation from "@/components/reveal-presentation";'
+          echo 'import Cover from "./slides/cover";'
+          echo 'import CorporatePhilosophy from "./slides/corporate-philosophy";'
+          echo 'import BusinessContent from "./slides/business-content";'
+          echo 'import SelfIntroduction from "./slides/self-introduction";'
+          echo 'import Heading from "./slides/heading";'
           for i in $(seq 1 $SLIDE_COUNT); do
             echo "import Slide$i from \"./slides/slide$i\";"
           done
+          echo 'import BackCover from "./slides/back-cover";'
           echo ''
           echo 'export default function PresentationPage() {'
           echo '	return ('
           echo '		<div style={{ "{{" }} width: "100%", height: "100%" {{ "}}" }}>'
           echo '			<RevealPresentation transition="slide">'
+          echo '				<Cover />'
+          echo '				<CorporatePhilosophy />'
+          echo '				<BusinessContent />'
+          echo '				<SelfIntroduction />'
+          echo '				<Heading />'
           for i in $(seq 1 $SLIDE_COUNT); do
             echo "				<Slide$i />"
           done
+          echo '				<BackCover />'
           echo '			</RevealPresentation>'
           echo '		</div>'
           echo '	);'
           echo '}'
         } > "$TARGET_DIR/page.tsx"
 
-        # 各スライドファイルを作成
+        # 表紙スライド (cover.tsx)
+        {
+          echo 'export default function Cover() {'
+          echo '	return ('
+          echo '		<section'
+          echo "			data-background-image=\"$R2_BASE/千_外部登壇スライド_表紙.png\""
+          echo '			data-background-size="cover"'
+          echo '		>'
+          echo "			<h1>$NAME</h1>"
+          echo '		</section>'
+          echo '	);'
+          echo '}'
+        } > "$TARGET_DIR/slides/cover.tsx"
+
+        # 企業理念スライド (corporate-philosophy.tsx)
+        {
+          echo 'export default function CorporatePhilosophy() {'
+          echo '	return ('
+          echo '		<section'
+          echo "			data-background-image=\"$R2_BASE/千_外部登壇スライド_企業理念.png\""
+          echo '			data-background-size="cover"'
+          echo '		>'
+          echo '			{/* コンテンツをここに追加 */}'
+          echo '		</section>'
+          echo '	);'
+          echo '}'
+        } > "$TARGET_DIR/slides/corporate-philosophy.tsx"
+
+        # 事業内容スライド (business-content.tsx)
+        {
+          echo 'export default function BusinessContent() {'
+          echo '	return ('
+          echo '		<section'
+          echo "			data-background-image=\"$R2_BASE/千_外部登壇スライド_事業内容.png\""
+          echo '			data-background-size="cover"'
+          echo '		>'
+          echo '			{/* コンテンツをここに追加 */}'
+          echo '		</section>'
+          echo '	);'
+          echo '}'
+        } > "$TARGET_DIR/slides/business-content.tsx"
+
+        # 自己紹介スライド (self-introduction.tsx)
+        {
+          echo 'export default function SelfIntroduction() {'
+          echo '	return ('
+          echo '		<section'
+          echo "			data-background-image=\"$R2_BASE/千_外部登壇スライド_自己紹介.png\""
+          echo '			data-background-size="cover"'
+          echo '		>'
+          echo '			{/* コンテンツをここに追加 */}'
+          echo '		</section>'
+          echo '	);'
+          echo '}'
+        } > "$TARGET_DIR/slides/self-introduction.tsx"
+
+        # 見出しスライド (heading.tsx)
+        {
+          echo 'export default function Heading() {'
+          echo '	return ('
+          echo '		<section'
+          echo "			data-background-image=\"$R2_BASE/千_外部登壇スライド_見出し.png\""
+          echo '			data-background-size="cover"'
+          echo '		>'
+          echo '			{/* コンテンツをここに追加 */}'
+          echo '		</section>'
+          echo '	);'
+          echo '}'
+        } > "$TARGET_DIR/slides/heading.tsx"
+
+        # 本文スライド (slide1.tsx ~ slideN.tsx)
         for i in $(seq 1 $SLIDE_COUNT); do
-          if [ $i -eq 1 ]; then
-            TITLE="Welcome to $NAME"
-            CONTENT="A presentation built with Reveal.js and Next.js"
-            HTAG="h1"
-          else
-            TITLE="Slide $i"
-            CONTENT="This is slide $i"
-            HTAG="h2"
-          fi
           {
             echo "export default function Slide$i() {"
             echo '	return ('
-            echo '		<section>'
-            echo "			<$HTAG>$TITLE</$HTAG>"
-            echo "			<p>$CONTENT</p>"
+            echo '		<section'
+            echo "			data-background-image=\"$R2_BASE/千_外部登壇スライド_本文.png\""
+            echo '			data-background-size="cover"'
+            echo '		>'
+            echo "			<h2>Slide $i</h2>"
+            echo '			<p>{/* コンテンツをここに追加 */}</p>'
             echo '		</section>'
             echo '	);'
             echo '}'
           } > "$TARGET_DIR/slides/slide$i.tsx"
         done
+
+        # 裏表紙スライド (back-cover.tsx)
+        {
+          echo 'export default function BackCover() {'
+          echo '	return ('
+          echo '		<section'
+          echo "			data-background-image=\"$R2_BASE/千_外部登壇スライド_裏表紙.png\""
+          echo '			data-background-size="cover"'
+          echo '		>'
+          echo '			{/* コンテンツをここに追加 */}'
+          echo '		</section>'
+          echo '	);'
+          echo '}'
+        } > "$TARGET_DIR/slides/back-cover.tsx"
 
         # layout.tsx を作成
         {
@@ -126,9 +224,8 @@ tasks:
 
         # presentations.ts にエントリを追加
         PRESENTATIONS_FILE="{{.PRESENTATION_DIR}}/presentations.ts"
-        DISPLAY_NAME="Welcome to $NAME"
+        DISPLAY_NAME="$NAME"
 
-        # ] as const; の行番号を取得して、その前に挿入
         LINE_NUM=$(grep -n '^] as const;$' "$PRESENTATIONS_FILE" | cut -d: -f1)
         head -n $((LINE_NUM - 1)) "$PRESENTATIONS_FILE" > "$PRESENTATIONS_FILE.tmp"
         echo "	{" >> "$PRESENTATIONS_FILE.tmp"
@@ -139,7 +236,15 @@ tasks:
         tail -n +$LINE_NUM "$PRESENTATIONS_FILE" >> "$PRESENTATIONS_FILE.tmp"
         mv "$PRESENTATIONS_FILE.tmp" "$PRESENTATIONS_FILE"
 
-        echo "✓ Created presentation '$NAME' with $SLIDE_COUNT slides"
+        TOTAL_SLIDES=$((SLIDE_COUNT + 6))
+        echo "✓ Created presentation '$NAME' with $TOTAL_SLIDES slides"
+        echo "  - 表紙: 1枚"
+        echo "  - 企業理念: 1枚"
+        echo "  - 事業内容: 1枚"
+        echo "  - 自己紹介: 1枚"
+        echo "  - 見出し: 1枚"
+        echo "  - 本文: $SLIDE_COUNT枚"
+        echo "  - 裏表紙: 1枚"
         echo "  Location: $TARGET_DIR"
         echo "✓ Added entry to presentations.ts"
     silent: false

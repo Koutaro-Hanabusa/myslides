@@ -32,6 +32,7 @@ export function SlidePreview({ href, name }: SlidePreviewProps) {
         }}
         title={`Preview of ${name}`}
         onLoad={() => setLoaded(true)}
+        allowFullScreen
       />
     </div>
   );
