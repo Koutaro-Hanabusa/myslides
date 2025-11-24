@@ -13,7 +13,15 @@
   },
   // Fix next-themes __name is not defined error
   // See: https://opennext.js.org/cloudflare/howtos/keep_names
-  "keep_names": false
+  "keep_names": false,
+  "observability": {
+    "logs": {
+      "enabled": false,
+      "head_sampling_rate": 1,
+      "invocation_logs": true,
+      "persist": true
+    }
+  }
   // "r2_buckets": [
   // 	// Use R2 incremental cache
   // 	// See https://opennext.js.org/cloudflare/caching
