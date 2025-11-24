@@ -5,7 +5,7 @@
 	"compatibility_flags": ["nodejs_compat"],
 	"vars": {
 		"NODE_ENV": "production",
-		"CORS_ORIGIN": "https://myslides.koutarouhanabusa.workers.dev"
+		"CORS_ORIGIN": "https://burio-slide.dev,https://myslides.koutarouhanabusa.workers.dev"
 	},
 	"d1_databases": [
 		{
