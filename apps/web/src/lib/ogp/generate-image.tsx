@@ -1,26 +1,29 @@
 import { ImageResponse } from "next/og";
-import type { NextRequest } from "next/server";
-import {
-	getPresentationConfig,
-	gradientPresets,
-} from "@/lib/presentation-config";
 
-// Use Node.js runtime for file system access
-export const runtime = "nodejs";
+export interface OGPImageParams {
+	title: string;
+	subtitle?: string;
+	gradient?: [string, string];
+	author?: string;
+}
 
-export async function GET(
-	request: NextRequest,
-	{ params }: { params: Promise<{ slug: string }> },
-) {
-	const { slug } = await params;
-	const config = await getPresentationConfig(slug);
+export const gradientPresets = {
+	purple: ["#667eea", "#764ba2"] as [string, string],
+	pink: ["#f093fb", "#f5576c"] as [string, string],
+	dark: ["#000000", "#434343"] as [string, string],
+	blue: ["#4facfe", "#00f2fe"] as [string, string],
+	orange: ["#fa709a", "#fee140"] as [string, string],
+	green: ["#11998e", "#38ef7d"] as [string, string],
+	red: ["#ff416c", "#ff4b2b"] as [string, string],
+	teal: ["#0cebeb", "#20e3b2"] as [string, string],
+} as const;
 
-	if (!config) {
-		return new Response("Presentation not found", { status: 404 });
-	}
-
-	const gradient = config.gradient ?? gradientPresets.purple;
-
+export function generateOGPImage({
+	title,
+	subtitle = "Reveal.js Presentation",
+	gradient = gradientPresets.purple,
+	author,
+}: OGPImageParams): ImageResponse {
 	return new ImageResponse(
 		<div
 			style={{
@@ -54,7 +57,7 @@ export async function GET(
 					lineHeight: 1.2,
 				}}
 			>
-				{config.title}
+				{title}
 			</div>
 			<div
 				style={{
@@ -63,9 +66,9 @@ export async function GET(
 					marginTop: 24,
 				}}
 			>
-				Reveal.js Presentation
+				{subtitle}
 			</div>
-			{config.author && (
+			{author && (
 				<div
 					style={{
 						fontSize: 24,
@@ -73,7 +76,7 @@ export async function GET(
 						marginTop: 16,
 					}}
 				>
-					by {config.author}
+					by {author}
 				</div>
 			)}
 		</div>,
