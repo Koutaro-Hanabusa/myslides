@@ -35,7 +35,7 @@ export default function PresentationListPage() {
 									name={presentation.name}
 								/>
 								<div style={{ padding: "1rem", background: "#fff" }}>
-									<h3 style={{ margin: "0 0 0.5rem 0" }}>
+									<h3 style={{ margin: "0 0 0.5rem 0", color: "#333" }}>
 										{presentation.name}
 									</h3>
 								</div>
