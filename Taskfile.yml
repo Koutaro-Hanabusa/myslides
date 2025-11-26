@@ -222,6 +222,27 @@ tasks:
           echo '}'
         } > "$TARGET_DIR/layout.tsx"
 
+        # opengraph-image.tsx を作成
+        {
+          echo 'import {'
+          echo '	generateOGPImage,'
+          echo '	gradientPresets,'
+          echo '} from "@/lib/ogp/generate-image";'
+          echo "export const alt = \"$NAME\";"
+          echo 'export const size = {'
+          echo '	width: 1200,'
+          echo '	height: 630,'
+          echo '};'
+          echo 'export const contentType = "image/png";'
+          echo ''
+          echo 'export default function Image() {'
+          echo '	return generateOGPImage({'
+          echo "		title: \"$NAME\","
+          echo '		gradient: gradientPresets.purple,'
+          echo '	});'
+          echo '}'
+        } > "$TARGET_DIR/opengraph-image.tsx"
+
         # presentations.ts にエントリを追加
         PRESENTATIONS_FILE="{{.PRESENTATION_DIR}}/presentations.ts"
         DISPLAY_NAME="$NAME"
