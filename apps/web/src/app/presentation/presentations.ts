@@ -19,6 +19,11 @@ export const presentations = [
 		name: "sencorp",
 		href: "/presentation/sencorp" as const,
 	},
+	{
+		id: "buri",
+		name: "buri",
+		href: "/presentation/buri" as const,
+	},
 ] as const;
 
 export type Presentation = (typeof presentations)[number];
