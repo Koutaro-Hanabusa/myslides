@@ -208,7 +208,7 @@ tasks:
           echo '}'
         } > "$TARGET_DIR/slides/back-cover.tsx"
 
-        # layout.tsx を作成
+        # layout.tsx を作成（全画面固定スタイル付き）
         {
           echo 'import type { Metadata } from "next";'
           echo ''
@@ -228,7 +228,22 @@ tasks:
           echo '};'
           echo ''
           echo 'export default function Layout({ children }: { children: React.ReactNode }) {'
-          echo '	return <>{children}</>;'
+          echo '	return ('
+          echo '		<div'
+          echo '			style={{ "{{" }}'
+          echo '				width: "100%",'
+          echo '				height: "100vh",'
+          echo '				overflow: "hidden",'
+          echo '				position: "fixed",'
+          echo '				top: 0,'
+          echo '				left: 0,'
+          echo '				right: 0,'
+          echo '				bottom: 0,'
+          echo '			{{ "}}" }}'
+          echo '		>'
+          echo '			{children}'
+          echo '		</div>'
+          echo '	);'
           echo '}'
         } > "$TARGET_DIR/layout.tsx"
 
@@ -419,7 +434,7 @@ tasks:
           echo '}'
         } > "$TARGET_DIR/slides/back-cover.tsx"
 
-        # layout.tsx を作成
+        # layout.tsx を作成（全画面固定スタイル付き）
         {
           echo 'import type { Metadata } from "next";'
           echo ''
@@ -439,7 +454,22 @@ tasks:
           echo '};'
           echo ''
           echo 'export default function Layout({ children }: { children: React.ReactNode }) {'
-          echo '	return <>{children}</>;'
+          echo '	return ('
+          echo '		<div'
+          echo '			style={{ "{{" }}'
+          echo '				width: "100%",'
+          echo '				height: "100vh",'
+          echo '				overflow: "hidden",'
+          echo '				position: "fixed",'
+          echo '				top: 0,'
+          echo '				left: 0,'
+          echo '				right: 0,'
+          echo '				bottom: 0,'
+          echo '			{{ "}}" }}'
+          echo '		>'
+          echo '			{children}'
+          echo '		</div>'
+          echo '	);'
           echo '}'
         } > "$TARGET_DIR/layout.tsx"
 
