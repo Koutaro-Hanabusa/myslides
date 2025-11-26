@@ -1,2 +1,1 @@
-export { SlideLoading } from "./SlideLoading";
-export { SlidePreview } from "./SlidePreview";
+export { EmbeddedSlidePreview } from "./EmbeddedSlidePreview";

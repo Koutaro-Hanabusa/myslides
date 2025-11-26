@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SlidePreview } from "./components";
+import { EmbeddedSlidePreview } from "./components";
 import { presentations } from "./presentations";
 
 export default function PresentationListPage() {
@@ -30,8 +30,8 @@ export default function PresentationListPage() {
 									transition: "transform 0.2s, box-shadow 0.2s",
 								}}
 							>
-								<SlidePreview
-									href={presentation.href}
+								<EmbeddedSlidePreview
+									presentationId={presentation.id}
 									name={presentation.name}
 								/>
 								<div style={{ padding: "1rem", background: "#fff" }}>
