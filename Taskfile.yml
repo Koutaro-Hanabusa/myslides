@@ -211,11 +211,21 @@ tasks:
         # layout.tsx を作成
         {
           echo 'import type { Metadata } from "next";'
-          echo 'import { createPresentationMetadata } from "@/lib/presentation-metadata";'
           echo ''
-          echo 'export async function generateMetadata(): Promise<Metadata> {'
-          echo "	return createPresentationMetadata(\"$NAME\");"
-          echo '}'
+          echo 'export const metadata: Metadata = {'
+          echo "	title: \"$NAME | mySlides\","
+          echo "	description: \"$NAME - A presentation created with mySlides and Reveal.js\","
+          echo '	openGraph: {'
+          echo "		title: \"$NAME\","
+          echo "		description: \"$NAME - A presentation created with mySlides and Reveal.js\","
+          echo '		type: "website",'
+          echo '	},'
+          echo '	twitter: {'
+          echo '		card: "summary_large_image",'
+          echo "		title: \"$NAME\","
+          echo "		description: \"$NAME - A presentation created with mySlides and Reveal.js\","
+          echo '	},'
+          echo '};'
           echo ''
           echo 'export default function Layout({ children }: { children: React.ReactNode }) {'
           echo '	return <>{children}</>;'
