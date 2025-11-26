@@ -10,7 +10,7 @@ export default function PresentationListPage() {
 			<div
 				style={{
 					display: "grid",
-					gridTemplateColumns: "repeat(auto-fill, minmax(400px, 1fr))",
+					gridTemplateColumns: "repeat(2, 1fr)",
 					gap: "2rem",
 				}}
 			>
