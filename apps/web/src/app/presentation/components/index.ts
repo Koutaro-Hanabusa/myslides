@@ -1,1 +1,1 @@
-export { EmbeddedSlidePreview } from "./EmbeddedSlidePreview";
+export { SlidePreviewCard } from "./SlidePreviewCard";
