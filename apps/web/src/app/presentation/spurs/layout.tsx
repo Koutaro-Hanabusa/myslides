@@ -37,7 +37,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 				left: 0,
 				right: 0,
 				bottom: 0,
-				touchAction: "pan-x pan-y",
+				touchAction: "none",
 			}}
 		>
 			{children}
