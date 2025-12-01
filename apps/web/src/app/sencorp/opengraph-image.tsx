@@ -1,4 +1,9 @@
-import { generateOGPImage, gradientPresets } from "@/lib/ogp/generate-image";
+import { generateOGPImage } from "@/lib/ogp/generate-image";
+
+// OGP専用画像を使用
+const OGP_BACKGROUND_IMAGE =
+	"https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇OGP.png";
+
 export const alt = "Sencorp Presentation";
 export const size = {
 	width: 1200,
@@ -9,6 +14,7 @@ export const contentType = "image/png";
 export default function Image() {
 	return generateOGPImage({
 		title: "Sencorp",
-		gradient: gradientPresets.dark,
+		backgroundImage: OGP_BACKGROUND_IMAGE,
+		backgroundSize: "cover",
 	});
 }

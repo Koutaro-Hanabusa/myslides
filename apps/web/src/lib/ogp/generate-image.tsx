@@ -5,6 +5,8 @@ export interface OGPImageParams {
 	subtitle?: string;
 	gradient?: [string, string];
 	author?: string;
+	backgroundImage?: string;
+	backgroundSize?: "cover" | "contain";
 }
 
 export const gradientPresets = {
@@ -20,15 +22,28 @@ export const gradientPresets = {
 
 export function generateOGPImage({
 	title,
-	subtitle = "Reveal.js Presentation",
+	subtitle,
 	gradient = gradientPresets.purple,
 	author,
+	backgroundImage,
+	backgroundSize = "cover",
 }: OGPImageParams): ImageResponse {
+	const backgroundStyle = backgroundImage
+		? {
+				backgroundImage: `url(${backgroundImage})`,
+				backgroundSize: backgroundSize,
+				backgroundPosition: "center",
+				backgroundRepeat: "no-repeat",
+			}
+		: {
+				background: `linear-gradient(135deg, ${gradient[0]} 0%, ${gradient[1]} 100%)`,
+			};
+
 	return new ImageResponse(
 		<div
 			style={{
 				fontSize: 64,
-				background: `linear-gradient(135deg, ${gradient[0]} 0%, ${gradient[1]} 100%)`,
+				...backgroundStyle,
 				width: "100%",
 				height: "100%",
 				display: "flex",
@@ -39,45 +54,51 @@ export function generateOGPImage({
 				fontFamily: "system-ui, sans-serif",
 			}}
 		>
-			<div
-				style={{
-					fontSize: 32,
-					opacity: 0.8,
-					marginBottom: 16,
-				}}
-			>
-				mySlides
-			</div>
-			<div
-				style={{
-					fontSize: 72,
-					fontWeight: "bold",
-					textAlign: "center",
-					padding: "0 48px",
-					lineHeight: 1.2,
-				}}
-			>
-				{title}
-			</div>
-			<div
-				style={{
-					fontSize: 28,
-					opacity: 0.7,
-					marginTop: 24,
-				}}
-			>
-				{subtitle}
-			</div>
-			{author && (
-				<div
-					style={{
-						fontSize: 24,
-						opacity: 0.6,
-						marginTop: 16,
-					}}
-				>
-					by {author}
-				</div>
+			{!backgroundImage && (
+				<>
+					<div
+						style={{
+							fontSize: 32,
+							opacity: 0.8,
+							marginBottom: 16,
+						}}
+					>
+						mySlides
+					</div>
+					<div
+						style={{
+							fontSize: 72,
+							fontWeight: "bold",
+							textAlign: "center",
+							padding: "0 48px",
+							lineHeight: 1.2,
+						}}
+					>
+						{title}
+					</div>
+					{subtitle && (
+						<div
+							style={{
+								fontSize: 28,
+								opacity: 0.7,
+								marginTop: 24,
+							}}
+						>
+							{subtitle}
+						</div>
+					)}
+					{author && (
+						<div
+							style={{
+								fontSize: 24,
+								opacity: 0.6,
+								marginTop: 16,
+							}}
+						>
+							by {author}
+						</div>
+					)}
+				</>
 			)}
 		</div>,
 		{
