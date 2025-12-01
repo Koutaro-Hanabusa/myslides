@@ -67,7 +67,7 @@ export default function RevealPresentation({
 
 				// ナビゲーション設定
 				navigationMode: "linear", // モバイルで使いやすいリニアナビゲーション
-				disableLayout: embedded, // embeddedモードではレイアウト計算を無効化
+				disableLayout: false, // レイアウト計算を有効化してプレビューでも正しくスケーリング
 
 				...config,
 			});
