@@ -60,7 +60,6 @@ export default function RevealPresentation({
 
 				// モバイル最適化設定
 				touch: true, // タッチナビゲーションを明示的に有効化
-				hideAddressBar: true, // モバイルでアドレスバーを隠す
 
 				// パフォーマンス最適化
 				viewDistance: embedded ? 1 : 3, // プリロードするスライド数
