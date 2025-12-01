@@ -19,20 +19,18 @@ tasks:
     desc: Create a new presentation with corporate R2 background templates
     summary: |
       Usage:
-        task new-slide-corp -- <name> [slides=<count>]
+        task new-slide-corp -- <name>
         task new-slide-corp  (interactive mode)
 
       Examples:
         task new-slide-corp -- my-presentation
-        task new-slide-corp -- demo slides=10
 
       Structure:
         - cover.tsx (表紙)
         - corporate-philosophy.tsx (企業理念)
         - business-content.tsx (事業内容)
         - self-introduction.tsx (自己紹介)
-        - heading.tsx (見出し)
-        - slide1.tsx ~ slideN.tsx (本文)
+        - content.tsx (見出し1枚 + 本文1枚をまとめたファイル)
         - back-cover.tsx (裏表紙)
     cmds:
       - |
@@ -82,10 +80,7 @@ tasks:
           echo 'import CorporatePhilosophy from "./slides/corporate-philosophy";'
           echo 'import BusinessContent from "./slides/business-content";'
           echo 'import SelfIntroduction from "./slides/self-introduction";'
-          echo 'import Heading from "./slides/heading";'
-          for i in $(seq 1 $SLIDE_COUNT); do
-            echo "import Slide$i from \"./slides/slide$i\";"
-          done
+          echo 'import Content from "./slides/content";'
           echo 'import BackCover from "./slides/back-cover";'
           echo ''
           echo 'export default function PresentationPage() {'
@@ -96,10 +91,7 @@ tasks:
           echo '				<CorporatePhilosophy />'
           echo '				<BusinessContent />'
           echo '				<SelfIntroduction />'
-          echo '				<Heading />'
-          for i in $(seq 1 $SLIDE_COUNT); do
-            echo "				<Slide$i />"
-          done
+          echo '				<Content />'
           echo '				<BackCover />'
           echo '			</RevealPresentation>'
           echo '		</div>'
@@ -163,36 +155,30 @@ tasks:
           echo '}'
         } > "$TARGET_DIR/slides/self-introduction.tsx"
 
-        # 見出しスライド (heading.tsx)
+        # コンテンツスライド (content.tsx) - 見出し1枚 + 本文1枚をまとめたファイル
         {
-          echo 'export default function Heading() {'
+          echo 'export default function Content() {'
           echo '	return ('
-          echo '		<section'
-          echo "			data-background-image=\"$R2_BASE/千_外部登壇スライド_見出し.png\""
-          echo '			data-background-size="cover"'
-          echo '		>'
-          echo '			{/* コンテンツをここに追加 */}'
-          echo '		</section>'
+          echo '		<>'
+          echo '			{/* 見出しスライド */}'
+          echo '			<section'
+          echo "				data-background-image=\"$R2_BASE/千_外部登壇スライド_見出し.png\""
+          echo '				data-background-size="cover"'
+          echo '			>'
+          echo '				{/* 見出しコンテンツをここに追加 */}'
+          echo '			</section>'
+          echo ''
+          echo '			{/* 本文スライド */}'
+          echo '			<section'
+          echo "				data-background-image=\"$R2_BASE/千_外部登壇スライド_本文.png\""
+          echo '				data-background-size="cover"'
+          echo '			>'
+          echo '				{/* 本文コンテンツをここに追加 */}'
+          echo '			</section>'
+          echo '		</>'
           echo '	);'
           echo '}'
-        } > "$TARGET_DIR/slides/heading.tsx"
-
-        # 本文スライド (slide1.tsx ~ slideN.tsx)
-        for i in $(seq 1 $SLIDE_COUNT); do
-          {
-            echo "export default function Slide$i() {"
-            echo '	return ('
-            echo '		<section'
-            echo "			data-background-image=\"$R2_BASE/千_外部登壇スライド_本文.png\""
-            echo '			data-background-size="cover"'
-            echo '		>'
-            echo "			<h2>Slide $i</h2>"
-            echo '			<p>{/* コンテンツをここに追加 */}</p>'
-            echo '		</section>'
-            echo '	);'
-            echo '}'
-          } > "$TARGET_DIR/slides/slide$i.tsx"
-        done
+        } > "$TARGET_DIR/slides/content.tsx"
 
         # 裏表紙スライド (back-cover.tsx)
         {
@@ -311,31 +297,24 @@ tasks:
           echo '}'
         } > "$TARGET_DIR/preview.tsx"
 
-        # presentations.ts にエントリを追加
-        PRESENTATIONS_FILE="{{.PRESENTATION_DIR}}/presentations.ts"
-        DISPLAY_NAME="$NAME"
+        # page.tsx にプレビューコンポーネントを追加
+        PAGE_FILE="{{.PRESENTATION_DIR}}/page.tsx"
 
-        LINE_NUM=$(grep -n '^] as const;$' "$PRESENTATIONS_FILE" | cut -d: -f1)
-        head -n $((LINE_NUM - 1)) "$PRESENTATIONS_FILE" > "$PRESENTATIONS_FILE.tmp"
-        echo "	{" >> "$PRESENTATIONS_FILE.tmp"
-        echo "		id: \"$NAME\"," >> "$PRESENTATIONS_FILE.tmp"
-        echo "		name: \"$DISPLAY_NAME\"," >> "$PRESENTATIONS_FILE.tmp"
-        echo "		href: \"/presentation/$NAME\" as const," >> "$PRESENTATIONS_FILE.tmp"
-        echo "	}," >> "$PRESENTATIONS_FILE.tmp"
-        tail -n +$LINE_NUM "$PRESENTATIONS_FILE" >> "$PRESENTATIONS_FILE.tmp"
-        mv "$PRESENTATIONS_FILE.tmp" "$PRESENTATIONS_FILE"
+        # インポート文を追加 (export default の前に)
+        perl -i -pe "print \"import ${PREVIEW_NAME}Preview from \\\"./${NAME}/preview\\\";\n\n\" if /^export default function/" "$PAGE_FILE"
 
-        TOTAL_SLIDES=$((SLIDE_COUNT + 6))
-        echo "✓ Created presentation '$NAME' with $TOTAL_SLIDES slides"
+        # コンポーネントを追加 (最後の</div>の前に)
+        perl -i -pe "s|</div>\$|<${PREVIEW_NAME}Preview />\n\t\t\t\t</div>|" "$PAGE_FILE"
+
+        echo "✓ Created presentation '$NAME' with 7 slides"
         echo "  - 表紙: 1枚"
         echo "  - 企業理念: 1枚"
         echo "  - 事業内容: 1枚"
         echo "  - 自己紹介: 1枚"
-        echo "  - 見出し: 1枚"
-        echo "  - 本文: $SLIDE_COUNT枚"
+        echo "  - コンテンツ: 2枚 (見出し1枚 + 本文1枚)"
         echo "  - 裏表紙: 1枚"
         echo "  Location: $TARGET_DIR"
-        echo "✓ Added entry to presentations.ts"
+        echo "✓ Added ${PREVIEW_NAME}Preview to page.tsx"
         echo "✓ Created preview.tsx with ${PREVIEW_NAME}Preview component"
     silent: false
 
@@ -550,19 +529,14 @@ tasks:
           echo '}'
         } > "$TARGET_DIR/preview.tsx"
 
-        # presentations.ts にエントリを追加
-        PRESENTATIONS_FILE="{{.PRESENTATION_DIR}}/presentations.ts"
-        DISPLAY_NAME="$NAME"
+        # page.tsx にプレビューコンポーネントを追加
+        PAGE_FILE="{{.PRESENTATION_DIR}}/page.tsx"
 
-        LINE_NUM=$(grep -n '^] as const;$' "$PRESENTATIONS_FILE" | cut -d: -f1)
-        head -n $((LINE_NUM - 1)) "$PRESENTATIONS_FILE" > "$PRESENTATIONS_FILE.tmp"
-        echo "	{" >> "$PRESENTATIONS_FILE.tmp"
-        echo "		id: \"$NAME\"," >> "$PRESENTATIONS_FILE.tmp"
-        echo "		name: \"$DISPLAY_NAME\"," >> "$PRESENTATIONS_FILE.tmp"
-        echo "		href: \"/presentation/$NAME\" as const," >> "$PRESENTATIONS_FILE.tmp"
-        echo "	}," >> "$PRESENTATIONS_FILE.tmp"
-        tail -n +$LINE_NUM "$PRESENTATIONS_FILE" >> "$PRESENTATIONS_FILE.tmp"
-        mv "$PRESENTATIONS_FILE.tmp" "$PRESENTATIONS_FILE"
+        # インポート文を追加 (export default の前に)
+        perl -i -pe "print \"import ${PREVIEW_NAME}Preview from \\\"./${NAME}/preview\\\";\n\n\" if /^export default function/" "$PAGE_FILE"
+
+        # コンポーネントを追加 (最後の</div>の前に)
+        perl -i -pe "s|</div>\$|<${PREVIEW_NAME}Preview />\n\t\t\t\t</div>|" "$PAGE_FILE"
 
         TOTAL_SLIDES=$((SLIDE_COUNT + 2))
         echo "✓ Created simple presentation '$NAME' with $TOTAL_SLIDES slides"
@@ -570,7 +544,7 @@ tasks:
         echo "  - 本文: $SLIDE_COUNT枚"
         echo "  - 裏表紙: 1枚"
         echo "  Location: $TARGET_DIR"
-        echo "✓ Added entry to presentations.ts"
+        echo "✓ Added ${PREVIEW_NAME}Preview to page.tsx"
         echo "✓ Created preview.tsx with ${PREVIEW_NAME}Preview component"
         echo ""
         echo "Tip: Use 'task new-slide-corp' for corporate template"
