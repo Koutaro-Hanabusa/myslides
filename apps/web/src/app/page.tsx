@@ -18,23 +18,51 @@ export default function Home() {
 					gap: "2rem",
 				}}
 			>
-				<SlideCard href="/sample" title="Sample">
+				<SlideCard
+					href="/sample"
+					title="Sample"
+					date="2024-01-01"
+					event={{ name: "Sample Event", url: "https://example.com" }}
+				>
 					<SampleSlide1 />
 				</SlideCard>
 
-				<SlideCard href="/spurs" title="Spurs">
+				<SlideCard
+					href="/spurs"
+					title="Spurs"
+					date="2024-02-15"
+					event={{ name: "Spurs Meetup", url: "https://example.com/spurs" }}
+				>
 					<SpursSlide1 />
 				</SlideCard>
 
-				<SlideCard href="/tacos" title="Tacos">
+				<SlideCard
+					href="/tacos"
+					title="Tacos"
+					date="2024-03-20"
+					event={{ name: "Tacos Conference", url: "https://example.com/tacos" }}
+				>
 					<TacosSlide1 />
 				</SlideCard>
 
-				<SlideCard href="/sencorp" title="Sencorp">
+				<SlideCard
+					href="/sencorp"
+					title="Sencorp"
+					date="2024-04-10"
+					event={{
+						name: "Sencorp Tech Talk",
+						url: "https://example.com/sencorp",
+					}}
+				>
 					<SencorpCover />
 				</SlideCard>
 
-				<SlideCard href="/buri" title="Buri">
+				<SlideCard
+					href="/buri"
+					title="Buri"
+					date="2024-05-25"
+					event={{ name: "Buri Workshop", url: "https://example.com/buri" }}
+				>
 					<BuriCover />
 				</SlideCard>
 			</div>

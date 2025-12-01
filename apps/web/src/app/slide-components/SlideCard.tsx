@@ -5,13 +5,26 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import RevealPresentation from "@/components/reveal-presentation";
 
+interface EventInfo {
+	name: string;
+	url: string;
+}
+
 interface SlideCardProps {
 	href: Route;
 	title: string;
 	children: React.ReactNode;
+	date?: string;
+	event?: EventInfo;
 }
 
-export default function SlideCard({ href, title, children }: SlideCardProps) {
+export default function SlideCard({
+	href,
+	title,
+	children,
+	date,
+	event,
+}: SlideCardProps) {
 	const cardRef = useRef<HTMLDivElement>(null);
 	const [isVisible, setIsVisible] = useState(false);
 
@@ -78,6 +91,36 @@ export default function SlideCard({ href, title, children }: SlideCardProps) {
 				</div>
 				<div style={{ padding: "1rem", background: "#fff" }}>
 					<h3 style={{ margin: 0, color: "#333" }}>{title}</h3>
+					{(date || event) && (
+						<div
+							style={{
+								marginTop: "0.5rem",
+								fontSize: "0.875rem",
+								color: "#666",
+								display: "flex",
+								flexWrap: "wrap",
+								gap: "0.5rem",
+								alignItems: "center",
+							}}
+						>
+							{date && <span>{date}</span>}
+							{date && event && <span>•</span>}
+							{event && (
+								<a
+									href={event.url}
+									target="_blank"
+									rel="noopener noreferrer"
+									onClick={(e) => e.stopPropagation()}
+									style={{
+										color: "#0066cc",
+										textDecoration: "underline",
+									}}
+								>
+									{event.name}
+								</a>
+							)}
+						</div>
+					)}
 				</div>
 			</div>
 		</Link>
