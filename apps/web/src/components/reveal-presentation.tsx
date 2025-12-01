@@ -17,6 +17,7 @@ interface RevealPresentationProps {
     | "simple"
     | "solarized";
   transition?: "none" | "fade" | "slide" | "convex" | "concave" | "zoom";
+  embedded?: boolean;
   config?: Record<string, unknown>;
 }
 
@@ -24,6 +25,7 @@ export default function RevealPresentation({
   children,
   theme = "black",
   transition = "slide",
+  embedded = false,
   config = {},
 }: RevealPresentationProps) {
   const deckDivRef = useRef<HTMLDivElement>(null);
@@ -47,8 +49,14 @@ export default function RevealPresentation({
         height: 1080,
         margin: 0.1,
         minScale: 0.1,
-        maxScale: 0.5,
+        maxScale: embedded ? 1.0 : 0.5,
         center: true,
+        embedded,
+        // embeddedモード時はフォーカス時のみキーボード操作を有効に
+        keyboardCondition: embedded ? "focused" : null,
+        // embeddedモード時はコントロールを非表示
+        controls: !embedded,
+        progress: !embedded,
         ...config,
       });
 
@@ -69,7 +77,7 @@ export default function RevealPresentation({
         console.warn("Reveal.js destroy call failed.");
       }
     };
-  }, [transition, config]);
+  }, [transition, embedded, config]);
 
   return (
     <div
