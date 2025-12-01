@@ -1,10 +1,11 @@
 "use client";
 
+import type { Route } from "next";
 import Link from "next/link";
 import RevealPresentation from "@/components/reveal-presentation";
 
 interface SlideCardProps {
-	href: string;
+	href: Route;
 	title: string;
 	children: React.ReactNode;
 }
@@ -18,6 +19,8 @@ export default function SlideCard({ href, title, children }: SlideCardProps) {
 					borderRadius: "8px",
 					overflow: "hidden",
 					cursor: "pointer",
+					maxWidth: "1000px",
+					margin: "0 auto",
 				}}
 			>
 				<div style={{ aspectRatio: "16/9", position: "relative" }}>

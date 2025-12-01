@@ -1,12 +1,11 @@
 "use client";
 
+import BuriCover from "./buri/slides/cover";
 import SlideCard from "./components/SlideCard";
-
 import SampleSlide1 from "./sample/slides/slide1";
+import SencorpCover from "./sencorp/slides/cover";
 import SpursSlide1 from "./spurs/slides/slide1";
 import TacosSlide1 from "./tacos/slides/slide1";
-import SencorpCover from "./sencorp/slides/cover";
-import BuriCover from "./buri/slides/cover";
 
 export default function PresentationListPage() {
 	return (

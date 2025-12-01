@@ -1,7 +1,4 @@
-import {
-	generateOGPImage,
-	gradientPresets,
-} from "@/lib/ogp/generate-image";
+import { generateOGPImage, gradientPresets } from "@/lib/ogp/generate-image";
 export const alt = "Sencorp Presentation";
 export const size = {
 	width: 1200,
