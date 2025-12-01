@@ -276,35 +276,17 @@ tasks:
           echo '}'
         } > "$TARGET_DIR/opengraph-image.tsx"
 
-        # preview.tsx を作成 - corporate版
-        # PascalCase変換: ハイフンを削除し、各単語の最初の文字を大文字にする
-        PREVIEW_NAME=$(echo "$NAME" | perl -pe 's/(^|-)(.)/uc($2)/ge')
-        {
-          echo 'import Link from "next/link";'
-          echo 'import { SlidePreviewCard } from "../components/SlidePreviewCard";'
-          echo 'import Cover from "./slides/cover";'
-          echo ''
-          echo "const BACKGROUND_IMAGE = \"$R2_BASE/千_外部登壇スライド_表紙.png\";"
-          echo ''
-          echo "export default function ${PREVIEW_NAME}Preview() {"
-          echo '	return ('
-          echo "		<Link href=\"/presentation/$NAME\" style={{ "{{" }} textDecoration: \"none\", color: \"inherit\" {{ "}}" }}>"
-          echo "			<SlidePreviewCard title=\"$NAME\" backgroundImage={BACKGROUND_IMAGE}>"
-          echo '				<Cover />'
-          echo '			</SlidePreviewCard>'
-          echo '		</Link>'
-          echo '	);'
-          echo '}'
-        } > "$TARGET_DIR/preview.tsx"
-
-        # page.tsx にプレビューコンポーネントを追加
+        # page.tsx にSlideCardを追加
         PAGE_FILE="{{.PRESENTATION_DIR}}/page.tsx"
 
-        # インポート文を追加 (export default の前に)
-        perl -i -pe "print \"import ${PREVIEW_NAME}Preview from \\\"./${NAME}/preview\\\";\n\" if /^export default function/" "$PAGE_FILE"
+        # PascalCase変換: ハイフンを削除し、各単語の最初の文字を大文字にする
+        PASCAL_NAME=$(echo "$NAME" | perl -pe 's/(^|-)(.)/uc($2)/ge')
 
-        # コンポーネントを追加 (グリッド内の</div>の前に - タブ3つのインデント)
-        perl -i -pe "s|^(\t\t\t</div>)|\t\t\t\t<${PREVIEW_NAME}Preview />\n\1|" "$PAGE_FILE"
+        # Coverコンポーネントのインポート文を追加 (SlideCard インポートの後に)
+        perl -i -pe "print \"import ${PASCAL_NAME}Cover from \\\"./${NAME}/slides/cover\\\";\n\" if /^import SlideCard from/" "$PAGE_FILE"
+
+        # SlideCardコンポーネントを追加 (グリッド内の</div>の前に - タブ4つのインデント)
+        perl -i -pe "s|^(\t\t\t</div>)|\n\t\t\t\t<SlideCard href=\"/presentation/${NAME}\" title=\"${PASCAL_NAME}\">\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n\1|" "$PAGE_FILE"
 
         echo "✓ Created presentation '$NAME' with 7 slides"
         echo "  - 表紙: 1枚"
@@ -314,8 +296,7 @@ tasks:
         echo "  - コンテンツ: 2枚 (見出し1枚 + 本文1枚)"
         echo "  - 裏表紙: 1枚"
         echo "  Location: $TARGET_DIR"
-        echo "✓ Added ${PREVIEW_NAME}Preview to page.tsx"
-        echo "✓ Created preview.tsx with ${PREVIEW_NAME}Preview component"
+        echo "✓ Added SlideCard with ${PASCAL_NAME}Cover to page.tsx"
     silent: false
 
   new-slide:
@@ -510,41 +491,24 @@ tasks:
           echo '}'
         } > "$TARGET_DIR/opengraph-image.tsx"
 
-        # preview.tsx を作成 - simple版
-        # PascalCase変換: ハイフンを削除し、各単語の最初の文字を大文字にする
-        PREVIEW_NAME=$(echo "$NAME" | perl -pe 's/(^|-)(.)/uc($2)/ge')
-        {
-          echo 'import Link from "next/link";'
-          echo 'import { SlidePreviewCard } from "../components/SlidePreviewCard";'
-          echo 'import Cover from "./slides/cover";'
-          echo ''
-          echo "export default function ${PREVIEW_NAME}Preview() {"
-          echo '	return ('
-          echo "		<Link href=\"/presentation/$NAME\" style={{ "{{" }} textDecoration: \"none\", color: \"inherit\" {{ "}}" }}>"
-          echo "			<SlidePreviewCard title=\"$NAME\">"
-          echo '				<Cover />'
-          echo '			</SlidePreviewCard>'
-          echo '		</Link>'
-          echo '	);'
-          echo '}'
-        } > "$TARGET_DIR/preview.tsx"
-
-        # page.tsx にプレビューコンポーネントを追加
+        # page.tsx にSlideCardを追加
         PAGE_FILE="{{.PRESENTATION_DIR}}/page.tsx"
 
-        # インポート文を追加 (export default の前に)
-        perl -i -pe "print \"import ${PREVIEW_NAME}Preview from \\\"./${NAME}/preview\\\";\n\" if /^export default function/" "$PAGE_FILE"
+        # PascalCase変換: ハイフンを削除し、各単語の最初の文字を大文字にする
+        PASCAL_NAME=$(echo "$NAME" | perl -pe 's/(^|-)(.)/uc($2)/ge')
 
-        # コンポーネントを追加 (グリッド内の</div>の前に - タブ3つのインデント)
-        perl -i -pe "s|^(\t\t\t</div>)|\t\t\t\t<${PREVIEW_NAME}Preview />\n\1|" "$PAGE_FILE"
+        # Coverコンポーネントのインポート文を追加 (SlideCard インポートの後に)
+        perl -i -pe "print \"import ${PASCAL_NAME}Cover from \\\"./${NAME}/slides/cover\\\";\n\" if /^import SlideCard from/" "$PAGE_FILE"
+
+        # SlideCardコンポーネントを追加 (グリッド内の</div>の前に - タブ4つのインデント)
+        perl -i -pe "s|^(\t\t\t</div>)|\n\t\t\t\t<SlideCard href=\"/presentation/${NAME}\" title=\"${PASCAL_NAME}\">\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n\1|" "$PAGE_FILE"
 
         echo "✓ Created simple presentation '$NAME' with 4 slides"
         echo "  - 表紙: 1枚"
         echo "  - コンテンツ: 2枚 (見出し1枚 + 本文1枚)"
         echo "  - 裏表紙: 1枚"
         echo "  Location: $TARGET_DIR"
-        echo "✓ Added ${PREVIEW_NAME}Preview to page.tsx"
-        echo "✓ Created preview.tsx with ${PREVIEW_NAME}Preview component"
+        echo "✓ Added SlideCard with ${PASCAL_NAME}Cover to page.tsx"
         echo ""
         echo "Tip: Use 'task new-slide-corp' for corporate template"
     silent: false
