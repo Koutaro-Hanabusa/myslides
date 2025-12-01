@@ -1,25 +1,42 @@
-import SamplePreview from "./sample/preview";
-import SpursPreview from "./spurs/preview";
-import TacosPreview from "./tacos/preview";
-import SencorpPreview from "./sencorp/preview";
-import BuriPreview from "./buri/preview";
+"use client";
+
+import BuriCover from "./buri/slides/cover";
+import SlideCard from "./components/SlideCard";
+import SampleSlide1 from "./sample/slides/slide1";
+import SencorpCover from "./sencorp/slides/cover";
+import SpursSlide1 from "./spurs/slides/slide1";
+import TacosSlide1 from "./tacos/slides/slide1";
 
 export default function PresentationListPage() {
 	return (
-		<div style={{ padding: "2rem", maxWidth: "1200px", margin: "0 auto" }}>
+		<div style={{ padding: "2rem" }}>
 			<h1>Presentations</h1>
 			<div
 				style={{
 					display: "grid",
-					gridTemplateColumns: "repeat(2, 1fr)",
+					gridTemplateColumns: "1fr",
 					gap: "2rem",
 				}}
 			>
-				<SamplePreview />
-				<SpursPreview />
-				<TacosPreview />
-				<SencorpPreview />
-				<BuriPreview />
+				<SlideCard href="/presentation/sample" title="Sample">
+					<SampleSlide1 />
+				</SlideCard>
+
+				<SlideCard href="/presentation/spurs" title="Spurs">
+					<SpursSlide1 />
+				</SlideCard>
+
+				<SlideCard href="/presentation/tacos" title="Tacos">
+					<TacosSlide1 />
+				</SlideCard>
+
+				<SlideCard href="/presentation/sencorp" title="Sencorp">
+					<SencorpCover />
+				</SlideCard>
+
+				<SlideCard href="/presentation/buri" title="Buri">
+					<BuriCover />
+				</SlideCard>
 			</div>
 		</div>
 	);

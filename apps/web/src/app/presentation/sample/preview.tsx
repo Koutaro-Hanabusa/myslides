@@ -4,7 +4,10 @@ import Slide1 from "./slides/slide1";
 
 export default function SamplePreview() {
 	return (
-		<Link href="/presentation/sample" style={{ textDecoration: "none", color: "inherit" }}>
+		<Link
+			href="/presentation/sample"
+			style={{ textDecoration: "none", color: "inherit" }}
+		>
 			<SlidePreviewCard title="Welcome to My Slides">
 				<Slide1 />
 			</SlidePreviewCard>
