@@ -1,56 +1,42 @@
 "use client";
-import { useQuery } from "@tanstack/react-query";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { trpc } from "@/utils/trpc";
 
-const TITLE_TEXT = `
- ██████╗ ███████╗████████╗████████╗███████╗██████╗
- ██╔══██╗██╔════╝╚══██╔══╝╚══██╔══╝██╔════╝██╔══██╗
- ██████╔╝█████╗     ██║      ██║   █████╗  ██████╔╝
- ██╔══██╗██╔══╝     ██║      ██║   ██╔══╝  ██╔══██╗
- ██████╔╝███████╗   ██║      ██║   ███████╗██║  ██║
- ╚═════╝ ╚══════╝   ╚═╝      ╚═╝   ╚══════╝╚═╝  ╚═╝
-
- ████████╗    ███████╗████████╗ █████╗  ██████╗██╗  ██╗
- ╚══██╔══╝    ██╔════╝╚══██╔══╝██╔══██╗██╔════╝██║ ██╔╝
-    ██║       ███████╗   ██║   ███████║██║     █████╔╝
-    ██║       ╚════██║   ██║   ██╔══██║██║     ██╔═██╗
-    ██║       ███████║   ██║   ██║  ██║╚██████╗██║  ██╗
-    ╚═╝       ╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
- `;
+import BuriCover from "./buri/slides/cover";
+import SampleSlide1 from "./sample/slides/slide1";
+import SencorpCover from "./sencorp/slides/cover";
+import SlideCard from "./slide-components/SlideCard";
+import SpursSlide1 from "./spurs/slides/slide1";
+import TacosSlide1 from "./tacos/slides/slide1";
 
 export default function Home() {
-	const healthCheck = useQuery(trpc.healthCheck.queryOptions());
-
 	return (
-		<div className="container mx-auto max-w-3xl px-4 py-2">
-			<pre className="overflow-x-auto font-mono text-sm">{TITLE_TEXT}</pre>
-			<div className="grid gap-6">
-				<section className="rounded-lg border p-4">
-					<h2 className="mb-2 font-medium">API Status</h2>
-					<div className="flex items-center gap-2">
-						<div
-							className={`h-2 w-2 rounded-full ${healthCheck.data ? "bg-green-500" : "bg-red-500"}`}
-						/>
-						<span className="text-muted-foreground text-sm">
-							{healthCheck.isLoading
-								? "Checking..."
-								: healthCheck.data
-									? "Connected"
-									: "Disconnected"}
-						</span>
-					</div>
-				</section>
-				<section className="rounded-lg border p-4">
-					<h2 className="mb-2 font-medium">Presentation</h2>
-					<p className="mb-4 text-muted-foreground text-sm">
-						View the Reveal.js presentation demo
-					</p>
-					<Link href="/presentation">
-						<Button>Open Presentation</Button>
-					</Link>
-				</section>
+		<div style={{ padding: "2rem" }}>
+			<h1>Presentations</h1>
+			<div
+				style={{
+					display: "grid",
+					gridTemplateColumns: "1fr",
+					gap: "2rem",
+				}}
+			>
+				<SlideCard href="/sample" title="Sample">
+					<SampleSlide1 />
+				</SlideCard>
+
+				<SlideCard href="/spurs" title="Spurs">
+					<SpursSlide1 />
+				</SlideCard>
+
+				<SlideCard href="/tacos" title="Tacos">
+					<TacosSlide1 />
+				</SlideCard>
+
+				<SlideCard href="/sencorp" title="Sencorp">
+					<SencorpCover />
+				</SlideCard>
+
+				<SlideCard href="/buri" title="Buri">
+					<BuriCover />
+				</SlideCard>
 			</div>
 		</div>
 	);
