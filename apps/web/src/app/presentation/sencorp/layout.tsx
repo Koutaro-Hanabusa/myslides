@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
 	title: "Sencorp | mySlides",
@@ -15,18 +15,26 @@ export const metadata: Metadata = {
 	},
 };
 
+export const viewport: Viewport = {
+	width: "device-width",
+	initialScale: 1,
+	maximumScale: 1,
+	userScalable: false,
+};
+
 export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<div
 			style={{
 				width: "100%",
-				height: "100vh",
+				height: "100dvh",
 				overflow: "hidden",
 				position: "fixed",
 				top: 0,
 				left: 0,
 				right: 0,
 				bottom: 0,
+				touchAction: "pan-x pan-y",
 			}}
 		>
 			{children}
