@@ -12,7 +12,12 @@ interface SlideCardProps {
 
 export default function SlideCard({ href, title, children }: SlideCardProps) {
 	return (
-		<Link href={href} style={{ textDecoration: "none", color: "inherit" }}>
+		<Link
+			href={href}
+			target="_blank"
+			rel="noopener noreferrer"
+			style={{ textDecoration: "none", color: "inherit" }}
+		>
 			<div
 				style={{
 					border: "1px solid #ccc",
