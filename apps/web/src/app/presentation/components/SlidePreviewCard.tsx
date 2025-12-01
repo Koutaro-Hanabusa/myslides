@@ -6,7 +6,11 @@ type SlidePreviewCardProps = {
 	backgroundImage?: string;
 };
 
-export function SlidePreviewCard({ title, children, backgroundImage }: SlidePreviewCardProps) {
+export function SlidePreviewCard({
+	title,
+	children,
+	backgroundImage,
+}: SlidePreviewCardProps) {
 	return (
 		<div
 			style={{
@@ -22,7 +26,9 @@ export function SlidePreviewCard({ title, children, backgroundImage }: SlidePrev
 					position: "relative",
 					aspectRatio: "16/9",
 					background: "#1a1a1a",
-					backgroundImage: backgroundImage ? `url(${backgroundImage})` : undefined,
+					backgroundImage: backgroundImage
+						? `url(${backgroundImage})`
+						: undefined,
 					backgroundSize: "cover",
 					backgroundPosition: "center",
 					pointerEvents: "none",
