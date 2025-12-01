@@ -57,6 +57,19 @@ export default function RevealPresentation({
 				// embeddedモード時はコントロールを非表示
 				controls: !embedded,
 				progress: !embedded,
+
+				// モバイル最適化設定
+				touch: true, // タッチナビゲーションを明示的に有効化
+				hideAddressBar: true, // モバイルでアドレスバーを隠す
+
+				// パフォーマンス最適化
+				viewDistance: embedded ? 1 : 3, // プリロードするスライド数
+				mobileViewDistance: embedded ? 1 : 2, // モバイル向けのプリロード数
+
+				// ナビゲーション設定
+				navigationMode: "linear", // モバイルで使いやすいリニアナビゲーション
+				disableLayout: embedded, // embeddedモードではレイアウト計算を無効化
+
 				...config,
 			});
 
