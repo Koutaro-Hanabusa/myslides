@@ -278,7 +278,7 @@ tasks:
 
         # preview.tsx を作成 - corporate版
         # PascalCase変換: ハイフンを削除し、各単語の最初の文字を大文字にする
-        PREVIEW_NAME=$(echo "$NAME" | sed -E 's/(^|-)(.)/\U\2/g')
+        PREVIEW_NAME=$(echo "$NAME" | perl -pe 's/(^|-)(.)/uc($2)/ge')
         {
           echo 'import Link from "next/link";'
           echo 'import { SlidePreviewCard } from "../components/SlidePreviewCard";'
@@ -301,10 +301,10 @@ tasks:
         PAGE_FILE="{{.PRESENTATION_DIR}}/page.tsx"
 
         # インポート文を追加 (export default の前に)
-        perl -i -pe "print \"import ${PREVIEW_NAME}Preview from \\\"./${NAME}/preview\\\";\n\n\" if /^export default function/" "$PAGE_FILE"
+        perl -i -pe "print \"import ${PREVIEW_NAME}Preview from \\\"./${NAME}/preview\\\";\n\" if /^export default function/" "$PAGE_FILE"
 
-        # コンポーネントを追加 (最後の</div>の前に)
-        perl -i -pe "s|</div>\$|<${PREVIEW_NAME}Preview />\n\t\t\t\t</div>|" "$PAGE_FILE"
+        # コンポーネントを追加 (グリッド内の</div>の前に - タブ3つのインデント)
+        perl -i -pe "s|^(\t\t\t</div>)|\t\t\t\t<${PREVIEW_NAME}Preview />\n\1|" "$PAGE_FILE"
 
         echo "✓ Created presentation '$NAME' with 7 slides"
         echo "  - 表紙: 1枚"
@@ -322,16 +322,15 @@ tasks:
     desc: Create a new simple presentation (no corporate template)
     summary: |
       Usage:
-        task new-slide -- <name> [slides=<count>]
+        task new-slide -- <name>
         task new-slide  (interactive mode)
 
       Examples:
         task new-slide -- my-presentation
-        task new-slide -- demo slides=10
 
       Structure:
         - cover.tsx (表紙)
-        - slide1.tsx ~ slideN.tsx (本文)
+        - content.tsx (見出し1枚 + 本文1枚をまとめたファイル)
         - back-cover.tsx (裏表紙)
 
       Note: For corporate template, use 'task new-slide-corp'
@@ -379,9 +378,7 @@ tasks:
           echo ''
           echo 'import RevealPresentation from "@/components/reveal-presentation";'
           echo 'import Cover from "./slides/cover";'
-          for i in $(seq 1 $SLIDE_COUNT); do
-            echo "import Slide$i from \"./slides/slide$i\";"
-          done
+          echo 'import Content from "./slides/content";'
           echo 'import BackCover from "./slides/back-cover";'
           echo ''
           echo 'export default function PresentationPage() {'
@@ -389,9 +386,7 @@ tasks:
           echo '		<div style={{ "{{" }} width: "100%", height: "100%" {{ "}}" }}>'
           echo '			<RevealPresentation transition="slide">'
           echo '				<Cover />'
-          for i in $(seq 1 $SLIDE_COUNT); do
-            echo "				<Slide$i />"
-          done
+          echo '				<Content />'
           echo '				<BackCover />'
           echo '			</RevealPresentation>'
           echo '		</div>'
@@ -410,19 +405,24 @@ tasks:
           echo '}'
         } > "$TARGET_DIR/slides/cover.tsx"
 
-        # 本文スライド (slide1.tsx ~ slideN.tsx) - シンプル版
-        for i in $(seq 1 $SLIDE_COUNT); do
-          {
-            echo "export default function Slide$i() {"
-            echo '	return ('
-            echo '		<section>'
-            echo "			<h2>Slide $i</h2>"
-            echo '			<p>{/* コンテンツをここに追加 */}</p>'
-            echo '		</section>'
-            echo '	);'
-            echo '}'
-          } > "$TARGET_DIR/slides/slide$i.tsx"
-        done
+        # コンテンツスライド (content.tsx) - 見出し1枚 + 本文1枚をまとめたファイル
+        {
+          echo 'export default function Content() {'
+          echo '	return ('
+          echo '		<>'
+          echo '			{/* 見出しスライド */}'
+          echo '			<section>'
+          echo '				{/* 見出しコンテンツをここに追加 */}'
+          echo '			</section>'
+          echo ''
+          echo '			{/* 本文スライド */}'
+          echo '			<section>'
+          echo '				{/* 本文コンテンツをここに追加 */}'
+          echo '			</section>'
+          echo '		</>'
+          echo '	);'
+          echo '}'
+        } > "$TARGET_DIR/slides/content.tsx"
 
         # 裏表紙スライド (back-cover.tsx) - シンプル版
         {
@@ -512,17 +512,17 @@ tasks:
 
         # preview.tsx を作成 - simple版
         # PascalCase変換: ハイフンを削除し、各単語の最初の文字を大文字にする
-        PREVIEW_NAME=$(echo "$NAME" | sed -E 's/(^|-)(.)/\U\2/g')
+        PREVIEW_NAME=$(echo "$NAME" | perl -pe 's/(^|-)(.)/uc($2)/ge')
         {
           echo 'import Link from "next/link";'
           echo 'import { SlidePreviewCard } from "../components/SlidePreviewCard";'
-          echo 'import Slide1 from "./slides/slide1";'
+          echo 'import Cover from "./slides/cover";'
           echo ''
           echo "export default function ${PREVIEW_NAME}Preview() {"
           echo '	return ('
           echo "		<Link href=\"/presentation/$NAME\" style={{ "{{" }} textDecoration: \"none\", color: \"inherit\" {{ "}}" }}>"
           echo "			<SlidePreviewCard title=\"$NAME\">"
-          echo '				<Slide1 />'
+          echo '				<Cover />'
           echo '			</SlidePreviewCard>'
           echo '		</Link>'
           echo '	);'
@@ -533,15 +533,14 @@ tasks:
         PAGE_FILE="{{.PRESENTATION_DIR}}/page.tsx"
 
         # インポート文を追加 (export default の前に)
-        perl -i -pe "print \"import ${PREVIEW_NAME}Preview from \\\"./${NAME}/preview\\\";\n\n\" if /^export default function/" "$PAGE_FILE"
+        perl -i -pe "print \"import ${PREVIEW_NAME}Preview from \\\"./${NAME}/preview\\\";\n\" if /^export default function/" "$PAGE_FILE"
 
-        # コンポーネントを追加 (最後の</div>の前に)
-        perl -i -pe "s|</div>\$|<${PREVIEW_NAME}Preview />\n\t\t\t\t</div>|" "$PAGE_FILE"
+        # コンポーネントを追加 (グリッド内の</div>の前に - タブ3つのインデント)
+        perl -i -pe "s|^(\t\t\t</div>)|\t\t\t\t<${PREVIEW_NAME}Preview />\n\1|" "$PAGE_FILE"
 
-        TOTAL_SLIDES=$((SLIDE_COUNT + 2))
-        echo "✓ Created simple presentation '$NAME' with $TOTAL_SLIDES slides"
+        echo "✓ Created simple presentation '$NAME' with 4 slides"
         echo "  - 表紙: 1枚"
-        echo "  - 本文: $SLIDE_COUNT枚"
+        echo "  - コンテンツ: 2枚 (見出し1枚 + 本文1枚)"
         echo "  - 裏表紙: 1枚"
         echo "  Location: $TARGET_DIR"
         echo "✓ Added ${PREVIEW_NAME}Preview to page.tsx"
