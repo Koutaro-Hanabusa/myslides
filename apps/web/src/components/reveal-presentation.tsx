@@ -52,6 +52,12 @@ export default function RevealPresentation({
 				maxScale: embedded ? 1.0 : 0.5,
 				center: true,
 				embedded,
+				// 通常のスライドビューを使用（スワイプナビゲーション有効）
+				// 'scroll'にするとスクロールビューになりスワイプが効かない
+				view: null,
+				// モバイル幅でのスクロールビュー自動切り替えを無効化
+				// これがないとビューポートが狭いときに自動でスクロールビューになる
+				scrollActivationWidth: 0,
 				// embeddedモード時はフォーカス時のみキーボード操作を有効に
 				keyboardCondition: embedded ? "focused" : null,
 				// embeddedモード時はコントロールを非表示
