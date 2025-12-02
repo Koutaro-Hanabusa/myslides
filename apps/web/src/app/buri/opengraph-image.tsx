@@ -14,6 +14,8 @@ export const contentType = "image/png";
 export default function Image() {
 	return generateOGPImage({
 		title: "buri",
+		subtitle: "Reveal.js Presentation",
+		author: "buri",
 		backgroundImage: OGP_BACKGROUND_IMAGE,
 		backgroundSize: "cover",
 	});
