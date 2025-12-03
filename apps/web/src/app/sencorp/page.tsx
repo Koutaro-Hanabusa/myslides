@@ -15,7 +15,7 @@ import Slide5 from "./slides/slide5";
 
 export default function PresentationPage() {
 	return (
-		<div style={{ width: "100%", height: "100%" }}>
+		<div className="h-full w-full">
 			<RevealPresentation transition="slide">
 				<Cover />
 				<CorporatePhilosophy />

@@ -99,14 +99,8 @@ export default function RevealPresentation({
 
 	return (
 		<div
-			className="reveal"
+			className="reveal relative h-full w-full overflow-hidden"
 			ref={deckDivRef}
-			style={{
-				width: "100%",
-				height: "100%",
-				overflow: "hidden",
-				position: "relative",
-			}}
 		>
 			<div className="slides">
 				{children || (

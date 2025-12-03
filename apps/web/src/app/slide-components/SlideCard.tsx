@@ -52,76 +52,42 @@ export default function SlideCard({
 	return (
 		<div
 			ref={cardRef}
-			style={{
-				border: "1px solid #ccc",
-				borderRadius: "8px",
-				overflow: "hidden",
-				width: "100%",
-			}}
+			className="w-full overflow-hidden rounded-lg border border-gray-300"
 		>
 			<Link
 				href={href}
 				target="_blank"
 				rel="noopener noreferrer"
-				style={{ textDecoration: "none", color: "inherit", display: "block" }}
+				className="block text-inherit no-underline"
 			>
-				<div
-					style={{
-						aspectRatio: "16/9",
-						position: "relative",
-						cursor: "pointer",
-					}}
-				>
+				<div className="relative aspect-video cursor-pointer">
 					{isVisible ? (
 						<RevealPresentation embedded>{children}</RevealPresentation>
 					) : (
-						<div
-							style={{
-								width: "100%",
-								height: "100%",
-								background: "#1a1a1a",
-								display: "flex",
-								alignItems: "center",
-								justifyContent: "center",
-								color: "#666",
-							}}
-						>
+						<div className="flex h-full w-full items-center justify-center bg-neutral-900 text-gray-500">
 							Loading...
 						</div>
 					)}
 				</div>
 			</Link>
-			<div style={{ padding: "1rem", background: "#fff" }}>
-				<h3 style={{ fontSize: "2rem", margin: 0, color: "#333" }}>{title}</h3>
+			<div className="bg-white p-4">
+				<h3 className="m-0 text-3xl text-gray-700">{title}</h3>
 				{(date || event) && (
-					<div
-						style={{
-							display: "flex",
-							alignItems: "center",
-							gap: "0.5rem",
-							marginTop: "0.5rem",
-							fontSize: "1rem",
-							color: "#666",
-						}}
-					>
+					<div className="mt-2 flex items-center gap-2 text-base text-gray-500">
 						{date && <span>{date}</span>}
-						{date && event && <span style={{ color: "#ccc" }}>|</span>}
+						{date && event && <span className="text-gray-300">|</span>}
 						{event &&
 							(url ? (
 								<a
 									href={url}
 									target="_blank"
 									rel="noopener noreferrer"
-									style={{
-										color: "#0066cc",
-										textDecoration: "none",
-										fontSize: "1rem",
-									}}
+									className="text-base text-blue-600 no-underline"
 								>
 									{event}
 								</a>
 							) : (
-								<span style={{ fontSize: "1rem" }}>{event}</span>
+								<span className="text-base">{event}</span>
 							))}
 					</div>
 				)}
