@@ -9,16 +9,16 @@ import Content from "./slides/content";
 import BackCover from "./slides/back-cover";
 
 export default function PresentationPage() {
-	return (
-		<div className="h-full w-full">
-			<RevealPresentation transition="slide">
-				<Cover />
-				<CorporatePhilosophy />
-				<BusinessContent />
-				<SelfIntroduction />
-				<Content />
-				<BackCover />
-			</RevealPresentation>
-		</div>
-	);
+  return (
+    <div className="h-full w-full">
+      <RevealPresentation transition="slide">
+        <Cover />
+        <SelfIntroduction />
+        <CorporatePhilosophy />
+        <BusinessContent />
+        <Content />
+        <BackCover />
+      </RevealPresentation>
+    </div>
+  );
 }

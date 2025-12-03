@@ -5,15 +5,15 @@ export default function Cover() {
       data-background-size="contain"
     >
       <div className="text-left">
-        <h3 className="block text-[2vw]">Cloudflare Meet-up Tokyo Vol.9</h3>
-        <h1 className="text-[3vw] leading-tight mt-[2vw]">
+        <h3>Cloudflare Meet-up Tokyo Vol.9</h3>
+        <br />
+        <h1 className="leading-tight">
           より良い技術スタックで
           <br />
           cloudflareにデプロイしよう
         </h1>
-        <h3 className="mt-[12vw] text-[2vw] !text-blue-600">
-          ぶりお @burio_16
-        </h3>
+        <br />
+        <h3 className=" !text-blue-600">ぶりお @burio_16</h3>
       </div>
     </section>
   );
