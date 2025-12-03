@@ -105,7 +105,7 @@ tasks:
           echo '	return ('
           echo '		<section'
           echo "			data-background-image=\"$R2_BASE/千_外部登壇スライド_表紙.png\""
-          echo '			data-background-size="cover"'
+          echo '			data-background-size="contain"'
           echo '		>'
           echo "			<h1>$NAME</h1>"
           echo '		</section>'
@@ -119,7 +119,7 @@ tasks:
           echo '	return ('
           echo '		<section'
           echo "			data-background-image=\"$R2_BASE/千_外部登壇スライド_企業理念.png\""
-          echo '			data-background-size="cover"'
+          echo '			data-background-size="contain"'
           echo '		>'
           echo '			{/* コンテンツをここに追加 */}'
           echo '		</section>'
@@ -133,7 +133,7 @@ tasks:
           echo '	return ('
           echo '		<section'
           echo "			data-background-image=\"$R2_BASE/千_外部登壇スライド_事業内容.png\""
-          echo '			data-background-size="cover"'
+          echo '			data-background-size="contain"'
           echo '		>'
           echo '			{/* コンテンツをここに追加 */}'
           echo '		</section>'
@@ -147,7 +147,7 @@ tasks:
           echo '	return ('
           echo '		<section'
           echo "			data-background-image=\"$R2_BASE/千_外部登壇スライド_自己紹介.png\""
-          echo '			data-background-size="cover"'
+          echo '			data-background-size="contain"'
           echo '		>'
           echo '			{/* コンテンツをここに追加 */}'
           echo '		</section>'
@@ -163,7 +163,7 @@ tasks:
           echo '			{/* 見出しスライド */}'
           echo '			<section'
           echo "				data-background-image=\"$R2_BASE/千_外部登壇スライド_見出し.png\""
-          echo '				data-background-size="cover"'
+          echo '				data-background-size="contain"'
           echo '			>'
           echo '				{/* 見出しコンテンツをここに追加 */}'
           echo '			</section>'
@@ -171,7 +171,7 @@ tasks:
           echo '			{/* 本文スライド */}'
           echo '			<section'
           echo "				data-background-image=\"$R2_BASE/千_外部登壇スライド_本文.png\""
-          echo '				data-background-size="cover"'
+          echo '				data-background-size="contain"'
           echo '			>'
           echo '				{/* 本文コンテンツをここに追加 */}'
           echo '			</section>'
@@ -186,7 +186,7 @@ tasks:
           echo '	return ('
           echo '		<section'
           echo "			data-background-image=\"$R2_BASE/千_外部登壇スライド_裏表紙.png\""
-          echo '			data-background-size="cover"'
+          echo '			data-background-size="contain"'
           echo '		>'
           echo '			{/* コンテンツをここに追加 */}'
           echo '		</section>'
