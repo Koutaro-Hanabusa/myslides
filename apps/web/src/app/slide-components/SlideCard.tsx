@@ -92,7 +92,7 @@ export default function SlideCard({
 				</div>
 			</Link>
 			<div style={{ padding: "1rem", background: "#fff" }}>
-				<h3 style={{ margin: 0, color: "#333" }}>{title}</h3>
+				<h3 style={{ fontSize: "2rem", margin: 0, color: "#333" }}>{title}</h3>
 				{(date || event) && (
 					<div
 						style={{
@@ -100,7 +100,7 @@ export default function SlideCard({
 							alignItems: "center",
 							gap: "0.5rem",
 							marginTop: "0.5rem",
-							fontSize: "0.875rem",
+							fontSize: "1rem",
 							color: "#666",
 						}}
 					>
@@ -112,12 +112,16 @@ export default function SlideCard({
 									href={url}
 									target="_blank"
 									rel="noopener noreferrer"
-									style={{ color: "#0066cc", textDecoration: "none" }}
+									style={{
+										color: "#0066cc",
+										textDecoration: "none",
+										fontSize: "1rem",
+									}}
 								>
 									{event}
 								</a>
 							) : (
-								<span>{event}</span>
+								<span style={{ fontSize: "1rem" }}>{event}</span>
 							))}
 					</div>
 				)}
