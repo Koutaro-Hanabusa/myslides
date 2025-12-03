@@ -10,7 +10,9 @@ import TacosSlide1 from "./tacos/slides/slide1";
 export default function Home() {
 	return (
 		<div style={{ padding: "2rem", width: "50%", margin: "0 auto" }}>
-			<h1>Presentations</h1>
+			<h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+				Burio's slide deck
+			</h1>
 			<div
 				style={{
 					display: "grid",
