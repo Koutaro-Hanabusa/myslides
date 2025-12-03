@@ -8,10 +8,20 @@ import RevealPresentation from "@/components/reveal-presentation";
 interface SlideCardProps {
 	href: Route;
 	title: string;
+	date: string;
+	event?: string;
+	url?: string;
 	children: React.ReactNode;
 }
 
-export default function SlideCard({ href, title, children }: SlideCardProps) {
+export default function SlideCard({
+	href,
+	title,
+	date,
+	event,
+	url,
+	children,
+}: SlideCardProps) {
 	const cardRef = useRef<HTMLDivElement>(null);
 	const [isVisible, setIsVisible] = useState(false);
 
@@ -40,46 +50,48 @@ export default function SlideCard({ href, title, children }: SlideCardProps) {
 	}, []);
 
 	return (
-		<Link
-			href={href}
-			target="_blank"
-			rel="noopener noreferrer"
-			style={{ textDecoration: "none", color: "inherit" }}
+		<div
+			ref={cardRef}
+			className="w-full overflow-hidden rounded-lg border border-gray-300"
 		>
-			<div
-				ref={cardRef}
-				style={{
-					border: "1px solid #ccc",
-					borderRadius: "8px",
-					overflow: "hidden",
-					cursor: "pointer",
-					maxWidth: "1000px",
-					margin: "0 auto",
-				}}
+			<Link
+				href={href}
+				target="_blank"
+				rel="noopener noreferrer"
+				className="block text-inherit no-underline"
 			>
-				<div style={{ aspectRatio: "16/9", position: "relative" }}>
+				<div className="relative aspect-video cursor-pointer">
 					{isVisible ? (
 						<RevealPresentation embedded>{children}</RevealPresentation>
 					) : (
-						<div
-							style={{
-								width: "100%",
-								height: "100%",
-								background: "#1a1a1a",
-								display: "flex",
-								alignItems: "center",
-								justifyContent: "center",
-								color: "#666",
-							}}
-						>
+						<div className="flex h-full w-full items-center justify-center bg-neutral-900 text-gray-500">
 							Loading...
 						</div>
 					)}
 				</div>
-				<div style={{ padding: "1rem", background: "#fff" }}>
-					<h3 style={{ margin: 0, color: "#333" }}>{title}</h3>
-				</div>
+			</Link>
+			<div className="bg-white p-4">
+				<h3 className="m-0 text-3xl text-gray-700">{title}</h3>
+				{(date || event) && (
+					<div className="mt-2 flex items-center gap-2 text-base text-gray-500">
+						{date && <span>{date}</span>}
+						{date && event && <span className="text-gray-300">|</span>}
+						{event &&
+							(url ? (
+								<a
+									href={url}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-base text-blue-600 no-underline"
+								>
+									{event}
+								</a>
+							) : (
+								<span className="text-base">{event}</span>
+							))}
+					</div>
+				)}
 			</div>
-		</Link>
+		</div>
 	);
 }
