@@ -8,10 +8,20 @@ import RevealPresentation from "@/components/reveal-presentation";
 interface SlideCardProps {
 	href: Route;
 	title: string;
+	date?: string;
+	event?: string;
+	url?: string;
 	children: React.ReactNode;
 }
 
-export default function SlideCard({ href, title, children }: SlideCardProps) {
+export default function SlideCard({
+	href,
+	title,
+	date,
+	event,
+	url,
+	children,
+}: SlideCardProps) {
 	const cardRef = useRef<HTMLDivElement>(null);
 	const [isVisible, setIsVisible] = useState(false);
 
