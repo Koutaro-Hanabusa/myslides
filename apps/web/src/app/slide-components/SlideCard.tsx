@@ -8,10 +8,20 @@ import RevealPresentation from "@/components/reveal-presentation";
 interface SlideCardProps {
 	href: Route;
 	title: string;
+	date: string;
+	event?: string;
+	url?: string;
 	children: React.ReactNode;
 }
 
-export default function SlideCard({ href, title, children }: SlideCardProps) {
+export default function SlideCard({
+	href,
+	title,
+	date,
+	event,
+	url,
+	children,
+}: SlideCardProps) {
 	const cardRef = useRef<HTMLDivElement>(null);
 	const [isVisible, setIsVisible] = useState(false);
 
@@ -40,24 +50,28 @@ export default function SlideCard({ href, title, children }: SlideCardProps) {
 	}, []);
 
 	return (
-		<Link
-			href={href}
-			target="_blank"
-			rel="noopener noreferrer"
-			style={{ textDecoration: "none", color: "inherit" }}
+		<div
+			ref={cardRef}
+			style={{
+				border: "1px solid #ccc",
+				borderRadius: "8px",
+				overflow: "hidden",
+				width: "100%",
+			}}
 		>
-			<div
-				ref={cardRef}
-				style={{
-					border: "1px solid #ccc",
-					borderRadius: "8px",
-					overflow: "hidden",
-					cursor: "pointer",
-					maxWidth: "1000px",
-					margin: "0 auto",
-				}}
+			<Link
+				href={href}
+				target="_blank"
+				rel="noopener noreferrer"
+				style={{ textDecoration: "none", color: "inherit", display: "block" }}
 			>
-				<div style={{ aspectRatio: "16/9", position: "relative" }}>
+				<div
+					style={{
+						aspectRatio: "16/9",
+						position: "relative",
+						cursor: "pointer",
+					}}
+				>
 					{isVisible ? (
 						<RevealPresentation embedded>{children}</RevealPresentation>
 					) : (
@@ -76,10 +90,42 @@ export default function SlideCard({ href, title, children }: SlideCardProps) {
 						</div>
 					)}
 				</div>
-				<div style={{ padding: "1rem", background: "#fff" }}>
-					<h3 style={{ margin: 0, color: "#333" }}>{title}</h3>
-				</div>
+			</Link>
+			<div style={{ padding: "1rem", background: "#fff" }}>
+				<h3 style={{ fontSize: "2rem", margin: 0, color: "#333" }}>{title}</h3>
+				{(date || event) && (
+					<div
+						style={{
+							display: "flex",
+							alignItems: "center",
+							gap: "0.5rem",
+							marginTop: "0.5rem",
+							fontSize: "1rem",
+							color: "#666",
+						}}
+					>
+						{date && <span>{date}</span>}
+						{date && event && <span style={{ color: "#ccc" }}>|</span>}
+						{event &&
+							(url ? (
+								<a
+									href={url}
+									target="_blank"
+									rel="noopener noreferrer"
+									style={{
+										color: "#0066cc",
+										textDecoration: "none",
+										fontSize: "1rem",
+									}}
+								>
+									{event}
+								</a>
+							) : (
+								<span style={{ fontSize: "1rem" }}>{event}</span>
+							))}
+					</div>
+				)}
 			</div>
-		</Link>
+		</div>
 	);
 }
