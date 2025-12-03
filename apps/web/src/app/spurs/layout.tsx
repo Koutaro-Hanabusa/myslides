@@ -27,19 +27,6 @@ export const viewport: Viewport = {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
-		<div
-			style={{
-				width: "100%",
-				height: "100dvh",
-				overflow: "hidden",
-				position: "fixed",
-				top: 0,
-				left: 0,
-				right: 0,
-				bottom: 0,
-			}}
-		>
-			{children}
-		</div>
+		<div className="fixed inset-0 h-dvh w-full overflow-hidden">{children}</div>
 	);
 }
