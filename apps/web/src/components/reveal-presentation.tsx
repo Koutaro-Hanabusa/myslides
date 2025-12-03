@@ -44,12 +44,12 @@ export default function RevealPresentation({
 
 			const deck = new Reveal(deckDivRef.current, {
 				transition,
-				// 16:9アスペクト比（Full HD）
+				// 16:9アスペクト比を維持しつつレスポンシブ対応
 				width: 1920,
 				height: 1080,
-				margin: 0.1,
-				minScale: 0.1,
-				maxScale: embedded ? 1.0 : 0.5,
+				margin: 0.04,
+				minScale: 0.2,
+				maxScale: 2.0,
 				center: true,
 				embedded,
 				// 通常のスライドビューを使用（スワイプナビゲーション有効）
