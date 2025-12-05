@@ -2,16 +2,19 @@ import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
 	title: "better-t-stack | mySlides",
-	description: "better-t-stack - A presentation created with mySlides and Reveal.js",
+	description:
+		"better-t-stack - A presentation created with mySlides and Reveal.js",
 	openGraph: {
 		title: "better-t-stack",
-		description: "better-t-stack - A presentation created with mySlides and Reveal.js",
+		description:
+			"better-t-stack - A presentation created with mySlides and Reveal.js",
 		type: "website",
 	},
 	twitter: {
 		card: "summary_large_image",
 		title: "better-t-stack",
-		description: "better-t-stack - A presentation created with mySlides and Reveal.js",
+		description:
+			"better-t-stack - A presentation created with mySlides and Reveal.js",
 	},
 };
 
