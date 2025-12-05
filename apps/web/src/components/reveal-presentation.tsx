@@ -44,6 +44,8 @@ export default function RevealPresentation({
 
 			const deck = new Reveal(deckDivRef.current, {
 				transition,
+				// URLにスライド番号を反映（#/0, #/1 など）
+				hash: true,
 				// 16:9アスペクト比を維持しつつレスポンシブ対応
 				width: 1920,
 				height: 1080,
