@@ -1,6 +1,8 @@
 import Image from "next/image";
 import betterTstackImg from "./assets/better-t-stack.png";
 import burioImg from "./assets/burio-com.png";
+import cliBuilderImg from "./assets/スクリーンショット 2025-12-05 21.04.30.png";
+import webBuilderImg from "./assets/スクリーンショット 2025-12-05 21.06.19.png";
 
 export default function Content() {
 	return (
@@ -70,15 +72,62 @@ export default function Content() {
 				</div>
 			</section>
 			<section
+				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_見出し.png"
+				data-background-size="contain"
+			>
+				<div className="flex h-full items-center justify-center">
+					<h1 className="text-center">
+						ライブラリいちいち入れて
+						<br />
+						設定するのめんどくさくないですか？
+					</h1>
+				</div>
+			</section>
+			<section
 				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
 				data-background-size="contain"
 			>
 				{/* biome-ignore lint/performance/noImgElement: reveal.jsのr-stretchクラスにはimg要素が必要 */}
 				<img
 					src={betterTstackImg.src}
-					alt="Better T-Stackのアーキテクチャ図"
+					alt="Better T-Stackのトップ画面"
 					className="r-stretch"
 				/>
+			</section>
+			<section
+				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
+				data-background-size="contain"
+			>
+				<div className="flex h-full flex-row items-center justify-center">
+					<div className="flex flex-col">
+						<h2 className="!text-black text-left">Better T Stack</h2>
+
+						<div className="!text-black text-left">
+							TypeScriptを使用して開発するためのプロジェクトビルダー
+						</div>
+						<ul className="!text-black text-left">
+							<li> Webでの選択形式</li>
+							<li> CLIでの対話形式</li>
+						</ul>
+					</div>
+
+					<div className="r-stack">
+						{/* biome-ignore lint/performance/noImgElement: reveal.jsのr-stackクラスにはimg要素が必要 */}
+						<img
+							src={webBuilderImg.src}
+							className="fragment fade-out"
+							data-fragment-index="0"
+							alt="Web Builder"
+						/>
+						{/* biome-ignore lint/performance/noImgElement: reveal.jsのr-stackクラスにはimg要素が必要 */}
+						<img
+							src={cliBuilderImg.src}
+							className="fragment fade-in"
+							data-fragment-index="0"
+							alt="CLI Builder"
+						/>
+					</div>
+				</div>
 			</section>
 		</>
 	);
