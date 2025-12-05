@@ -1,6 +1,7 @@
 import Image from "next/image";
 import betterTstackImg from "./assets/better-t-stack.png";
 import burioImg from "./assets/burio-com.png";
+import vercelImg from "./assets/vercel.png";
 import cliBuilderImg from "./assets/スクリーンショット 2025-12-05 21.04.30.png";
 import webBuilderImg from "./assets/スクリーンショット 2025-12-05 21.06.19.png";
 
@@ -127,6 +128,46 @@ export default function Content() {
 							alt="CLI Builder"
 						/>
 					</div>
+				</div>
+			</section>
+			<section
+				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
+				data-background-size="contain"
+			>
+				<div className="flex h-full flex-col justify-center">
+					<h2 className="!text-black text-left">
+						Better T Stack使ってみて良かったところ
+					</h2>
+					<ul className="!text-black text-left">
+						<li>一発で環境構築完了</li>
+						<li>選択肢が多く新たな出会いがある</li>
+						<li>オプションが優秀</li>
+					</ul>
+				</div>
+			</section>
+			<section
+				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
+				data-background-size="contain"
+			>
+				<div className="flex h-full flex-row items-center justify-center">
+					<h2 className="!text-black text-left">
+						Better T Stack使ってみて残念だったところ
+					</h2>
+				</div>
+			</section>
+			<section
+				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
+				data-background-size="contain"
+			>
+				<div className="flex h-full flex-row items-center justify-center">
+					<div className="!text-black text-left">
+						vercelのOSS支援プログラムに選ばれていました🔥
+					</div>
+					<img
+						src={vercelImg.src}
+						alt="vercelの支援プログラム"
+						className="r-stretch"
+					/>{" "}
 				</div>
 			</section>
 		</>
