@@ -3,30 +3,20 @@
 import RevealPresentation from "@/components/reveal-presentation";
 import BackCover from "./slides/back-cover";
 import BusinessContent from "./slides/business-content";
+import Content from "./slides/content";
 import CorporatePhilosophy from "./slides/corporate-philosophy";
 import Cover from "./slides/cover";
-import Heading from "./slides/heading";
 import SelfIntroduction from "./slides/self-introduction";
-import Slide1 from "./slides/slide1";
-import Slide2 from "./slides/slide2";
-import Slide3 from "./slides/slide3";
-import Slide4 from "./slides/slide4";
-import Slide5 from "./slides/slide5";
 
 export default function PresentationPage() {
 	return (
 		<div className="h-full w-full">
 			<RevealPresentation transition="slide">
 				<Cover />
+				<SelfIntroduction />
 				<CorporatePhilosophy />
 				<BusinessContent />
-				<SelfIntroduction />
-				<Heading />
-				<Slide1 />
-				<Slide2 />
-				<Slide3 />
-				<Slide4 />
-				<Slide5 />
+				<Content />
 				<BackCover />
 			</RevealPresentation>
 		</div>
