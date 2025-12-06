@@ -1,9 +1,10 @@
 import Image from "next/image";
 import betterTstackImg from "./assets/better-t-stack.png";
 import burioImg from "./assets/burio-com.png";
+import issueImg from "./assets/burioIssue.png";
+import cliBuilderImg from "./assets/cli-builder.png";
 import vercelImg from "./assets/vercel.png";
-import cliBuilderImg from "./assets/スクリーンショット 2025-12-05 21.04.30.png";
-import webBuilderImg from "./assets/スクリーンショット 2025-12-05 21.06.19.png";
+import webBuilderImg from "./assets/web-builder.png";
 
 export default function Content() {
 	return (
@@ -131,6 +132,17 @@ export default function Content() {
 				</div>
 			</section>
 			<section
+				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_見出し.png"
+				data-background-size="contain"
+			>
+				<div className="flex h-full flex-col items-center justify-center">
+					<h1 className="text-center">実際にやってみた</h1>
+					<a href="https://www.better-t-stack.dev/new">
+						https://www.better-t-stack.dev/new
+					</a>
+				</div>
+			</section>
+			<section
 				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
 				data-background-size="contain"
 			>
@@ -138,36 +150,87 @@ export default function Content() {
 					<h2 className="!text-black text-left">
 						Better T Stack使ってみて良かったところ
 					</h2>
-					<ul className="!text-black text-left">
+					<ul className="!text-black space-y-2 text-left md:space-y-4 lg:space-y-6">
 						<li>一発で環境構築完了</li>
 						<li>選択肢が多く新たな出会いがある</li>
 						<li>オプションが優秀</li>
 					</ul>
 				</div>
 			</section>
-			<section
-				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
-				data-background-size="contain"
-			>
-				<div className="flex h-full flex-row items-center justify-center">
-					<h2 className="!text-black text-left">
-						Better T Stack使ってみて残念だったところ
-					</h2>
-				</div>
+			{/* 残念だったところ + 余談（issueは縦スライド） */}
+			<section>
+				<section
+					data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
+					data-background-size="contain"
+				>
+					<div className="flex h-full flex-col justify-center">
+						<h2 className="!text-black text-left">
+							Better T Stack使ってみて残念だったところ
+						</h2>
+						<ul className="!text-black space-y-2 text-left md:space-y-4 lg:space-y-6">
+							<li>CSS,UIライブラリの選択ができない</li>
+							<li>AI系のSDKには対応していない</li>
+							<li>テストライブラリが搭載されてない</li>
+							<li>wranglerのサポートを終了していた</li>
+							<li>日本語のドキュメントがない</li>
+						</ul>
+					</div>
+				</section>
+				{/* 余談: 下矢印で表示 */}
+				<section
+					data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
+					data-background-size="contain"
+				>
+					<div className="flex h-full flex-row items-center justify-center">
+						<div className="!text-black text-left">
+							issue建ててみました。
+							<br />
+							返信来るかわかりませんが、乞うご期待！！
+						</div>
+						<img
+							src={issueImg.src}
+							alt="ぶりおがissue建てている様子"
+							className="r-stretch !w-[50%]"
+						/>
+					</div>
+				</section>
+				<section
+					data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
+					data-background-size="contain"
+				>
+					<div className="flex h-full flex-row items-center justify-center">
+						<div className="!text-black text-left">
+							vercelのOSS支援プログラムに選ばれていました🔥
+						</div>
+						<img
+							src={vercelImg.src}
+							alt="vercelの支援プログラム"
+							className="r-stretch"
+						/>{" "}
+					</div>
+				</section>
 			</section>
 			<section
 				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
 				data-background-size="contain"
 			>
-				<div className="flex h-full flex-row items-center justify-center">
-					<div className="!text-black text-left">
-						vercelのOSS支援プログラムに選ばれていました🔥
-					</div>
-					<img
-						src={vercelImg.src}
-						alt="vercelの支援プログラム"
-						className="r-stretch"
-					/>{" "}
+				<div className="flex h-full flex-col justify-center">
+					<h2 className="!text-black text-left">まとめ</h2>
+					<ul className="!text-black space-y-2 text-left md:space-y-4 lg:space-y-6">
+						<li>
+							Better T Stackは TypeScriptを使用して開発するための環境を
+							<br />
+							一発で作成できる
+						</li>
+						<li>
+							cloudflareにデプロイするための選択肢も入っていて、
+							<br />
+							cloudflare側のテンプレよりも使いやすい
+						</li>
+						<li>
+							欠点もまだまだあるが、vercelのプログラムに選ばれており、今後の進化に期待
+						</li>
+					</ul>
 				</div>
 			</section>
 		</>

@@ -74,7 +74,7 @@ export default function RevealPresentation({
 				mobileViewDistance: embedded ? 1 : 2, // モバイル向けのプリロード数
 
 				// ナビゲーション設定
-				navigationMode: "linear", // モバイルで使いやすいリニアナビゲーション
+				navigationMode: "default", // 縦スライドを有効にするためdefaultに設定
 				disableLayout: false, // レイアウト計算を有効化してプレビューでも正しくスケーリング
 
 				...config,
