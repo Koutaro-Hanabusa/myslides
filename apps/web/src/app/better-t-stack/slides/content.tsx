@@ -41,7 +41,7 @@ export default function Content() {
 				data-background-size="contain"
 			>
 				<div className="flex h-full flex-row items-center justify-center">
-					<div className="!text-black text-left">
+					<div className="text-left text-black">
 						私も自分のサイトを
 						<br />
 						Cloudflareにデプロイしました
@@ -102,12 +102,12 @@ export default function Content() {
 			>
 				<div className="flex h-full flex-row items-center justify-center">
 					<div className="flex flex-col">
-						<h2 className="!text-black text-left">Better T Stack</h2>
+						<h2 className="text-left text-black">Better T Stack</h2>
 
-						<div className="!text-black text-left">
+						<div className="text-left text-black">
 							TypeScriptを使用して開発するためのプロジェクトビルダー
 						</div>
-						<ul className="!text-black text-left">
+						<ul className="text-left text-black">
 							<li> Webでの選択形式</li>
 							<li> CLIでの対話形式</li>
 						</ul>
@@ -137,7 +137,10 @@ export default function Content() {
 			>
 				<div className="flex h-full flex-col items-center justify-center">
 					<h1 className="text-center">実際にやってみた</h1>
-					<a href="https://www.better-t-stack.dev/new">
+					<a
+						href="https://www.better-t-stack.dev/new"
+						className="text-blue-600"
+					>
 						https://www.better-t-stack.dev/new
 					</a>
 				</div>
@@ -147,10 +150,10 @@ export default function Content() {
 				data-background-size="contain"
 			>
 				<div className="flex h-full flex-col justify-center">
-					<h2 className="!text-black text-left">
+					<h2 className="text-left text-black">
 						Better T Stack使ってみて良かったところ
 					</h2>
-					<ul className="!text-black space-y-2 text-left md:space-y-4 lg:space-y-6">
+					<ul className="space-y-2 text-left text-black md:space-y-4 lg:space-y-6">
 						<li>一発で環境構築完了</li>
 						<li>選択肢が多く新たな出会いがある</li>
 						<li>オプションが優秀</li>
@@ -164,10 +167,10 @@ export default function Content() {
 					data-background-size="contain"
 				>
 					<div className="flex h-full flex-col justify-center">
-						<h2 className="!text-black text-left">
+						<h2 className="text-left text-black">
 							Better T Stack使ってみて残念だったところ
 						</h2>
-						<ul className="!text-black space-y-2 text-left md:space-y-4 lg:space-y-6">
+						<ul className="space-y-2 text-left text-black md:space-y-4 lg:space-y-6">
 							<li>CSS,UIライブラリの選択ができない</li>
 							<li>AI系のSDKには対応していない</li>
 							<li>テストライブラリが搭載されてない</li>
@@ -182,7 +185,7 @@ export default function Content() {
 					data-background-size="contain"
 				>
 					<div className="flex h-full flex-row items-center justify-center">
-						<div className="!text-black text-left">
+						<div className="text-left text-black">
 							issue建ててみました。
 							<br />
 							返信来るかわかりませんが、乞うご期待！！
@@ -199,7 +202,7 @@ export default function Content() {
 					data-background-size="contain"
 				>
 					<div className="flex h-full flex-row items-center justify-center">
-						<div className="!text-black text-left">
+						<div className="text-left text-black">
 							vercelのOSS支援プログラムに選ばれていました🔥
 						</div>
 						<img
@@ -215,8 +218,8 @@ export default function Content() {
 				data-background-size="contain"
 			>
 				<div className="flex h-full flex-col justify-center">
-					<h2 className="!text-black text-left">まとめ</h2>
-					<ul className="!text-black space-y-2 text-left md:space-y-4 lg:space-y-6">
+					<h2 className="text-left text-black">まとめ</h2>
+					<ul className="space-y-2 text-left text-black md:space-y-4 lg:space-y-6">
 						<li>
 							Better T Stackは TypeScriptを使用して開発するための環境を
 							<br />
