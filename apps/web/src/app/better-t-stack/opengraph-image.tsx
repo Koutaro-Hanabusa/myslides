@@ -32,6 +32,69 @@ export default function Image() {
 					objectFit: "cover",
 				}}
 			/>
+			{/* 表紙と同じテキストオーバーレイ */}
+			<div
+				style={{
+					position: "absolute",
+					top: 0,
+					left: 0,
+					width: "100%",
+					height: "100%",
+					display: "flex",
+					flexDirection: "column",
+					justifyContent: "center",
+					padding: "0 60px",
+				}}
+			>
+				<p
+					style={{
+						fontSize: 32,
+						fontWeight: 700,
+						color: "#fff",
+						margin: 0,
+					}}
+				>
+					Cloudflare Meet-up Tokyo Vol.9
+				</p>
+				<div
+					style={{
+						display: "flex",
+						flexDirection: "column",
+						margin: "24px 0",
+					}}
+				>
+					<span
+						style={{
+							fontSize: 56,
+							fontWeight: 700,
+							color: "#fff",
+							lineHeight: 1.3,
+						}}
+					>
+						より良い技術スタックで
+					</span>
+					<span
+						style={{
+							fontSize: 56,
+							fontWeight: 700,
+							color: "#fff",
+							lineHeight: 1.3,
+						}}
+					>
+						Cloudflareにデプロイしよう
+					</span>
+				</div>
+				<p
+					style={{
+						fontSize: 32,
+						fontWeight: 700,
+						color: "#2563eb",
+						margin: 0,
+					}}
+				>
+					ぶりお @burio_16
+				</p>
+			</div>
 		</div>,
 		{
 			width: 1200,
