@@ -1,20 +1,21 @@
 import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
-	title: "better-t-stack | mySlides",
+	title:
+		"より良い技術スタックでcloudflareにデプロイしよう | Cloudflare Meet-up Tokyo Vol.9",
 	description:
-		"better-t-stack - A presentation created with mySlides and Reveal.js",
+		"Cloudflare Meet-up Tokyo Vol.9 での発表資料 - better-t-stack を使って Cloudflare にデプロイする方法を紹介します",
 	openGraph: {
-		title: "better-t-stack",
+		title: "より良い技術スタックでcloudflareにデプロイしよう",
 		description:
-			"better-t-stack - A presentation created with mySlides and Reveal.js",
+			"Cloudflare Meet-up Tokyo Vol.9 での発表資料 by ぶりお @burio_16",
 		type: "website",
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "better-t-stack",
+		title: "より良い技術スタックでcloudflareにデプロイしよう",
 		description:
-			"better-t-stack - A presentation created with mySlides and Reveal.js",
+			"Cloudflare Meet-up Tokyo Vol.9 での発表資料 by ぶりお @burio_16",
 	},
 };
 

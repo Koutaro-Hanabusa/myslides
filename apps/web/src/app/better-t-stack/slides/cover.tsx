@@ -10,10 +10,10 @@ export default function Cover() {
 				<h1 className="leading-tight">
 					より良い技術スタックで
 					<br />
-					cloudflareにデプロイしよう
+					Cloudflareにデプロイしよう
 				</h1>
 				<br />
-				<h3 className="!text-blue-600">ぶりお @burio_16</h3>
+				<h3 className="text-blue-600">ぶりお @burio_16</h3>
 			</div>
 		</section>
 	);

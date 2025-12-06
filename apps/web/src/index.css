@@ -96,3 +96,18 @@ body {
 		@apply bg-background text-foreground;
 	}
 }
+
+/* reveal.js テーマのオーバーライド */
+.reveal.reveal.reveal {
+	--r-heading-text-transform: none;
+	--r-main-color: #000;
+	--r-heading-color: #000;
+	--r-link-color: #2563eb;
+}
+
+/* 見出しスライド・表紙は白文字 */
+.reveal.reveal.reveal .slides section[data-background-image*="見出し"],
+.reveal.reveal.reveal .slides section[data-background-image*="表紙"] {
+	--r-main-color: #fff;
+	--r-heading-color: #fff;
+}
