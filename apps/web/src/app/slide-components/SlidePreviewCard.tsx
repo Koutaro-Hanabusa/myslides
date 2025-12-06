@@ -23,8 +23,10 @@ export function SlidePreviewCard({
 			>
 				{children}
 			</div>
-			<div className="bg-white p-4">
-				<h3 className="m-0 mb-2 text-gray-700">{title}</h3>
+			<div className="bg-white p-2 md:p-4">
+				<h3 className="m-0 mb-1 text-base text-gray-700 md:mb-2 md:text-lg lg:text-xl">
+					{title}
+				</h3>
 			</div>
 		</div>
 	);
