@@ -70,10 +70,12 @@ export default function SlideCard({
 					)}
 				</div>
 			</Link>
-			<div className="bg-white p-4">
-				<h3 className="m-0 text-3xl text-gray-700">{title}</h3>
+			<div className="bg-white p-3 md:p-4">
+				<h3 className="m-0 text-gray-700 text-lg md:text-xl lg:text-3xl">
+					{title}
+				</h3>
 				{(date || event) && (
-					<div className="mt-2 flex items-center gap-2 text-base text-gray-500">
+					<div className="mt-1 flex flex-wrap items-center gap-1 text-gray-500 text-xs md:mt-2 md:gap-2 md:text-sm lg:text-base">
 						{date && <span>{date}</span>}
 						{date && event && <span className="text-gray-300">|</span>}
 						{event &&
@@ -82,12 +84,12 @@ export default function SlideCard({
 									href={url}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="text-base text-blue-600 no-underline"
+									className="text-blue-600 text-xs no-underline md:text-sm lg:text-base"
 								>
 									{event}
 								</a>
 							) : (
-								<span className="text-base">{event}</span>
+								<span className="text-xs md:text-sm lg:text-base">{event}</span>
 							))}
 					</div>
 				)}

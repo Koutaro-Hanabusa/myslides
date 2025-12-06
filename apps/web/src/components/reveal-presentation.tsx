@@ -50,7 +50,7 @@ export default function RevealPresentation({
 				width: 1920,
 				height: 1080,
 				margin: 0.04,
-				minScale: 0.2,
+				minScale: 0.1,
 				maxScale: 2.0,
 				center: true,
 				embedded,
