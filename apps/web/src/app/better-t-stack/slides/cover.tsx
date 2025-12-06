@@ -1,0 +1,20 @@
+export default function Cover() {
+	return (
+		<section
+			data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_表紙.png"
+			data-background-size="contain"
+		>
+			<div className="text-left">
+				<h3>Cloudflare Meet-up Tokyo Vol.9</h3>
+				<br />
+				<h1 className="leading-tight">
+					より良い技術スタックで
+					<br />
+					cloudflareにデプロイしよう
+				</h1>
+				<br />
+				<h3 className="!text-blue-600">ぶりお @burio_16</h3>
+			</div>
+		</section>
+	);
+}
