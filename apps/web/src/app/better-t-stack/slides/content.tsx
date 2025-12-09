@@ -1,8 +1,12 @@
 import Image from "next/image";
+import amanProfileImg from "./assets/amanProfile.png";
+import amanReplyImg from "./assets/amanReply.png";
 import betterTstackImg from "./assets/better-t-stack.png";
 import burioImg from "./assets/burio-com.png";
 import issueImg from "./assets/burioIssue.png";
+import burioTweetImg from "./assets/buriotweet.png";
 import cliBuilderImg from "./assets/cli-builder.png";
+import SorryImg from "./assets/Sorry.png";
 import vercelImg from "./assets/vercel.png";
 import webBuilderImg from "./assets/web-builder.png";
 
@@ -22,7 +26,6 @@ export default function Content() {
 					</h1>
 				</div>
 			</section>
-
 			<section
 				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_見出し.png"
 				data-background-size="contain"
@@ -185,23 +188,6 @@ export default function Content() {
 				>
 					<div className="flex h-full flex-row items-center justify-center">
 						<div className="text-left text-black">
-							issue建ててみました。
-							<br />
-							返信来るかわかりませんが、乞うご期待！！
-						</div>
-						<img
-							src={issueImg.src}
-							alt="ぶりおがissue建てている様子"
-							className="r-stretch !w-[50%]"
-						/>
-					</div>
-				</section>
-				<section
-					data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
-					data-background-size="contain"
-				>
-					<div className="flex h-full flex-row items-center justify-center">
-						<div className="text-left text-black">
 							vercelのOSS支援プログラムに選ばれていました🔥
 						</div>
 						<img
@@ -211,6 +197,105 @@ export default function Content() {
 						/>{" "}
 					</div>
 				</section>
+			</section>
+			<section
+				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
+				data-background-size="contain"
+			>
+				<div className="flex h-full flex-row items-center justify-center gap-8">
+					<div className="w-[30%] text-left text-black">
+						issue建ててみました。
+					</div>
+					{/* biome-ignore lint/performance/noImgElement: reveal.jsのr-stretchクラスにはimg要素が必要 */}
+					<img
+						src={issueImg.src}
+						alt="ぶりおがissue建てている様子"
+						className="r-stretch !max-w-[60%]"
+					/>
+				</div>
+			</section>
+			<section
+				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
+				data-background-size="contain"
+			>
+				<div className="flex h-full flex-row items-center justify-center gap-8">
+					<div className="w-[30%] text-left text-black">
+						ここであることに気づきました。
+						<br />
+						<br />
+						日本好きそうじゃね...?
+					</div>
+					{/* biome-ignore lint/performance/noImgElement: reveal.jsのr-stretchクラスにはimg要素が必要 */}
+					<img
+						src={amanProfileImg.src}
+						alt="アマンのプロフィール"
+						className="r-stretch !max-w-[60%]"
+					/>
+				</div>
+			</section>
+			<section
+				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
+				data-background-size="contain"
+			>
+				<div className="flex h-full flex-row items-center justify-center gap-8">
+					<div className="w-[30%] text-left text-black">
+						Twitterで釣ろうとしてみました。
+					</div>
+					{/* biome-ignore lint/performance/noImgElement: reveal.jsのr-stretchクラスにはimg要素が必要 */}
+					<img
+						src={burioTweetImg.src}
+						alt="ぶりおのツイート"
+						className="r-stretch !max-w-[60%]"
+					/>
+				</div>
+			</section>
+			<section
+				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
+				data-background-size="contain"
+			>
+				<div className="flex h-full flex-row items-center justify-center gap-8">
+					<div className="w-[30%] text-left text-black">
+						普通に釣れたので、
+						<br />
+						お願いしてみました。
+					</div>
+					{/* biome-ignore lint/performance/noImgElement: reveal.jsのr-stretchクラスにはimg要素が必要 */}
+					<img
+						src={amanReplyImg.src}
+						alt="アマンのリプライ"
+						className="r-stretch !max-w-[60%]"
+					/>
+				</div>
+			</section>
+			<section
+				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
+				data-background-size="contain"
+			>
+				<div className="flex h-full flex-row items-center justify-center gap-8">
+					<div className="w-[30%] text-left text-black">
+						ふられました。
+						<br />
+						無念。
+					</div>
+					{/* biome-ignore lint/performance/noImgElement: reveal.jsのr-stretchクラスにはimg要素が必要 */}
+					<img
+						src={SorryImg.src}
+						alt="ごめんなさい"
+						className="r-stretch !max-w-[60%]"
+					/>
+				</div>
+			</section>
+			<section
+				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_見出し.png"
+				data-background-size="contain"
+			>
+				<div className="flex h-full items-center justify-center">
+					<h1 className="text-center">
+						やんわりと断られましたが、
+						<br />
+						これからもBetter T Stack使い倒すぞ！！
+					</h1>
+				</div>
 			</section>
 			<section
 				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
