@@ -227,7 +227,7 @@ export default function Content() {
 						<li>
 							Cloudflareにデプロイするための選択肢も入っていて、
 							<br />
-							Cloudflare側のテンプレよりも使いやすい
+							Cloudflare側のテンプレよりも便利なものを簡単に入れることができる
 						</li>
 						<li>
 							欠点もまだまだあるが、vercelのプログラムに選ばれており、今後の進化に期待
