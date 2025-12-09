@@ -172,7 +172,6 @@ export default function Content() {
 						</h2>
 						<ul className="space-y-2 text-left text-black md:space-y-4 lg:space-y-6">
 							<li>CSS,UIライブラリの選択ができない</li>
-							<li>AI系のSDKには対応していない</li>
 							<li>テストライブラリが搭載されてない</li>
 							<li>wranglerのサポートを終了していた</li>
 							<li>日本語のドキュメントがない</li>

@@ -42,6 +42,10 @@ export default function RevealPresentation({
 
 			if (!deckDivRef.current) return;
 
+			// URLパラメータでprint-pdfモードを検出
+			const urlParams = new URLSearchParams(window.location.search);
+			const isPrintPdf = urlParams.has("print-pdf");
+
 			const deck = new Reveal(deckDivRef.current, {
 				transition,
 				// URLにスライド番号を反映（#/0, #/1 など）
@@ -54,9 +58,8 @@ export default function RevealPresentation({
 				maxScale: 2.0,
 				center: true,
 				embedded,
-				// 通常のスライドビューを使用（スワイプナビゲーション有効）
-				// 'scroll'にするとスクロールビューになりスワイプが効かない
-				view: null,
+				// print-pdfモード時は'print'、通常時はnull（スワイプナビゲーション有効）
+				view: isPrintPdf ? "print" : null,
 				// モバイル幅でのスクロールビュー自動切り替えを無効化
 				// これがないとビューポートが狭いときに自動でスクロールビューになる
 				scrollActivationWidth: 0,
