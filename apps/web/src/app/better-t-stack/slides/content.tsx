@@ -202,12 +202,15 @@ export default function Content() {
 				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
 				data-background-size="contain"
 			>
-				<div className="flex h-full flex-row items-center justify-center">
-					<div className="text-left text-black">issue建ててみました。</div>
+				<div className="flex h-full flex-row items-center justify-center gap-8">
+					<div className="w-[30%] text-left text-black">
+						issue建ててみました。
+					</div>
+					{/* biome-ignore lint/performance/noImgElement: reveal.jsのr-stretchクラスにはimg要素が必要 */}
 					<img
 						src={issueImg.src}
 						alt="ぶりおがissue建てている様子"
-						className="r-stretch !w-[50%]"
+						className="r-stretch !max-w-[60%]"
 					/>
 				</div>
 			</section>
@@ -215,16 +218,18 @@ export default function Content() {
 				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
 				data-background-size="contain"
 			>
-				<div className="flex h-full flex-row items-center justify-center">
-					<div className="text-left text-black">
+				<div className="flex h-full flex-row items-center justify-center gap-8">
+					<div className="w-[30%] text-left text-black">
 						ここであることに気づきました。
+						<br />
 						<br />
 						日本好きそうじゃね...?
 					</div>
+					{/* biome-ignore lint/performance/noImgElement: reveal.jsのr-stretchクラスにはimg要素が必要 */}
 					<img
 						src={amanProfileImg.src}
 						alt="アマンのプロフィール"
-						className="r-stretch"
+						className="r-stretch !max-w-[60%]"
 					/>
 				</div>
 			</section>
@@ -232,14 +237,15 @@ export default function Content() {
 				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
 				data-background-size="contain"
 			>
-				<div className="flex h-full flex-row items-center justify-center">
-					<div className="text-left text-black">
+				<div className="flex h-full flex-row items-center justify-center gap-8">
+					<div className="w-[30%] text-left text-black">
 						Twitterで釣ろうとしてみました。
 					</div>
+					{/* biome-ignore lint/performance/noImgElement: reveal.jsのr-stretchクラスにはimg要素が必要 */}
 					<img
 						src={burioTweetImg.src}
 						alt="ぶりおのツイート"
-						className="r-stretch"
+						className="r-stretch !max-w-[60%]"
 					/>
 				</div>
 			</section>
@@ -247,30 +253,48 @@ export default function Content() {
 				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
 				data-background-size="contain"
 			>
-				<div className="flex h-full flex-row items-center justify-center">
-					<div className="text-left text-black">
+				<div className="flex h-full flex-row items-center justify-center gap-8">
+					<div className="w-[30%] text-left text-black">
 						普通に釣れたので、
 						<br />
 						お願いしてみました。
 					</div>
+					{/* biome-ignore lint/performance/noImgElement: reveal.jsのr-stretchクラスにはimg要素が必要 */}
 					<img
 						src={amanReplyImg.src}
 						alt="アマンのリプライ"
-						className="r-stretch"
+						className="r-stretch !max-w-[60%]"
 					/>
 				</div>
-			</section>{" "}
+			</section>
 			<section
 				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
 				data-background-size="contain"
 			>
-				<div className="flex h-full flex-row items-center justify-center">
-					<div className="text-left text-black">
+				<div className="flex h-full flex-row items-center justify-center gap-8">
+					<div className="w-[30%] text-left text-black">
 						ふられました。
 						<br />
 						無念。
 					</div>
-					<img src={SorryImg.src} alt="ごめんなさい" className="r-stretch" />
+					{/* biome-ignore lint/performance/noImgElement: reveal.jsのr-stretchクラスにはimg要素が必要 */}
+					<img
+						src={SorryImg.src}
+						alt="ごめんなさい"
+						className="r-stretch !max-w-[60%]"
+					/>
+				</div>
+			</section>
+			<section
+				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_見出し.png"
+				data-background-size="contain"
+			>
+				<div className="flex h-full items-center justify-center">
+					<h1 className="text-center">
+						やんわりと断られましたが、
+						<br />
+						これからもBetter T Stack使い倒すぞ！！
+					</h1>
 				</div>
 			</section>
 			<section
