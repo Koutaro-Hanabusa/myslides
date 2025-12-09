@@ -88,7 +88,7 @@ export default function Image() {
 					style={{
 						fontSize: 32,
 						fontWeight: 700,
-						color: "#2563eb",
+						color: "#fff",
 						margin: 0,
 					}}
 				>
