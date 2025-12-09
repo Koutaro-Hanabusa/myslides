@@ -166,21 +166,6 @@ export default function Content() {
 					data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
 					data-background-size="contain"
 				>
-					<div className="flex h-full flex-row items-center justify-center">
-						<div className="text-left text-black">
-							vercelのOSS支援プログラムに選ばれていました🔥
-						</div>
-						<img
-							src={vercelImg.src}
-							alt="vercelの支援プログラム"
-							className="r-stretch"
-						/>{" "}
-					</div>
-				</section>
-				<section
-					data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
-					data-background-size="contain"
-				>
 					<div className="flex h-full flex-col justify-center">
 						<h2 className="text-left text-black">
 							Better T Stack使ってみて残念だったところ
@@ -209,6 +194,21 @@ export default function Content() {
 							alt="ぶりおがissue建てている様子"
 							className="r-stretch !w-[50%]"
 						/>
+					</div>
+				</section>
+				<section
+					data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
+					data-background-size="contain"
+				>
+					<div className="flex h-full flex-row items-center justify-center">
+						<div className="text-left text-black">
+							vercelのOSS支援プログラムに選ばれていました🔥
+						</div>
+						<img
+							src={vercelImg.src}
+							alt="vercelの支援プログラム"
+							className="r-stretch"
+						/>{" "}
 					</div>
 				</section>
 			</section>
