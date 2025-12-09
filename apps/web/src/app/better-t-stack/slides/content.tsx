@@ -172,7 +172,6 @@ export default function Content() {
 						</h2>
 						<ul className="space-y-2 text-left text-black md:space-y-4 lg:space-y-6">
 							<li>CSS,UIライブラリの選択ができない</li>
-							<li>AI系のSDKには対応していない</li>
 							<li>テストライブラリが搭載されてない</li>
 							<li>wranglerのサポートを終了していた</li>
 							<li>日本語のドキュメントがない</li>
@@ -226,9 +225,9 @@ export default function Content() {
 							一発で作成できる
 						</li>
 						<li>
-							cloudflareにデプロイするための選択肢も入っていて、
+							Cloudflareにデプロイするための選択肢も入っていて、
 							<br />
-							cloudflare側のテンプレよりも使いやすい
+							Cloudflare側のテンプレよりも便利なものを簡単に入れることができる
 						</li>
 						<li>
 							欠点もまだまだあるが、vercelのプログラムに選ばれており、今後の進化に期待
