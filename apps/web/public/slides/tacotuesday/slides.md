@@ -96,6 +96,17 @@
 
 ---
 
+<!-- .slide: data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/burioSlide/content.png" data-background-size="contain" style="color: white; text-align: left;" -->
+
+## こんな人におすすめ<!-- .element: style="color: white;" -->
+
+- 肉が好きな人🥩
+- パクチーが好きな人🌿
+- ライムが好きな人🍋
+- お酒が好きな人🍺
+
+---
+
 <!-- .slide: data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/burioSlide/content.png" data-background-size="contain" style="color: white;" -->
 
 ## ◯ ぬ...!!<!-- .element: style="color: white;" -->
