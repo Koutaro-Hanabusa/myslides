@@ -119,25 +119,69 @@ body {
 }
 
 /* Tailwind色クラスの具体的なオーバーライド */
-.reveal.reveal .text-white { color: #fff; }
-.reveal.reveal .text-black { color: #000; }
-.reveal.reveal .text-gray-50 { color: #f9fafb; }
-.reveal.reveal .text-gray-100 { color: #f3f4f6; }
-.reveal.reveal .text-gray-200 { color: #e5e7eb; }
-.reveal.reveal .text-gray-300 { color: #d1d5db; }
-.reveal.reveal .text-gray-400 { color: #9ca3af; }
-.reveal.reveal .text-gray-500 { color: #6b7280; }
-.reveal.reveal .text-gray-600 { color: #4b5563; }
-.reveal.reveal .text-gray-700 { color: #374151; }
-.reveal.reveal .text-gray-800 { color: #1f2937; }
-.reveal.reveal .text-gray-900 { color: #111827; }
-.reveal.reveal .text-red-500 { color: #ef4444; }
-.reveal.reveal .text-red-600 { color: #dc2626; }
-.reveal.reveal .text-blue-500 { color: #3b82f6; }
-.reveal.reveal .text-blue-600 { color: #2563eb; }
-.reveal.reveal .text-green-500 { color: #22c55e; }
-.reveal.reveal .text-green-600 { color: #16a34a; }
-.reveal.reveal .text-yellow-500 { color: #eab308; }
-.reveal.reveal .text-orange-500 { color: #f97316; }
-.reveal.reveal .text-purple-500 { color: #a855f7; }
-.reveal.reveal .text-pink-500 { color: #ec4899; }
+.reveal.reveal .text-white {
+	color: #fff;
+}
+.reveal.reveal .text-black {
+	color: #000;
+}
+.reveal.reveal .text-gray-50 {
+	color: #f9fafb;
+}
+.reveal.reveal .text-gray-100 {
+	color: #f3f4f6;
+}
+.reveal.reveal .text-gray-200 {
+	color: #e5e7eb;
+}
+.reveal.reveal .text-gray-300 {
+	color: #d1d5db;
+}
+.reveal.reveal .text-gray-400 {
+	color: #9ca3af;
+}
+.reveal.reveal .text-gray-500 {
+	color: #6b7280;
+}
+.reveal.reveal .text-gray-600 {
+	color: #4b5563;
+}
+.reveal.reveal .text-gray-700 {
+	color: #374151;
+}
+.reveal.reveal .text-gray-800 {
+	color: #1f2937;
+}
+.reveal.reveal .text-gray-900 {
+	color: #111827;
+}
+.reveal.reveal .text-red-500 {
+	color: #ef4444;
+}
+.reveal.reveal .text-red-600 {
+	color: #dc2626;
+}
+.reveal.reveal .text-blue-500 {
+	color: #3b82f6;
+}
+.reveal.reveal .text-blue-600 {
+	color: #2563eb;
+}
+.reveal.reveal .text-green-500 {
+	color: #22c55e;
+}
+.reveal.reveal .text-green-600 {
+	color: #16a34a;
+}
+.reveal.reveal .text-yellow-500 {
+	color: #eab308;
+}
+.reveal.reveal .text-orange-500 {
+	color: #f97316;
+}
+.reveal.reveal .text-purple-500 {
+	color: #a855f7;
+}
+.reveal.reveal .text-pink-500 {
+	color: #ec4899;
+}
