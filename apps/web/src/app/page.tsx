@@ -12,6 +12,14 @@ export default function Home() {
 			</h1>
 			<div className="grid grid-cols-1 gap-4 md:gap-8">
 				<SlideCard
+					href="/tacotuesday"
+					title="全人類タコスを食え"
+					date="2025/12/15"
+					event="社内LT会"
+				>
+					<TacosCover />
+				</SlideCard>
+				<SlideCard
 					href="/better-t-stack"
 					title="より良い技術スタックでcloudflareにデプロイしよう"
 					date="2025/12/10"
@@ -19,14 +27,6 @@ export default function Home() {
 					url="https://cfm-cts.connpass.com/event/374413/"
 				>
 					<Cover />
-				</SlideCard>
-				<SlideCard
-					href="/tacotuesday"
-					title="全人類タコスを食え"
-					date="2025/12/15"
-					event="社内LT会"
-				>
-					<TacosCover />
 				</SlideCard>
 			</div>
 		</div>
