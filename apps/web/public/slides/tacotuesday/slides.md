@@ -15,6 +15,12 @@
 
 ---
 
+<!-- .slide: data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/burioSlide/content.png" data-background-size="contain" style="color: white;" -->
+
+## お前もタコスを食わないか？🖐️🌮👊<!-- .element: style="color: white;" -->
+
+---
+
 <!-- .slide: data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/burioSlide/content.png" data-background-size="contain" style="color: white;"-->
 
 ## タコスって知ってますか？　<!-- .element: style="color: white;" -->
@@ -87,12 +93,6 @@
 
 ケサビリア
 ![quesa](/slides/tacotuesday/assets/quesa.jpg) <!-- .element: style="width: 50%; display: block; margin: 0 auto;" -->
-
----
-
-<!-- .slide: data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/burioSlide/content.png" data-background-size="contain" style="color: white;" -->
-
-## お前もタコスを食わないか？🖐️🌮👊<!-- .element: style="color: white;" -->
 
 ---
 
