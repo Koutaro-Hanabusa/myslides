@@ -96,6 +96,16 @@
 
 ---
 
+<!-- .slide: data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/burioSlide/content.png" data-background-size="contain" style="color: white; text-align: left;" -->
+
+## こんな人におすすめ<!-- .element: style="color: white;" -->
+
+- お肉が好きな人
+- スパイシーな料理が好きな人
+- パクチーが嫌いな人
+
+---
+
 <!-- .slide: data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/burioSlide/content.png" data-background-size="contain" style="color: white;" -->
 
 ## ◯ ぬ...!!<!-- .element: style="color: white;" -->
