@@ -13,7 +13,7 @@ export default function Cover() {
 					Cloudflareにデプロイしよう
 				</h1>
 				<br />
-				<h3 className="text-blue-600">ぶりお @burio_16</h3>
+				<h3>ぶりお @burio_16</h3>
 			</div>
 		</section>
 	);

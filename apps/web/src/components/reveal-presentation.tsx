@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import "reveal.js/dist/reveal.css";
-import "reveal.js/dist/theme/black.css";
+
+// reveal.jsのCSSはlayout.tsxで一括読み込み済み
 
 interface RevealPresentationProps {
 	children?: React.ReactNode;

@@ -10,7 +10,7 @@ export default function SelfIntroduction() {
 				<img src={burioImg.src} alt="ぶりおの写真" className="r-stretch" />
 
 				<div className="flex flex-col">
-					<h2>自己紹介</h2>
+					<h2 className="text-black">自己紹介</h2>
 
 					<ul className="space-y-2 text-left text-black md:space-y-4 lg:space-y-6">
 						<li>
