@@ -2,6 +2,7 @@
 
 import Cover from "./better-t-stack/slides/cover";
 import SlideCard from "./slide-components/SlideCard";
+import TacosCover from "./tacotuesday/slides/cover";
 
 export default function Home() {
 	return (
@@ -18,6 +19,14 @@ export default function Home() {
 					url="https://cfm-cts.connpass.com/event/374413/"
 				>
 					<Cover />
+				</SlideCard>
+				<SlideCard
+					href="/tacotuesday"
+					title="全人類タコスを食え"
+					date="2025/12/15"
+					event="社内LT会"
+				>
+					<TacosCover />
 				</SlideCard>
 			</div>
 		</div>
