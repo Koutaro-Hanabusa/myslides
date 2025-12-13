@@ -76,21 +76,21 @@ tasks:
           echo '"use client";'
           echo ''
           echo 'import RevealPresentation from "@/components/reveal-presentation";'
-          echo 'import Cover from "./slides/cover";'
-          echo 'import CorporatePhilosophy from "./slides/corporate-philosophy";'
-          echo 'import BusinessContent from "./slides/business-content";'
-          echo 'import SelfIntroduction from "./slides/self-introduction";'
-          echo 'import Content from "./slides/content";'
           echo 'import BackCover from "./slides/back-cover";'
+          echo 'import BusinessContent from "./slides/business-content";'
+          echo 'import Content from "./slides/content";'
+          echo 'import CorporatePhilosophy from "./slides/corporate-philosophy";'
+          echo 'import Cover from "./slides/cover";'
+          echo 'import SelfIntroduction from "./slides/self-introduction";'
           echo ''
           echo 'export default function PresentationPage() {'
           echo '	return ('
           echo '		<div className="h-full w-full">'
           echo '			<RevealPresentation transition="slide">'
           echo '				<Cover />'
+          echo '				<SelfIntroduction />'
           echo '				<CorporatePhilosophy />'
           echo '				<BusinessContent />'
-          echo '				<SelfIntroduction />'
           echo '				<Content />'
           echo '				<BackCover />'
           echo '			</RevealPresentation>'
@@ -146,10 +146,21 @@ tasks:
           echo 'export default function SelfIntroduction() {'
           echo '	return ('
           echo '		<section'
-          echo "			data-background-image=\"$R2_BASE/千_外部登壇スライド_自己紹介.png\""
+          echo "			data-background-image=\"$R2_BASE/千_外部登壇スライド_本文.png\""
           echo '			data-background-size="contain"'
           echo '		>'
-          echo '			{/* コンテンツをここに追加 */}'
+          echo '			<div className="flex h-full flex-row items-center justify-evenly">'
+          echo '				{/* 画像をここに追加 */}'
+          echo '				<div className="flex flex-col">'
+          echo '					<h2>自己紹介</h2>'
+          echo '					<ul className="space-y-2 text-left text-black md:space-y-4 lg:space-y-6">'
+          echo '						<li>{/* 名前・SNS */}</li>'
+          echo '						<li>{/* 所属 */}</li>'
+          echo '						<li>{/* 業務内容 */}</li>'
+          echo '						<li>{/* 趣味など */}</li>'
+          echo '					</ul>'
+          echo '				</div>'
+          echo '			</div>'
           echo '		</section>'
           echo '	);'
           echo '}'
@@ -294,7 +305,7 @@ tasks:
     silent: false
 
   new-slide:
-    desc: Create a new simple presentation (no corporate template)
+    desc: Create a new simple presentation with burio16 template
     summary: |
       Usage:
         task new-slide -- <name>
@@ -304,28 +315,19 @@ tasks:
         task new-slide -- my-presentation
 
       Structure:
-        - cover.tsx (表紙)
-        - content.tsx (見出し1枚 + 本文1枚をまとめたファイル)
-        - back-cover.tsx (裏表紙)
+        - cover.tsx (表紙 - burio16Cover.png)
+        - content.tsx (内容 - content.png)
 
       Note: For corporate template, use 'task new-slide-corp'
     cmds:
       - |
         # CLIオプションをパース
         NAME=""
-        SLIDE_COUNT="{{.DEFAULT_SLIDE_COUNT}}"
 
         for arg in {{.CLI_ARGS}}; do
-          case $arg in
-            slides=*)
-              SLIDE_COUNT="${arg#*=}"
-              ;;
-            *)
-              if [ -z "$NAME" ]; then
-                NAME="$arg"
-              fi
-              ;;
-          esac
+          if [ -z "$NAME" ]; then
+            NAME="$arg"
+          fi
         done
 
         if [ -z "$NAME" ]; then
@@ -339,6 +341,7 @@ tasks:
         fi
 
         TARGET_DIR="{{.PRESENTATION_DIR}}/$NAME"
+        R2_BASE="{{.R2_BASE_URL}}"
 
         if [ -d "$TARGET_DIR" ]; then
           echo "Error: Presentation '$NAME' already exists"
@@ -352,9 +355,8 @@ tasks:
           echo '"use client";'
           echo ''
           echo 'import RevealPresentation from "@/components/reveal-presentation";'
-          echo 'import Cover from "./slides/cover";'
           echo 'import Content from "./slides/content";'
-          echo 'import BackCover from "./slides/back-cover";'
+          echo 'import Cover from "./slides/cover";'
           echo ''
           echo 'export default function PresentationPage() {'
           echo '	return ('
@@ -362,53 +364,39 @@ tasks:
           echo '			<RevealPresentation transition="slide">'
           echo '				<Cover />'
           echo '				<Content />'
-          echo '				<BackCover />'
           echo '			</RevealPresentation>'
           echo '		</div>'
           echo '	);'
           echo '}'
         } > "$TARGET_DIR/page.tsx"
 
-        # 表紙スライド (cover.tsx) - シンプル版
+        # 表紙スライド (cover.tsx)
         {
           echo 'export default function Cover() {'
           echo '	return ('
-          echo '		<section>'
+          echo '		<section'
+          echo "			data-background-image=\"$R2_BASE/burio16Cover.png\""
+          echo '			data-background-size="contain"'
+          echo '		>'
           echo "			<h1>$NAME</h1>"
           echo '		</section>'
           echo '	);'
           echo '}'
         } > "$TARGET_DIR/slides/cover.tsx"
 
-        # コンテンツスライド (content.tsx) - 見出し1枚 + 本文1枚をまとめたファイル
+        # コンテンツスライド (content.tsx)
         {
           echo 'export default function Content() {'
           echo '	return ('
-          echo '		<>'
-          echo '			{/* 見出しスライド */}'
-          echo '			<section>'
-          echo '				{/* 見出しコンテンツをここに追加 */}'
-          echo '			</section>'
-          echo ''
-          echo '			{/* 本文スライド */}'
-          echo '			<section>'
-          echo '				{/* 本文コンテンツをここに追加 */}'
-          echo '			</section>'
-          echo '		</>'
-          echo '	);'
-          echo '}'
-        } > "$TARGET_DIR/slides/content.tsx"
-
-        # 裏表紙スライド (back-cover.tsx) - シンプル版
-        {
-          echo 'export default function BackCover() {'
-          echo '	return ('
-          echo '		<section>'
-          echo '			<h2>Thank you!</h2>'
+          echo '		<section'
+          echo "			data-background-image=\"$R2_BASE/content.png\""
+          echo '			data-background-size="contain"'
+          echo '		>'
+          echo '			{/* コンテンツをここに追加 */}'
           echo '		</section>'
           echo '	);'
           echo '}'
-        } > "$TARGET_DIR/slides/back-cover.tsx"
+        } > "$TARGET_DIR/slides/content.tsx"
 
         # layout.tsx を作成（全画面固定スタイル付き）
         {
@@ -443,7 +431,7 @@ tasks:
           echo '}'
         } > "$TARGET_DIR/layout.tsx"
 
-        # opengraph-image.tsx を作成 - シンプル版（グラデーション背景）
+        # opengraph-image.tsx を作成
         {
           echo 'import { ImageResponse } from "next/og";'
           echo ''
@@ -463,13 +451,22 @@ tasks:
           echo '				display: "flex",'
           echo '				alignItems: "center",'
           echo '				justifyContent: "center",'
-          echo '				background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",'
-          echo '				color: "white",'
-          echo '				fontSize: 64,'
-          echo '				fontWeight: "bold",'
+          echo '				position: "relative",'
           echo '			{{ "}}" }}'
           echo '		>'
-          echo "			$NAME"
+          echo '			{/* biome-ignore lint/performance/noImgElement: next/og ImageResponseではimg要素が必要 */}'
+          echo '			<img'
+          echo "				src=\"$R2_BASE/burio16Cover.png\""
+          echo '				alt="スライド表紙"'
+          echo '				style={{ "{{" }}'
+          echo '					position: "absolute",'
+          echo '					top: 0,'
+          echo '					left: 0,'
+          echo '					width: "100%",'
+          echo '					height: "100%",'
+          echo '					objectFit: "cover",'
+          echo '				{{ "}}" }}'
+          echo '			/>'
           echo '		</div>,'
           echo '		{'
           echo '			width: 1200,'
@@ -491,12 +488,9 @@ tasks:
         # SlideCardコンポーネントを追加 (グリッド内の</div>の前に - タブ4つのインデント)
         perl -i -pe "s|^(\t\t\t</div>)|\n\t\t\t\t<SlideCard href=\"/presentation/${NAME}\" title=\"${PASCAL_NAME}\">\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n\1|" "$PAGE_FILE"
 
-        echo "✓ Created simple presentation '$NAME' with 4 slides"
-        echo "  - 表紙: 1枚"
-        echo "  - コンテンツ: 2枚 (見出し1枚 + 本文1枚)"
-        echo "  - 裏表紙: 1枚"
+        echo "✓ Created presentation '$NAME' with 2 slides"
+        echo "  - 表紙: 1枚 (burio16Cover.png)"
+        echo "  - 内容: 1枚 (content.png)"
         echo "  Location: $TARGET_DIR"
         echo "✓ Added SlideCard with ${PASCAL_NAME}Cover to page.tsx"
-        echo ""
-        echo "Tip: Use 'task new-slide-corp' for corporate template"
     silent: false
