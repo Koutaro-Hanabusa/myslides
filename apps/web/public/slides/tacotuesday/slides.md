@@ -2,7 +2,7 @@
 
 12/15 社内 LT 会
 
-## 全人類タコスを食え <!-- .element: style="color: white;" -->
+# 全人類タコスを食え <!-- .element: style="color: white;" -->
 
 <br>
 ぶりお @burio_16
@@ -11,19 +11,19 @@
 
 <!-- .slide: data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/burioSlide/content.png" data-background-size="contain" style="color: white;"-->
 
-## 今日のゴール：タコスを食べたくなってもらう<!-- .element: style="color: white;" -->
+# 今日のゴール：タコスを食べたくなってもらう<!-- .element: style="color: white;" -->
 
 ---
 
 <!-- .slide: data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/burioSlide/content.png" data-background-size="contain" style="color: white;" -->
 
-## お前もタコスを食わないか？🖐️🌮👊<!-- .element: style="color: white;" -->
+# お前もタコスを食わないか？🖐️🌮👊<!-- .element: style="color: white;" -->
 
 ---
 
 <!-- .slide: data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/burioSlide/content.png" data-background-size="contain" style="color: white;"-->
 
-## タコスって知ってますか？　<!-- .element: style="color: white;" -->
+# タコスって知ってますか？　<!-- .element: style="color: white;" -->
 
 ---
 
@@ -108,14 +108,10 @@
 
 <!-- .slide: data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/burioSlide/content.png" data-background-size="contain" style="color: white;" -->
 
-## ◯ ぬ...!!<!-- .element: style="color: white;" -->
-
-## ◯ んでしまうぞ杏寿郎<!-- .element: style="color: white;" -->
+# ◯ ぬ...!! <br> ◯ んでしまうぞ杏寿郎<!-- .element: style="color: white;" -->
 
 ---
 
 <!-- .slide: data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/burioSlide/content.png" data-background-size="contain" style="color: white;" -->
 
-## タコスを食え！<!-- .element: style="color: white;" -->
-
-## タコスを食うといえ！<!-- .element: style="color: white;" -->
+# タコスを食え ！<br> タコスを食うといえ！<!-- .element: style="color: white;" -->
