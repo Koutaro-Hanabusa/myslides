@@ -1,20 +1,20 @@
 import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
-	title: "tacotuesday | mySlides",
+	title: "全人類タコスを食え | mySlides",
 	description:
-		"tacotuesday - A presentation created with mySlides and Reveal.js",
+		"12/15 社内LT会 - タコスの魅力を紹介するプレゼンテーション by ぶりお",
 	openGraph: {
-		title: "tacotuesday",
+		title: "全人類タコスを食え",
 		description:
-			"tacotuesday - A presentation created with mySlides and Reveal.js",
+			"12/15 社内LT会 - タコスの魅力を紹介するプレゼンテーション by ぶりお",
 		type: "website",
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "tacotuesday",
+		title: "全人類タコスを食え",
 		description:
-			"tacotuesday - A presentation created with mySlides and Reveal.js",
+			"12/15 社内LT会 - タコスの魅力を紹介するプレゼンテーション by ぶりお",
 	},
 };
 
