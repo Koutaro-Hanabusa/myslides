@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+// reveal.jsのCSSを先に読み込み、その後Tailwindで上書きできるようにする
+import "reveal.js/dist/reveal.css";
+import "reveal.js/dist/theme/black.css";
 import "../index.css";
 import Providers from "@/components/providers";
 
