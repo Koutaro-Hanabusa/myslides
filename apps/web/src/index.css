@@ -119,10 +119,19 @@ body {
 }
 
 /* Tailwind色クラスの具体的なオーバーライド */
-.reveal.reveal .text-white {
+/* 見出し要素にも適用されるよう詳細度を上げる */
+.reveal.reveal .text-white,
+.reveal.reveal h1.text-white,
+.reveal.reveal h2.text-white,
+.reveal.reveal h3.text-white,
+.reveal.reveal h4.text-white {
 	color: #fff;
 }
-.reveal.reveal .text-black {
+.reveal.reveal .text-black,
+.reveal.reveal h1.text-black,
+.reveal.reveal h2.text-black,
+.reveal.reveal h3.text-black,
+.reveal.reveal h4.text-black {
 	color: #000;
 }
 .reveal.reveal .text-gray-50 {

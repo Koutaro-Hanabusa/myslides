@@ -1,6 +1,7 @@
 "use client";
 
 import RevealPresentation from "@/components/reveal-presentation";
+import Content from "./slides/content";
 
 export default function PresentationPage() {
 	return (
@@ -11,6 +12,7 @@ export default function PresentationPage() {
 					data-separator="^\n---\n$"
 					data-separator-vertical="^\n--\n$"
 				/>
+				<Content />
 			</RevealPresentation>
 		</div>
 	);
