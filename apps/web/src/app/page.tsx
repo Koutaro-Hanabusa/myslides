@@ -2,6 +2,7 @@
 
 import Cover from "./better-t-stack/slides/cover";
 import SlideCard from "./slide-components/SlideCard";
+import TacosCover from "./tacotuesday/slides/cover";
 
 export default function Home() {
 	return (
@@ -10,6 +11,14 @@ export default function Home() {
 				Burio's slide deck
 			</h1>
 			<div className="grid grid-cols-1 gap-4 md:gap-8">
+				<SlideCard
+					href="/tacotuesday"
+					title="全人類タコスを食え"
+					date="2025/12/15"
+					event="社内LT会"
+				>
+					<TacosCover />
+				</SlideCard>
 				<SlideCard
 					href="/better-t-stack"
 					title="より良い技術スタックでcloudflareにデプロイしよう"

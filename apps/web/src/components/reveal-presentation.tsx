@@ -37,8 +37,12 @@ export default function RevealPresentation({
 		if (!deckDivRef.current) return;
 
 		// Dynamic import to avoid esbuild __name issue
-		import("reveal.js").then((RevealModule) => {
+		Promise.all([
+			import("reveal.js"),
+			import("reveal.js/plugin/markdown/markdown"),
+		]).then(([RevealModule, MarkdownModule]) => {
 			const Reveal = RevealModule.default;
+			const Markdown = MarkdownModule.default;
 
 			if (!deckDivRef.current) return;
 
@@ -76,6 +80,9 @@ export default function RevealPresentation({
 				// ナビゲーション設定
 				navigationMode: "default", // 縦スライドを有効にするためdefaultに設定
 				disableLayout: false, // レイアウト計算を有効化してプレビューでも正しくスケーリング
+
+				// Markdownプラグインを追加
+				plugins: [Markdown],
 
 				...config,
 			});
