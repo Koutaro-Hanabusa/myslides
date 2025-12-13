@@ -66,9 +66,26 @@
 ## ぶりおがタコスを好きな理由<!-- .element: style="color: white;" -->
 
 - 肉の種類
-- スパイス
 - 豊富なトッピング
 - お酒との相性
+
+---
+
+<!-- .slide: data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/burioSlide/content.png" data-background-size="contain" style="color: white;" -->
+
+## ぶりおが好きなタコスその１<!-- .element: style="color: white;" -->
+
+アル・パストール
+![pine](/slides/tacotuesday/assets/pine.jpg) <!-- .element: style="width: 50%; display: block; margin: 0 auto;" -->
+
+---
+
+<!-- .slide: data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/burioSlide/content.png" data-background-size="contain" style="color: white;" -->
+
+## ぶりおが好きなタコスその２<!-- .element: style="color: white;" -->
+
+ケサビリア
+![quesa](/slides/tacotuesday/assets/quesa.jpg) <!-- .element: style="width: 50%; display: block; margin: 0 auto;" -->
 
 ---
 
