@@ -21,7 +21,7 @@ export default function Image() {
 		>
 			{/* biome-ignore lint/performance/noImgElement: next/og ImageResponseではimg要素が必要 */}
 			<img
-				src="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/burio16Cover.png"
+				src="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/burioSlideOGP.png"
 				alt="スライド表紙"
 				style={{
 					position: "absolute",
