@@ -54,6 +54,20 @@ export default function Content() {
 				data-background-image={BG_CONTENT}
 				data-background-size="contain"
 			>
+				<div className="flex h-full items-center justify-center">
+					<h1 className="text-center">
+						自分だけのものって
+						<br />
+						かっこいいし、イケてるし、クール
+						<br />
+						じゃないですか？
+					</h1>
+				</div>
+			</section>
+			<section
+				data-background-image={BG_CONTENT}
+				data-background-size="contain"
+			>
 				<div className="flex h-full flex-row items-center justify-center">
 					<div className="flex flex-col pr-12">
 						<h2 className="text-left text-white">技術スタック </h2>
