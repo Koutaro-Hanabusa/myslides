@@ -304,6 +304,22 @@ tasks:
         echo "✓ Added SlideCard with ${PASCAL_NAME}Cover to page.tsx"
     silent: false
 
+  pdf:
+    desc: Export a presentation to PDF using decktape
+    summary: |
+      Usage:
+        task pdf -- <slide-name>
+        task pdf -- <slide-name> output.pdf
+
+      Examples:
+        task pdf -- tacotuesday
+        task pdf -- better-t-stack my-slides.pdf
+
+      Requirements:
+        - decktape must be installed: npm install -g decktape
+    cmds:
+      - ./scripts/pdf-export.sh {{.CLI_ARGS}}
+
   new-slide:
     desc: Create a new simple presentation with burio16 template
     summary: |
