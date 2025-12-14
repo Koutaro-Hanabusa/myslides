@@ -1,5 +1,7 @@
 import { ImageResponse } from "next/og";
 
+const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
+
 export const alt = "better-t-stack";
 export const size = {
 	width: 1200,
@@ -21,7 +23,7 @@ export default function Image() {
 		>
 			{/* biome-ignore lint/performance/noImgElement: next/og ImageResponseではimg要素が必要 */}
 			<img
-				src="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_表紙.png"
+				src={`${R2_BASE}/外部登壇資料テンプレ/千_外部登壇スライド_表紙.png`}
 				alt="スライド表紙"
 				style={{
 					position: "absolute",

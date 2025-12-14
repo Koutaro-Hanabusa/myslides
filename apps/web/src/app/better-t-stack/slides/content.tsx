@@ -10,12 +10,17 @@ import SorryImg from "./assets/Sorry.png";
 import vercelImg from "./assets/vercel.png";
 import webBuilderImg from "./assets/web-builder.png";
 
+const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
+const BG_HEADING = `${R2_BASE}/外部登壇資料テンプレ/千_外部登壇スライド_見出し.png`;
+const BG_CONTENT = `${R2_BASE}/外部登壇資料テンプレ/千_外部登壇スライド_本文.png`;
+const BG_BACK_COVER = `${R2_BASE}/外部登壇資料テンプレ/千_外部登壇スライド_裏表紙.png`;
+
 export default function Content() {
 	return (
 		<>
 			{/* 見出しスライド */}
 			<section
-				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_見出し.png"
+				data-background-image={BG_HEADING}
 				data-background-size="contain"
 			>
 				<div className="flex h-full items-center justify-center">
@@ -27,7 +32,7 @@ export default function Content() {
 				</div>
 			</section>
 			<section
-				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_見出し.png"
+				data-background-image={BG_HEADING}
 				data-background-size="contain"
 			>
 				<div className="flex h-full items-center justify-center">
@@ -40,7 +45,7 @@ export default function Content() {
 			</section>
 			{/* 本文スライド */}
 			<section
-				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
+				data-background-image={BG_CONTENT}
 				data-background-size="contain"
 			>
 				<div className="flex h-full flex-row items-center justify-center">
@@ -53,7 +58,7 @@ export default function Content() {
 				</div>
 			</section>
 			<section
-				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_見出し.png"
+				data-background-image={BG_HEADING}
 				data-background-size="contain"
 			>
 				<div className="flex h-full items-center justify-center">
@@ -61,11 +66,11 @@ export default function Content() {
 				</div>
 			</section>
 			<section
-				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_裏表紙.png"
+				data-background-image={BG_BACK_COVER}
 				data-background-size="contain"
 			/>
 			<section
-				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_見出し.png"
+				data-background-image={BG_HEADING}
 				data-background-size="contain"
 			>
 				<div className="flex h-full items-center justify-center">
@@ -77,7 +82,7 @@ export default function Content() {
 				</div>
 			</section>
 			<section
-				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_見出し.png"
+				data-background-image={BG_HEADING}
 				data-background-size="contain"
 			>
 				<div className="flex h-full items-center justify-center">
@@ -89,7 +94,7 @@ export default function Content() {
 				</div>
 			</section>
 			<section
-				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
+				data-background-image={BG_CONTENT}
 				data-background-size="contain"
 			>
 				{/* biome-ignore lint/performance/noImgElement: reveal.jsのr-stretchクラスにはimg要素が必要 */}
@@ -100,7 +105,7 @@ export default function Content() {
 				/>
 			</section>
 			<section
-				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
+				data-background-image={BG_CONTENT}
 				data-background-size="contain"
 			>
 				<div className="flex h-full flex-row items-center justify-center">
@@ -135,7 +140,7 @@ export default function Content() {
 				</div>
 			</section>
 			<section
-				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_見出し.png"
+				data-background-image={BG_HEADING}
 				data-background-size="contain"
 			>
 				<div className="flex h-full flex-col items-center justify-center">
@@ -149,7 +154,7 @@ export default function Content() {
 				</div>
 			</section>
 			<section
-				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
+				data-background-image={BG_CONTENT}
 				data-background-size="contain"
 			>
 				<div className="flex h-full flex-col justify-center">
@@ -166,7 +171,7 @@ export default function Content() {
 			{/* 残念だったところ + 余談（issueは縦スライド） */}
 			<section>
 				<section
-					data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
+					data-background-image={BG_CONTENT}
 					data-background-size="contain"
 				>
 					<div className="flex h-full flex-col justify-center">
@@ -183,7 +188,7 @@ export default function Content() {
 				</section>
 				{/* 余談: 下矢印で表示 */}
 				<section
-					data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
+					data-background-image={BG_CONTENT}
 					data-background-size="contain"
 				>
 					<div className="flex h-full flex-row items-center justify-center">
@@ -199,7 +204,7 @@ export default function Content() {
 				</section>
 			</section>
 			<section
-				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
+				data-background-image={BG_CONTENT}
 				data-background-size="contain"
 			>
 				<div className="flex h-full flex-row items-center justify-center gap-8">
@@ -215,7 +220,7 @@ export default function Content() {
 				</div>
 			</section>
 			<section
-				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
+				data-background-image={BG_CONTENT}
 				data-background-size="contain"
 			>
 				<div className="flex h-full flex-row items-center justify-center gap-8">
@@ -234,7 +239,7 @@ export default function Content() {
 				</div>
 			</section>
 			<section
-				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
+				data-background-image={BG_CONTENT}
 				data-background-size="contain"
 			>
 				<div className="flex h-full flex-row items-center justify-center gap-8">
@@ -250,7 +255,7 @@ export default function Content() {
 				</div>
 			</section>
 			<section
-				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
+				data-background-image={BG_CONTENT}
 				data-background-size="contain"
 			>
 				<div className="flex h-full flex-row items-center justify-center gap-8">
@@ -268,7 +273,7 @@ export default function Content() {
 				</div>
 			</section>
 			<section
-				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
+				data-background-image={BG_CONTENT}
 				data-background-size="contain"
 			>
 				<div className="flex h-full flex-row items-center justify-center gap-8">
@@ -286,7 +291,7 @@ export default function Content() {
 				</div>
 			</section>
 			<section
-				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_見出し.png"
+				data-background-image={BG_HEADING}
 				data-background-size="contain"
 			>
 				<div className="flex h-full items-center justify-center">
@@ -298,7 +303,7 @@ export default function Content() {
 				</div>
 			</section>
 			<section
-				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_本文.png"
+				data-background-image={BG_CONTENT}
 				data-background-size="contain"
 			>
 				<div className="flex h-full flex-col justify-center">

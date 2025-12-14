@@ -3,11 +3,14 @@ import burioSlideImg from "./assets/burioSlide.png";
 import ogpImg from "./assets/ogp.png";
 import revealImg from "./assets/reveal.png";
 
+const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
+const BG_CONTENT = `${R2_BASE}/burioSlide/content.png`;
+
 export default function Content() {
 	return (
 		<>
 			<section
-				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/buroSlide/content.png"
+				data-background-image={BG_CONTENT}
 				data-background-size="contain"
 			>
 				<div className="flex h-full items-center justify-center">
@@ -19,7 +22,7 @@ export default function Content() {
 				</div>
 			</section>
 			<section
-				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/buroSlide/content.png"
+				data-background-image={BG_CONTENT}
 				data-background-size="contain"
 			>
 				<div className="flex h-full items-center justify-center">
@@ -31,7 +34,7 @@ export default function Content() {
 				</div>
 			</section>
 			<section
-				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/burioSlide/content.png"
+				data-background-image={BG_CONTENT}
 				data-background-size="contain"
 			>
 				<div className="flex h-full flex-row items-center justify-center">
@@ -47,7 +50,7 @@ export default function Content() {
 				</div>
 			</section>
 			<section
-				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/burioSlide/content.png"
+				data-background-image={BG_CONTENT}
 				data-background-size="contain"
 			>
 				<div className="flex h-full flex-row items-center justify-center">
@@ -65,7 +68,7 @@ export default function Content() {
 				</div>
 			</section>
 			<section
-				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/burioSlide/content.png"
+				data-background-image={BG_CONTENT}
 				data-background-size="contain"
 			>
 				<div className="flex h-full flex-row items-center justify-center">
@@ -104,7 +107,7 @@ export default function Content() {
 				</div>
 			</section>
 			<section
-				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/burioSlide/content.png"
+				data-background-image={BG_CONTENT}
 				data-background-size="contain"
 			>
 				<div className="flex h-full flex-col items-center justify-center">
@@ -117,7 +120,7 @@ export default function Content() {
 				</div>
 			</section>
 			<section
-				data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/burioSlide/content.png"
+				data-background-image={BG_CONTENT}
 				data-background-size="contain"
 			>
 				<div className="flex h-full flex-col items-center justify-center">

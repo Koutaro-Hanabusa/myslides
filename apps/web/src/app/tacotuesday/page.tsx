@@ -4,6 +4,8 @@ import RevealPresentation from "@/components/reveal-presentation";
 import Content from "../revealjs-slideDeck/slides/content";
 import Cover from "../revealjs-slideDeck/slides/cover";
 
+const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
+
 export default function PresentationPage() {
 	return (
 		<div className="h-full w-full">
@@ -14,7 +16,7 @@ export default function PresentationPage() {
 					data-separator-vertical="^\n--\n$"
 				/>
 				<section
-					data-background-image="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/burioSlide/content.png"
+					data-background-image={`${R2_BASE}/burioSlide/content.png`}
 					data-background-size="contain"
 				>
 					<div className="flex h-full items-center justify-center">

@@ -1,5 +1,7 @@
 import { ImageResponse } from "next/og";
 
+const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
+
 export const alt = "revealjs-slideDeck";
 export const size = {
 	width: 1200,
@@ -21,7 +23,7 @@ export default function Image() {
 		>
 			{/* biome-ignore lint/performance/noImgElement: next/og ImageResponseではimg要素が必要 */}
 			<img
-				src="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/burio16Cover.png"
+				src={`${R2_BASE}/burio16Cover.png`}
 				alt="スライド表紙"
 				style={{
 					position: "absolute",
