@@ -1,8 +1,8 @@
 import Image from "next/image";
 import burioSlideImg from "./assets/burioSlide.png";
 import ogpImg from "./assets/ogp.png";
+import pdfExportImg from "./assets/pdfExport.png";
 import revealImg from "./assets/reveal.png";
-import revealIssueImg from "./assets/revealIssue.png";
 
 const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
 const BG_CONTENT = `${R2_BASE}/burioSlide/content.png`;
@@ -72,10 +72,23 @@ export default function Content() {
 					<div className="flex flex-col pr-12">
 						<h2 className="text-left text-white">技術スタック </h2>
 						<ul className="text-left text-white">
-							<li>フロントエンド：React</li>
-							<li> フロントエンド：Next.js(app router)</li>
-							<li>スライド表示：Reveal.js</li>
-							<li>デプロイ：Cloudflare Workers</li>
+							<li>
+								フロントエンド：<a href="https://ja.react.dev/">React</a>
+							</li>
+							<li>
+								{" "}
+								フロントエンド：
+								<a href="https://nextjs.org/">Next.js(app router)</a>
+							</li>
+							<li>
+								スライド表示：<a href="https://revealjs.com/">reveal.js</a>
+							</li>
+							<li>
+								デプロイ：
+								<a href="https://www.cloudflare.com/ja-jp/developer-platform/products/workers/">
+									Cloudflare Workers
+								</a>
+							</li>
 						</ul>
 					</div>
 					{/* biome-ignore lint/performance/noImgElement: reveal.jsではimg要素が必要 */}
@@ -186,7 +199,7 @@ export default function Content() {
 				data-background-image={BG_CONTENT}
 				data-background-size="contain"
 			>
-				<div className="flex h-full flex-row justify-center">
+				<div className="flex h-full flex-row items-center justify-start pl-16">
 					<div className="flex flex-col pr-12">
 						<h2 className="text-left text-white">reveal.js残念だった点</h2>
 						<ul className="text-white">
@@ -194,21 +207,23 @@ export default function Content() {
 							<li>Tailwind競合して文字色が変わらなかった</li>
 						</ul>
 					</div>
+					<img src={pdfExportImg.src} alt="ogp画像" className="w-[50%]" />
 				</div>
 			</section>
 			<section
 				data-background-image={BG_CONTENT}
 				data-background-size="contain"
 			>
-				<div className="flex h-full flex-row justify-center">
+				<div className="flex h-full flex-row items-center justify-start pl-16">
 					<div className="flex flex-col pr-12">
 						<h2 className="text-left text-white">まとめ</h2>
 						<ul className="text-white">
 							<li>
-								reveal,jsはスライドをマークダウンでかけるだけでなく、
+								reveal.jsはスライドをマークダウンやHTMLでかけるだけでなく、
 								<br />
 								プレゼンのための機能を提供してくれる
 							</li>
+							<li>作成から登壇、共有まで全てを担えるものを作れる</li>
 							<li>自分だけのスライドデッキめちゃくちゃカッコいい！</li>
 						</ul>
 					</div>
