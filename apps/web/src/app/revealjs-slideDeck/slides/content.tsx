@@ -127,6 +127,7 @@ export default function Content() {
 					<h2 className="text-left text-white">reveal.js残念だった点</h2>
 					<ul className="text-white">
 						<li>Reactと使用すると、PDF出力が動作しない</li>
+						<li>Tailwind競合して文字色が変わらなかった</li>
 					</ul>
 				</div>
 			</section>
