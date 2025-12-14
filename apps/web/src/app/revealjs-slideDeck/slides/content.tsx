@@ -186,12 +186,30 @@ export default function Content() {
 				data-background-image={BG_CONTENT}
 				data-background-size="contain"
 			>
-				<div className="flex h-full flex-row items-center justify-center">
+				<div className="flex h-full flex-row justify-center">
 					<div className="flex flex-col pr-12">
 						<h2 className="text-left text-white">reveal.js残念だった点</h2>
 						<ul className="text-white">
 							<li>PDF出力が動作しない</li>
 							<li>Tailwind競合して文字色が変わらなかった</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+			<section
+				data-background-image={BG_CONTENT}
+				data-background-size="contain"
+			>
+				<div className="flex h-full flex-row justify-center">
+					<div className="flex flex-col pr-12">
+						<h2 className="text-left text-white">まとめ</h2>
+						<ul className="text-white">
+							<li>
+								reveal,jsはスライドをマークダウンでかけるだけでなく、
+								<br />
+								プレゼンのための機能を提供してくれる
+							</li>
+							<li>自分だけのスライドデッキめちゃくちゃカッコいい！</li>
 						</ul>
 					</div>
 				</div>
