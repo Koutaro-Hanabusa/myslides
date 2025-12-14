@@ -2,6 +2,7 @@ import Image from "next/image";
 import burioSlideImg from "./assets/burioSlide.png";
 import ogpImg from "./assets/ogp.png";
 import revealImg from "./assets/reveal.png";
+import revealIssueImg from "./assets/revealIssue.png";
 
 const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
 const BG_CONTENT = `${R2_BASE}/burioSlide/content.png`;
@@ -106,29 +107,79 @@ export default function Content() {
 					</div>
 				</div>
 			</section>
-			<section
-				data-background-image={BG_CONTENT}
-				data-background-size="contain"
-			>
-				<div className="flex h-full flex-col items-center justify-center">
-					<h2 className="text-left text-white">reveal.jsよかった点</h2>
-					<ul className="text-white">
-						<li>HTMLでもMarkdownでもスライド作成可能</li>
-						<li> スライドを縦と横に展開可能</li>
-						<li>Googleスライドでできることと同等のことができる</li>
-					</ul>
-				</div>
+			<section>
+				<section
+					data-background-image={BG_CONTENT}
+					data-background-size="contain"
+				>
+					<div className="flex flex-row">
+						<div className="flex h-full flex-col justify-center">
+							<h2 className="text-left text-white">reveal.jsよかった点</h2>
+							<ul className="text-white">
+								<li>HTMLでもMarkdownでもスライド作成可能</li>
+								<li> スライドを縦と横に展開可能</li>
+								<li>Googleスライドでできることと同等のことができる</li>
+							</ul>
+						</div>
+						<div className="r-stack">
+							<pre className="fragment fade-out" data-fragment-index="0">
+								<code className="language-javascript" data-trim data-noescape>
+									{`
+<section
+  data-background-image={BG_CONTENT}
+  data-background-size="contain"
+>
+  <div className="flex h-full flex-col items-center justify-center">
+    <h2 className="text-left text-white">reveal.jsよかった点</h2>
+    <ul className="text-white">
+      <li>HTMLでもMarkdownでもスライド作成可能</li>
+      <li>スライドを縦と横に展開可能</li>
+      <li>Googleスライドでできることと同等のことができる</li>
+    </ul>
+  </div>
+</section>`}
+								</code>
+							</pre>
+							<pre className="fragment fade-in" data-fragment-index="0">
+								<code className="language-markdown" data-trim data-noescape>
+									{`
+<!-- .slide: style="color: white; text-align: left;" -->
+
+## ぶりおがタコスを好きな理由<!-- .element: style="color: white;" -->
+
+- 肉の種類
+- 豊富なトッピング
+- お酒との相性
+
+---`}
+								</code>
+							</pre>
+						</div>
+					</div>
+				</section>
+				<section
+					data-background-image={BG_CONTENT}
+					data-background-size="contain"
+				>
+					<h1>
+						こいつが縦のスライドです。
+						<br />
+						余談に使いやすい
+					</h1>
+				</section>
 			</section>
 			<section
 				data-background-image={BG_CONTENT}
 				data-background-size="contain"
 			>
-				<div className="flex h-full flex-col items-center justify-center">
-					<h2 className="text-left text-white">reveal.js残念だった点</h2>
-					<ul className="text-white">
-						<li>Reactと使用すると、PDF出力が動作しない</li>
-						<li>Tailwind競合して文字色が変わらなかった</li>
-					</ul>
+				<div className="flex h-full flex-row items-center justify-center">
+					<div className="flex flex-col pr-12">
+						<h2 className="text-left text-white">reveal.js残念だった点</h2>
+						<ul className="text-white">
+							<li>PDF出力が動作しない</li>
+							<li>Tailwind競合して文字色が変わらなかった</li>
+						</ul>
+					</div>
 				</div>
 			</section>
 		</>
