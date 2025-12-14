@@ -97,17 +97,100 @@ body {
 	}
 }
 
-/* reveal.js テーマのオーバーライド */
+/* reveal.js見出しの大文字変換を無効化 */
 .reveal.reveal.reveal {
 	--r-heading-text-transform: none;
-	--r-main-color: #000;
-	--r-heading-color: #000;
-	--r-link-color: #2563eb;
 }
 
-/* 見出しスライド・表紙は白文字 */
-.reveal.reveal.reveal .slides section[data-background-image*="見出し"],
-.reveal.reveal.reveal .slides section[data-background-image*="表紙"] {
-	--r-main-color: #fff;
-	--r-heading-color: #fff;
+/*
+ * reveal.js内でTailwindのユーティリティクラスを優先させる
+ * 詳細度を上げることで、reveal.jsのデフォルトスタイルに勝つ
+ */
+.reveal.reveal [class*="text-"] {
+	color: revert-layer;
+}
+
+.reveal.reveal [class*="bg-"] {
+	background-color: revert-layer;
+}
+
+.reveal.reveal [class*="border-"] {
+	border-color: revert-layer;
+}
+
+/* Tailwind色クラスの具体的なオーバーライド */
+/* 見出し要素にも適用されるよう詳細度を上げる */
+.reveal.reveal .text-white,
+.reveal.reveal h1.text-white,
+.reveal.reveal h2.text-white,
+.reveal.reveal h3.text-white,
+.reveal.reveal h4.text-white {
+	color: #fff;
+}
+.reveal.reveal .text-black,
+.reveal.reveal h1.text-black,
+.reveal.reveal h2.text-black,
+.reveal.reveal h3.text-black,
+.reveal.reveal h4.text-black {
+	color: #000;
+}
+.reveal.reveal .text-gray-50 {
+	color: #f9fafb;
+}
+.reveal.reveal .text-gray-100 {
+	color: #f3f4f6;
+}
+.reveal.reveal .text-gray-200 {
+	color: #e5e7eb;
+}
+.reveal.reveal .text-gray-300 {
+	color: #d1d5db;
+}
+.reveal.reveal .text-gray-400 {
+	color: #9ca3af;
+}
+.reveal.reveal .text-gray-500 {
+	color: #6b7280;
+}
+.reveal.reveal .text-gray-600 {
+	color: #4b5563;
+}
+.reveal.reveal .text-gray-700 {
+	color: #374151;
+}
+.reveal.reveal .text-gray-800 {
+	color: #1f2937;
+}
+.reveal.reveal .text-gray-900 {
+	color: #111827;
+}
+.reveal.reveal .text-red-500 {
+	color: #ef4444;
+}
+.reveal.reveal .text-red-600 {
+	color: #dc2626;
+}
+.reveal.reveal .text-blue-500 {
+	color: #3b82f6;
+}
+.reveal.reveal .text-blue-600 {
+	color: #2563eb;
+}
+.reveal.reveal .text-green-500 {
+	color: #22c55e;
+}
+.reveal.reveal .text-green-600 {
+	color: #16a34a;
+}
+.reveal.reveal .text-yellow-500 {
+	color: #eab308;
+}
+.reveal.reveal .text-orange-500 {
+	color: #f97316;
+}
+.reveal.reveal .text-purple-500 {
+	color: #a855f7;
+}
+.reveal.reveal .text-pink-500 {
+	color: #ec4899;
 }
