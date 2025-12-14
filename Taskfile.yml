@@ -1,6 +1,6 @@
 # https://taskfile.dev
 
-version: '3'
+version: "3"
 
 vars:
   GREETING: Hello, World!
@@ -375,7 +375,7 @@ tasks:
           echo 'export default function Cover() {'
           echo '	return ('
           echo '		<section'
-          echo "			data-background-image=\"$R2_BASE/burio16Cover.png\""
+          echo "			data-background-image=\"$R2_BASE/burioSlide/burio16Cover.png\""
           echo '			data-background-size="contain"'
           echo '		>'
           echo "			<h1>$NAME</h1>"
@@ -389,7 +389,7 @@ tasks:
           echo 'export default function Content() {'
           echo '	return ('
           echo '		<section'
-          echo "			data-background-image=\"$R2_BASE/content.png\""
+          echo "			data-background-image=\"$R2_BASE/burioSlide/content.png\""
           echo '			data-background-size="contain"'
           echo '		>'
           echo '			{/* コンテンツをここに追加 */}'
@@ -456,7 +456,7 @@ tasks:
           echo '		>'
           echo '			{/* biome-ignore lint/performance/noImgElement: next/og ImageResponseではimg要素が必要 */}'
           echo '			<img'
-          echo "				src=\"$R2_BASE/burio16Cover.png\""
+          echo "				src=\"$R2_BASE/burioSlide/burio16Cover.png\""
           echo '				alt="スライド表紙"'
           echo '				style={{ "{{" }}'
           echo '					position: "absolute",'

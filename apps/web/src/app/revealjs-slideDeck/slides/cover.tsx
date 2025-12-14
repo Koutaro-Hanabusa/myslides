@@ -7,10 +7,15 @@ export default function Cover() {
 			data-background-size="contain"
 		>
 			<div className="text-left">
-				<h3 className="!text-white">12/15 社内 LT 会</h3>
-				<h1 className="!text-white leading-tight">全人類タコスを食え</h1>
+				<h3>社内LT会</h3>
 				<br />
-				<h3 className="!text-white">ぶりお @burio_16</h3>
+				<h1 className="leading-tight">
+					自分だけの
+					<br />
+					スライドデッキを作ってみた
+				</h1>
+				<br />
+				<h3>ぶりお @burio_16</h3>
 			</div>
 		</section>
 	);
