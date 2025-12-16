@@ -1,5 +1,3 @@
-import burioImg from "../../../../../../public/slides/React-three-fiber/assets/burio.png";
-
 const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
 
 export default function SelfIntroduction() {
@@ -10,7 +8,11 @@ export default function SelfIntroduction() {
 		>
 			<div className="flex h-full flex-row flex-row items-center justify-evenly">
 				{/* biome-ignore lint/performance/noImgElement: Reveal.js requires img element */}
-				<img src={burioImg.src} alt="ぶりおの写真" className="r-stretch" />
+				<img
+					src="/slides/React-three-fiber/assets/burio.png"
+					alt="ぶりおの写真"
+					className="r-stretch"
+				/>
 
 				<div className="flex flex-col">
 					<h2 className="text-black">自己紹介</h2>
