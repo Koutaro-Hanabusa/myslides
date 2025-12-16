@@ -4,7 +4,7 @@ version: "3"
 
 vars:
   GREETING: Hello, World!
-  PRESENTATION_DIR: apps/web/src/app/presentation
+  PRESENTATION_DIR: apps/web/src/app
   DEFAULT_SLIDE_COUNT: 5
   R2_BASE_URL: https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev
   TEMPLATE_PATH: 外部登壇資料テンプレ
@@ -15,15 +15,15 @@ tasks:
       - echo "{{.GREETING}}"
     silent: true
 
-  new-slide-corp:
-    desc: Create a new presentation with corporate R2 background templates
+  new-htmlslide-corp:
+    desc: Create a new TSX presentation with corporate R2 background templates
     summary: |
       Usage:
-        task new-slide-corp -- <name>
-        task new-slide-corp  (interactive mode)
+        task new-htmlslide-corp -- <name>
+        task new-htmlslide-corp  (interactive mode)
 
       Examples:
-        task new-slide-corp -- my-presentation
+        task new-htmlslide-corp -- my-presentation
 
       Structure:
         - cover.tsx (表紙)
@@ -261,8 +261,10 @@ tasks:
           echo '				position: "relative",'
           echo '			{{ "}}" }}'
           echo '		>'
+          echo '			{/* biome-ignore lint/performance/noImgElement: next/og ImageResponseではimg要素が必要 */}'
           echo '			<img'
           echo "				src=\"$R2_BASE/千_外部登壇スライド_表紙.png\""
+          echo '				alt="スライド表紙"'
           echo '				style={{ "{{" }}'
           echo '					position: "absolute",'
           echo '					top: 0,'
@@ -291,7 +293,7 @@ tasks:
         perl -i -pe "print \"import ${PASCAL_NAME}Cover from \\\"./${NAME}/slides/cover\\\";\n\" if /^import SlideCard from/" "$PAGE_FILE"
 
         # SlideCardコンポーネントを追加 (グリッド内の</div>の前に - タブ4つのインデント)
-        perl -i -pe "s|^(\t\t\t</div>)|\n\t\t\t\t<SlideCard href=\"/presentation/${NAME}\" title=\"${PASCAL_NAME}\">\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n\1|" "$PAGE_FILE"
+        perl -i -pe "s|^(\t\t\t</div>)|\n\t\t\t\t<SlideCard href=\"/${NAME}\" title=\"${PASCAL_NAME}\" date=\"YYYY/MM/DD\">\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n\1|" "$PAGE_FILE"
 
         echo "✓ Created presentation '$NAME' with 7 slides"
         echo "  - 表紙: 1枚"
@@ -320,21 +322,21 @@ tasks:
     cmds:
       - ./scripts/pdf-export.sh {{.CLI_ARGS}}
 
-  new-slide:
-    desc: Create a new simple presentation with burio16 template
+  new-htmlslide:
+    desc: Create a new simple TSX presentation with burio16 template
     summary: |
       Usage:
-        task new-slide -- <name>
-        task new-slide  (interactive mode)
+        task new-htmlslide -- <name>
+        task new-htmlslide  (interactive mode)
 
       Examples:
-        task new-slide -- my-presentation
+        task new-htmlslide -- my-presentation
 
       Structure:
         - cover.tsx (表紙 - burio16Cover.png)
         - content.tsx (内容 - content.png)
 
-      Note: For corporate template, use 'task new-slide-corp'
+      Note: For corporate template, use 'task new-htmlslide-corp'
     cmds:
       - |
         # CLIオプションをパース
@@ -502,11 +504,444 @@ tasks:
         perl -i -pe "print \"import ${PASCAL_NAME}Cover from \\\"./${NAME}/slides/cover\\\";\n\" if /^import SlideCard from/" "$PAGE_FILE"
 
         # SlideCardコンポーネントを追加 (グリッド内の</div>の前に - タブ4つのインデント)
-        perl -i -pe "s|^(\t\t\t</div>)|\n\t\t\t\t<SlideCard href=\"/presentation/${NAME}\" title=\"${PASCAL_NAME}\">\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n\1|" "$PAGE_FILE"
+        perl -i -pe "s|^(\t\t\t</div>)|\n\t\t\t\t<SlideCard href=\"/${NAME}\" title=\"${PASCAL_NAME}\" date=\"YYYY/MM/DD\">\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n\1|" "$PAGE_FILE"
 
         echo "✓ Created presentation '$NAME' with 2 slides"
         echo "  - 表紙: 1枚 (burio16Cover.png)"
         echo "  - 内容: 1枚 (content.png)"
         echo "  Location: $TARGET_DIR"
+        echo "✓ Added SlideCard with ${PASCAL_NAME}Cover to page.tsx"
+    silent: false
+
+  new-mdslide:
+    desc: Create a new Markdown-based presentation with burio16 template
+    summary: |
+      Usage:
+        task new-mdslide -- <name>
+        task new-mdslide  (interactive mode)
+
+      Examples:
+        task new-mdslide -- my-presentation
+
+      Structure:
+        - page.tsx (Markdownを読み込むページ)
+        - slides/cover.tsx (表紙 - burio16Cover.png)
+        - public/slides/{name}/slides.md (メインコンテンツ)
+        - public/slides/{name}/assets/ (画像用ディレクトリ)
+
+      Note: For TSX-based slides, use 'task new-htmlslide'
+    cmds:
+      - |
+        NAME=""
+
+        for arg in {{.CLI_ARGS}}; do
+          if [ -z "$NAME" ]; then
+            NAME="$arg"
+          fi
+        done
+
+        if [ -z "$NAME" ]; then
+          echo "Enter presentation name:"
+          read NAME
+        fi
+
+        if [ -z "$NAME" ]; then
+          echo "Error: Presentation name is required"
+          exit 1
+        fi
+
+        TARGET_DIR="{{.PRESENTATION_DIR}}/$NAME"
+        PUBLIC_DIR="apps/web/public/slides/$NAME"
+        R2_BASE="{{.R2_BASE_URL}}"
+
+        if [ -d "$TARGET_DIR" ]; then
+          echo "Error: Presentation '$NAME' already exists"
+          exit 1
+        fi
+
+        mkdir -p "$TARGET_DIR/slides"
+        mkdir -p "$PUBLIC_DIR/assets"
+
+        # page.tsx を作成 (Markdown読み込み版)
+        {
+          echo '"use client";'
+          echo ''
+          echo 'import RevealPresentation from "@/components/reveal-presentation";'
+          echo 'import Cover from "./slides/cover";'
+          echo ''
+          echo 'const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;'
+          echo 'const BG_CONTENT = `${R2_BASE}/burioSlide/content.png`;'
+          echo ''
+          echo 'export default function PresentationPage() {'
+          echo '	return ('
+          echo '		<div className="h-full w-full">'
+          echo '			<RevealPresentation transition="slide">'
+          echo '				<Cover />'
+          echo '				<section'
+          echo "					data-markdown=\"/slides/$NAME/slides.md\""
+          echo '					data-separator="^\n---\n$"'
+          echo '					data-separator-vertical="^\n--\n$"'
+          echo '					data-background-image={BG_CONTENT}'
+          echo '					data-background-size="contain"'
+          echo '				/>'
+          echo '			</RevealPresentation>'
+          echo '		</div>'
+          echo '	);'
+          echo '}'
+        } > "$TARGET_DIR/page.tsx"
+
+        # 表紙スライド (cover.tsx)
+        {
+          echo 'const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;'
+          echo ''
+          echo 'export default function Cover() {'
+          echo '	return ('
+          echo '		<section'
+          echo '			data-background-image={`${R2_BASE}/burioSlide/burio16Cover.png`}'
+          echo '			data-background-size="contain"'
+          echo '		>'
+          echo '			<div className="text-left">'
+          echo '				<h3 className="!text-white">YYYY/MM/DD イベント名</h3>'
+          echo "				<h1 className=\"!text-white leading-tight\">$NAME</h1>"
+          echo '				<br />'
+          echo '				<h3 className="!text-white">ぶりお @burio_16</h3>'
+          echo '			</div>'
+          echo '		</section>'
+          echo '	);'
+          echo '}'
+        } > "$TARGET_DIR/slides/cover.tsx"
+
+        # layout.tsx を作成
+        {
+          echo 'import type { Metadata, Viewport } from "next";'
+          echo ''
+          echo 'export const metadata: Metadata = {'
+          echo "	title: \"$NAME | mySlides\","
+          echo "	description: \"$NAME - A presentation created with mySlides and Reveal.js\","
+          echo '	openGraph: {'
+          echo "		title: \"$NAME\","
+          echo "		description: \"$NAME - A presentation created with mySlides and Reveal.js\","
+          echo '		type: "website",'
+          echo '	},'
+          echo '	twitter: {'
+          echo '		card: "summary_large_image",'
+          echo "		title: \"$NAME\","
+          echo "		description: \"$NAME - A presentation created with mySlides and Reveal.js\","
+          echo '	},'
+          echo '};'
+          echo ''
+          echo 'export const viewport: Viewport = {'
+          echo '	width: "device-width",'
+          echo '	initialScale: 1,'
+          echo '	maximumScale: 1,'
+          echo '	userScalable: false,'
+          echo '};'
+          echo ''
+          echo 'export default function Layout({ children }: { children: React.ReactNode }) {'
+          echo '	return ('
+          echo '		<div className="fixed inset-0 h-dvh w-full overflow-hidden">{children}</div>'
+          echo '	);'
+          echo '}'
+        } > "$TARGET_DIR/layout.tsx"
+
+        # opengraph-image.tsx を作成
+        {
+          echo 'import { ImageResponse } from "next/og";'
+          echo ''
+          echo "export const alt = \"$NAME\";"
+          echo 'export const size = {'
+          echo '	width: 1200,'
+          echo '	height: 630,'
+          echo '};'
+          echo 'export const contentType = "image/png";'
+          echo ''
+          echo 'export default function Image() {'
+          echo '	return new ImageResponse('
+          echo '		<div'
+          echo '			style={{ "{{" }}'
+          echo '				width: "100%",'
+          echo '				height: "100%",'
+          echo '				display: "flex",'
+          echo '				alignItems: "center",'
+          echo '				justifyContent: "center",'
+          echo '				position: "relative",'
+          echo '			{{ "}}" }}'
+          echo '		>'
+          echo '			{/* biome-ignore lint/performance/noImgElement: next/og ImageResponseではimg要素が必要 */}'
+          echo '			<img'
+          echo "				src=\"$R2_BASE/burioSlide/burio16Cover.png\""
+          echo '				alt="スライド表紙"'
+          echo '				style={{ "{{" }}'
+          echo '					position: "absolute",'
+          echo '					top: 0,'
+          echo '					left: 0,'
+          echo '					width: "100%",'
+          echo '					height: "100%",'
+          echo '					objectFit: "cover",'
+          echo '				{{ "}}" }}'
+          echo '			/>'
+          echo '		</div>,'
+          echo '		{'
+          echo '			width: 1200,'
+          echo '			height: 630,'
+          echo '		}'
+          echo '	);'
+          echo '}'
+        } > "$TARGET_DIR/opengraph-image.tsx"
+
+        # slides.md を作成
+        {
+          echo '<!-- .slide: style="color: white;"-->'
+          echo ''
+          echo "# スライドタイトル<!-- .element: style=\"color: white;\" -->"
+          echo ''
+          echo '---'
+          echo ''
+          echo '<!-- .slide: style="color: white; text-align: left;" -->'
+          echo ''
+          echo '## 見出し<!-- .element: style="color: white;" -->'
+          echo ''
+          echo '- 項目1'
+          echo '- 項目2'
+          echo '- 項目3'
+          echo ''
+          echo '---'
+          echo ''
+          echo '<!-- .slide: style="color: white;"-->'
+          echo ''
+          echo '# ご清聴ありがとうございました<!-- .element: style="color: white;" -->'
+        } > "$PUBLIC_DIR/slides.md"
+
+        # page.tsx にSlideCardを追加
+        PAGE_FILE="{{.PRESENTATION_DIR}}/page.tsx"
+
+        # PascalCase変換
+        PASCAL_NAME=$(echo "$NAME" | perl -pe 's/(^|-)(.)/uc($2)/ge')
+
+        # Coverコンポーネントのインポート文を追加
+        perl -i -pe "print \"import ${PASCAL_NAME}Cover from \\\"./${NAME}/slides/cover\\\";\n\" if /^import SlideCard from/" "$PAGE_FILE"
+
+        # SlideCardコンポーネントを追加
+        perl -i -pe "s|^(\t\t\t</div>)|\n\t\t\t\t<SlideCard href=\"/${NAME}\" title=\"${PASCAL_NAME}\" date=\"YYYY/MM/DD\">\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n\1|" "$PAGE_FILE"
+
+        echo "✓ Created Markdown presentation '$NAME'"
+        echo "  - 表紙: $TARGET_DIR/slides/cover.tsx"
+        echo "  - コンテンツ: $PUBLIC_DIR/slides.md"
+        echo "  - 画像置き場: $PUBLIC_DIR/assets/"
+        echo "✓ Added SlideCard with ${PASCAL_NAME}Cover to page.tsx"
+    silent: false
+
+  new-mdslide-corp:
+    desc: Create a new Markdown-based presentation with corporate R2 background templates
+    summary: |
+      Usage:
+        task new-mdslide-corp -- <name>
+        task new-mdslide-corp  (interactive mode)
+
+      Examples:
+        task new-mdslide-corp -- my-presentation
+
+      Structure:
+        - page.tsx (Markdownを読み込むページ)
+        - slides/cover.tsx (表紙 - 外部登壇スライド_表紙.png)
+        - public/slides/{name}/slides.md (メインコンテンツ)
+        - public/slides/{name}/assets/ (画像用ディレクトリ)
+
+      Note: For TSX-based corporate slides, use 'task new-htmlslide-corp'
+    cmds:
+      - |
+        NAME=""
+
+        for arg in {{.CLI_ARGS}}; do
+          if [ -z "$NAME" ]; then
+            NAME="$arg"
+          fi
+        done
+
+        if [ -z "$NAME" ]; then
+          echo "Enter presentation name:"
+          read NAME
+        fi
+
+        if [ -z "$NAME" ]; then
+          echo "Error: Presentation name is required"
+          exit 1
+        fi
+
+        TARGET_DIR="{{.PRESENTATION_DIR}}/$NAME"
+        PUBLIC_DIR="apps/web/public/slides/$NAME"
+        R2_BASE="{{.R2_BASE_URL}}/{{.TEMPLATE_PATH}}"
+
+        if [ -d "$TARGET_DIR" ]; then
+          echo "Error: Presentation '$NAME' already exists"
+          exit 1
+        fi
+
+        mkdir -p "$TARGET_DIR/slides"
+        mkdir -p "$PUBLIC_DIR/assets"
+
+        # page.tsx を作成 (Markdown読み込み版・企業テンプレート)
+        {
+          echo '"use client";'
+          echo ''
+          echo 'import RevealPresentation from "@/components/reveal-presentation";'
+          echo 'import Cover from "./slides/cover";'
+          echo ''
+          echo 'const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;'
+          echo 'const TEMPLATE_PATH = "外部登壇資料テンプレ";'
+          echo 'const BG_CONTENT = `${R2_BASE}/${TEMPLATE_PATH}/千_外部登壇スライド_本文.png`;'
+          echo ''
+          echo 'export default function PresentationPage() {'
+          echo '	return ('
+          echo '		<div className="h-full w-full">'
+          echo '			<RevealPresentation transition="slide">'
+          echo '				<Cover />'
+          echo '				<section'
+          echo "					data-markdown=\"/slides/$NAME/slides.md\""
+          echo '					data-separator="^\n---\n$"'
+          echo '					data-separator-vertical="^\n--\n$"'
+          echo '					data-background-image={BG_CONTENT}'
+          echo '					data-background-size="contain"'
+          echo '				/>'
+          echo '			</RevealPresentation>'
+          echo '		</div>'
+          echo '	);'
+          echo '}'
+        } > "$TARGET_DIR/page.tsx"
+
+        # 表紙スライド (cover.tsx) - 企業テンプレート
+        {
+          echo 'const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;'
+          echo 'const TEMPLATE_PATH = "外部登壇資料テンプレ";'
+          echo ''
+          echo 'export default function Cover() {'
+          echo '	return ('
+          echo '		<section'
+          echo '			data-background-image={`${R2_BASE}/${TEMPLATE_PATH}/千_外部登壇スライド_表紙.png`}'
+          echo '			data-background-size="contain"'
+          echo '		>'
+          echo "			<h1>$NAME</h1>"
+          echo '		</section>'
+          echo '	);'
+          echo '}'
+        } > "$TARGET_DIR/slides/cover.tsx"
+
+        # layout.tsx を作成
+        {
+          echo 'import type { Metadata, Viewport } from "next";'
+          echo ''
+          echo 'export const metadata: Metadata = {'
+          echo "	title: \"$NAME | mySlides\","
+          echo "	description: \"$NAME - A presentation created with mySlides and Reveal.js\","
+          echo '	openGraph: {'
+          echo "		title: \"$NAME\","
+          echo "		description: \"$NAME - A presentation created with mySlides and Reveal.js\","
+          echo '		type: "website",'
+          echo '	},'
+          echo '	twitter: {'
+          echo '		card: "summary_large_image",'
+          echo "		title: \"$NAME\","
+          echo "		description: \"$NAME - A presentation created with mySlides and Reveal.js\","
+          echo '	},'
+          echo '};'
+          echo ''
+          echo 'export const viewport: Viewport = {'
+          echo '	width: "device-width",'
+          echo '	initialScale: 1,'
+          echo '	maximumScale: 1,'
+          echo '	userScalable: false,'
+          echo '};'
+          echo ''
+          echo 'export default function Layout({ children }: { children: React.ReactNode }) {'
+          echo '	return ('
+          echo '		<div className="fixed inset-0 h-dvh w-full overflow-hidden">{children}</div>'
+          echo '	);'
+          echo '}'
+        } > "$TARGET_DIR/layout.tsx"
+
+        # opengraph-image.tsx を作成
+        {
+          echo 'import { ImageResponse } from "next/og";'
+          echo ''
+          echo "export const alt = \"$NAME\";"
+          echo 'export const size = {'
+          echo '	width: 1200,'
+          echo '	height: 630,'
+          echo '};'
+          echo 'export const contentType = "image/png";'
+          echo ''
+          echo 'export default function Image() {'
+          echo '	return new ImageResponse('
+          echo '		<div'
+          echo '			style={{ "{{" }}'
+          echo '				width: "100%",'
+          echo '				height: "100%",'
+          echo '				display: "flex",'
+          echo '				alignItems: "center",'
+          echo '				justifyContent: "center",'
+          echo '				position: "relative",'
+          echo '			{{ "}}" }}'
+          echo '		>'
+          echo '			{/* biome-ignore lint/performance/noImgElement: next/og ImageResponseではimg要素が必要 */}'
+          echo '			<img'
+          echo "				src=\"$R2_BASE/千_外部登壇スライド_表紙.png\""
+          echo '				alt="スライド表紙"'
+          echo '				style={{ "{{" }}'
+          echo '					position: "absolute",'
+          echo '					top: 0,'
+          echo '					left: 0,'
+          echo '					width: "100%",'
+          echo '					height: "100%",'
+          echo '					objectFit: "cover",'
+          echo '				{{ "}}" }}'
+          echo '			/>'
+          echo '		</div>,'
+          echo '		{'
+          echo '			width: 1200,'
+          echo '			height: 630,'
+          echo '		}'
+          echo '	);'
+          echo '}'
+        } > "$TARGET_DIR/opengraph-image.tsx"
+
+        # slides.md を作成
+        {
+          echo '<!-- .slide: style="color: black;"-->'
+          echo ''
+          echo "# スライドタイトル<!-- .element: style=\"color: black;\" -->"
+          echo ''
+          echo '---'
+          echo ''
+          echo '<!-- .slide: style="color: black; text-align: left;" -->'
+          echo ''
+          echo '## 見出し<!-- .element: style="color: black;" -->'
+          echo ''
+          echo '- 項目1'
+          echo '- 項目2'
+          echo '- 項目3'
+          echo ''
+          echo '---'
+          echo ''
+          echo '<!-- .slide: style="color: black;"-->'
+          echo ''
+          echo '# ご清聴ありがとうございました<!-- .element: style="color: black;" -->'
+        } > "$PUBLIC_DIR/slides.md"
+
+        # page.tsx にSlideCardを追加
+        PAGE_FILE="{{.PRESENTATION_DIR}}/page.tsx"
+
+        # PascalCase変換
+        PASCAL_NAME=$(echo "$NAME" | perl -pe 's/(^|-)(.)/uc($2)/ge')
+
+        # Coverコンポーネントのインポート文を追加
+        perl -i -pe "print \"import ${PASCAL_NAME}Cover from \\\"./${NAME}/slides/cover\\\";\n\" if /^import SlideCard from/" "$PAGE_FILE"
+
+        # SlideCardコンポーネントを追加
+        perl -i -pe "s|^(\t\t\t</div>)|\n\t\t\t\t<SlideCard href=\"/${NAME}\" title=\"${PASCAL_NAME}\" date=\"YYYY/MM/DD\">\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n\1|" "$PAGE_FILE"
+
+        echo "✓ Created Markdown corporate presentation '$NAME'"
+        echo "  - 表紙: $TARGET_DIR/slides/cover.tsx"
+        echo "  - コンテンツ: $PUBLIC_DIR/slides.md"
+        echo "  - 画像置き場: $PUBLIC_DIR/assets/"
         echo "✓ Added SlideCard with ${PASCAL_NAME}Cover to page.tsx"
     silent: false
