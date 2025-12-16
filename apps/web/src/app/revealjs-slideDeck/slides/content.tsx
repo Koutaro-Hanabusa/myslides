@@ -40,7 +40,7 @@ export default function Content() {
 			>
 				<div className="flex h-full flex-row items-center justify-center">
 					<div className="pr-12 text-left text-black">
-						<a href="https://burio-slide.dev/">https://burio-slide.dev</a>
+						<a href="https://slide.burio16.com/">https://slide.burio16.com</a>
 						<p className="text-white">
 							自分のスライドを公開できる
 							<br />

@@ -5,7 +5,7 @@
   "compatibility_date": "2025-07-05",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "vars": {
-    "NEXT_PUBLIC_BASE_URL": "https://burio-slide.dev",
+    "NEXT_PUBLIC_BASE_URL": "https://slide.burio16.com",
     "NEXT_PUBLIC_SERVER_URL": "https://myslides-server.koutarouhanabusa.workers.dev"
   },
   "assets": {
