@@ -41,7 +41,7 @@ export default function Home() {
 					href="/React-three-fiber"
 					title="WebGL入門 Three.jsで良さげなプロフィールサイト作ってみた"
 					date="2025/11/14"
-					event="React Tokyo"
+					event="React Tokyo ミートアップ#11"
 					url="https://react-tokyo.connpass.com/event/372887/"
 				>
 					<R3FCover />

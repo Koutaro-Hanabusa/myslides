@@ -1,6 +1,8 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "React-three-fiber";
+const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
+
+export const alt = "WebGL入門 - Three.jsで良さげなプロフィールサイト作ってみた";
 export const size = {
 	width: 1200,
 	height: 630,
@@ -19,10 +21,10 @@ export default function Image() {
 				position: "relative",
 			}}
 		>
-			{/* biome-ignore lint/performance/noImgElement: Next.js Image not supported in OG */}
+			{/* biome-ignore lint/performance/noImgElement: next/og ImageResponseではimg要素が必要 */}
 			<img
-				src="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_表紙.png"
-				alt="React-three-fiber presentation cover"
+				src={`${R2_BASE}/外部登壇資料テンプレ/千_外部登壇スライド_表紙.png`}
+				alt="スライド表紙"
 				style={{
 					position: "absolute",
 					top: 0,
@@ -32,6 +34,69 @@ export default function Image() {
 					objectFit: "cover",
 				}}
 			/>
+			{/* 表紙と同じテキストオーバーレイ */}
+			<div
+				style={{
+					position: "absolute",
+					top: 0,
+					left: 0,
+					width: "100%",
+					height: "100%",
+					display: "flex",
+					flexDirection: "column",
+					justifyContent: "center",
+					padding: "0 60px",
+				}}
+			>
+				<p
+					style={{
+						fontSize: 32,
+						fontWeight: 700,
+						color: "#fff",
+						margin: 0,
+					}}
+				>
+					React Tokyo ミートアップ#11
+				</p>
+				<div
+					style={{
+						display: "flex",
+						flexDirection: "column",
+						margin: "24px 0",
+					}}
+				>
+					<span
+						style={{
+							fontSize: 56,
+							fontWeight: 700,
+							color: "#fff",
+							lineHeight: 1.3,
+						}}
+					>
+						WebGL入門
+					</span>
+					<span
+						style={{
+							fontSize: 48,
+							fontWeight: 700,
+							color: "#fff",
+							lineHeight: 1.3,
+						}}
+					>
+						Three.jsで良さげなプロフィールサイト作ってみた
+					</span>
+				</div>
+				<p
+					style={{
+						fontSize: 32,
+						fontWeight: 700,
+						color: "#fff",
+						margin: 0,
+					}}
+				>
+					ぶりお @burio_16
+				</p>
+			</div>
 		</div>,
 		{
 			width: 1200,
