@@ -39,9 +39,10 @@ export default function Home() {
 				</SlideCard>
 				<SlideCard
 					href="/React-three-fiber"
-					title="React-three-fiber"
+					title="WebGL入門 Three.jsで良さげなプロフィールサイト作ってみた"
 					date="2025/11/14"
 					event="React Tokyo"
+					url="https://react-tokyo.connpass.com/event/372887/"
 				>
 					<R3FCover />
 				</SlideCard>
