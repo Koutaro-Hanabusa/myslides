@@ -1,25 +1,25 @@
 {
-	"name": "myslides-server",
-	"main": "src/index.ts",
-	"compatibility_date": "2025-06-15",
-	"compatibility_flags": ["nodejs_compat"],
-	"vars": {
-		"NODE_ENV": "production",
-		"CORS_ORIGIN": "https://burio-slide.dev,https://myslides.koutarouhanabusa.workers.dev"
-	},
-	"d1_databases": [
-		{
-			"binding": "DB",
-			"database_name": "myslides-db",
-			"database_id": "be09388c-f311-46f4-ae09-542da403fdf3",
-			"preview_database_id": "local-test-db",
-			"migrations_dir": "./src/db/migrations"
-		}
-	],
-	"r2_buckets": [
-		{
-			"binding": "STORAGE",
-			"bucket_name": "myslides-storage"
-		}
-	]
+  "name": "myslides-server",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-06-15",
+  "compatibility_flags": ["nodejs_compat"],
+  "vars": {
+    "NODE_ENV": "production",
+    "CORS_ORIGIN": "https://slide.burio16.com,https://myslides.koutarouhanabusa.workers.dev"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "myslides-db",
+      "database_id": "be09388c-f311-46f4-ae09-542da403fdf3",
+      "preview_database_id": "local-test-db",
+      "migrations_dir": "./src/db/migrations"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "STORAGE",
+      "bucket_name": "myslides-storage"
+    }
+  ]
 }

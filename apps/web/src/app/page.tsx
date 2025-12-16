@@ -1,6 +1,7 @@
 "use client";
 
 import Cover from "./better-t-stack/slides/cover";
+import R3FCover from "./React-three-fiber/slides/cover";
 import RevealCover from "./revealjs-slideDeck/slides/cover";
 import SlideCard from "./slide-components/SlideCard";
 import TacosCover from "./tacotuesday/slides/cover";
@@ -35,6 +36,15 @@ export default function Home() {
 					url="https://cfm-cts.connpass.com/event/374413/"
 				>
 					<Cover />
+				</SlideCard>
+				<SlideCard
+					href="/React-three-fiber"
+					title="WebGL入門 Three.jsで良さげなプロフィールサイト作ってみた"
+					date="2025/11/14"
+					event="React Tokyo"
+					url="https://react-tokyo.connpass.com/event/372887/"
+				>
+					<R3FCover />
 				</SlideCard>
 			</div>
 		</div>
