@@ -1,20 +1,21 @@
 import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
-	title: "React-three-fiber | mySlides",
+	title:
+		"WebGL入門 - Three.jsで良さげなプロフィールサイト作ってみた | mySlides",
 	description:
-		"React-three-fiber - A presentation created with mySlides and Reveal.js",
+		"React Tokyo ミートアップ#11 - WebGL入門 Three.jsで良さげなプロフィールサイト作ってみた by ぶりお",
 	openGraph: {
-		title: "React-three-fiber",
+		title: "WebGL入門 - Three.jsで良さげなプロフィールサイト作ってみた",
 		description:
-			"React-three-fiber - A presentation created with mySlides and Reveal.js",
+			"React Tokyo ミートアップ#11 - WebGL入門 Three.jsで良さげなプロフィールサイト作ってみた by ぶりお",
 		type: "website",
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "React-three-fiber",
+		title: "WebGL入門 - Three.jsで良さげなプロフィールサイト作ってみた",
 		description:
-			"React-three-fiber - A presentation created with mySlides and Reveal.js",
+			"React Tokyo ミートアップ#11 - WebGL入門 Three.jsで良さげなプロフィールサイト作ってみた by ぶりお",
 	},
 };
 
