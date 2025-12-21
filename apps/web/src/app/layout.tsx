@@ -26,6 +26,9 @@ export const metadata: Metadata = {
 	),
 	title: "mySlides",
 	description: "mySlides",
+	icons: {
+		icon: "/assets/favicon.ico",
+	},
 };
 
 export default function RootLayout({
