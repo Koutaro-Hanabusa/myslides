@@ -37,26 +37,3 @@ export function ContentSlide({ title, children }: ContentSlideProps) {
 		</section>
 	);
 }
-
-interface ListItemProps {
-	children: ReactNode;
-}
-
-/** リストアイテム */
-export function Li({ children }: ListItemProps) {
-	return <li>{children}</li>;
-}
-
-interface CodeBlockProps {
-	children: string;
-	language?: string;
-}
-
-/** コードブロック */
-export function Code({ children, language = "json" }: CodeBlockProps) {
-	return (
-		<pre className="rounded-lg bg-gray-900 p-4 text-left">
-			<code className={`language-${language}`}>{children}</code>
-		</pre>
-	);
-}
