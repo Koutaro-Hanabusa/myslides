@@ -5,6 +5,7 @@ import R3FCover from "./react-three-fiber/slides/cover";
 import RevealCover from "./revealjs-slideDeck/slides/cover";
 import SlideCard from "./slide-components/SlideCard";
 import TacosCover from "./tacotuesday/slides/cover";
+import YouMustHaveDotfilesCover from "./you-must-have-dotfiles/slides/cover";
 export default function Home() {
 	return (
 		<div className="mx-auto w-full p-4 md:w-3/4 md:p-8 lg:w-1/2">
@@ -12,6 +13,14 @@ export default function Home() {
 				Burio's slide deck
 			</h1>
 			<div className="grid grid-cols-1 gap-4 md:gap-8">
+				<SlideCard
+					href="/you-must-have-dotfiles"
+					title="YouMustHaveDotfiles"
+					date="YYYY/MM/DD"
+				>
+					<YouMustHaveDotfilesCover />
+				</SlideCard>
+
 				<SlideCard
 					href="/revealjs-slideDeck"
 					title="自分だけのスライドデッキを作ってみた"
