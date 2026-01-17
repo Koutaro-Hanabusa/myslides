@@ -15,8 +15,10 @@ export default function Home() {
 			<div className="grid grid-cols-1 gap-4 md:gap-8">
 				<SlideCard
 					href="/you-must-have-dotfiles"
-					title="YouMustHaveDotfiles"
-					date="YYYY/MM/DD"
+					title="Vim使いでなくてもdotfilesを管理しよう"
+					date="2026/1/25"
+					event="Yoriai.cafe 二日間限定オープン！ 🍛ホタテカレーと出会いの「寄り合い」"
+					url="https://peatix.com/event/4736534"
 				>
 					<YouMustHaveDotfilesCover />
 				</SlideCard>
