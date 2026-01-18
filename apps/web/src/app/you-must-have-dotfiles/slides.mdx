@@ -4,15 +4,45 @@ import { HeadingSlide, ContentSlide } from "@/components/slides";
 
 <ContentSlide>
   <div className="flex items-center gap-8">
-    <p>私も最近作り始めました</p>
+   {"私も最近"} 
+    <br />
+    {"作り始めました"}
     <img
       src="/slides/you-must-have-dotfiles/assets/mydotfiles.png"
       alt="mydotfiles"
-      className="max-w-[50%] h-auto"
+      className="max-w-[75%] h-auto"
     />
   </div>
 </ContentSlide>
 
-<ContentSlide title="そもそもdotfilesとは"></ContentSlide>
+<ContentSlide title="そもそもdotfilesとは">
+  - zshやbashなどのホームディレクトリにある<br />ドットから始まるファイル(.~)を管理しているリポジトリ
+  - 複数のPC間で設定を共有することができる
+</ContentSlide>
 
-<HeadingSlide>ご清聴ありがとうございました</HeadingSlide>
+<HeadingSlide>最近こんなことがありました</HeadingSlide>
+
+<ContentSlide>
+  <div className="flex items-center gap-8">
+
+- どういう設定をしているのかよくわからない！！！
+- 設定してる部分送ってくれや！<br />でもLINEだと送りにくいか😢
+<img src="/slides/you-must-have-dotfiles/assets/LINE.png" alt="同期とのLINEのやりとり" className="max-w-[75%] h-auto" />
+</div>
+</ContentSlide>
+
+<HeadingSlide>これdotfilesで管理されてたら<br />楽なんちゃうんか!?</HeadingSlide>
+
+<HeadingSlide>みんなAIを使っているということは、<br />~/.claude/や.codex/が存在しているはず</HeadingSlide>
+
+<HeadingSlide>dotfilesで管理しましょう！！！！！</HeadingSlide>
+
+<HeadingSlide>まずはchezmoiを使って気軽に管理し始めよう</HeadingSlide>
+
+<ContentSlide title="chezmoiとは">
+- [chezmoi(読みはシェモア)](https://github.com/twpayne/chezmoi)
+- dotfilesを複数のPC間で安全に管理するためのgo製ツール
+
+</ContentSlide>
+
+

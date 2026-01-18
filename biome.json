@@ -9,6 +9,7 @@
 		"ignoreUnknown": false,
 		"includes": [
 			"**",
+			"!**/*.mdx",
 			"!**/.next",
 			"!**/.open-next",
 			"!**/dist",
