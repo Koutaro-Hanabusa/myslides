@@ -1,25 +1,16 @@
 import { HeadingSlide, ContentSlide } from "@/components/slides";
 
-<HeadingSlide>※最近Nixが流行っていますがここでは紹介できません<br />本格的にdotfilesを管理する場合はZennなどの記事を参照して行なっていただきたいです</HeadingSlide>
-
 <HeadingSlide>みなさん dotfilesって管理してますか？？</HeadingSlide>
 
 <ContentSlide>
   <div className="flex items-center gap-8">
-   {"私も最近"} 
-    <br />
-    {"作り始めました"}
+   {"私は管理してます"}
     <img
       src="/slides/you-must-have-dotfiles/assets/mydotfiles.png"
       alt="mydotfiles"
       className="max-w-[75%] h-auto"
     />
   </div>
-</ContentSlide>
-
-<ContentSlide title="そもそもdotfilesとは">
-  - zshやbashなどのホームディレクトリにある<br />ドットから始まるファイル(.~)を管理しているリポジトリ
-  - 複数のPC間で設定を共有することができる
 </ContentSlide>
 
 <HeadingSlide>最近こんなことがありました</HeadingSlide>
@@ -33,11 +24,22 @@ import { HeadingSlide, ContentSlide } from "@/components/slides";
 </div>
 </ContentSlide>
 
-<HeadingSlide>これdotfilesで管理されてたら<br />楽なんちゃうんか!?</HeadingSlide>
-
 <HeadingSlide>みんなAIを使っているということは、<br />~/.claude/や.codex/が存在しているはず</HeadingSlide>
 
-<HeadingSlide>dotfilesで管理しましょう！！！！！</HeadingSlide>
+<HeadingSlide>こういう設定ファイルも<br />dotfilesで管理できると便利じゃない？</HeadingSlide>
+
+<ContentSlide title="そもそもdotfilesとは">
+  - zshやbashなどのホームディレクトリにある<br />ドットから始まるファイル(.zshrcなど)を管理しているリポジトリ
+  - 複数のPC間で設定を共有することができる
+</ContentSlide>
+
+<ContentSlide title="dotfilesを管理することのメリット">
+- 仕事用、私用PCなど異なるPC間で設定を共有できる
+- 自分の設定の履歴を管理することができる
+- 他の人が簡単に設定を参照できる(<del>そしてパクれる</del>)
+</ContentSlide>
+
+<HeadingSlide>よし、dotfilesで管理しましょう！！！！！</HeadingSlide>
 
 <HeadingSlide>まずはchezmoiを使って気軽に管理し始めよう</HeadingSlide>
 
@@ -96,5 +98,30 @@ chezmoi managed
 ```
 </div>
 </ContentSlide>
+
+<ContentSlide>
+chezmoiが管理しているディレクトリが生成されるので移動する
+```bash
+chezmoi cd
+```
+ホームディレクトリ配下にこのようなディレクトリが作成されていることを確認できればOK
+```bash
+pwd
+# ~/.local/share/chezmoi
+```
+あとはいつも通りコミットしてPushすればOK!
+</ContentSlide>
+
+
+<ContentSlide title="まとめ">
+- dotfilesとは、zshやbashの設定だけでなくAIの設定を管理するためにも有用
+- chezmoiはdotfilesを管理し始めるためにはもってこいのツールだった
+- 他の人に設定を共有することも簡単になる(<del>パクりやすくなる</del>)
+</ContentSlide>
+
+
+<HeadingSlide>コレで君も今日からdotfilerだ！！！！</HeadingSlide>
+
+<HeadingSlide>おれの設定か？<br />欲しけりゃくれてやるぜ...<br />この世の全てを<a href="https://github.com/Koutaro-Hanabusa/dotfiles">そこ</a>に置いてきた</HeadingSlide>
 
 
