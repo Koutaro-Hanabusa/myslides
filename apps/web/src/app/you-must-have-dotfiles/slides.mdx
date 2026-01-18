@@ -1,5 +1,7 @@
 import { HeadingSlide, ContentSlide } from "@/components/slides";
 
+<HeadingSlide>※最近Nixが流行っていますがここでは紹介できません<br />本格的にdotfilesを管理する場合はZennなどの記事を参照して行なっていただきたいです</HeadingSlide>
+
 <HeadingSlide>みなさん dotfilesって管理してますか？？</HeadingSlide>
 
 <ContentSlide>
@@ -42,7 +44,57 @@ import { HeadingSlide, ContentSlide } from "@/components/slides";
 <ContentSlide title="chezmoiとは">
 - [chezmoi(読みはシェモア)](https://github.com/twpayne/chezmoi)
 - dotfilesを複数のPC間で安全に管理するためのgo製ツール
+</ContentSlide>
 
+<ContentSlide title="始め方">
+※前提：mac ユーザーでclaude codeを使っている人
+
+chezmoiをインストールする
+
+```bash
+brew install chezmoi
+```
+
+出力例
+```
+1126buri@MacBook-Air-2 ~ % brew install chezmoi
+==> Fetching downloads for: chezmoi
+✔︎ Bottle chezmoi (2.69.3) Downloaded 12.1MB
+==> Pouring chezmoi--2.69.3.arm64_sequoia.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/chezmoi/2.69.3: 9 files, 33.3MB
+```
+
+</ContentSlide>
+<ContentSlide>
+<div className="h-full">
+
+chezmoiを有効化する
+
+```bash
+chezmoi init
+```
+
+CLAUDE.mdや、skillsを管理下にする（mcp.jsonはAPIキーなどが含まれるのでやめましょう）
+
+```bash
+chezmoi add ~/.claude/CLAUDE.md ~/.claude/settings.json ~/.claude/commands ~/.claude/skills ~/.claude/agents ~/.claude/plugins/installed_plugins.json
+```
+
+管理下になったことを確認する
+
+```bash
+chezmoi managed
+```
+
+出力例(一部抜粋)
+```
+.claude/CLAUDE.md
+.claude/agents/frontend-developer.md
+.claude/plugins/installed_plugins.json
+.claude/settings.json
+.claude/skills/frontend-design/SKILL.md
+```
+</div>
 </ContentSlide>
 
 
