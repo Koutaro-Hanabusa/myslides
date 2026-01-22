@@ -292,8 +292,8 @@ tasks:
         # Coverコンポーネントのインポート文を追加 (SlideCard インポートの後に)
         perl -i -pe "print \"import ${PASCAL_NAME}Cover from \\\"./${NAME}/slides/cover\\\";\n\" if /^import SlideCard from/" "$PAGE_FILE"
 
-        # SlideCardコンポーネントを追加 (グリッド内の</div>の前に - タブ4つのインデント)
-        perl -i -pe "s|^(\t\t\t</div>)|\n\t\t\t\t<SlideCard href=\"/${NAME}\" title=\"${PASCAL_NAME}\" date=\"YYYY/MM/DD\">\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n\1|" "$PAGE_FILE"
+        # SlideCardコンポーネントを追加 (グリッドの一番上に追加)
+        perl -i -pe "s|^(\t\t\t<div className=\"grid grid-cols-1 gap-4 md:gap-8\">)|\1\n\t\t\t\t<SlideCard href=\"/${NAME}\" title=\"${PASCAL_NAME}\" date=\"YYYY/MM/DD\">\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n|" "$PAGE_FILE"
 
         echo "✓ Created presentation '$NAME' with 7 slides"
         echo "  - 表紙: 1枚"
@@ -503,8 +503,8 @@ tasks:
         # Coverコンポーネントのインポート文を追加 (SlideCard インポートの後に)
         perl -i -pe "print \"import ${PASCAL_NAME}Cover from \\\"./${NAME}/slides/cover\\\";\n\" if /^import SlideCard from/" "$PAGE_FILE"
 
-        # SlideCardコンポーネントを追加 (グリッド内の</div>の前に - タブ4つのインデント)
-        perl -i -pe "s|^(\t\t\t</div>)|\n\t\t\t\t<SlideCard href=\"/${NAME}\" title=\"${PASCAL_NAME}\" date=\"YYYY/MM/DD\">\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n\1|" "$PAGE_FILE"
+        # SlideCardコンポーネントを追加 (グリッドの一番上に追加)
+        perl -i -pe "s|^(\t\t\t<div className=\"grid grid-cols-1 gap-4 md:gap-8\">)|\1\n\t\t\t\t<SlideCard href=\"/${NAME}\" title=\"${PASCAL_NAME}\" date=\"YYYY/MM/DD\">\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n|" "$PAGE_FILE"
 
         echo "✓ Created presentation '$NAME' with 2 slides"
         echo "  - 表紙: 1枚 (burio16Cover.png)"
@@ -721,8 +721,8 @@ tasks:
         # Coverコンポーネントのインポート文を追加
         perl -i -pe "print \"import ${PASCAL_NAME}Cover from \\\"./${NAME}/slides/cover\\\";\n\" if /^import SlideCard from/" "$PAGE_FILE"
 
-        # SlideCardコンポーネントを追加
-        perl -i -pe "s|^(\t\t\t</div>)|\n\t\t\t\t<SlideCard href=\"/${NAME}\" title=\"${PASCAL_NAME}\" date=\"YYYY/MM/DD\">\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n\1|" "$PAGE_FILE"
+        # SlideCardコンポーネントを追加 (グリッドの一番上に追加)
+        perl -i -pe "s|^(\t\t\t<div className=\"grid grid-cols-1 gap-4 md:gap-8\">)|\1\n\t\t\t\t<SlideCard href=\"/${NAME}\" title=\"${PASCAL_NAME}\" date=\"YYYY/MM/DD\">\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n|" "$PAGE_FILE"
 
         echo "✓ Created Markdown presentation '$NAME'"
         echo "  - 表紙: $TARGET_DIR/slides/cover.tsx"
@@ -732,7 +732,7 @@ tasks:
     silent: false
 
   new-mdslide-corp:
-    desc: Create a new Markdown-based presentation with corporate R2 background templates
+    desc: Create a new MDX-based presentation with corporate R2 background templates
     summary: |
       Usage:
         task new-mdslide-corp -- <name>
@@ -742,10 +742,12 @@ tasks:
         task new-mdslide-corp -- my-presentation
 
       Structure:
-        - page.tsx (Markdownを読み込むページ)
+        - page.tsx (MDXを読み込むページ)
+        - slides.mdx (MDXメインコンテンツ)
         - slides/cover.tsx (表紙 - 外部登壇スライド_表紙.png)
-        - public/slides/{name}/slides.md (メインコンテンツ)
-        - public/slides/{name}/assets/ (画像用ディレクトリ)
+
+      共通コンポーネント:
+        - src/components/slides/ (HeadingSlide, ContentSlide)
 
       Note: For TSX-based corporate slides, use 'task new-htmlslide-corp'
     cmds:
@@ -769,7 +771,6 @@ tasks:
         fi
 
         TARGET_DIR="{{.PRESENTATION_DIR}}/$NAME"
-        PUBLIC_DIR="apps/web/public/slides/$NAME"
         R2_BASE="{{.R2_BASE_URL}}/{{.TEMPLATE_PATH}}"
 
         if [ -d "$TARGET_DIR" ]; then
@@ -778,36 +779,45 @@ tasks:
         fi
 
         mkdir -p "$TARGET_DIR/slides"
-        mkdir -p "$PUBLIC_DIR/assets"
 
-        # page.tsx を作成 (Markdown読み込み版・企業テンプレート)
+        # page.tsx を作成 (MDX読み込み版・企業テンプレート)
         {
           echo '"use client";'
           echo ''
           echo 'import RevealPresentation from "@/components/reveal-presentation";'
           echo 'import Cover from "./slides/cover";'
-          echo ''
-          echo 'const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;'
-          echo 'const TEMPLATE_PATH = "外部登壇資料テンプレ";'
-          echo 'const BG_CONTENT = `${R2_BASE}/${TEMPLATE_PATH}/千_外部登壇スライド_本文.png`;'
+          echo 'import SlidesContent from "./slides.mdx";'
           echo ''
           echo 'export default function PresentationPage() {'
           echo '	return ('
           echo '		<div className="h-full w-full">'
           echo '			<RevealPresentation transition="slide">'
           echo '				<Cover />'
-          echo '				<section'
-          echo "					data-markdown=\"/slides/$NAME/slides.md\""
-          echo '					data-separator="^\n---\n$"'
-          echo '					data-separator-vertical="^\n--\n$"'
-          echo '					data-background-image={BG_CONTENT}'
-          echo '					data-background-size="contain"'
-          echo '				/>'
+          echo '				<SlidesContent />'
           echo '			</RevealPresentation>'
           echo '		</div>'
           echo '	);'
           echo '}'
         } > "$TARGET_DIR/page.tsx"
+
+        # slides.mdx を作成
+        {
+          echo 'import { HeadingSlide, ContentSlide } from "@/components/slides";'
+          echo ''
+          echo '<HeadingSlide>'
+          echo "  $NAME"
+          echo '</HeadingSlide>'
+          echo ''
+          echo '<ContentSlide title="概要">'
+          echo '  - 項目1'
+          echo '  - 項目2'
+          echo '  - 項目3'
+          echo '</ContentSlide>'
+          echo ''
+          echo '<HeadingSlide>'
+          echo '  ご清聴ありがとうございました'
+          echo '</HeadingSlide>'
+        } > "$TARGET_DIR/slides.mdx"
 
         # 表紙スライド (cover.tsx) - 企業テンプレート
         {
@@ -904,29 +914,6 @@ tasks:
           echo '}'
         } > "$TARGET_DIR/opengraph-image.tsx"
 
-        # slides.md を作成
-        {
-          echo '<!-- .slide: style="color: black;"-->'
-          echo ''
-          echo "# スライドタイトル<!-- .element: style=\"color: black;\" -->"
-          echo ''
-          echo '---'
-          echo ''
-          echo '<!-- .slide: style="color: black; text-align: left;" -->'
-          echo ''
-          echo '## 見出し<!-- .element: style="color: black;" -->'
-          echo ''
-          echo '- 項目1'
-          echo '- 項目2'
-          echo '- 項目3'
-          echo ''
-          echo '---'
-          echo ''
-          echo '<!-- .slide: style="color: black;"-->'
-          echo ''
-          echo '# ご清聴ありがとうございました<!-- .element: style="color: black;" -->'
-        } > "$PUBLIC_DIR/slides.md"
-
         # page.tsx にSlideCardを追加
         PAGE_FILE="{{.PRESENTATION_DIR}}/page.tsx"
 
@@ -936,12 +923,13 @@ tasks:
         # Coverコンポーネントのインポート文を追加
         perl -i -pe "print \"import ${PASCAL_NAME}Cover from \\\"./${NAME}/slides/cover\\\";\n\" if /^import SlideCard from/" "$PAGE_FILE"
 
-        # SlideCardコンポーネントを追加
-        perl -i -pe "s|^(\t\t\t</div>)|\n\t\t\t\t<SlideCard href=\"/${NAME}\" title=\"${PASCAL_NAME}\" date=\"YYYY/MM/DD\">\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n\1|" "$PAGE_FILE"
+        # SlideCardコンポーネントを追加 (グリッドの一番上に追加)
+        perl -i -pe "s|^(\t\t\t<div className=\"grid grid-cols-1 gap-4 md:gap-8\">)|\1\n\t\t\t\t<SlideCard href=\"/${NAME}\" title=\"${PASCAL_NAME}\" date=\"YYYY/MM/DD\">\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n|" "$PAGE_FILE"
 
-        echo "✓ Created Markdown corporate presentation '$NAME'"
+        echo "✓ Created MDX corporate presentation '$NAME'"
+        echo "  - ページ: $TARGET_DIR/page.tsx"
+        echo "  - MDXコンテンツ: $TARGET_DIR/slides.mdx"
         echo "  - 表紙: $TARGET_DIR/slides/cover.tsx"
-        echo "  - コンテンツ: $PUBLIC_DIR/slides.md"
-        echo "  - 画像置き場: $PUBLIC_DIR/assets/"
+        echo "  (共通コンポーネント: src/components/slides/)"
         echo "✓ Added SlideCard with ${PASCAL_NAME}Cover to page.tsx"
     silent: false
