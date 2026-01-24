@@ -1,3 +1,5 @@
+export { default as SlideCard } from "./SlideCard";
+export { SlidePreviewCard } from "./SlidePreviewCard";
 export {
 	BackCoverSlide,
 	BG_BACK_COVER,
