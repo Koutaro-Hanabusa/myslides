@@ -7,6 +7,7 @@ export const BG_HEADING = `${R2_BASE}/${TEMPLATE_PATH}/千_外部登壇スライ
 export const BG_CONTENT = `${R2_BASE}/${TEMPLATE_PATH}/千_外部登壇スライド_本文.png`;
 export const BG_CORPORATE_PHILOSOPHY = `${R2_BASE}/${TEMPLATE_PATH}/千_外部登壇スライド_企業理念.png`;
 export const BG_BUSINESS_CONTENT = `${R2_BASE}/${TEMPLATE_PATH}/千_外部登壇スライド_事業内容.png`;
+export const BG_BACK_COVER = `${R2_BASE}/${TEMPLATE_PATH}/千_外部登壇スライド_裏表紙.png`;
 
 interface HeadingSlideProps {
 	children: ReactNode;
@@ -57,6 +58,18 @@ export function BusinessContentSlide() {
 	return (
 		<section
 			data-background-image={BG_BUSINESS_CONTENT}
+			data-background-size="contain"
+		>
+			{/* コンテンツをここに追加 */}
+		</section>
+	);
+}
+
+/** 裏表紙スライド (We are hiring!) */
+export function BackCoverSlide() {
+	return (
+		<section
+			data-background-image={BG_BACK_COVER}
 			data-background-size="contain"
 		>
 			{/* コンテンツをここに追加 */}
