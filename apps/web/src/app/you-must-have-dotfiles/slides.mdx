@@ -84,7 +84,7 @@ dotfilesで管理できると便利じゃない？
 
 - [chezmoi(読みはシェモア)](https://github.com/twpayne/chezmoi)
 - dotfilesを複数のPC間で安全に管理するためのgo製ツール
-- GitHub上でスター数が17k以上ありdotfilesの管理ツールとして人気であることが伺える
+- GitHub上でスター数が17k以上ありdotfilesの管理ツールとして人気
 
 </div>
 <img src="/slides/you-must-have-dotfiles/assets/chezmoi.png" alt="chezmoiの画像" className="max-w-[50%]" />
@@ -114,7 +114,7 @@ brew install chezmoi
 <ContentSlide>
 <div className="h-full">
 
-chezmoiを有効化する
+chezmoiを初期化する
 
 ```bash
 chezmoi init
@@ -163,11 +163,10 @@ pwd
 
 </ContentSlide>
 
-<ContentSlide>
-他のPCでも設定を共通化したい場合
+<ContentSlide title="他のPCでも設定を共通化したい場合">
 
 ```bash
-chezmoi init --apply https://github.com/Koutaro-Hanabusa/dotfiles.git
+chezmoi init --apply https://github.com/username/dotfiles.git
 ```
 
 `--apply`オプションで初期化と同時に設定を適用できる
@@ -190,9 +189,13 @@ chezmoi init --apply https://github.com/Koutaro-Hanabusa/dotfiles.git
 </HeadingSlide>
 
 <HeadingSlide>
-  おれの設定か？ 欲しけりゃくれてやるぜ... この世の全てを
-  <a href="https://github.com/Koutaro-Hanabusa/dotfiles">そこ</a>
-  に置いてきた
+
+おれの設定か？
+欲しけりゃくれてやるぜ...
+この世の全てを
+
+<a href="https://github.com/Koutaro-Hanabusa/dotfiles">そこ</a>に置いてきた
+
 </HeadingSlide>
 
 <BackCoverSlide />
