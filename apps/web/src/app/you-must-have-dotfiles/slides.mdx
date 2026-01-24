@@ -11,12 +11,11 @@ import {
 <BusinessContentSlide />
 
 <ContentSlide title="本編に入る前にお詫び">
-  現在のdotfiles管理はNixのHome
-  managerなどを使った手法などで行うのが流行りとなっています。
-  今回のLTではNixでのやり方は出てきません。
-  Nixを使ってdotfilesをやりたい方は、[2026 年に nix
-  を始める方法](https://zenn.dev/koba_e964/articles/32a7e0c345affe)
-  などをご参照ください
+
+現在のdotfiles管理はNixのHome managerなどを使った手法で行うのが流行りとなっています。
+今回のLTではNixでのやり方は出てきません。
+Nixを使ってdotfilesをやりたい方は、[2026年にnixを始める方法](https://zenn.dev/koba_e964/articles/32a7e0c345affe)などをご参照ください
+
 </ContentSlide>
 
 <HeadingSlide>みなさん dotfilesって管理してますか？？</HeadingSlide>
@@ -49,7 +48,7 @@ import {
 <HeadingSlide>
   みんなAIを使っているということは、
   <br />
-  ~/.claude/や.codex/が存在しているはず
+  ~/.claude/や~/.codex/が存在しているはず
 </HeadingSlide>
 
 <HeadingSlide>
@@ -59,16 +58,18 @@ import {
 </HeadingSlide>
 
 <ContentSlide title="そもそもdotfilesとは">
-  - zshやbashなどのホームディレクトリにある
-  <br />
-  ドットから始まるファイル(.zshrcなど)を管理しているリポジトリ -
-  複数のPC間で設定を共有することができる
+
+- zshやbashなどのホームディレクトリにある<br />ドットから始まるファイル(.zshrcなど)を管理しているリポジトリ
+- たくさんのエンジニアが設定を公開するためにGitHubにあげている
+
 </ContentSlide>
 
 <ContentSlide title="dotfilesを管理することのメリット">
-  - 仕事用、私用PCなど異なるPC間で設定を共有できる -
-  自分の設定の履歴を管理することができる - 他の人が簡単に設定を参照できる(
-  <del>そしてパクれる</del>)
+
+- 仕事用、私用PCなど異なるPC間で設定を共有できる
+- 自分の設定の履歴を管理することができる
+- 他の人が簡単に設定を参照できる(<del>そしてパクれる</del>)
+
 </ContentSlide>
 
 <HeadingSlide>よし、dotfilesで管理しましょう！！！！！</HeadingSlide>
@@ -81,7 +82,7 @@ import {
 
 - [chezmoi(読みはシェモア)](https://github.com/twpayne/chezmoi)
 - dotfilesを複数のPC間で安全に管理するためのgo製ツール
-- GitHub上でスター数が13k以上ありdotfilesの管理ツールではかなり多い
+- GitHub上でスター数が17k以上ありdotfilesの管理ツールとして人気であることが伺える
 
 </div>
 <img src="/slides/you-must-have-dotfiles/assets/chezmoi.png" alt="chezmoiの画像" className="max-w-[50%]" />
@@ -89,7 +90,7 @@ import {
 </ContentSlide>
 
 <ContentSlide title="始め方">
-※前提：mac ユーザー(brewを使用します) Git,GitHubの基本的な操作ができる人
+※前提：macユーザー(brewを使用します)、Git/GitHubの基本的な操作ができる人
 
 chezmoiをインストールする
 
@@ -117,7 +118,7 @@ chezmoiを有効化する
 chezmoi init
 ```
 
-CLAUDE.mdや、skillsを管理下にする（mcp.jsonはAPIキーなどが含まれるのでやめましょう）
+CLAUDE.mdやskillsを管理下にする（※mcp.jsonはAPIキーが含まれるので追加しない）
 
 ```bash
 chezmoi add ~/.claude/CLAUDE.md ~/.claude/settings.json ~/.claude/commands ~/.claude/skills ~/.claude/agents ~/.claude/plugins/installed_plugins.json
@@ -157,27 +158,17 @@ pwd
 ```
 
 あとはいつも通りコミットしてPushすればOK!
+
 </ContentSlide>
 
 <ContentSlide>
 他のPCでも設定を共通化したい場合
 
 ```bash
-chezmoi init https://github.com/Koutaro-Hanabusa/dotfiles.git
+chezmoi init --apply https://github.com/Koutaro-Hanabusa/dotfiles.git
 ```
 
-出力例
-
-```bash
-1126buri@MacBook-Air-2 ~ % chezmoi init https://github.com/Koutaro-Hanabusa/dotfiles.git
-Cloning into '/Users/1126buri/.local/share/chezmoi'...
-remote: Enumerating objects: 592, done.
-remote: Counting objects: 100% (128/128), done.
-remote: Compressing objects: 100% (73/73), done.
-remote: Total 592 (delta 60), reused 99 (delta 41), pack-reused 464 (from 1)
-Receiving objects: 100% (592/592), 147.06 KiB | 5.45 MiB/s, done.
-Resolving deltas: 100% (230/230), done.
-```
+`--apply`オプションで初期化と同時に設定を適用できる
 
 </ContentSlide>
 
