@@ -1,20 +1,29 @@
-import { HeadingSlide, ContentSlide, CorporatePhilosophySlide, BusinessContentSlide, BackCoverSlide } from "@/components/slides";
+import {
+  HeadingSlide,
+  ContentSlide,
+  CorporatePhilosophySlide,
+  BusinessContentSlide,
+  BackCoverSlide,
+} from "@/components/slides";
 
 <CorporatePhilosophySlide />
 
 <BusinessContentSlide />
 
 <ContentSlide title="本編に入る前にお詫び">
-   現在のdotfiles管理はNixのHome managerなどを使った手法などで行うのが流行りとなっています。
-   今回のLTではNixでのやり方は出てきません。
-   Nixを使ってdotfilesをやりたい方は、[2026 年に nix を始める方法](https://zenn.dev/koba_e964/articles/32a7e0c345affe) などをご参照ください
+  現在のdotfiles管理はNixのHome
+  managerなどを使った手法などで行うのが流行りとなっています。
+  今回のLTではNixでのやり方は出てきません。
+  Nixを使ってdotfilesをやりたい方は、[2026 年に nix
+  を始める方法](https://zenn.dev/koba_e964/articles/32a7e0c345affe)
+  などをご参照ください
 </ContentSlide>
 
 <HeadingSlide>みなさん dotfilesって管理してますか？？</HeadingSlide>
 
 <ContentSlide>
   <div className="flex items-center gap-8">
-   {"私は管理してます"}
+    {"私は管理してます"}
     <img
       src="/slides/you-must-have-dotfiles/assets/mydotfiles.png"
       alt="mydotfiles"
@@ -26,27 +35,40 @@ import { HeadingSlide, ContentSlide, CorporatePhilosophySlide, BusinessContentSl
 <HeadingSlide>最近こんなことがありました</HeadingSlide>
 
 <ContentSlide>
-  <div className="flex items-center gap-8">
+<div className="flex items-center gap-8">
+<div>
 
 - どういう設定をしているのかよくわからない！！！
 - 設定してる部分送ってくれや！<br />でもLINEだと送りにくいか😢
+
+</div>
 <img src="/slides/you-must-have-dotfiles/assets/LINE.png" alt="同期とのLINEのやりとり" className="max-w-[75%] h-auto" />
 </div>
 </ContentSlide>
 
-<HeadingSlide>みんなAIを使っているということは、<br />~/.claude/や.codex/が存在しているはず</HeadingSlide>
+<HeadingSlide>
+  みんなAIを使っているということは、
+  <br />
+  ~/.claude/や.codex/が存在しているはず
+</HeadingSlide>
 
-<HeadingSlide>こういう設定ファイルも<br />dotfilesで管理できると便利じゃない？</HeadingSlide>
+<HeadingSlide>
+  こういう設定ファイルも
+  <br />
+  dotfilesで管理できると便利じゃない？
+</HeadingSlide>
 
 <ContentSlide title="そもそもdotfilesとは">
-  - zshやbashなどのホームディレクトリにある<br />ドットから始まるファイル(.zshrcなど)を管理しているリポジトリ
-  - 複数のPC間で設定を共有することができる
+  - zshやbashなどのホームディレクトリにある
+  <br />
+  ドットから始まるファイル(.zshrcなど)を管理しているリポジトリ -
+  複数のPC間で設定を共有することができる
 </ContentSlide>
 
 <ContentSlide title="dotfilesを管理することのメリット">
-- 仕事用、私用PCなど異なるPC間で設定を共有できる
-- 自分の設定の履歴を管理することができる
-- 他の人が簡単に設定を参照できる(<del>そしてパクれる</del>)
+  - 仕事用、私用PCなど異なるPC間で設定を共有できる -
+  自分の設定の履歴を管理することができる - 他の人が簡単に設定を参照できる(
+  <del>そしてパクれる</del>)
 </ContentSlide>
 
 <HeadingSlide>よし、dotfilesで管理しましょう！！！！！</HeadingSlide>
@@ -59,9 +81,9 @@ import { HeadingSlide, ContentSlide, CorporatePhilosophySlide, BusinessContentSl
 
 - [chezmoi(読みはシェモア)](https://github.com/twpayne/chezmoi)
 - dotfilesを複数のPC間で安全に管理するためのgo製ツール
-
-</div>
-<img src="/slides/you-must-have-dotfiles/assets/chezmoi.png" alt="chezmoiの画像" className="max-w-[50%]" />
+- GitHub上でスター数が13k以上ありdotfilesの管理ツールではかなり多い
+    </div>
+  <img src="/slides/you-must-have-dotfiles/assets/chezmoi.png" alt="chezmoiの画像" className="max-w-[50%]" />
 </div>
 </ContentSlide>
 
@@ -75,6 +97,7 @@ brew install chezmoi
 ```
 
 出力例
+
 ```
 1126buri@MacBook-Air-2 ~ % brew install chezmoi
 ==> Fetching downloads for: chezmoi
@@ -106,6 +129,7 @@ chezmoi managed
 ```
 
 出力例(一部抜粋)
+
 ```
 .claude/CLAUDE.md
 .claude/agents/frontend-developer.md
@@ -113,37 +137,60 @@ chezmoi managed
 .claude/settings.json
 .claude/skills/frontend-design/SKILL.md
 ```
+
 </div>
 </ContentSlide>
 
 <ContentSlide>
-chezmoiが管理しているディレクトリが生成されるので移動する
-```bash
-chezmoi cd
-```
-ホームディレクトリ配下にこのようなディレクトリが作成されていることを確認できればOK
-```bash
-pwd
-# ~/.local/share/chezmoi
-```
-あとはいつも通りコミットしてPushすればOK!
+  chezmoiが管理しているディレクトリが生成されるので移動する ```bash chezmoi cd
+  ```
+  ホームディレクトリ配下にこのようなディレクトリが作成されていることを確認できればOK
+  ```bash pwd # ~/.local/share/chezmoi ```
+  あとはいつも通りコミットしてPushすればOK!
 </ContentSlide>
 
+<ContentSlide>
+他のPCでも設定を共通化したい場合
+
+```bash
+chezmoi init https://github.com/Koutaro-Hanabusa/dotfiles.git
+```
+
+出力例
+
+```bash
+1126buri@MacBook-Air-2 ~ % chezmoi init https://github.com/Koutaro-Hanabusa/dotfiles.git
+Cloning into '/Users/1126buri/.local/share/chezmoi'...
+remote: Enumerating objects: 592, done.
+remote: Counting objects: 100% (128/128), done.
+remote: Compressing objects: 100% (73/73), done.
+remote: Total 592 (delta 60), reused 99 (delta 41), pack-reused 464 (from 1)
+Receiving objects: 100% (592/592), 147.06 KiB | 5.45 MiB/s, done.
+Resolving deltas: 100% (230/230), done.
+```
+
+</ContentSlide>
 
 <ContentSlide title="まとめ">
-- dotfilesとは、zshやbashの設定だけでなくAIの設定を管理するためにも有用
-- chezmoiはdotfilesを管理し始めるためにはもってこいのツールだった
-- 他の人に設定を共有することも簡単になる(<del>パクりやすくなる</del>)
+  - dotfilesとは、zshやbashの設定だけでなくAIの設定を管理するためにも有用 -
+  chezmoiはdotfilesを管理し始めるためにはもってこいのツールだった -
+  他の人に設定を共有することも簡単になる(<del>パクりやすくなる</del>)
 </ContentSlide>
-
 
 <HeadingSlide>コレで君も今日からdotfilerだ！！！！</HeadingSlide>
 
 <HeadingSlide>
-このLTを見てdotfilesを作成したら
-[ぶりおのTwitter](https://x.com/burio_16)までご連絡ください！
+  このLTを見てdotfilesを作成したら
+  [ぶりおのTwitter](https://x.com/burio_16)までご連絡ください！
 </HeadingSlide>
 
-<HeadingSlide>おれの設定か？<br />欲しけりゃくれてやるぜ...<br />この世の全てを<a href="https://github.com/Koutaro-Hanabusa/dotfiles">そこ</a>に置いてきた</HeadingSlide>
+<HeadingSlide>
+  おれの設定か？
+  <br />
+  欲しけりゃくれてやるぜ...
+  <br />
+  この世の全てを<a href="https://github.com/Koutaro-Hanabusa/dotfiles">そこ</a>
+  に置いてきた
+</HeadingSlide>
 
 <BackCoverSlide />
