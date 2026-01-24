@@ -1,6 +1,8 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "you-must-have-dotfiles";
+const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
+
+export const alt = "Vim使いでなくてもdotfilesを管理しよう";
 export const size = {
 	width: 1200,
 	height: 630,
@@ -21,7 +23,7 @@ export default function Image() {
 		>
 			{/* biome-ignore lint/performance/noImgElement: next/og ImageResponseではimg要素が必要 */}
 			<img
-				src="https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev/外部登壇資料テンプレ/千_外部登壇スライド_表紙.png"
+				src={`${R2_BASE}/外部登壇資料テンプレ/千_外部登壇スライド_表紙.png`}
 				alt="スライド表紙"
 				style={{
 					position: "absolute",
@@ -32,6 +34,69 @@ export default function Image() {
 					objectFit: "cover",
 				}}
 			/>
+			{/* 表紙と同じテキストオーバーレイ */}
+			<div
+				style={{
+					position: "absolute",
+					top: 0,
+					left: 0,
+					width: "100%",
+					height: "100%",
+					display: "flex",
+					flexDirection: "column",
+					justifyContent: "center",
+					padding: "0 60px",
+				}}
+			>
+				<p
+					style={{
+						fontSize: 32,
+						fontWeight: 700,
+						color: "#fff",
+						margin: 0,
+					}}
+				>
+					Yoriai.cafe 二日間限定オープン！ 🍛ホタテカレーと出会いの「寄り合い」
+				</p>
+				<div
+					style={{
+						display: "flex",
+						flexDirection: "column",
+						margin: "24px 0",
+					}}
+				>
+					<span
+						style={{
+							fontSize: 56,
+							fontWeight: 700,
+							color: "#fff",
+							lineHeight: 1.3,
+						}}
+					>
+						Vim使いでなくても
+					</span>
+					<span
+						style={{
+							fontSize: 56,
+							fontWeight: 700,
+							color: "#fff",
+							lineHeight: 1.3,
+						}}
+					>
+						dotfilesを管理しよう
+					</span>
+				</div>
+				<p
+					style={{
+						fontSize: 32,
+						fontWeight: 700,
+						color: "#fff",
+						margin: 0,
+					}}
+				>
+					ぶりお @burio_16
+				</p>
+			</div>
 		</div>,
 		{
 			width: 1200,
