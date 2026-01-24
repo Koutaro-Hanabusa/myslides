@@ -1,9 +1,9 @@
 "use client";
 
+import { SlideCard } from "@/components/slides";
 import Cover from "./better-t-stack/slides/cover";
 import R3FCover from "./react-three-fiber/slides/cover";
 import RevealCover from "./revealjs-slideDeck/slides/cover";
-import SlideCard from "./slide-components/SlideCard";
 import TacosCover from "./tacotuesday/slides/cover";
 import YouMustHaveDotfilesCover from "./you-must-have-dotfiles/slides/cover";
 export default function Home() {
