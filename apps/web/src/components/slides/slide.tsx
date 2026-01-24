@@ -18,7 +18,7 @@ export function HeadingSlide({ children }: HeadingSlideProps) {
 	return (
 		<section data-background-image={BG_HEADING} data-background-size="contain">
 			<div className="flex h-full items-center justify-center">
-				<h1 className="text-center">{children}</h1>
+				<h1 className="whitespace-pre-line text-center">{children}</h1>
 			</div>
 		</section>
 	);
@@ -35,7 +35,9 @@ export function ContentSlide({ title, children }: ContentSlideProps) {
 		<section data-background-image={BG_CONTENT} data-background-size="contain">
 			<div className="flex h-full flex-col justify-center">
 				{title && <h2 className="text-left text-black">{title}</h2>}
-				<div className="text-left text-black">{children}</div>
+				<div className="whitespace-pre-line text-left text-black">
+					{children}
+				</div>
 			</div>
 		</section>
 	);
