@@ -42,6 +42,13 @@
 
 <!-- .slide: style="color: white;"-->
 
+自分の家でタコス作るくらい好きです！！！！
+![selftacos](/slides/tacotuesday/assets/IMG_8213.jpg) <!-- .element: style="width: 50%; display: block; margin: 0 auto;" -->
+
+---
+
+<!-- .slide: style="color: white;"-->
+
 ![tacobell](/slides/tacotuesday/assets/tacobell.jpg) <!-- .element: style="width: 50%; display: block; margin: 0 auto;" -->
 
 これは tex-mex です。アメリカナイズされたタコスです
