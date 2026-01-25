@@ -85,6 +85,15 @@
 
 ---
 
+<!-- .slide: style="color: white;" -->
+
+## 好きなタコス屋発表ドラゴン<!-- .element: style="color: white;" -->
+
+タコファナティコ(中目黒店)
+![tacofanatico](slides/tacotuesday/assets/tacofanatico.png)<!-- .element: style="width: 50%; display: block; margin: 0 auto;" -->
+
+---
+
 <!-- .slide: style="color: white; text-align: left;" -->
 
 ## こんな人におすすめ<!-- .element: style="color: white;" -->
