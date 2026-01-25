@@ -43,7 +43,7 @@
 <!-- .slide: style="color: white;"-->
 
 自分の家でタコス作るくらい好きです！！！！
-![selftacos](/slides/tacotuesday/assets/IMG_8213.jpg) <!-- .element: style="width: 50%; display: block; margin: 0 auto;" -->
+![selftacos](/slides/tacotuesday/assets/IMG_8213.JPG) <!-- .element: style="width: 50%; display: block; margin: 0 auto;" -->
 
 ---
 
