@@ -1,4 +1,8 @@
 import type { Metadata, Viewport } from "next";
+import { getOEmbedMetadata } from "@/lib/oembed";
+
+const SLUG = "you-must-have-dotfiles";
+const oembedMeta = getOEmbedMetadata(SLUG);
 
 export const metadata: Metadata = {
 	title:
@@ -17,6 +21,7 @@ export const metadata: Metadata = {
 		description:
 			"Yoriai.cafe 二日間限定オープン！ での発表資料 by ぶりお @burio_16",
 	},
+	...oembedMeta,
 };
 
 export const viewport: Viewport = {

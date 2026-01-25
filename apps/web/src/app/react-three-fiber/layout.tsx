@@ -1,4 +1,8 @@
 import type { Metadata, Viewport } from "next";
+import { getOEmbedMetadata } from "@/lib/oembed";
+
+const SLUG = "react-three-fiber";
+const oembedMeta = getOEmbedMetadata(SLUG);
 
 export const metadata: Metadata = {
 	title:
@@ -17,6 +21,7 @@ export const metadata: Metadata = {
 		description:
 			"React Tokyo ミートアップ#11 - WebGL入門 Three.jsで良さげなプロフィールサイト作ってみた by ぶりお",
 	},
+	...oembedMeta,
 };
 
 export const viewport: Viewport = {

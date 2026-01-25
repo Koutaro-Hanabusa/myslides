@@ -1,4 +1,8 @@
 import type { Metadata, Viewport } from "next";
+import { getOEmbedMetadata } from "@/lib/oembed";
+
+const SLUG = "tacotuesday";
+const oembedMeta = getOEmbedMetadata(SLUG);
 
 export const metadata: Metadata = {
 	title: "全人類タコスを食え | mySlides",
@@ -16,6 +20,7 @@ export const metadata: Metadata = {
 		description:
 			"12/15 社内LT会 - タコスの魅力を紹介するプレゼンテーション by ぶりお",
 	},
+	...oembedMeta,
 };
 
 export const viewport: Viewport = {

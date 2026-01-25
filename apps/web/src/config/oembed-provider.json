@@ -1,0 +1,16 @@
+{
+  "_comment": "oEmbed.com プロバイダー申請用エントリ。https://github.com/iamcal/oembed にPRを送る際に使用",
+  "provider_name": "mySlides",
+  "provider_url": "https://slides.burio.dev",
+  "endpoints": [
+    {
+      "schemes": [
+        "https://slides.burio.dev/*",
+        "https://slides.burio.dev/embed/*"
+      ],
+      "url": "https://slides.burio.dev/api/oembed",
+      "discovery": true,
+      "formats": ["json"]
+    }
+  ]
+}
