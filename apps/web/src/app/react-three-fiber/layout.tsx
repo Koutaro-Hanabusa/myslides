@@ -1,5 +1,9 @@
 import type { Metadata, Viewport } from "next";
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3001";
+const SLUG = "react-three-fiber";
+const SLIDE_URL = `${BASE_URL}/${SLUG}`;
+
 export const metadata: Metadata = {
 	title:
 		"WebGL入門 - Three.jsで良さげなプロフィールサイト作ってみた | mySlides",
@@ -16,6 +20,11 @@ export const metadata: Metadata = {
 		title: "WebGL入門 - Three.jsで良さげなプロフィールサイト作ってみた",
 		description:
 			"React Tokyo ミートアップ#11 - WebGL入門 Three.jsで良さげなプロフィールサイト作ってみた by ぶりお",
+	},
+	alternates: {
+		types: {
+			"application/json+oembed": `${BASE_URL}/api/oembed?url=${encodeURIComponent(SLIDE_URL)}&format=json`,
+		},
 	},
 };
 

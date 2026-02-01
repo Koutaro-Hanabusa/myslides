@@ -1,5 +1,9 @@
 import type { Metadata, Viewport } from "next";
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3001";
+const SLUG = "you-must-have-dotfiles";
+const SLIDE_URL = `${BASE_URL}/${SLUG}`;
+
 export const metadata: Metadata = {
 	title:
 		"Vim使いでなくてもdotfilesを管理しよう | Yoriai.cafe 二日間限定オープン！",
@@ -16,6 +20,11 @@ export const metadata: Metadata = {
 		title: "Vim使いでなくてもdotfilesを管理しよう",
 		description:
 			"Yoriai.cafe 二日間限定オープン！ での発表資料 by ぶりお @burio_16",
+	},
+	alternates: {
+		types: {
+			"application/json+oembed": `${BASE_URL}/api/oembed?url=${encodeURIComponent(SLIDE_URL)}&format=json`,
+		},
 	},
 };
 
