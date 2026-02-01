@@ -1,5 +1,9 @@
 import type { Metadata, Viewport } from "next";
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3001";
+const SLUG = "better-t-stack";
+const SLIDE_URL = `${BASE_URL}/${SLUG}`;
+
 export const metadata: Metadata = {
 	title:
 		"より良い技術スタックでcloudflareにデプロイしよう | Cloudflare Meet-up Tokyo Vol.9",
@@ -16,6 +20,11 @@ export const metadata: Metadata = {
 		title: "より良い技術スタックでcloudflareにデプロイしよう",
 		description:
 			"Cloudflare Meet-up Tokyo Vol.9 での発表資料 by ぶりお @burio_16",
+	},
+	alternates: {
+		types: {
+			"application/json+oembed": `${BASE_URL}/api/oembed?url=${encodeURIComponent(SLIDE_URL)}&format=json`,
+		},
 	},
 };
 

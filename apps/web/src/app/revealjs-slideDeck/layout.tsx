@@ -1,5 +1,9 @@
 import type { Metadata, Viewport } from "next";
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3001";
+const SLUG = "revealjs-slideDeck";
+const SLIDE_URL = `${BASE_URL}/${SLUG}`;
+
 export const metadata: Metadata = {
 	title: "revealjs-slideDeck | mySlides",
 	description:
@@ -15,6 +19,11 @@ export const metadata: Metadata = {
 		title: "revealjs-slideDeck",
 		description:
 			"revealjs-slideDeck - A presentation created with mySlides and Reveal.js",
+	},
+	alternates: {
+		types: {
+			"application/json+oembed": `${BASE_URL}/api/oembed?url=${encodeURIComponent(SLIDE_URL)}&format=json`,
+		},
 	},
 };
 
