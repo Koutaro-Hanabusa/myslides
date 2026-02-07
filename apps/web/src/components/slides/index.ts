@@ -1,3 +1,8 @@
+export {
+	PERSONAL_BG_CONTENT,
+	PersonalContentSlide,
+	PersonalHeadingSlide,
+} from "./personal-slide";
 export { default as SlideCard } from "./SlideCard";
 export { SlidePreviewCard } from "./SlidePreviewCard";
 export {
