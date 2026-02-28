@@ -63,6 +63,15 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
 		event: "Yoriai.cafe 二日間限定オープン！",
 		eventUrl: "https://peatix.com/event/4736534",
 	},
+	"mdx-template": {
+		slug: "mdx-template",
+		title: "LTタイトル",
+		description: "2026/3/6 社内LT会での発表資料",
+		author: "ぶりお",
+		authorUrl: "https://twitter.com/burio_16",
+		date: "2026/3/6",
+		event: "社内LT会",
+	},
 };
 
 export function getSlideConfig(slug: string): SlideConfig | undefined {
