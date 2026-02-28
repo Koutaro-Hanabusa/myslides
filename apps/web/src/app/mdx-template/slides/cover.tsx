@@ -8,14 +8,16 @@ export default function Cover() {
 			data-background-size="contain"
 		>
 			<div className="text-left">
-				<h3>{/* イベント名をここに記入 */}</h3>
-				<br />
-				<h1 className="leading-tight">
+				<h3 className="block text-[2vw]">
+					{/* イベント名をここに記入 */}
+				</h3>
+				<h1 className="mt-[2vw] text-[3vw] leading-tight">
 					{/* タイトルをここに記入 */}
 					LTタイトル
 				</h1>
-				<br />
-				<h3>ぶりお @burio_16</h3>
+				<h3 className="mt-[12vw] text-[2vw] !text-blue-600">
+					ぶりお @burio_16
+				</h3>
 			</div>
 		</section>
 	);
