@@ -5,6 +5,7 @@ import Cover from "./better-t-stack/slides/cover";
 import R3FCover from "./react-three-fiber/slides/cover";
 import RevealCover from "./revealjs-slideDeck/slides/cover";
 import TacosCover from "./tacotuesday/slides/cover";
+import MdxTemplateCover from "./mdx-template/slides/cover";
 import YouMustHaveDotfilesCover from "./you-must-have-dotfiles/slides/cover";
 export default function Home() {
 	return (
@@ -13,6 +14,15 @@ export default function Home() {
 				Burio's slide deck
 			</h1>
 			<div className="grid grid-cols-1 gap-4 md:gap-8">
+				<SlideCard
+					href="/mdx-template"
+					title="LTタイトル"
+					date="2026/3/6"
+					event="社内LT会"
+				>
+					<MdxTemplateCover />
+				</SlideCard>
+
 				<SlideCard
 					href="/you-must-have-dotfiles"
 					title="Vim使いでなくてもdotfilesを管理しよう"
