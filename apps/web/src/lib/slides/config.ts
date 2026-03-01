@@ -65,7 +65,7 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
 	},
 	"25-graduate": {
 		slug: "25-graduate",
-		title: "つまずき共有会！",
+		title: "アウトプット、怖くないですか？",
 		description: "【25卒】新卒のつまずきを糧にしNight での発表資料",
 		author: "ぶりお",
 		authorUrl: "https://twitter.com/burio_16",

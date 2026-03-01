@@ -11,7 +11,9 @@ export default function Cover() {
 				<h3 className="block text-[2vw]">
 					【25卒】新卒のつまずきを糧にしNight
 				</h3>
-				<h1 className="mt-[2vw] text-[3vw] leading-tight">つまずき共有会！</h1>
+				<h1 className="mt-[2vw] text-[3vw] leading-tight">
+					アウトプット、怖くないですか？
+				</h1>
 				<h3 className="mt-[12vw] text-[2vw]">ぶりお @burio_16</h3>
 			</div>
 		</section>

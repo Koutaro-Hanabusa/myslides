@@ -5,17 +5,17 @@ const SLUG = "25-graduate";
 const SLIDE_URL = `${BASE_URL}/${SLUG}`;
 
 export const metadata: Metadata = {
-	title: "つまずき共有会！ | 【25卒】新卒のつまずきを糧にしNight",
+	title: "アウトプット、怖くないですか？ | 【25卒】新卒のつまずきを糧にしNight",
 	description: "【25卒】新卒のつまずきを糧にしNight での発表資料",
 	openGraph: {
-		title: "つまずき共有会！",
+		title: "アウトプット、怖くないですか？",
 		description:
 			"【25卒】新卒のつまずきを糧にしNight での発表資料 by ぶりお @burio_16",
 		type: "website",
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "つまずき共有会！",
+		title: "アウトプット、怖くないですか？",
 		description:
 			"【25卒】新卒のつまずきを糧にしNight での発表資料 by ぶりお @burio_16",
 	},

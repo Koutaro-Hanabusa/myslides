@@ -16,7 +16,7 @@ export default function Home() {
 			<div className="grid grid-cols-1 gap-4 md:gap-8">
 				<SlideCard
 					href="/25-graduate"
-					title="つまずき共有会！"
+					title="アウトプット、怖くないですか？"
 					date="2026/3/6"
 					event="【25卒】新卒のつまずきを糧にしNight"
 					url="https://25-graduate.connpass.com/event/382072/"

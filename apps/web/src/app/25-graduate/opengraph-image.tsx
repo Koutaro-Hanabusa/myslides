@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
 
-export const alt = "つまずき共有会！";
+export const alt = "アウトプット、怖くないですか？";
 export const size = {
 	width: 1200,
 	height: 630,
@@ -72,7 +72,7 @@ export default function Image() {
 							lineHeight: 1.3,
 						}}
 					>
-						つまずき共有会！
+						アウトプット、怖くないですか？
 					</span>
 				</div>
 				<p
