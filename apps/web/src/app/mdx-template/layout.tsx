@@ -5,17 +5,19 @@ const SLUG = "mdx-template";
 const SLIDE_URL = `${BASE_URL}/${SLUG}`;
 
 export const metadata: Metadata = {
-	title: "LTタイトル | 社内LT会",
-	description: "2026/3/6 社内LT会での発表資料",
+	title: "つまずき共有会！ | 【25卒】新卒のつまずきを糧にしNight",
+	description: "【25卒】新卒のつまずきを糧にしNight での発表資料",
 	openGraph: {
-		title: "LTタイトル",
-		description: "社内LT会での発表資料 by ぶりお @burio_16",
+		title: "つまずき共有会！",
+		description:
+			"【25卒】新卒のつまずきを糧にしNight での発表資料 by ぶりお @burio_16",
 		type: "website",
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "LTタイトル",
-		description: "社内LT会での発表資料 by ぶりお @burio_16",
+		title: "つまずき共有会！",
+		description:
+			"【25卒】新卒のつまずきを糧にしNight での発表資料 by ぶりお @burio_16",
 	},
 	alternates: {
 		types: {
