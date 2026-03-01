@@ -35,9 +35,7 @@ export function ContentSlide({ title, children }: ContentSlideProps) {
 		<section data-background-image={BG_CONTENT} data-background-size="contain">
 			<div className="flex h-full flex-col justify-center">
 				{title && <h2 className="text-left text-black">{title}</h2>}
-				<div className="whitespace-pre-line text-left text-black">
-					{children}
-				</div>
+				<div className="text-left text-black">{children}</div>
 			</div>
 		</section>
 	);
