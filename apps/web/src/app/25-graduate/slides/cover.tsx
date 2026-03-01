@@ -12,9 +12,7 @@ export default function Cover() {
 					【25卒】新卒のつまずきを糧にしNight
 				</h3>
 				<h1 className="mt-[2vw] text-[3vw] leading-tight">つまずき共有会！</h1>
-				<h3 className="!text-blue-600 mt-[12vw] text-[2vw]">
-					ぶりお @burio_16
-				</h3>
+				<h3 className="mt-[12vw] text-[2vw]">ぶりお @burio_16</h3>
 			</div>
 		</section>
 	);

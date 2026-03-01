@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3001";
-const SLUG = "mdx-template";
+const SLUG = "25-graduate";
 const SLIDE_URL = `${BASE_URL}/${SLUG}`;
 
 export const metadata: Metadata = {
