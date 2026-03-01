@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
 
-export const alt = "LTタイトル";
+export const alt = "アウトプット、怖くないですか？";
 export const size = {
 	width: 1200,
 	height: 630,
@@ -55,7 +55,7 @@ export default function Image() {
 						margin: 0,
 					}}
 				>
-					社内LT会
+					【25卒】新卒のつまずきを糧にしNight
 				</p>
 				<div
 					style={{
@@ -72,7 +72,7 @@ export default function Image() {
 							lineHeight: 1.3,
 						}}
 					>
-						LTタイトル
+						アウトプット、怖くないですか？
 					</span>
 				</div>
 				<p

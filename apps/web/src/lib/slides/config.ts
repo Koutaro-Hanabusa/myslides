@@ -63,14 +63,15 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
 		event: "Yoriai.cafe 二日間限定オープン！",
 		eventUrl: "https://peatix.com/event/4736534",
 	},
-	"mdx-template": {
-		slug: "mdx-template",
-		title: "LTタイトル",
-		description: "2026/3/6 社内LT会での発表資料",
+	"25-graduate": {
+		slug: "25-graduate",
+		title: "アウトプット、怖くないですか？",
+		description: "【25卒】新卒のつまずきを糧にしNight での発表資料",
 		author: "ぶりお",
 		authorUrl: "https://twitter.com/burio_16",
 		date: "2026/3/6",
-		event: "社内LT会",
+		event: "【25卒】新卒のつまずきを糧にしNight",
+		eventUrl: "https://25-graduate.connpass.com/event/382072/",
 	},
 };
 

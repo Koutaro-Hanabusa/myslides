@@ -9,15 +9,12 @@ export default function Cover() {
 		>
 			<div className="text-left">
 				<h3 className="block text-[2vw]">
-					{/* イベント名をここに記入 */}
+					【25卒】新卒のつまずきを糧にしNight
 				</h3>
 				<h1 className="mt-[2vw] text-[3vw] leading-tight">
-					{/* タイトルをここに記入 */}
-					LTタイトル
+					アウトプット、怖くないですか？
 				</h1>
-				<h3 className="mt-[12vw] text-[2vw] !text-blue-600">
-					ぶりお @burio_16
-				</h3>
+				<h3 className="mt-[12vw] text-[2vw]">ぶりお @burio_16</h3>
 			</div>
 		</section>
 	);
