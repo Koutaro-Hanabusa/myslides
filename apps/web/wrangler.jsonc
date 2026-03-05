@@ -22,6 +22,14 @@
       "invocation_logs": true,
       "persist": true
     }
+  },
+  "env": {
+    "staging": {
+      "vars": {
+        "NEXT_PUBLIC_BASE_URL": "https://myslides-staging.koutarouhanabusa.workers.dev",
+        "NEXT_PUBLIC_SERVER_URL": "https://myslides-server.koutarouhanabusa.workers.dev"
+      }
+    }
   }
   // "r2_buckets": [
   // 	// Use R2 incremental cache

@@ -12,7 +12,7 @@ export default function SelfIntroduction({ children }: SelfIntroductionProps) {
 			data-background-image={`${R2_BASE}/外部登壇資料テンプレ/千_外部登壇スライド_本文.png`}
 			data-background-size="contain"
 		>
-			<div className="flex h-full flex-row flex-row items-center justify-evenly">
+			<div className="flex h-full flex-row items-center justify-evenly">
 				{/* biome-ignore lint/performance/noImgElement: Reveal.js requires img element */}
 				<img
 					src="/slides/react-three-fiber/assets/burio.png"

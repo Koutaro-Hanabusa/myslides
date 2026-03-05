@@ -63,6 +63,16 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
 		event: "Yoriai.cafe 二日間限定オープン！",
 		eventUrl: "https://peatix.com/event/4736534",
 	},
+	"25-graduate": {
+		slug: "25-graduate",
+		title: "アウトプット、怖くないですか？",
+		description: "【25卒】新卒のつまずきを糧にしNight での発表資料",
+		author: "ぶりお",
+		authorUrl: "https://twitter.com/burio_16",
+		date: "2026/3/6",
+		event: "【25卒】新卒のつまずきを糧にしNight",
+		eventUrl: "https://25-graduate.connpass.com/event/382072/",
+	},
 };
 
 export function getSlideConfig(slug: string): SlideConfig | undefined {
