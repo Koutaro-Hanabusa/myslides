@@ -8,13 +8,13 @@ export default function Cover() {
 			data-background-size="contain"
 		>
 			<div className="text-left">
-				<h3 className="block text-[2vw]">
-					【25卒】新卒のつまずきを糧にしNight
-				</h3>
-				<h1 className="mt-[2vw] text-[3vw] leading-tight">
+				<h3>【25卒】新卒のつまずきを糧にしNight</h3>
+				<br />
+				<h1 className="leading-tight">
 					アウトプット、怖くないですか？
 				</h1>
-				<h3 className="mt-[12vw] text-[2vw]">ぶりお @burio_16</h3>
+				<br />
+				<h3>ぶりお @burio_16</h3>
 			</div>
 		</section>
 	);
