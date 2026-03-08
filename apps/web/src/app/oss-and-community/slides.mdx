@@ -1,10 +1,12 @@
-import { PersonalHeadingSlide, PersonalContentSlide } from "@/components/slides";
+import {
+  PersonalHeadingSlide,
+  PersonalContentSlide,
+} from "@/components/slides";
 import SelfIntroduction from "./slides/self-introduction";
 
 <SelfIntroduction>
 
 - ぶりお [@burio_16](https://x.com/burio_16)
-- 千株式会社システム開発部(25卒)
 - 外部イベントに行きまくってる人
 - タコスとTottenham Hotspur FCが大好き
 
@@ -15,20 +17,22 @@ import SelfIntroduction from "./slides/self-introduction";
 <PersonalContentSlide title="vitestとは？">
 
 - JavaScriptの世界的なテストフレームワーク
+- あのvoidzeroが開発しているテストフレームワーク
 - GitHubスター数 14k+
-- 新卒の自分がそこにコントリビュートできた話
 
 </PersonalContentSlide>
 
-<PersonalHeadingSlide>{"きっかけは\n「静かに壊れる」バグ"}</PersonalHeadingSlide>
+<PersonalHeadingSlide>
+
+きっかけはPRのレビュー中
+
+</PersonalHeadingSlide>
 
 <PersonalContentSlide title="バグ発見の経緯">
 
 - Storybook用にインタラクションテストのconfigを作成
 - ファイル名: `vitest.unit-test.config.ts`（ハイフン入り）
 - レビュー中にconfigが効いていないことに気づく
-- エラーは出ない。**静かに無視されるタイプ**のバグ
-- 最初は自分の設定ミスだと思っていた...
 
 </PersonalContentSlide>
 
@@ -37,7 +41,6 @@ import SelfIntroduction from "./slides/self-introduction";
 - CLIでファイルを直接指定すると動く
 - Storybookから実行するとglobでconfigを検索 → 引っかからない
 - 原因: `resolveProjects.ts` の正規表現 `\w+` がハイフンを許容していなかった
-- 「あれ、これvitestのバグでは...？」
 
 </PersonalContentSlide>
 
@@ -49,11 +52,9 @@ import SelfIntroduction from "./slides/self-introduction";
 
 </PersonalContentSlide>
 
-<PersonalHeadingSlide>ここで転機が訪れる</PersonalHeadingSlide>
-
 <PersonalContentSlide title="コミュニティイベントでの出会い">
 
-- たまたま参加したイベントでvoidzero（vitestの母体）の人と話す機会が！
+- React Tokyoフェスでvoidzeroの人と話す機会が！
 - 「こんなissue立てたんですよ」と話してみた
 - 「初めてなんですが、どんなスタンスでいればいいですか？」と聞いた
 - **この会話はコミュニティという場がなければ絶対に生まれなかった**
@@ -68,7 +69,11 @@ import SelfIntroduction from "./slides/self-introduction";
 
 </PersonalContentSlide>
 
-<PersonalHeadingSlide>{"外に出ると\n世界が変わる"}</PersonalHeadingSlide>
+<PersonalHeadingSlide>
+
+外に出たからできたOSSコントリビュート
+
+</PersonalHeadingSlide>
 
 <PersonalContentSlide title="外部コミュニティに出て得たもの">
 
@@ -88,7 +93,11 @@ import SelfIntroduction from "./slides/self-introduction";
 
 </PersonalContentSlide>
 
-<PersonalHeadingSlide>{"みんなも一緒に\n外に出ていこう！"}</PersonalHeadingSlide>
+<PersonalHeadingSlide>
+
+みんなも一緒に外に出ていこう！
+
+</PersonalHeadingSlide>
 
 <PersonalContentSlide title="まとめ">
 
