@@ -73,6 +73,15 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
 		event: "【25卒】新卒のつまずきを糧にしNight",
 		eventUrl: "https://25-graduate.connpass.com/event/382072/",
 	},
+	"oss-and-community": {
+		slug: "oss-and-community",
+		title: "外に出たらOSSコントリビュートできちゃった話",
+		description: "社内LT会 での発表資料 - vitestへのOSSコントリビュート体験記",
+		author: "ぶりお",
+		authorUrl: "https://twitter.com/burio_16",
+		date: "2026/3/8",
+		event: "社内LT会",
+	},
 };
 
 export function getSlideConfig(slug: string): SlideConfig | undefined {
