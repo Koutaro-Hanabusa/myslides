@@ -1,0 +1,24 @@
+# mySlides - ぶりおのスライドデッキ
+
+> プレゼンテーション資料の共有サイト。Cloudflare Markdown for Agents に対応しています。
+
+## Usage for AI Agents
+
+このサイトは Cloudflare Markdown for Agents に対応しています。
+`Accept: text/markdown` ヘッダーを付けてリクエストすると、
+Cloudflare が HTML を自動的にマークダウンに変換して返します。
+
+## Available Slides
+
+- /better-t-stack - より良い技術スタックでcloudflareにデプロイしよう (Cloudflare Meet-up Tokyo Vol.9)
+- /tacotuesday - 全人類タコスを食え (社内LT会)
+- /react-three-fiber - WebGL入門 Three.jsで良さげなプロフィールサイト作ってみた (React Tokyo ミートアップ#11)
+- /revealjs-slideDeck - 自分だけのスライドデッキを作ってみた (社内LT会)
+- /you-must-have-dotfiles - Vim使いでなくてもdotfilesを管理しよう (Yoriai.cafe 二日間限定オープン！)
+- /25-graduate - アウトプット、怖くないですか？ (【25卒】新卒のつまずきを糧にしNight)
+
+## Content Negotiation
+
+```
+curl -H "Accept: text/markdown" https://slide.burio16.com/tacotuesday
+```
