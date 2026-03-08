@@ -17,8 +17,8 @@ export default function Home() {
 			<div className="grid grid-cols-1 gap-4 md:gap-8">
 				<SlideCard
 					href="/oss-and-community"
-					title="外に出たらOSSコントリビュートできちゃった話"
-					date="2026/3/8"
+					title="実績解除：OSSコントリビュート"
+					date="2026/3/23"
 					event="社内LT会"
 				>
 					<VitestCover />
