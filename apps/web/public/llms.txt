@@ -1,19 +1,12 @@
 # mySlides - ぶりおのスライドデッキ
 
-> プレゼンテーション資料の共有サイト。各スライドは presenterm 形式のマークダウンとしても取得可能です。
+> プレゼンテーション資料の共有サイト。Cloudflare Markdown for Agents に対応しています。
 
 ## Usage for AI Agents
 
 このサイトは Cloudflare Markdown for Agents に対応しています。
-`Accept: text/markdown` ヘッダーを付けてスライドURLにリクエストすると、
-presenterm 互換のマークダウンが返されます。
-
-## Presenterm API
-
-スライドを presenterm 形式のマークダウンで取得できます:
-
-- スライド一覧: /api/slides/index/presenterm
-- 個別スライド: /api/slides/{slug}/presenterm
+`Accept: text/markdown` ヘッダーを付けてリクエストすると、
+Cloudflare が HTML を自動的にマークダウンに変換して返します。
 
 ## Available Slides
 
@@ -26,15 +19,6 @@ presenterm 互換のマークダウンが返されます。
 
 ## Content Negotiation
 
-スライドページに `Accept: text/markdown` ヘッダーでリクエストすると、
-自動的に presenterm 形式のマークダウンが返されます。
-
-Example:
 ```
 curl -H "Accept: text/markdown" https://slide.burio16.com/tacotuesday
-```
-
-これを presenterm に直接パイプすることもできます:
-```
-curl -sH "Accept: text/markdown" https://slide.burio16.com/tacotuesday | presenterm
 ```
