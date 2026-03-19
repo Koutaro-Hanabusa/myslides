@@ -1,8 +1,10 @@
 import { ImageResponse } from "next/og";
+import { createOgpProps } from "@/lib/slides/config";
 
 const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
+const ogp = createOgpProps("oss-and-community");
 
-export const alt = "実績解除：OSSコントリビュート";
+export const alt = ogp.alt;
 export const size = {
 	width: 1200,
 	height: 630,
@@ -55,7 +57,7 @@ export default function Image() {
 						margin: 0,
 					}}
 				>
-					社内LT会
+					{ogp.event}
 				</p>
 				<div
 					style={{
@@ -72,7 +74,7 @@ export default function Image() {
 							lineHeight: 1.3,
 						}}
 					>
-						実績解除：OSSコントリビュート
+						{ogp.title}
 					</span>
 				</div>
 				<p
@@ -83,7 +85,7 @@ export default function Image() {
 						margin: 0,
 					}}
 				>
-					ぶりお @burio_16
+					{ogp.author}
 				</p>
 			</div>
 		</div>,

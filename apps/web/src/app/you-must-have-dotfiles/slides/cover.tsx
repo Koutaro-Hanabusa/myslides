@@ -1,5 +1,8 @@
+import { getSlideConfig } from "@/lib/slides/config";
+
 const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
 const TEMPLATE_PATH = "外部登壇資料テンプレ";
+const config = getSlideConfig("you-must-have-dotfiles");
 
 export default function Cover() {
 	return (
@@ -8,9 +11,7 @@ export default function Cover() {
 			data-background-size="contain"
 		>
 			<div className="text-left">
-				<h3>
-					Yoriai.cafe 二日間限定オープン！ 🍛ホタテカレーと出会いの「寄り合い」
-				</h3>
+				<h3>{config.event}</h3>
 				<br />
 				<h1 className="leading-tight">
 					Vim使いでなくても
@@ -18,7 +19,7 @@ export default function Cover() {
 					dotfilesを管理しよう
 				</h1>
 				<br />
-				<h3>ぶりお @burio_16</h3>
+				<h3>{config.author} @burio_16</h3>
 			</div>
 		</section>
 	);

@@ -1,4 +1,7 @@
+import { getSlideConfig } from "@/lib/slides/config";
+
 const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
+const config = getSlideConfig("react-three-fiber");
 
 export default function Cover() {
 	return (
@@ -7,7 +10,7 @@ export default function Cover() {
 			data-background-size="contain"
 		>
 			<div className="text-left">
-				<h3>React Tokyo ミートアップ#11</h3>
+				<h3>{config.event}</h3>
 				<br />
 				<h1 className="leading-tight">
 					WebGL入門
@@ -15,7 +18,7 @@ export default function Cover() {
 					Three.jsで良さげなプロフィールサイト作ってみた
 				</h1>
 				<br />
-				<h3>ぶりお @burio_16</h3>
+				<h3>{config.author} @burio_16</h3>
 			</div>
 		</section>
 	);
