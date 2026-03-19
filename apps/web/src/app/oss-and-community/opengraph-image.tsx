@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
 
-export const alt = "外に出たらOSSコントリビュートできちゃった話";
+export const alt = "実績解除：OSSコントリビュート";
 export const size = {
 	width: 1200,
 	height: 630,
@@ -72,17 +72,7 @@ export default function Image() {
 							lineHeight: 1.3,
 						}}
 					>
-						外に出たら
-					</span>
-					<span
-						style={{
-							fontSize: 48,
-							fontWeight: 700,
-							color: "#fff",
-							lineHeight: 1.3,
-						}}
-					>
-						OSSコントリビュートできちゃった話
+						実績解除：OSSコントリビュート
 					</span>
 				</div>
 				<p
