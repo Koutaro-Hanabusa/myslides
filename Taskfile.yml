@@ -71,6 +71,23 @@ tasks:
 
         mkdir -p "$TARGET_DIR/slides"
 
+        # config.ts にエントリを追加
+        CONFIG_FILE="{{.PRESENTATION_DIR}}/../lib/slides/config.ts"
+        perl -i -pe '
+          if (!$done && /^};/) {
+            $done = 1;
+            print "\t\"'"$NAME"'\": {\n";
+            print "\t\tslug: \"'"$NAME"'\",\n";
+            print "\t\ttitle: \"'"$NAME"'\",\n";
+            print "\t\tdescription: \"'"$NAME"' - A presentation created with mySlides\",\n";
+            print "\t\tauthor: \"ぶりお\",\n";
+            print "\t\tauthorUrl: \"https://twitter.com/burio_16\",\n";
+            print "\t\tdate: \"YYYY/MM/DD\",\n";
+            print "\t\tevent: \"イベント名\",\n";
+            print "\t},\n";
+          }
+        ' "$CONFIG_FILE"
+
         # page.tsx を作成
         {
           echo '"use client";'
@@ -101,13 +118,25 @@ tasks:
 
         # 表紙スライド (cover.tsx)
         {
+          echo 'import { getSlideConfig } from "@/lib/slides/config";'
+          echo ''
+          echo 'const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;'
+          echo 'const TEMPLATE_PATH = "外部登壇資料テンプレ";'
+          echo "const config = getSlideConfig(\"$NAME\");"
+          echo ''
           echo 'export default function Cover() {'
           echo '	return ('
           echo '		<section'
-          echo "			data-background-image=\"$R2_BASE/千_外部登壇スライド_表紙.png\""
+          echo '			data-background-image={`${R2_BASE}/${TEMPLATE_PATH}/千_外部登壇スライド_表紙.png`}'
           echo '			data-background-size="contain"'
           echo '		>'
-          echo "			<h1>$NAME</h1>"
+          echo '			<div className="text-left">'
+          echo '				<h3>{config.event}</h3>'
+          echo '				<br />'
+          echo '				<h1 className="leading-tight">{config.title}</h1>'
+          echo '				<br />'
+          echo '				<h3>{config.author} @burio_16</h3>'
+          echo '			</div>'
           echo '		</section>'
           echo '	);'
           echo '}'
@@ -207,22 +236,10 @@ tasks:
 
         # layout.tsx を作成（全画面固定スタイル付き）
         {
-          echo 'import type { Metadata, Viewport } from "next";'
+          echo 'import type { Viewport } from "next";'
+          echo 'import { createSlideMetadata } from "@/lib/slides/config";'
           echo ''
-          echo 'export const metadata: Metadata = {'
-          echo "	title: \"$NAME | mySlides\","
-          echo "	description: \"$NAME - A presentation created with mySlides and Reveal.js\","
-          echo '	openGraph: {'
-          echo "		title: \"$NAME\","
-          echo "		description: \"$NAME - A presentation created with mySlides and Reveal.js\","
-          echo '		type: "website",'
-          echo '	},'
-          echo '	twitter: {'
-          echo '		card: "summary_large_image",'
-          echo "		title: \"$NAME\","
-          echo "		description: \"$NAME - A presentation created with mySlides and Reveal.js\","
-          echo '	},'
-          echo '};'
+          echo "export const metadata = createSlideMetadata(\"$NAME\");"
           echo ''
           echo 'export const viewport: Viewport = {'
           echo '	width: "device-width",'
@@ -241,8 +258,12 @@ tasks:
         # opengraph-image.tsx を作成
         {
           echo 'import { ImageResponse } from "next/og";'
+          echo 'import { createOgpProps } from "@/lib/slides/config";'
           echo ''
-          echo "export const alt = \"$NAME\";"
+          echo 'const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;'
+          echo "const ogp = createOgpProps(\"$NAME\");"
+          echo ''
+          echo 'export const alt = ogp.alt;'
           echo 'export const size = {'
           echo '	width: 1200,'
           echo '	height: 630,'
@@ -263,7 +284,7 @@ tasks:
           echo '		>'
           echo '			{/* biome-ignore lint/performance/noImgElement: next/og ImageResponseではimg要素が必要 */}'
           echo '			<img'
-          echo "				src=\"$R2_BASE/千_外部登壇スライド_表紙.png\""
+          echo '				src={`${R2_BASE}/外部登壇資料テンプレ/千_外部登壇スライド_表紙.png`}'
           echo '				alt="スライド表紙"'
           echo '				style={{ "{{" }}'
           echo '					position: "absolute",'
@@ -274,6 +295,58 @@ tasks:
           echo '					objectFit: "cover",'
           echo '				{{ "}}" }}'
           echo '			/>'
+          echo '			<div'
+          echo '				style={{ "{{" }}'
+          echo '					position: "absolute",'
+          echo '					top: 0,'
+          echo '					left: 0,'
+          echo '					width: "100%",'
+          echo '					height: "100%",'
+          echo '					display: "flex",'
+          echo '					flexDirection: "column",'
+          echo '					justifyContent: "center",'
+          echo '					padding: "0 60px",'
+          echo '				{{ "}}" }}'
+          echo '			>'
+          echo '				<p'
+          echo '					style={{ "{{" }}'
+          echo '						fontSize: 32,'
+          echo '						fontWeight: 700,'
+          echo '						color: "#fff",'
+          echo '						margin: 0,'
+          echo '					{{ "}}" }}'
+          echo '				>'
+          echo '					{ogp.event}'
+          echo '				</p>'
+          echo '				<div'
+          echo '					style={{ "{{" }}'
+          echo '						display: "flex",'
+          echo '						flexDirection: "column",'
+          echo '						margin: "24px 0",'
+          echo '					{{ "}}" }}'
+          echo '				>'
+          echo '					<span'
+          echo '						style={{ "{{" }}'
+          echo '							fontSize: 48,'
+          echo '							fontWeight: 700,'
+          echo '							color: "#fff",'
+          echo '							lineHeight: 1.3,'
+          echo '						{{ "}}" }}'
+          echo '					>'
+          echo '						{ogp.title}'
+          echo '					</span>'
+          echo '				</div>'
+          echo '				<p'
+          echo '					style={{ "{{" }}'
+          echo '						fontSize: 32,'
+          echo '						fontWeight: 700,'
+          echo '						color: "#fff",'
+          echo '						margin: 0,'
+          echo '					{{ "}}" }}'
+          echo '				>'
+          echo '					{ogp.author}'
+          echo '				</p>'
+          echo '			</div>'
           echo '		</div>,'
           echo '		{'
           echo '			width: 1200,'
@@ -290,10 +363,18 @@ tasks:
         PASCAL_NAME=$(echo "$NAME" | perl -pe 's/(^|-)(.)/uc($2)/ge')
 
         # Coverコンポーネントのインポート文を追加 (SlideCard インポートの後に)
-        perl -i -pe "print \"import ${PASCAL_NAME}Cover from \\\"./${NAME}/slides/cover\\\";\n\" if /^import SlideCard from/" "$PAGE_FILE"
+        perl -i -pe "print \"import ${PASCAL_NAME}Cover from \\\"./${NAME}/slides/cover\\\";\n\" if /^import \{ SlideCard \} from/" "$PAGE_FILE"
+
+        # config変数を追加 (既存のconst宣言の最後に)
+        CAMEL_NAME=$(echo "$NAME" | perl -pe 's/-(.)/uc($1)/ge')
+        perl -i -pe "
+          if (/^export default function Home/) {
+            print \"const ${CAMEL_NAME} = SLIDES_CONFIG[\\\"${NAME}\\\"];\n\n\";
+          }
+        " "$PAGE_FILE"
 
         # SlideCardコンポーネントを追加 (グリッドの一番上に追加)
-        perl -i -pe "s|^(\t\t\t<div className=\"grid grid-cols-1 gap-4 md:gap-8\">)|\1\n\t\t\t\t<SlideCard href=\"/${NAME}\" title=\"${PASCAL_NAME}\" date=\"YYYY/MM/DD\">\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n|" "$PAGE_FILE"
+        perl -i -pe "s|^(\t\t\t<div className=\"grid grid-cols-1 gap-4 md:gap-8\">)|\1\n\t\t\t\t<SlideCard\n\t\t\t\t\thref={\`/\\\${${CAMEL_NAME}.slug}\` as Route}\n\t\t\t\t\ttitle={${CAMEL_NAME}.title}\n\t\t\t\t\tdate={${CAMEL_NAME}.date}\n\t\t\t\t\tevent={${CAMEL_NAME}.event}\n\t\t\t\t\turl={${CAMEL_NAME}.eventUrl}\n\t\t\t\t>\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n|" "$PAGE_FILE"
 
         echo "✓ Created presentation '$NAME' with 7 slides"
         echo "  - 表紙: 1枚"
@@ -304,6 +385,7 @@ tasks:
         echo "  - 裏表紙: 1枚"
         echo "  Location: $TARGET_DIR"
         echo "✓ Added SlideCard with ${PASCAL_NAME}Cover to page.tsx"
+        echo "✓ Added config entry to config.ts"
     silent: false
 
   pdf:
@@ -368,6 +450,23 @@ tasks:
 
         mkdir -p "$TARGET_DIR/slides"
 
+        # config.ts にエントリを追加
+        CONFIG_FILE="{{.PRESENTATION_DIR}}/../lib/slides/config.ts"
+        perl -i -pe '
+          if (!$done && /^};/) {
+            $done = 1;
+            print "\t\"'"$NAME"'\": {\n";
+            print "\t\tslug: \"'"$NAME"'\",\n";
+            print "\t\ttitle: \"'"$NAME"'\",\n";
+            print "\t\tdescription: \"'"$NAME"' - A presentation created with mySlides\",\n";
+            print "\t\tauthor: \"ぶりお\",\n";
+            print "\t\tauthorUrl: \"https://twitter.com/burio_16\",\n";
+            print "\t\tdate: \"YYYY/MM/DD\",\n";
+            print "\t\tevent: \"イベント名\",\n";
+            print "\t},\n";
+          }
+        ' "$CONFIG_FILE"
+
         # page.tsx を作成
         {
           echo '"use client";'
@@ -390,13 +489,24 @@ tasks:
 
         # 表紙スライド (cover.tsx)
         {
+          echo 'import { getSlideConfig } from "@/lib/slides/config";'
+          echo ''
+          echo 'const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;'
+          echo "const config = getSlideConfig(\"$NAME\");"
+          echo ''
           echo 'export default function Cover() {'
           echo '	return ('
           echo '		<section'
-          echo "			data-background-image=\"$R2_BASE/burioSlide/burio16Cover.png\""
+          echo '			data-background-image={`${R2_BASE}/burioSlide/burio16Cover.png`}'
           echo '			data-background-size="contain"'
           echo '		>'
-          echo "			<h1>$NAME</h1>"
+          echo '			<div className="text-left">'
+          echo '				<h3>{config.event}</h3>'
+          echo '				<br />'
+          echo '				<h1 className="leading-tight">{config.title}</h1>'
+          echo '				<br />'
+          echo '				<h3>{config.author} @burio_16</h3>'
+          echo '			</div>'
           echo '		</section>'
           echo '	);'
           echo '}'
@@ -418,22 +528,10 @@ tasks:
 
         # layout.tsx を作成（全画面固定スタイル付き）
         {
-          echo 'import type { Metadata, Viewport } from "next";'
+          echo 'import type { Viewport } from "next";'
+          echo 'import { createSlideMetadata } from "@/lib/slides/config";'
           echo ''
-          echo 'export const metadata: Metadata = {'
-          echo "	title: \"$NAME | mySlides\","
-          echo "	description: \"$NAME - A presentation created with mySlides and Reveal.js\","
-          echo '	openGraph: {'
-          echo "		title: \"$NAME\","
-          echo "		description: \"$NAME - A presentation created with mySlides and Reveal.js\","
-          echo '		type: "website",'
-          echo '	},'
-          echo '	twitter: {'
-          echo '		card: "summary_large_image",'
-          echo "		title: \"$NAME\","
-          echo "		description: \"$NAME - A presentation created with mySlides and Reveal.js\","
-          echo '	},'
-          echo '};'
+          echo "export const metadata = createSlideMetadata(\"$NAME\");"
           echo ''
           echo 'export const viewport: Viewport = {'
           echo '	width: "device-width",'
@@ -452,8 +550,12 @@ tasks:
         # opengraph-image.tsx を作成
         {
           echo 'import { ImageResponse } from "next/og";'
+          echo 'import { createOgpProps } from "@/lib/slides/config";'
           echo ''
-          echo "export const alt = \"$NAME\";"
+          echo 'const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;'
+          echo "const ogp = createOgpProps(\"$NAME\");"
+          echo ''
+          echo 'export const alt = ogp.alt;'
           echo 'export const size = {'
           echo '	width: 1200,'
           echo '	height: 630,'
@@ -474,7 +576,7 @@ tasks:
           echo '		>'
           echo '			{/* biome-ignore lint/performance/noImgElement: next/og ImageResponseではimg要素が必要 */}'
           echo '			<img'
-          echo "				src=\"$R2_BASE/burioSlide/burio16Cover.png\""
+          echo '				src={`${R2_BASE}/burioSlide/burio16OGP.png`}'
           echo '				alt="スライド表紙"'
           echo '				style={{ "{{" }}'
           echo '					position: "absolute",'
@@ -485,6 +587,58 @@ tasks:
           echo '					objectFit: "cover",'
           echo '				{{ "}}" }}'
           echo '			/>'
+          echo '			<div'
+          echo '				style={{ "{{" }}'
+          echo '					position: "absolute",'
+          echo '					top: 0,'
+          echo '					left: 0,'
+          echo '					width: "100%",'
+          echo '					height: "100%",'
+          echo '					display: "flex",'
+          echo '					flexDirection: "column",'
+          echo '					justifyContent: "center",'
+          echo '					padding: "0 60px",'
+          echo '				{{ "}}" }}'
+          echo '			>'
+          echo '				<p'
+          echo '					style={{ "{{" }}'
+          echo '						fontSize: 32,'
+          echo '						fontWeight: 700,'
+          echo '						color: "#fff",'
+          echo '						margin: 0,'
+          echo '					{{ "}}" }}'
+          echo '				>'
+          echo '					{ogp.event}'
+          echo '				</p>'
+          echo '				<div'
+          echo '					style={{ "{{" }}'
+          echo '						display: "flex",'
+          echo '						flexDirection: "column",'
+          echo '						margin: "24px 0",'
+          echo '					{{ "}}" }}'
+          echo '				>'
+          echo '					<span'
+          echo '						style={{ "{{" }}'
+          echo '							fontSize: 48,'
+          echo '							fontWeight: 700,'
+          echo '							color: "#fff",'
+          echo '							lineHeight: 1.3,'
+          echo '						{{ "}}" }}'
+          echo '					>'
+          echo '						{ogp.title}'
+          echo '					</span>'
+          echo '				</div>'
+          echo '				<p'
+          echo '					style={{ "{{" }}'
+          echo '						fontSize: 32,'
+          echo '						fontWeight: 700,'
+          echo '						color: "#fff",'
+          echo '						margin: 0,'
+          echo '					{{ "}}" }}'
+          echo '				>'
+          echo '					{ogp.author}'
+          echo '				</p>'
+          echo '			</div>'
           echo '		</div>,'
           echo '		{'
           echo '			width: 1200,'
@@ -501,16 +655,25 @@ tasks:
         PASCAL_NAME=$(echo "$NAME" | perl -pe 's/(^|-)(.)/uc($2)/ge')
 
         # Coverコンポーネントのインポート文を追加 (SlideCard インポートの後に)
-        perl -i -pe "print \"import ${PASCAL_NAME}Cover from \\\"./${NAME}/slides/cover\\\";\n\" if /^import SlideCard from/" "$PAGE_FILE"
+        perl -i -pe "print \"import ${PASCAL_NAME}Cover from \\\"./${NAME}/slides/cover\\\";\n\" if /^import \{ SlideCard \} from/" "$PAGE_FILE"
+
+        # config変数を追加 (既存のconst宣言の最後に)
+        CAMEL_NAME=$(echo "$NAME" | perl -pe 's/-(.)/uc($1)/ge')
+        perl -i -pe "
+          if (/^export default function Home/) {
+            print \"const ${CAMEL_NAME} = SLIDES_CONFIG[\\\"${NAME}\\\"];\n\n\";
+          }
+        " "$PAGE_FILE"
 
         # SlideCardコンポーネントを追加 (グリッドの一番上に追加)
-        perl -i -pe "s|^(\t\t\t<div className=\"grid grid-cols-1 gap-4 md:gap-8\">)|\1\n\t\t\t\t<SlideCard href=\"/${NAME}\" title=\"${PASCAL_NAME}\" date=\"YYYY/MM/DD\">\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n|" "$PAGE_FILE"
+        perl -i -pe "s|^(\t\t\t<div className=\"grid grid-cols-1 gap-4 md:gap-8\">)|\1\n\t\t\t\t<SlideCard\n\t\t\t\t\thref={\`/\\\${${CAMEL_NAME}.slug}\` as Route}\n\t\t\t\t\ttitle={${CAMEL_NAME}.title}\n\t\t\t\t\tdate={${CAMEL_NAME}.date}\n\t\t\t\t\tevent={${CAMEL_NAME}.event}\n\t\t\t\t\turl={${CAMEL_NAME}.eventUrl}\n\t\t\t\t>\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n|" "$PAGE_FILE"
 
         echo "✓ Created presentation '$NAME' with 2 slides"
         echo "  - 表紙: 1枚 (burio16Cover.png)"
         echo "  - 内容: 1枚 (content.png)"
         echo "  Location: $TARGET_DIR"
         echo "✓ Added SlideCard with ${PASCAL_NAME}Cover to page.tsx"
+        echo "✓ Added config entry to config.ts"
     silent: false
 
   new-mdslide:
@@ -562,6 +725,23 @@ tasks:
         mkdir -p "$TARGET_DIR/slides"
         mkdir -p "$PUBLIC_DIR/assets"
 
+        # config.ts にエントリを追加
+        CONFIG_FILE="{{.PRESENTATION_DIR}}/../lib/slides/config.ts"
+        perl -i -pe '
+          if (!$done && /^};/) {
+            $done = 1;
+            print "\t\"'"$NAME"'\": {\n";
+            print "\t\tslug: \"'"$NAME"'\",\n";
+            print "\t\ttitle: \"'"$NAME"'\",\n";
+            print "\t\tdescription: \"'"$NAME"' - A presentation created with mySlides\",\n";
+            print "\t\tauthor: \"ぶりお\",\n";
+            print "\t\tauthorUrl: \"https://twitter.com/burio_16\",\n";
+            print "\t\tdate: \"YYYY/MM/DD\",\n";
+            print "\t\tevent: \"イベント名\",\n";
+            print "\t},\n";
+          }
+        ' "$CONFIG_FILE"
+
         # page.tsx を作成 (Markdown読み込み版)
         {
           echo '"use client";'
@@ -592,7 +772,10 @@ tasks:
 
         # 表紙スライド (cover.tsx)
         {
+          echo 'import { getSlideConfig } from "@/lib/slides/config";'
+          echo ''
           echo 'const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;'
+          echo "const config = getSlideConfig(\"$NAME\");"
           echo ''
           echo 'export default function Cover() {'
           echo '	return ('
@@ -601,10 +784,11 @@ tasks:
           echo '			data-background-size="contain"'
           echo '		>'
           echo '			<div className="text-left">'
-          echo '				<h3 className="!text-white">YYYY/MM/DD イベント名</h3>'
-          echo "				<h1 className=\"!text-white leading-tight\">$NAME</h1>"
+          echo '				<h3>{config.event}</h3>'
           echo '				<br />'
-          echo '				<h3 className="!text-white">ぶりお @burio_16</h3>'
+          echo '				<h1 className="leading-tight">{config.title}</h1>'
+          echo '				<br />'
+          echo '				<h3>{config.author} @burio_16</h3>'
           echo '			</div>'
           echo '		</section>'
           echo '	);'
@@ -613,22 +797,10 @@ tasks:
 
         # layout.tsx を作成
         {
-          echo 'import type { Metadata, Viewport } from "next";'
+          echo 'import type { Viewport } from "next";'
+          echo 'import { createSlideMetadata } from "@/lib/slides/config";'
           echo ''
-          echo 'export const metadata: Metadata = {'
-          echo "	title: \"$NAME | mySlides\","
-          echo "	description: \"$NAME - A presentation created with mySlides and Reveal.js\","
-          echo '	openGraph: {'
-          echo "		title: \"$NAME\","
-          echo "		description: \"$NAME - A presentation created with mySlides and Reveal.js\","
-          echo '		type: "website",'
-          echo '	},'
-          echo '	twitter: {'
-          echo '		card: "summary_large_image",'
-          echo "		title: \"$NAME\","
-          echo "		description: \"$NAME - A presentation created with mySlides and Reveal.js\","
-          echo '	},'
-          echo '};'
+          echo "export const metadata = createSlideMetadata(\"$NAME\");"
           echo ''
           echo 'export const viewport: Viewport = {'
           echo '	width: "device-width",'
@@ -647,8 +819,12 @@ tasks:
         # opengraph-image.tsx を作成
         {
           echo 'import { ImageResponse } from "next/og";'
+          echo 'import { createOgpProps } from "@/lib/slides/config";'
           echo ''
-          echo "export const alt = \"$NAME\";"
+          echo 'const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;'
+          echo "const ogp = createOgpProps(\"$NAME\");"
+          echo ''
+          echo 'export const alt = ogp.alt;'
           echo 'export const size = {'
           echo '	width: 1200,'
           echo '	height: 630,'
@@ -669,7 +845,7 @@ tasks:
           echo '		>'
           echo '			{/* biome-ignore lint/performance/noImgElement: next/og ImageResponseではimg要素が必要 */}'
           echo '			<img'
-          echo "				src=\"$R2_BASE/burioSlide/burio16Cover.png\""
+          echo '				src={`${R2_BASE}/burioSlide/burio16OGP.png`}'
           echo '				alt="スライド表紙"'
           echo '				style={{ "{{" }}'
           echo '					position: "absolute",'
@@ -680,6 +856,58 @@ tasks:
           echo '					objectFit: "cover",'
           echo '				{{ "}}" }}'
           echo '			/>'
+          echo '			<div'
+          echo '				style={{ "{{" }}'
+          echo '					position: "absolute",'
+          echo '					top: 0,'
+          echo '					left: 0,'
+          echo '					width: "100%",'
+          echo '					height: "100%",'
+          echo '					display: "flex",'
+          echo '					flexDirection: "column",'
+          echo '					justifyContent: "center",'
+          echo '					padding: "0 60px",'
+          echo '				{{ "}}" }}'
+          echo '			>'
+          echo '				<p'
+          echo '					style={{ "{{" }}'
+          echo '						fontSize: 32,'
+          echo '						fontWeight: 700,'
+          echo '						color: "#fff",'
+          echo '						margin: 0,'
+          echo '					{{ "}}" }}'
+          echo '				>'
+          echo '					{ogp.event}'
+          echo '				</p>'
+          echo '				<div'
+          echo '					style={{ "{{" }}'
+          echo '						display: "flex",'
+          echo '						flexDirection: "column",'
+          echo '						margin: "24px 0",'
+          echo '					{{ "}}" }}'
+          echo '				>'
+          echo '					<span'
+          echo '						style={{ "{{" }}'
+          echo '							fontSize: 48,'
+          echo '							fontWeight: 700,'
+          echo '							color: "#fff",'
+          echo '							lineHeight: 1.3,'
+          echo '						{{ "}}" }}'
+          echo '					>'
+          echo '						{ogp.title}'
+          echo '					</span>'
+          echo '				</div>'
+          echo '				<p'
+          echo '					style={{ "{{" }}'
+          echo '						fontSize: 32,'
+          echo '						fontWeight: 700,'
+          echo '						color: "#fff",'
+          echo '						margin: 0,'
+          echo '					{{ "}}" }}'
+          echo '				>'
+          echo '					{ogp.author}'
+          echo '				</p>'
+          echo '			</div>'
           echo '		</div>,'
           echo '		{'
           echo '			width: 1200,'
@@ -719,16 +947,25 @@ tasks:
         PASCAL_NAME=$(echo "$NAME" | perl -pe 's/(^|-)(.)/uc($2)/ge')
 
         # Coverコンポーネントのインポート文を追加
-        perl -i -pe "print \"import ${PASCAL_NAME}Cover from \\\"./${NAME}/slides/cover\\\";\n\" if /^import SlideCard from/" "$PAGE_FILE"
+        perl -i -pe "print \"import ${PASCAL_NAME}Cover from \\\"./${NAME}/slides/cover\\\";\n\" if /^import \{ SlideCard \} from/" "$PAGE_FILE"
+
+        # config変数を追加 (既存のconst宣言の最後に)
+        CAMEL_NAME=$(echo "$NAME" | perl -pe 's/-(.)/uc($1)/ge')
+        perl -i -pe "
+          if (/^export default function Home/) {
+            print \"const ${CAMEL_NAME} = SLIDES_CONFIG[\\\"${NAME}\\\"];\n\n\";
+          }
+        " "$PAGE_FILE"
 
         # SlideCardコンポーネントを追加 (グリッドの一番上に追加)
-        perl -i -pe "s|^(\t\t\t<div className=\"grid grid-cols-1 gap-4 md:gap-8\">)|\1\n\t\t\t\t<SlideCard href=\"/${NAME}\" title=\"${PASCAL_NAME}\" date=\"YYYY/MM/DD\">\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n|" "$PAGE_FILE"
+        perl -i -pe "s|^(\t\t\t<div className=\"grid grid-cols-1 gap-4 md:gap-8\">)|\1\n\t\t\t\t<SlideCard\n\t\t\t\t\thref={\`/\\\${${CAMEL_NAME}.slug}\` as Route}\n\t\t\t\t\ttitle={${CAMEL_NAME}.title}\n\t\t\t\t\tdate={${CAMEL_NAME}.date}\n\t\t\t\t\tevent={${CAMEL_NAME}.event}\n\t\t\t\t\turl={${CAMEL_NAME}.eventUrl}\n\t\t\t\t>\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n|" "$PAGE_FILE"
 
         echo "✓ Created Markdown presentation '$NAME'"
         echo "  - 表紙: $TARGET_DIR/slides/cover.tsx"
         echo "  - コンテンツ: $PUBLIC_DIR/slides.md"
         echo "  - 画像置き場: $PUBLIC_DIR/assets/"
         echo "✓ Added SlideCard with ${PASCAL_NAME}Cover to page.tsx"
+        echo "✓ Added config entry to config.ts"
     silent: false
 
   new-mdslide-corp:
@@ -780,6 +1017,23 @@ tasks:
 
         mkdir -p "$TARGET_DIR/slides"
 
+        # config.ts にエントリを追加
+        CONFIG_FILE="{{.PRESENTATION_DIR}}/../lib/slides/config.ts"
+        perl -i -pe '
+          if (!$done && /^};/) {
+            $done = 1;
+            print "\t\"'"$NAME"'\": {\n";
+            print "\t\tslug: \"'"$NAME"'\",\n";
+            print "\t\ttitle: \"'"$NAME"'\",\n";
+            print "\t\tdescription: \"'"$NAME"' - A presentation created with mySlides\",\n";
+            print "\t\tauthor: \"ぶりお\",\n";
+            print "\t\tauthorUrl: \"https://twitter.com/burio_16\",\n";
+            print "\t\tdate: \"YYYY/MM/DD\",\n";
+            print "\t\tevent: \"イベント名\",\n";
+            print "\t},\n";
+          }
+        ' "$CONFIG_FILE"
+
         # page.tsx を作成 (MDX読み込み版・企業テンプレート)
         {
           echo '"use client";'
@@ -821,8 +1075,11 @@ tasks:
 
         # 表紙スライド (cover.tsx) - 企業テンプレート
         {
+          echo 'import { getSlideConfig } from "@/lib/slides/config";'
+          echo ''
           echo 'const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;'
           echo 'const TEMPLATE_PATH = "外部登壇資料テンプレ";'
+          echo "const config = getSlideConfig(\"$NAME\");"
           echo ''
           echo 'export default function Cover() {'
           echo '	return ('
@@ -830,7 +1087,13 @@ tasks:
           echo '			data-background-image={`${R2_BASE}/${TEMPLATE_PATH}/千_外部登壇スライド_表紙.png`}'
           echo '			data-background-size="contain"'
           echo '		>'
-          echo "			<h1>$NAME</h1>"
+          echo '			<div className="text-left">'
+          echo '				<h3>{config.event}</h3>'
+          echo '				<br />'
+          echo '				<h1 className="leading-tight">{config.title}</h1>'
+          echo '				<br />'
+          echo '				<h3>{config.author} @burio_16</h3>'
+          echo '			</div>'
           echo '		</section>'
           echo '	);'
           echo '}'
@@ -838,22 +1101,10 @@ tasks:
 
         # layout.tsx を作成
         {
-          echo 'import type { Metadata, Viewport } from "next";'
+          echo 'import type { Viewport } from "next";'
+          echo 'import { createSlideMetadata } from "@/lib/slides/config";'
           echo ''
-          echo 'export const metadata: Metadata = {'
-          echo "	title: \"$NAME | mySlides\","
-          echo "	description: \"$NAME - A presentation created with mySlides and Reveal.js\","
-          echo '	openGraph: {'
-          echo "		title: \"$NAME\","
-          echo "		description: \"$NAME - A presentation created with mySlides and Reveal.js\","
-          echo '		type: "website",'
-          echo '	},'
-          echo '	twitter: {'
-          echo '		card: "summary_large_image",'
-          echo "		title: \"$NAME\","
-          echo "		description: \"$NAME - A presentation created with mySlides and Reveal.js\","
-          echo '	},'
-          echo '};'
+          echo "export const metadata = createSlideMetadata(\"$NAME\");"
           echo ''
           echo 'export const viewport: Viewport = {'
           echo '	width: "device-width",'
@@ -872,8 +1123,12 @@ tasks:
         # opengraph-image.tsx を作成
         {
           echo 'import { ImageResponse } from "next/og";'
+          echo 'import { createOgpProps } from "@/lib/slides/config";'
           echo ''
-          echo "export const alt = \"$NAME\";"
+          echo 'const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;'
+          echo "const ogp = createOgpProps(\"$NAME\");"
+          echo ''
+          echo 'export const alt = ogp.alt;'
           echo 'export const size = {'
           echo '	width: 1200,'
           echo '	height: 630,'
@@ -894,7 +1149,7 @@ tasks:
           echo '		>'
           echo '			{/* biome-ignore lint/performance/noImgElement: next/og ImageResponseではimg要素が必要 */}'
           echo '			<img'
-          echo "				src=\"$R2_BASE/千_外部登壇スライド_表紙.png\""
+          echo '				src={`${R2_BASE}/外部登壇資料テンプレ/千_外部登壇スライド_表紙.png`}'
           echo '				alt="スライド表紙"'
           echo '				style={{ "{{" }}'
           echo '					position: "absolute",'
@@ -905,6 +1160,58 @@ tasks:
           echo '					objectFit: "cover",'
           echo '				{{ "}}" }}'
           echo '			/>'
+          echo '			<div'
+          echo '				style={{ "{{" }}'
+          echo '					position: "absolute",'
+          echo '					top: 0,'
+          echo '					left: 0,'
+          echo '					width: "100%",'
+          echo '					height: "100%",'
+          echo '					display: "flex",'
+          echo '					flexDirection: "column",'
+          echo '					justifyContent: "center",'
+          echo '					padding: "0 60px",'
+          echo '				{{ "}}" }}'
+          echo '			>'
+          echo '				<p'
+          echo '					style={{ "{{" }}'
+          echo '						fontSize: 32,'
+          echo '						fontWeight: 700,'
+          echo '						color: "#fff",'
+          echo '						margin: 0,'
+          echo '					{{ "}}" }}'
+          echo '				>'
+          echo '					{ogp.event}'
+          echo '				</p>'
+          echo '				<div'
+          echo '					style={{ "{{" }}'
+          echo '						display: "flex",'
+          echo '						flexDirection: "column",'
+          echo '						margin: "24px 0",'
+          echo '					{{ "}}" }}'
+          echo '				>'
+          echo '					<span'
+          echo '						style={{ "{{" }}'
+          echo '							fontSize: 48,'
+          echo '							fontWeight: 700,'
+          echo '							color: "#fff",'
+          echo '							lineHeight: 1.3,'
+          echo '						{{ "}}" }}'
+          echo '					>'
+          echo '						{ogp.title}'
+          echo '					</span>'
+          echo '				</div>'
+          echo '				<p'
+          echo '					style={{ "{{" }}'
+          echo '						fontSize: 32,'
+          echo '						fontWeight: 700,'
+          echo '						color: "#fff",'
+          echo '						margin: 0,'
+          echo '					{{ "}}" }}'
+          echo '				>'
+          echo '					{ogp.author}'
+          echo '				</p>'
+          echo '			</div>'
           echo '		</div>,'
           echo '		{'
           echo '			width: 1200,'
@@ -921,10 +1228,18 @@ tasks:
         PASCAL_NAME=$(echo "$NAME" | perl -pe 's/(^|-)(.)/uc($2)/ge')
 
         # Coverコンポーネントのインポート文を追加
-        perl -i -pe "print \"import ${PASCAL_NAME}Cover from \\\"./${NAME}/slides/cover\\\";\n\" if /^import SlideCard from/" "$PAGE_FILE"
+        perl -i -pe "print \"import ${PASCAL_NAME}Cover from \\\"./${NAME}/slides/cover\\\";\n\" if /^import \{ SlideCard \} from/" "$PAGE_FILE"
+
+        # config変数を追加 (既存のconst宣言の最後に)
+        CAMEL_NAME=$(echo "$NAME" | perl -pe 's/-(.)/uc($1)/ge')
+        perl -i -pe "
+          if (/^export default function Home/) {
+            print \"const ${CAMEL_NAME} = SLIDES_CONFIG[\\\"${NAME}\\\"];\n\n\";
+          }
+        " "$PAGE_FILE"
 
         # SlideCardコンポーネントを追加 (グリッドの一番上に追加)
-        perl -i -pe "s|^(\t\t\t<div className=\"grid grid-cols-1 gap-4 md:gap-8\">)|\1\n\t\t\t\t<SlideCard href=\"/${NAME}\" title=\"${PASCAL_NAME}\" date=\"YYYY/MM/DD\">\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n|" "$PAGE_FILE"
+        perl -i -pe "s|^(\t\t\t<div className=\"grid grid-cols-1 gap-4 md:gap-8\">)|\1\n\t\t\t\t<SlideCard\n\t\t\t\t\thref={\`/\\\${${CAMEL_NAME}.slug}\` as Route}\n\t\t\t\t\ttitle={${CAMEL_NAME}.title}\n\t\t\t\t\tdate={${CAMEL_NAME}.date}\n\t\t\t\t\tevent={${CAMEL_NAME}.event}\n\t\t\t\t\turl={${CAMEL_NAME}.eventUrl}\n\t\t\t\t>\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n|" "$PAGE_FILE"
 
         echo "✓ Created MDX corporate presentation '$NAME'"
         echo "  - ページ: $TARGET_DIR/page.tsx"
@@ -932,4 +1247,5 @@ tasks:
         echo "  - 表紙: $TARGET_DIR/slides/cover.tsx"
         echo "  (共通コンポーネント: src/components/slides/)"
         echo "✓ Added SlideCard with ${PASCAL_NAME}Cover to page.tsx"
+        echo "✓ Added config entry to config.ts"
     silent: false

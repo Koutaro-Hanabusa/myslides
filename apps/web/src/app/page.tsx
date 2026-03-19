@@ -1,6 +1,8 @@
 "use client";
 
+import type { Route } from "next";
 import { SlideCard } from "@/components/slides";
+import { SLIDES_CONFIG } from "@/lib/slides/config";
 import GraduateCover from "./25-graduate/slides/cover";
 import Cover from "./better-t-stack/slides/cover";
 import VitestCover from "./oss-and-community/slides/cover";
@@ -8,6 +10,15 @@ import R3FCover from "./react-three-fiber/slides/cover";
 import RevealCover from "./revealjs-slideDeck/slides/cover";
 import TacosCover from "./tacotuesday/slides/cover";
 import YouMustHaveDotfilesCover from "./you-must-have-dotfiles/slides/cover";
+
+const oss = SLIDES_CONFIG["oss-and-community"];
+const graduate = SLIDES_CONFIG["25-graduate"];
+const dotfiles = SLIDES_CONFIG["you-must-have-dotfiles"];
+const reveal = SLIDES_CONFIG["revealjs-slideDeck"];
+const tacos = SLIDES_CONFIG["tacotuesday"];
+const betterT = SLIDES_CONFIG["better-t-stack"];
+const r3f = SLIDES_CONFIG["react-three-fiber"];
+
 export default function Home() {
 	return (
 		<div className="mx-auto w-full p-4 md:w-3/4 md:p-8 lg:w-1/2">
@@ -16,65 +27,65 @@ export default function Home() {
 			</h1>
 			<div className="grid grid-cols-1 gap-4 md:gap-8">
 				<SlideCard
-					href="/oss-and-community"
-					title="実績解除：OSSコントリビュート"
-					date="2026/3/23"
-					event="社内LT会"
+					href={`/${oss.slug}` as Route}
+					title={oss.title}
+					date={oss.date}
+					event={oss.event}
 				>
 					<VitestCover />
 				</SlideCard>
 
 				<SlideCard
-					href="/25-graduate"
-					title="アウトプット、怖くないですか？"
-					date="2026/3/6"
-					event="【25卒】新卒のつまずきを糧にしNight"
-					url="https://25-graduate.connpass.com/event/382072/"
+					href={`/${graduate.slug}` as Route}
+					title={graduate.title}
+					date={graduate.date}
+					event={graduate.event}
+					url={graduate.eventUrl}
 				>
 					<GraduateCover />
 				</SlideCard>
 
 				<SlideCard
-					href="/you-must-have-dotfiles"
-					title="Vim使いでなくてもdotfilesを管理しよう"
-					date="2026/1/25"
-					event="Yoriai.cafe 二日間限定オープン！ 🍛ホタテカレーと出会いの「寄り合い」"
-					url="https://peatix.com/event/4736534"
+					href={`/${dotfiles.slug}` as Route}
+					title={dotfiles.title}
+					date={dotfiles.date}
+					event={dotfiles.event}
+					url={dotfiles.eventUrl}
 				>
 					<YouMustHaveDotfilesCover />
 				</SlideCard>
 
 				<SlideCard
-					href="/revealjs-slideDeck"
-					title="自分だけのスライドデッキを作ってみた"
-					date="2025/12/15"
-					event="社内LT会"
+					href={`/${reveal.slug}` as Route}
+					title={reveal.title}
+					date={reveal.date}
+					event={reveal.event}
 				>
 					<RevealCover />
 				</SlideCard>
 				<SlideCard
-					href="/tacotuesday"
-					title="全人類タコスを食え"
-					date="2025/12/15"
-					event="社内LT会"
+					href={`/${tacos.slug}` as Route}
+					title={tacos.title}
+					date={tacos.date}
+					event={tacos.event}
 				>
 					<TacosCover />
 				</SlideCard>
 				<SlideCard
-					href="/better-t-stack"
-					title="より良い技術スタックでcloudflareにデプロイしよう"
-					date="2025/12/10"
-					event="Cloudflare Meet-up Tokyo Vol.9"
-					url="https://cfm-cts.connpass.com/event/374413/"
+					href={`/${betterT.slug}` as Route}
+					title={betterT.title}
+					date={betterT.date}
+					event={betterT.event}
+					url={betterT.eventUrl}
 				>
 					<Cover />
 				</SlideCard>
 				<SlideCard
-					href="/react-three-fiber"
-					title="WebGL入門 Three.jsで良さげなプロフィールサイト作ってみた"
-					date="2025/11/14"
-					event="React Tokyo ミートアップ#11"
-					url="https://react-tokyo.connpass.com/event/372887/"
+					href={`/${r3f.slug}` as Route}
+					title={r3f.title}
+					date={r3f.date}
+					event={r3f.event}
+					url={r3f.eventUrl}
 				>
 					<R3FCover />
 				</SlideCard>
