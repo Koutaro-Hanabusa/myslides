@@ -10,9 +10,7 @@ export default function Cover() {
 			<div className="text-left">
 				<h3>【25卒】新卒のつまずきを糧にしNight</h3>
 				<br />
-				<h1 className="leading-tight">
-					アウトプット、怖くないですか？
-				</h1>
+				<h1 className="leading-tight">アウトプット、怖くないですか？</h1>
 				<br />
 				<h3>ぶりお @burio_16</h3>
 			</div>

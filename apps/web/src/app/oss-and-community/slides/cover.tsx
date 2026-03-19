@@ -9,11 +9,7 @@ export default function Cover() {
 			<div className="text-left">
 				<h3>社内LT会</h3>
 				<br />
-				<h1 className="leading-tight">
-					外に出たら
-					<br />
-					OSSコントリビュートできちゃった話
-				</h1>
+				<h1 className="leading-tight">実績解除：OSSコントリビュート</h1>
 				<br />
 				<h3>ぶりお @burio_16</h3>
 			</div>
