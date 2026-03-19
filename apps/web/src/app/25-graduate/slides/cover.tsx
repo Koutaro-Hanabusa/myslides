@@ -1,5 +1,8 @@
+import { getSlideConfig } from "@/lib/slides/config";
+
 const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
 const TEMPLATE_PATH = "外部登壇資料テンプレ";
+const config = getSlideConfig("25-graduate");
 
 export default function Cover() {
 	return (
@@ -8,11 +11,11 @@ export default function Cover() {
 			data-background-size="contain"
 		>
 			<div className="text-left">
-				<h3>【25卒】新卒のつまずきを糧にしNight</h3>
+				<h3>{config.event}</h3>
 				<br />
-				<h1 className="leading-tight">アウトプット、怖くないですか？</h1>
+				<h1 className="leading-tight">{config.title}</h1>
 				<br />
-				<h3>ぶりお @burio_16</h3>
+				<h3>{config.author} @burio_16</h3>
 			</div>
 		</section>
 	);

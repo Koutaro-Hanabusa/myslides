@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 export interface SlideConfig {
 	slug: string;
 	title: string;
@@ -75,19 +77,78 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
 	},
 	"oss-and-community": {
 		slug: "oss-and-community",
-		title: "外に出たらOSSコントリビュートできちゃった話",
+		title: "実績解除：OSSコントリビュート",
 		description: "社内LT会 での発表資料 - vitestへのOSSコントリビュート体験記",
 		author: "ぶりお",
 		authorUrl: "https://twitter.com/burio_16",
-		date: "2026/3/8",
+		date: "2026/3/23",
 		event: "社内LT会",
 	},
 };
 
-export function getSlideConfig(slug: string): SlideConfig | undefined {
-	return SLIDES_CONFIG[slug];
+export function getSlideConfig(slug: string): SlideConfig {
+	const config = SLIDES_CONFIG[slug];
+	if (!config) {
+		throw new Error(`Slide config not found for slug: ${slug}`);
+	}
+	return config;
 }
 
 export function getAllSlideSlugs(): string[] {
 	return Object.keys(SLIDES_CONFIG);
+}
+
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3001";
+
+function getAuthorHandle(authorUrl: string): string {
+	return authorUrl.split("/").pop() ?? "";
+}
+
+export function createSlideMetadata(slug: string): Metadata {
+	const config = getSlideConfig(slug);
+	const slideUrl = `${BASE_URL}/${slug}`;
+	const handle = getAuthorHandle(config.authorUrl);
+	const ogDescription = config.event
+		? `${config.event} での発表資料 by ${config.author} @${handle}`
+		: config.description;
+
+	return {
+		title: config.event
+			? `${config.title} | ${config.event}`
+			: `${config.title} | mySlides`,
+		description: config.description,
+		openGraph: {
+			title: config.title,
+			description: ogDescription,
+			type: "website",
+		},
+		twitter: {
+			card: "summary_large_image",
+			title: config.title,
+			description: ogDescription,
+		},
+		alternates: {
+			types: {
+				"application/json+oembed": `${BASE_URL}/api/oembed?url=${encodeURIComponent(slideUrl)}&format=json`,
+			},
+		},
+	};
+}
+
+export interface OgpProps {
+	alt: string;
+	title: string;
+	event: string;
+	author: string;
+}
+
+export function createOgpProps(slug: string): OgpProps {
+	const config = getSlideConfig(slug);
+	const handle = getAuthorHandle(config.authorUrl);
+	return {
+		alt: config.title,
+		title: config.title,
+		event: config.event ?? "",
+		author: `${config.author} @${handle}`,
+	};
 }

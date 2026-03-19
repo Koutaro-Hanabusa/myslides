@@ -1,4 +1,7 @@
+import { getSlideConfig } from "@/lib/slides/config";
+
 const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
+const config = getSlideConfig("tacotuesday");
 
 export default function Cover() {
 	return (
@@ -7,10 +10,10 @@ export default function Cover() {
 			data-background-size="contain"
 		>
 			<div className="text-left">
-				<h3 className="!text-white">12/15 社内 LT 会</h3>
-				<h1 className="!text-white leading-tight">全人類タコスを食え</h1>
+				<h3 className="!text-white">{config.event}</h3>
+				<h1 className="!text-white leading-tight">{config.title}</h1>
 				<br />
-				<h3 className="!text-white">ぶりお @burio_16</h3>
+				<h3 className="!text-white">{config.author} @burio_16</h3>
 			</div>
 		</section>
 	);

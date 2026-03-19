@@ -1,8 +1,10 @@
 import { ImageResponse } from "next/og";
+import { createOgpProps } from "@/lib/slides/config";
 
 const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
+const ogp = createOgpProps("better-t-stack");
 
-export const alt = "better-t-stack";
+export const alt = ogp.alt;
 export const size = {
 	width: 1200,
 	height: 630,
@@ -56,7 +58,7 @@ export default function Image() {
 						margin: 0,
 					}}
 				>
-					Cloudflare Meet-up Tokyo Vol.9
+					{ogp.event}
 				</p>
 				<div
 					style={{
@@ -94,7 +96,7 @@ export default function Image() {
 						margin: 0,
 					}}
 				>
-					ぶりお @burio_16
+					{ogp.author}
 				</p>
 			</div>
 		</div>,
