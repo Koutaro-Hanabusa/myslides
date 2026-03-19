@@ -5,16 +5,16 @@ const SLUG = "oss-and-community";
 const SLIDE_URL = `${BASE_URL}/${SLUG}`;
 
 export const metadata: Metadata = {
-	title: "外に出たらOSSコントリビュートできちゃった話 | 社内LT会",
+	title: "実績解除：OSSコントリビュート | 社内LT会",
 	description: "社内LT会 での発表資料 - vitestへのOSSコントリビュート体験記",
 	openGraph: {
-		title: "外に出たらOSSコントリビュートできちゃった話",
+		title: "実績解除：OSSコントリビュート",
 		description: "社内LT会 での発表資料 by ぶりお @burio_16",
 		type: "website",
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "外に出たらOSSコントリビュートできちゃった話",
+		title: "実績解除：OSSコントリビュート",
 		description: "社内LT会 での発表資料 by ぶりお @burio_16",
 	},
 	alternates: {
