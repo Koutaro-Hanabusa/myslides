@@ -3,6 +3,7 @@
 import { SlideCard } from "@/components/slides";
 import GraduateCover from "./25-graduate/slides/cover";
 import Cover from "./better-t-stack/slides/cover";
+import VitestCover from "./oss-and-community/slides/cover";
 import R3FCover from "./react-three-fiber/slides/cover";
 import RevealCover from "./revealjs-slideDeck/slides/cover";
 import TacosCover from "./tacotuesday/slides/cover";
@@ -14,6 +15,15 @@ export default function Home() {
 				Burio's slide deck
 			</h1>
 			<div className="grid grid-cols-1 gap-4 md:gap-8">
+				<SlideCard
+					href="/oss-and-community"
+					title="実績解除：OSSコントリビュート"
+					date="2026/3/23"
+					event="社内LT会"
+				>
+					<VitestCover />
+				</SlideCard>
+
 				<SlideCard
 					href="/25-graduate"
 					title="アウトプット、怖くないですか？"
