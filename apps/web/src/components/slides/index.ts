@@ -29,3 +29,17 @@ export {
 	TwoColumnSlide,
 } from "./layout-slides";
 export type { GradientTheme } from "./layout-slides";
+export {
+	Badge,
+	Callout,
+	Card,
+	CodeBlock,
+	Column,
+	Columns,
+	Divider,
+	Figure,
+	Highlight,
+	ProgressBar,
+	Quote,
+	Step,
+} from "./slide-parts";
