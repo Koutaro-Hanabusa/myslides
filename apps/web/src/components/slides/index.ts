@@ -1,5 +1,6 @@
 export {
 	BG_PERSONAL_CONTENT,
+	PersonalCalloutSlide,
 	PersonalContentSlide,
 	PersonalHeadingSlide,
 } from "./personal-slide";
@@ -17,3 +18,14 @@ export {
 	CorporatePhilosophySlide,
 	HeadingSlide,
 } from "./slide";
+export {
+	CardGridSlide,
+	ComparisonSlide,
+	GradientCoverSlide,
+	ImageTextSlide,
+	QuoteSlide,
+	SectionDividerSlide,
+	StepsSlide,
+	TwoColumnSlide,
+} from "./layout-slides";
+export type { GradientTheme } from "./layout-slides";

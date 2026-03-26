@@ -11,14 +11,21 @@ export const BG_BACK_COVER = `${R2_BASE}/${TEMPLATE_PATH}/千_外部登壇スラ
 
 interface HeadingSlideProps {
 	children: ReactNode;
+	/** サブタイトル */
+	subtitle?: string;
 }
 
 /** 見出しスライド - 大きなタイトル用 */
-export function HeadingSlide({ children }: HeadingSlideProps) {
+export function HeadingSlide({ children, subtitle }: HeadingSlideProps) {
 	return (
 		<section data-background-image={BG_HEADING} data-background-size="contain">
-			<div className="flex h-full items-center justify-center">
+			<div className="flex h-full flex-col items-center justify-center">
 				<h1 className="whitespace-pre-line text-center">{children}</h1>
+				{subtitle && (
+					<p className="mt-4 text-center text-2xl text-gray-600">
+						{subtitle}
+					</p>
+				)}
 			</div>
 		</section>
 	);
@@ -27,15 +34,23 @@ export function HeadingSlide({ children }: HeadingSlideProps) {
 interface ContentSlideProps {
 	title?: string;
 	children: ReactNode;
+	/** コンテンツをカードで囲む */
+	card?: boolean;
 }
 
 /** コンテンツスライド - 本文用 */
-export function ContentSlide({ title, children }: ContentSlideProps) {
+export function ContentSlide({ title, children, card }: ContentSlideProps) {
 	return (
 		<section data-background-image={BG_CONTENT} data-background-size="contain">
-			<div className="flex h-full flex-col justify-center">
-				{title && <h2 className="text-left text-black">{title}</h2>}
-				<div className="text-left text-black">{children}</div>
+			<div className="flex h-full flex-col justify-center px-8">
+				{title && <h2 className="mb-4 text-left text-black">{title}</h2>}
+				{card ? (
+					<div className="slide-card-light text-left text-black">
+						{children}
+					</div>
+				) : (
+					<div className="text-left text-black">{children}</div>
+				)}
 			</div>
 		</section>
 	);
