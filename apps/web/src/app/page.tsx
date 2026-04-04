@@ -6,11 +6,13 @@ import { SLIDES_CONFIG } from "@/lib/slides/config";
 import GraduateCover from "./25-graduate/slides/cover";
 import Cover from "./better-t-stack/slides/cover";
 import VitestCover from "./oss-and-community/slides/cover";
+import VitestCoverV2 from "./oss-and-community-v2/slides/cover";
 import R3FCover from "./react-three-fiber/slides/cover";
 import RevealCover from "./revealjs-slideDeck/slides/cover";
 import TacosCover from "./tacotuesday/slides/cover";
 import YouMustHaveDotfilesCover from "./you-must-have-dotfiles/slides/cover";
 
+const ossV2 = SLIDES_CONFIG["oss-and-community-v2"];
 const oss = SLIDES_CONFIG["oss-and-community"];
 const graduate = SLIDES_CONFIG["25-graduate"];
 const dotfiles = SLIDES_CONFIG["you-must-have-dotfiles"];
@@ -26,6 +28,16 @@ export default function Home() {
 				Burio's slide deck
 			</h1>
 			<div className="grid grid-cols-1 gap-4 md:gap-8">
+				<SlideCard
+					href={`/${ossV2.slug}` as Route}
+					title={ossV2.title}
+					date={ossV2.date}
+					event={ossV2.event}
+					url={ossV2.eventUrl}
+				>
+					<VitestCoverV2 />
+				</SlideCard>
+
 				<SlideCard
 					href={`/${oss.slug}` as Route}
 					title={oss.title}
