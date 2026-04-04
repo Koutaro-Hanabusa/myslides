@@ -3,31 +3,85 @@ import {
   PersonalContentSlide,
 } from "@/components/slides";
 import SelfIntroduction from "./slides/self-introduction";
+import Cover from "./slides/cover";
 
 <SelfIntroduction>
 
 - ぶりお [@burio_16](https://x.com/burio_16)
+- ついに2年目になってしまいました
 - タコスとTottenham Hotspur FCが大好き
 - いろんな人にタコスの人だと思われている
 
 </SelfIntroduction>
 
-<PersonalContentSlide title="昨日もタコスを作りました">
+<PersonalHeadingSlide>
 
-- チキンティンガタコス
-- マンゴーとハラペーニョのサルサ
+みなさんReact Tokyo Fes<br />行きましたか？
+
+</PersonalHeadingSlide>
+<PersonalContentSlide title="もちろん行きました">
+
+<div className="r-stack">
+  <img
+    className="fragment fade-out"
+    data-fragment-index="0"
+    src="/slides/oss-and-community-v2/assets/tacos.JPG"
+    alt="React Tokyoフェス"
+    style={{ margin: "0 auto", display: "block", maxHeight: "700px" }}
+  />
+  <img
+    className="fragment fade-in"
+    data-fragment-index="0"
+    src="/slides/oss-and-community-v2/assets/react-tokyo-fes.JPG"
+    alt="タコス"
+    style={{ margin: "0 auto", display: "block", maxHeight: "700px" }}
+  />
+</div>
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="レポートも出てましたね">
+
+- ぜひ読んでください！(書いた人ではありません)
+- [React Tokyoフェス2026イベントレポート](https://zenn.dev/react_tokyo/articles/2026-02-28-fest-report)
 
 <img
-  src="/slides/oss-and-community/assets/chikintinga.JPG"
-  alt="チキンティンガ"
+  src="/slides/oss-and-community-v2/assets/reacttokyo-report.png"
+  alt="React Tokyoフェス 2026 イベントレポート"
   style={{ margin: "0 auto", display: "block", maxHeight: "700px" }}
 />
 
 </PersonalContentSlide>
 
-<PersonalHeadingSlide>vitestにPRマージされました</PersonalHeadingSlide>
+<PersonalHeadingSlide>
 
-<PersonalContentSlide title="vitestとは？">
+ただの参加者の感想
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+めちゃくちゃ<br />~~タコスがうまかったです~~<br />学びも多く楽しかったです！
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+終
+
+</PersonalHeadingSlide>
+
+<Cover />
+
+<PersonalHeadingSlide>
+
+今日はReact Tokyoフェスに参加したからできたことの話です
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>VitestにPRマージされました</PersonalHeadingSlide>
+
+<PersonalContentSlide title="Vitestとは？">
 
 - JavaScriptの世界的なテストフレームワーク
 - あのvoidzeroが開発しているテストフレームワーク
@@ -65,12 +119,12 @@ import SelfIntroduction from "./slides/self-introduction";
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="コミュニティイベントでの出会い">
+<PersonalContentSlide title="偶然の出会い">
 
 - React Tokyoフェスでvoidzeroの人と話す機会が！
 - 「こんなissue立てたんですよ」と話してみた
 - 「初めてなんですが、どんなスタンスでいればいいですか？」と聞いた
-- **この会話はコミュニティという場がなければ絶対に生まれなかった**
+- **この会話はReact Tokyoフェスがなければ絶対に生まれなかった**
 
 </PersonalContentSlide>
 
@@ -98,95 +152,11 @@ import SelfIntroduction from "./slides/self-introduction";
 
 </PersonalContentSlide>
 
-<PersonalHeadingSlide>
+<PersonalContentSlide title="感謝">
 
-外に出たから<br />できたOSSコントリビュート
-
-</PersonalHeadingSlide>
-
-<PersonalHeadingSlide>
-
-今日話したいことは<br />自分語りではありません！！！
-
-</PersonalHeadingSlide>
-
-<PersonalHeadingSlide>
-
-<span style={{ color: "#dc2626" }}>外に出たから</span>
-<br />
-できたOSSコントリビュート
-
-</PersonalHeadingSlide>
-
-<PersonalContentSlide title="そもそもどのくらい行ってんねん">
-
-- 初めて外部のイベントに行ったのはフロントエンドカンファレンス東京
-- 9/21~3/22の間で33回
-- 月5.5回、年間換算で約66回ペース（ほぼ週1以上）
-
-</PersonalContentSlide>
-
-<PersonalContentSlide title="なんでそんなに行くのか">
-
-- 強いエンジニアがそこにいるから
-- 自分を表現することが好きだから(コレはLTの話)
-- シンプルに楽しいから
-
-<iframe
-  width="720"
-  height="405"
-  src="https://www.youtube.com/embed/ELzOJBhPXrs?start=539"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowFullScreen
-  style={{ margin: "0 auto", display: "block" }}
-/>
-
-</PersonalContentSlide>
-
-<PersonalContentSlide title="外部コミュニティに出て得たもの">
-
-- 刺激
-- 同じ技術に興味を持つ仲間との出会い
-- 自分の仕事が世界中のOSSに繋がる体験
-- 新卒でも、やってみたら意外とできた
-
-</PersonalContentSlide>
-
-<PersonalContentSlide title="外に出るハードル、実は低い">
-
-- connpassでイベントを探すだけ
-- 最初は聞くだけでもOK
-- 懇親会で1人に話しかけるだけで世界が広がる
-  - お酒を手にもって乾杯すれば誰とでも喋れます
-- 勇気がいるのは最初の1回だけ
-
-</PersonalContentSlide>
-
-<PersonalHeadingSlide>
-
-外部イベントは遠足！！
-
-</PersonalHeadingSlide>
-
-<PersonalContentSlide title="外部イベントは遠足">
-
-- ワクワクするものにいきましょう
-- 定期開催、または第n回など回数を重ねるタイプのイベントに<br />行くといっぱいワクワクできます
-
-</PersonalContentSlide>
-
-<PersonalHeadingSlide>
-
-みんなも一緒に外に出ていこう！
-
-</PersonalHeadingSlide>
-
-<PersonalContentSlide title="まとめ">
-
-- 外部イベントに参加したら、思わぬ出会いと機会があった
-- その出会いがOSSコントリビュートに繋がった
-- 新卒ペーペーでも世界的なOSSに貢献できた
-- **社内にいるだけでは得られない経験がそこにある**
-- 一緒にイベント行きましょう！声かけてください！
+- React TokyoフェスのおかげでまさかのOSSコントリビュート！
+  - [Hiroshi Ogawa](https://x.com/hiroshi_18181)さんありがとうございます
+- フロントエンドをやりたいけど知識不足な自分にも少し自信がついた
+  - コミュニティに参加して良かった！イベントに参加して良かった！！
 
 </PersonalContentSlide>
