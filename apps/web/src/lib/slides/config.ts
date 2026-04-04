@@ -84,6 +84,16 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
 		date: "2026/3/23",
 		event: "社内LT会",
 	},
+	"oss-and-community-v2": {
+		slug: "oss-and-community-v2",
+		title: "実績解除：OSSコントリビュート V2",
+		description: "OSSコントリビュートとコミュニティ活動についての発表資料 V2",
+		author: "ぶりお",
+		authorUrl: "https://twitter.com/burio_16",
+		date: "2026/4/17",
+		event: "React Tokyo ミートアップ #15",
+		eventUrl: "https://react-tokyo.connpass.com/event/386779/",
+	},
 };
 
 export function getSlideConfig(slug: string): SlideConfig {
