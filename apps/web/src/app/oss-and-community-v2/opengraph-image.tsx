@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { createOgpProps } from "@/lib/slides/config";
 
 const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
-const ogp = createOgpProps("oss-and-community");
+const ogp = createOgpProps("oss-and-community-v2");
 
 export const alt = ogp.alt;
 export const size = {
@@ -25,7 +25,7 @@ export default function Image() {
 		>
 			{/* biome-ignore lint/performance/noImgElement: next/og ImageResponseではimg要素が必要 */}
 			<img
-				src={`${R2_BASE}/burioSlide/burio16OGP.png`}
+				src={`${R2_BASE}/外部登壇資料テンプレ/千_外部登壇スライド_表紙.png`}
 				alt="スライド表紙"
 				style={{
 					position: "absolute",
