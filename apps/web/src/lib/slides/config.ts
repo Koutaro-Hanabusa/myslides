@@ -96,7 +96,7 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
 	},
 	"autofocus-correct-usage": {
 		slug: "autofocus-correct-usage",
-		title: "autofocusの正しい用法",
+		title: "autofocusの正しい用法を知っていますか？",
 		description:
 			"ESLint jsx-a11yのno-autofocusルールをきっかけに学んだ、autofocus属性のアクセシビリティに配慮した正しい使い方",
 		author: "ぶりお",

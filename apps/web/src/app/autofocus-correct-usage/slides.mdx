@@ -3,7 +3,11 @@ import {
   PersonalContentSlide,
 } from "@/components/slides";
 import SelfIntroduction from "./slides/self-introduction";
-import { AutofocusBasicDemo, AutofocusMultipleDemo, AutofocusDialogDemo } from "./slides/autofocus-demo";
+import {
+  AutofocusBasicDemo,
+  AutofocusMultipleDemo,
+  AutofocusDialogDemo,
+} from "./slides/autofocus-demo";
 
 <SelfIntroduction>
 
@@ -14,9 +18,15 @@ import { AutofocusBasicDemo, AutofocusMultipleDemo, AutofocusDialogDemo } from "
 
 <PersonalHeadingSlide>
 
-autofocusの正しい用法
+autofocusの正しい用法を知っていますか？
 
 </PersonalHeadingSlide>
+
+<PersonalContentSlide title="このLTについて">
+
+- React Tokyoミートアップのプロポーザルで通らなかったので社内で発散します！
+
+</PersonalContentSlide>
 
 <PersonalHeadingSlide>
 
@@ -122,9 +132,12 @@ autofocusってなーに？
 
 ```json
 {
-  "jsx-a11y/no-autofocus": ["error", {
-    "ignoreNonDOM": true
-  }]
+  "jsx-a11y/no-autofocus": [
+    "error",
+    {
+      "ignoreNonDOM": true
+    }
+  ]
 }
 ```
 
