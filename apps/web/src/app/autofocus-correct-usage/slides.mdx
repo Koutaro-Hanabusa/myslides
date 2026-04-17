@@ -16,17 +16,10 @@ import { AutofocusBasicDemo, AutofocusMultipleDemo, AutofocusDialogDemo } from "
 autofocusの正しい用法
 </PersonalHeadingSlide>
 
-<PersonalContentSlide title="今日のゴール">
-
-- autofocusとは何かを理解する
-- なぜLinterが警告するのかを知る
-- autofocusの正しい用法を学ぶ
-- **聞き終わる頃には、自信を持ってautofocusを使えるようになる**
-
-</PersonalContentSlide>
+{/* ===== 1. autofocusってなーに？ ===== */}
 
 <PersonalHeadingSlide>
-{"autofocusとは？"}
+{"autofocusってなーに？"}
 </PersonalHeadingSlide>
 
 <PersonalContentSlide title="autofocus属性">
@@ -43,8 +36,10 @@ autofocusの正しい用法
 
 <AutofocusBasicDemo />
 
+{/* ===== 2. なんで遭遇したんだ？ ===== */}
+
 <PersonalHeadingSlide>
-きっかけ
+{"なんで遭遇したんだ？"}
 </PersonalHeadingSlide>
 
 <PersonalContentSlide title="ESLint jsx-a11yの導入">
@@ -60,12 +55,13 @@ autofocusの正しい用法
 
 - ESLintのエラーなので、単純にautofocusを消すこともできた
 - でも知らなかった属性だったので、ちゃんと調べてみた
-- MDNやW3Cのドキュメントを読んだ
 
 </PersonalContentSlide>
 
+{/* ===== 3. なんでエラーなるん？ ===== */}
+
 <PersonalHeadingSlide>
-なぜLinterが警告するのか
+{"なんでエラーなるん？"}
 </PersonalHeadingSlide>
 
 <PersonalContentSlide title="jsx-a11y/no-autofocusの理由">
@@ -89,8 +85,10 @@ autofocusの正しい用法
 
 <AutofocusMultipleDemo />
 
+{/* ===== 4. ドキュメント読んだ感じこう使うのが良さそう！ ===== */}
+
 <PersonalHeadingSlide>
-autofocusの正しい用法
+{"ドキュメント読んだ感じ\nこう使うのが良さそう！"}
 </PersonalHeadingSlide>
 
 <PersonalContentSlide title="W3Cの推奨">
@@ -132,6 +130,40 @@ autofocusの正しい用法
 
 </PersonalContentSlide>
 
+{/* ===== 5. shadcnでも指定できるあれがあったよん ===== */}
+
+<PersonalHeadingSlide>
+{"shadcnでも指定できる\nあれがあったよん"}
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="Radix UIのonOpenAutoFocus">
+
+- shadcn/uiのDialog・Popoverなどは内部でRadix UIを使用
+- `onOpenAutoFocus`で開いた時のフォーカス先を制御できる
+- デフォルトでダイアログ内の最初のフォーカス可能な要素にフォーカスが当たる
+
+```tsx
+<DialogContent onOpenAutoFocus={(e) => {
+  e.preventDefault();
+  // 特定の要素にフォーカスを当てたい場合
+  myInputRef.current?.focus();
+}}>
+```
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="shadcnでの実践例">
+
+{/* TODO: 壁打ちで具体的な例を詰める */}
+
+- `Dialog`の中で特定のinputにフォーカスを当てたい
+- `onOpenAutoFocus`を使えばHTML autofocusなしで実現可能
+- Linterにも怒られない、アクセシブルなパターン
+
+</PersonalContentSlide>
+
+{/* ===== まとめ ===== */}
+
 <PersonalHeadingSlide>
 まとめ
 </PersonalHeadingSlide>
@@ -141,7 +173,7 @@ autofocusの正しい用法
 - **autofocus**はフォーカスを当てるHTML属性
 - Linterが警告するのはアクセシビリティ上の理由
 - **ダイアログやモーダル内での使用が正しいパターン**
-- ページの初期読み込みでの使用は避ける
+- shadcn/Radix UIなら`onOpenAutoFocus`で制御できる
 - ESLintのエラーを「消す」のではなく「調べた」ことで正しい知識を得られた
 
 </PersonalContentSlide>
