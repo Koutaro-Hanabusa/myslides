@@ -130,35 +130,19 @@ autofocusの正しい用法
 
 </PersonalContentSlide>
 
-{/* ===== 5. shadcnでも指定できるあれがあったよん ===== */}
+{/* ===== 5. Base UIでも指定できるあれがあったよん ===== */}
 
 <PersonalHeadingSlide>
-{"shadcnでも指定できる\nあれがあったよん"}
+{"Base UIでも指定できる\nあれがあったよん"}
 </PersonalHeadingSlide>
 
-<PersonalContentSlide title="Radix UIのonOpenAutoFocus">
+<PersonalContentSlide title="Base UIのDialog">
 
-- shadcn/uiのDialog・Popoverなどは内部でRadix UIを使用
-- `onOpenAutoFocus`で開いた時のフォーカス先を制御できる
-- デフォルトでダイアログ内の最初のフォーカス可能な要素にフォーカスが当たる
+{/* TODO: 壁打ちで具体的な内容を詰める */}
 
-```tsx
-<DialogContent onOpenAutoFocus={(e) => {
-  e.preventDefault();
-  // 特定の要素にフォーカスを当てたい場合
-  myInputRef.current?.focus();
-}}>
-```
-
-</PersonalContentSlide>
-
-<PersonalContentSlide title="shadcnでの実践例">
-
-{/* TODO: 壁打ちで具体的な例を詰める */}
-
-- `Dialog`の中で特定のinputにフォーカスを当てたい
-- `onOpenAutoFocus`を使えばHTML autofocusなしで実現可能
-- Linterにも怒られない、アクセシブルなパターン
+- Base UIのDialogコンポーネントでもフォーカス制御が可能
+- ダイアログを開いた時に特定の要素にフォーカスを当てられる
+- HTML autofocusなしで実現可能 → Linterにも怒られない
 
 </PersonalContentSlide>
 
