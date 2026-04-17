@@ -94,6 +94,15 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
 		event: "React Tokyo ミートアップ #15",
 		eventUrl: "https://react-tokyo.connpass.com/event/386779/",
 	},
+	"autofocus-correct-usage": {
+		slug: "autofocus-correct-usage",
+		title: "autofocusの正しい用法",
+		description:
+			"ESLint jsx-a11yのno-autofocusルールをきっかけに学んだ、autofocus属性のアクセシビリティに配慮した正しい使い方",
+		author: "ぶりお",
+		authorUrl: "https://twitter.com/burio_16",
+		date: "2026/4/10",
+	},
 };
 
 export function getSlideConfig(slug: string): SlideConfig {

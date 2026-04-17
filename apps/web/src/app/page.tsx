@@ -11,7 +11,9 @@ import R3FCover from "./react-three-fiber/slides/cover";
 import RevealCover from "./revealjs-slideDeck/slides/cover";
 import TacosCover from "./tacotuesday/slides/cover";
 import YouMustHaveDotfilesCover from "./you-must-have-dotfiles/slides/cover";
+import AutofocusCover from "./autofocus-correct-usage/slides/cover";
 
+const autofocus = SLIDES_CONFIG["autofocus-correct-usage"];
 const ossV2 = SLIDES_CONFIG["oss-and-community-v2"];
 const oss = SLIDES_CONFIG["oss-and-community"];
 const graduate = SLIDES_CONFIG["25-graduate"];
@@ -28,6 +30,15 @@ export default function Home() {
 				Burio's slide deck
 			</h1>
 			<div className="grid grid-cols-1 gap-4 md:gap-8">
+				<SlideCard
+					href={`/${autofocus.slug}` as Route}
+					title={autofocus.title}
+					date={autofocus.date}
+					event={autofocus.event}
+				>
+					<AutofocusCover />
+				</SlideCard>
+
 				<SlideCard
 					href={`/${ossV2.slug}` as Route}
 					title={ossV2.title}

@@ -1,0 +1,151 @@
+import {
+  PersonalHeadingSlide,
+  PersonalContentSlide,
+} from "@/components/slides";
+import SelfIntroduction from "./slides/self-introduction";
+import { AutofocusBasicDemo, AutofocusMultipleDemo, AutofocusDialogDemo } from "./slides/autofocus-demo";
+
+<SelfIntroduction>
+
+- ぶりお [@burio_16](https://x.com/burio_16)
+- タコスとTottenham Hotspur FCが大好き
+
+</SelfIntroduction>
+
+<PersonalHeadingSlide>
+autofocusの正しい用法
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="今日のゴール">
+
+- autofocusとは何かを理解する
+- なぜLinterが警告するのかを知る
+- autofocusの正しい用法を学ぶ
+- **聞き終わる頃には、自信を持ってautofocusを使えるようになる**
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+{"autofocusとは？"}
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="autofocus属性">
+
+- HTMLの属性で、ページ読み込み時に要素にフォーカスを当てる
+- `<input>`, `<textarea>`, `<select>`, `<button>` などで使用可能
+- ページ内で1つの要素にのみ指定すべき
+
+```html
+<input type="text" autofocus />
+```
+
+</PersonalContentSlide>
+
+<AutofocusBasicDemo />
+
+<PersonalHeadingSlide>
+きっかけ
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="ESLint jsx-a11yの導入">
+
+- プロジェクトに`eslint-plugin-jsx-a11y`を導入
+- `jsx-a11y/no-autofocus`ルールに違反するエラーが発生
+- **そこで初めてautofocusという属性の存在を知った**
+- プロダクトで既に使われていたことに気づいた
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="最初の選択肢">
+
+- ESLintのエラーなので、単純にautofocusを消すこともできた
+- でも知らなかった属性だったので、ちゃんと調べてみた
+- MDNやW3Cのドキュメントを読んだ
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+なぜLinterが警告するのか
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="jsx-a11y/no-autofocusの理由">
+
+- autofocusはページ読み込み時にフォーカスを強制的に移動させる
+- スクリーンリーダーユーザーにとって混乱の原因になる
+  - ページの先頭から読み上げが始まらない
+  - フォーカスが突然移動し、現在位置を見失う
+- キーボードナビゲーションのユーザーにも影響
+  - Tabキーの順序が期待と異なる
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="複数のautofocusがあるとどうなる？">
+
+- ブラウザによって挙動が異なる
+- 最後の要素にフォーカスが当たることが多い
+- 予測不能な動作 → バグの温床
+
+</PersonalContentSlide>
+
+<AutofocusMultipleDemo />
+
+<PersonalHeadingSlide>
+autofocusの正しい用法
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="W3Cの推奨">
+
+- autofocusは**ユーザーの操作に応じて表示される要素**で使うべき
+  - ダイアログ / モーダル
+  - ポップオーバー
+  - ドロワー
+- ページの初期読み込み時には使わない
+- **「ユーザーがアクションを起こした結果、フォーカスが移る」のが正しい**
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="なぜダイアログでは正しいのか">
+
+- ユーザーが能動的にダイアログを開いている
+- フォーカスがダイアログ内に移ることは期待される動作
+- スクリーンリーダーでも自然な流れになる
+- フォーカストラップと組み合わせるとさらに良い
+
+</PersonalContentSlide>
+
+<AutofocusDialogDemo />
+
+<PersonalContentSlide title="jsx-a11y/no-autofocusの設定">
+
+- このルールには`ignoreNonDOM`オプションがある
+- Reactのポータルやモーダルライブラリで使う場合は許可できる
+
+```json
+{
+  "jsx-a11y/no-autofocus": ["error", {
+    "ignoreNonDOM": true
+  }]
+}
+```
+
+- ただし、ページ直接のautofocusは引き続き警告される
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+まとめ
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="まとめ">
+
+- **autofocus**はフォーカスを当てるHTML属性
+- Linterが警告するのはアクセシビリティ上の理由
+- **ダイアログやモーダル内での使用が正しいパターン**
+- ページの初期読み込みでの使用は避ける
+- ESLintのエラーを「消す」のではなく「調べた」ことで正しい知識を得られた
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+{"知らないことに出会ったら\n調べるチャンス！"}
+</PersonalHeadingSlide>
