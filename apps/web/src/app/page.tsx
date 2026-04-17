@@ -4,6 +4,7 @@ import type { Route } from "next";
 import { SlideCard } from "@/components/slides";
 import { SLIDES_CONFIG } from "@/lib/slides/config";
 import GraduateCover from "./25-graduate/slides/cover";
+import AutofocusCover from "./autofocus-correct-usage/slides/cover";
 import Cover from "./better-t-stack/slides/cover";
 import VitestCover from "./oss-and-community/slides/cover";
 import VitestCoverV2 from "./oss-and-community-v2/slides/cover";
@@ -11,7 +12,6 @@ import R3FCover from "./react-three-fiber/slides/cover";
 import RevealCover from "./revealjs-slideDeck/slides/cover";
 import TacosCover from "./tacotuesday/slides/cover";
 import YouMustHaveDotfilesCover from "./you-must-have-dotfiles/slides/cover";
-import AutofocusCover from "./autofocus-correct-usage/slides/cover";
 
 const autofocus = SLIDES_CONFIG["autofocus-correct-usage"];
 const ossV2 = SLIDES_CONFIG["oss-and-community-v2"];
@@ -19,7 +19,7 @@ const oss = SLIDES_CONFIG["oss-and-community"];
 const graduate = SLIDES_CONFIG["25-graduate"];
 const dotfiles = SLIDES_CONFIG["you-must-have-dotfiles"];
 const reveal = SLIDES_CONFIG["revealjs-slideDeck"];
-const tacos = SLIDES_CONFIG["tacotuesday"];
+const tacos = SLIDES_CONFIG.tacotuesday;
 const betterT = SLIDES_CONFIG["better-t-stack"];
 const r3f = SLIDES_CONFIG["react-three-fiber"];
 
