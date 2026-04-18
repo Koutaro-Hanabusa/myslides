@@ -99,7 +99,8 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
       "ESLint jsx-a11yのno-autofocusルールをきっかけに学んだ、autofocus属性のアクセシビリティに配慮した正しい使い方",
     author: "ぶりお",
     authorUrl: "https://twitter.com/burio_16",
-    date: "2026/4/10",
+    date: "2026/4/20",
+    event: "社内LT会",
   },
 };
 
