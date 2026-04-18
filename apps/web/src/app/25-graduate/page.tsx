@@ -5,12 +5,12 @@ import Cover from "./slides/cover";
 import SlidesContent from "./slides.mdx";
 
 export default function PresentationPage() {
-	return (
-		<div className="h-full w-full">
-			<RevealPresentation transition="slide">
-				<Cover />
-				<SlidesContent />
-			</RevealPresentation>
-		</div>
-	);
+  return (
+    <div className="h-full w-full">
+      <RevealPresentation transition="slide">
+        <Cover />
+        <SlidesContent />
+      </RevealPresentation>
+    </div>
+  );
 }

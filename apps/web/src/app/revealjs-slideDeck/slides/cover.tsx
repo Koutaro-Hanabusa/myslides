@@ -4,22 +4,22 @@ const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
 const config = getSlideConfig("revealjs-slideDeck");
 
 export default function Cover() {
-	return (
-		<section
-			data-background-image={`${R2_BASE}/burioSlide/burio16Cover.png`}
-			data-background-size="contain"
-		>
-			<div className="text-left">
-				<h3>{config.event}</h3>
-				<br />
-				<h1 className="leading-tight">
-					自分だけの
-					<br />
-					スライドデッキを作ってみた
-				</h1>
-				<br />
-				<h3>{config.author} @burio_16</h3>
-			</div>
-		</section>
-	);
+  return (
+    <section
+      data-background-image={`${R2_BASE}/burioSlide/burio16Cover.png`}
+      data-background-size="contain"
+    >
+      <div className="text-left">
+        <h3>{config.event}</h3>
+        <br />
+        <h1 className="leading-tight">
+          自分だけの
+          <br />
+          スライドデッキを作ってみた
+        </h1>
+        <br />
+        <h3>{config.author} @burio_16</h3>
+      </div>
+    </section>
+  );
 }

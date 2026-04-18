@@ -9,31 +9,28 @@ import SelfIntroduction from "./slides/self-introduction";
 
 // 画像ファイル名の配列を作成（番号なし→1→2→...→31の順）
 const imageFiles = [
-	"20251114_React_Tokyo.png",
-	...Array.from(
-		{ length: 31 },
-		(_, i) => `20251114_React_Tokyo (${i + 1}).png`,
-	),
+  "20251114_React_Tokyo.png",
+  ...Array.from({ length: 31 }, (_, i) => `20251114_React_Tokyo (${i + 1}).png`),
 ];
 
 export default function PresentationPage() {
-	return (
-		<div className="h-full w-full">
-			<RevealPresentation transition="slide">
-				<Cover />
-				<SelfIntroduction />
-				<CorporatePhilosophy />
-				<BusinessContent />
-				{imageFiles.map((filename) => (
-					<section
-						key={filename}
-						data-background-image={`/slides/React-three-fiber/assets/${filename}`}
-						data-background-size="contain"
-						data-background-color="#000"
-					/>
-				))}
-				<BackCover />
-			</RevealPresentation>
-		</div>
-	);
+  return (
+    <div className="h-full w-full">
+      <RevealPresentation transition="slide">
+        <Cover />
+        <SelfIntroduction />
+        <CorporatePhilosophy />
+        <BusinessContent />
+        {imageFiles.map((filename) => (
+          <section
+            key={filename}
+            data-background-image={`/slides/React-three-fiber/assets/${filename}`}
+            data-background-size="contain"
+            data-background-color="#000"
+          />
+        ))}
+        <BackCover />
+      </RevealPresentation>
+    </div>
+  );
 }
