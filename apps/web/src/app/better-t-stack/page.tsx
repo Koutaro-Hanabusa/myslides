@@ -1,5 +1,3 @@
-"use client";
-
 import RevealPresentation from "@/components/reveal-presentation";
 import BackCover from "./slides/back-cover";
 import BusinessContent from "./slides/business-content";

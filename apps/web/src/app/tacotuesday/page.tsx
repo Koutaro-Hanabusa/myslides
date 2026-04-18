@@ -1,5 +1,3 @@
-"use client";
-
 import RevealPresentation from "@/components/reveal-presentation";
 import Content from "../revealjs-slideDeck/slides/content";
 import RevealCover from "../revealjs-slideDeck/slides/cover";
