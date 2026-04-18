@@ -50,7 +50,7 @@ export function AutofocusDialogDemo() {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   return (
-    <div className="mx-auto mt-8 max-w-3xl rounded-xl border border-green-600/50 bg-gray-900/80 p-8">
+    <div className="mx-auto mt-8 flex max-w-3xl flex-col items-center justify-center rounded-xl border border-green-600/50 bg-gray-900/80 p-8">
       <button
         type="button"
         onClick={() => dialogRef.current?.showModal()}
@@ -60,7 +60,7 @@ export function AutofocusDialogDemo() {
       </button>
       <dialog
         ref={dialogRef}
-        className="w-full max-w-lg rounded-2xl border border-gray-600 bg-gray-900 p-8 text-white backdrop:bg-black/60"
+        className="fixed inset-0 m-auto h-fit w-full max-w-lg rounded-2xl border border-gray-600 bg-gray-900 p-8 text-white backdrop:bg-black/60"
       >
         <h3 className="mb-6 font-bold text-2xl">ログイン</h3>
         <div className="space-y-4">
@@ -108,7 +108,7 @@ export function AutofocusCancelDemo() {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   return (
-    <div className="mx-auto mt-8 max-w-3xl rounded-xl border border-blue-600/50 bg-gray-900/80 p-8">
+    <div className="mx-auto mt-8 flex max-w-3xl flex-col items-center justify-center rounded-xl border border-blue-600/50 bg-gray-900/80 p-8">
       <button
         type="button"
         onClick={() => dialogRef.current?.showModal()}
@@ -118,7 +118,7 @@ export function AutofocusCancelDemo() {
       </button>
       <dialog
         ref={dialogRef}
-        className="w-full max-w-lg rounded-2xl border border-gray-600 bg-gray-900 p-8 text-white backdrop:bg-black/60"
+        className="fixed inset-0 m-auto h-fit w-full max-w-lg rounded-2xl border border-gray-600 bg-gray-900 p-8 text-white backdrop:bg-black/60"
       >
         <h3 className="mb-4 font-bold text-2xl text-red-400">⚠️ アカウント削除</h3>
         <p className="mb-2 text-left text-gray-300 text-lg">この操作は取り消せません。</p>
@@ -170,7 +170,7 @@ export function RadixDialogDemo() {
   const cancelRef = useRef<HTMLButtonElement>(null);
 
   return (
-    <div className="mx-auto mt-8 max-w-3xl rounded-xl border border-purple-600/50 bg-gray-900/80 p-8">
+    <div className="mx-auto mt-8 flex max-w-3xl flex-col items-center justify-center rounded-xl border border-purple-600/50 bg-gray-900/80 p-8">
       <Dialog>
         <DialogTrigger asChild>
           <button
