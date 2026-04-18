@@ -16,15 +16,9 @@ import {
 
 <PersonalHeadingSlide>
 
-autofocusの正しい用法を知っていますか？
+フロントエンドカンファレンスで<br />プロポーザル通らなかったので<br />ここで発散します！
 
 </PersonalHeadingSlide>
-
-<PersonalContentSlide title="このLTについて">
-
-- React Tokyoミートアップのプロポーザルで通らなかったので社内で発散します！
-
-</PersonalContentSlide>
 
 <PersonalHeadingSlide>
 
@@ -60,18 +54,22 @@ autofocusってなーに？
 
 <PersonalContentSlide title="ESLint jsx-a11yの導入">
 
-- チームの先輩がSonarQubeでa11yの指摘を受けたPRがきっかけ
+<div className="flex items-start gap-8">
+<div>
 
-<img
-  src="/slides/autofocus-correct-usage/assets/pr-532.png"
-  alt="a11y周り修正 PR #532"
-  className="mx-auto mt-4 max-w-[75%]"
-/>
-
+- SonarQubeでa11yの指摘を受けたPRがきっかけ
 - 「そもそもa11yのLintルール入ってなくない？」と気づいた
 - `eslint-plugin-jsx-a11y`を自分で導入
 - すると`jsx-a11y/no-autofocus`の警告が発生
 - **そこで初めてautofocusという属性の存在を知った**
+
+</div>
+<img
+  src="/slides/autofocus-correct-usage/assets/pr-532.png"
+  alt="a11y周り修正 PR #532"
+  className="max-w-[40%] h-auto rounded-lg"
+/>
+</div>
 
 </PersonalContentSlide>
 
@@ -90,7 +88,6 @@ autofocusってなーに？
 
 <PersonalContentSlide title="jsx-a11y/no-autofocusの理由">
 
-- 何にでも付けられるグローバル属性だからこそ、制限が必要
 - autofocusはページ読み込み時にフォーカスを強制的に移動させる
 - スクリーンリーダーユーザーにとって混乱の原因になる
   - ページの先頭から読み上げが始まらない
@@ -102,7 +99,22 @@ autofocusってなーに？
 
 <PersonalHeadingSlide>
 
-{"ドキュメント読んだ感じ\nこう使うのが良さそう！"}
+正しい使い方も知りたい！！
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="読んだドキュメント">
+
+- [MDN - autofocus](https://developer.mozilla.org/ja/docs/Web/HTML/Global_attributes/autofocus)
+- [MDN - dialog](https://developer.mozilla.org/ja/docs/Web/HTML/Element/dialog)
+- [W3C APG - Dialog (Modal) Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/)
+- [W3C APG - Alert Dialog Example](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/examples/alertdialog/)
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+ドキュメント読んだ感じ<br />こう使うのが良さそう！
 
 </PersonalHeadingSlide>
 
