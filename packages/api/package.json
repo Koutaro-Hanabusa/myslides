@@ -1,32 +1,32 @@
 {
-	"name": "@mySlides/api",
-	"exports": {
-		".": {
-			"types": "./dist/index.d.ts",
-			"default": "./src/index.ts"
-		},
-		"./*": {
-			"types": "./dist/*.d.ts",
-			"default": "./src/*.ts"
-		}
-	},
-	"type": "module",
-	"scripts": {
-		"build": "tsdown"
-	},
-	"devDependencies": {
-		"tsdown": "catalog:",
-		"@mySlides/config": "workspace:*"
-	},
-	"peerDependencies": {
-		"typescript": "^5"
-	},
-	"dependencies": {
-		"@trpc/server": "catalog:",
-		"@trpc/client": "catalog:",
-		"hono": "catalog:",
-		"dotenv": "catalog:",
-		"zod": "catalog:",
-		"@mySlides/db": "workspace:*"
-	}
+  "name": "@mySlides/api",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "default": "./src/*.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsdown"
+  },
+  "dependencies": {
+    "@mySlides/db": "workspace:*",
+    "@trpc/client": "catalog:",
+    "@trpc/server": "catalog:",
+    "dotenv": "catalog:",
+    "hono": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@mySlides/config": "workspace:*",
+    "tsdown": "catalog:"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
 }

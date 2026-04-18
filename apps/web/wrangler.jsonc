@@ -6,11 +6,11 @@
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "vars": {
     "NEXT_PUBLIC_BASE_URL": "https://slide.burio16.com",
-    "NEXT_PUBLIC_SERVER_URL": "https://myslides-server.koutarouhanabusa.workers.dev"
+    "NEXT_PUBLIC_SERVER_URL": "https://myslides-server.koutarouhanabusa.workers.dev",
   },
   "assets": {
     "directory": ".open-next/assets",
-    "binding": "ASSETS"
+    "binding": "ASSETS",
   },
   // Fix next-themes __name is not defined error
   // See: https://opennext.js.org/cloudflare/howtos/keep_names
@@ -20,17 +20,17 @@
       "enabled": false,
       "head_sampling_rate": 1,
       "invocation_logs": true,
-      "persist": true
-    }
+      "persist": true,
+    },
   },
   "env": {
     "staging": {
       "vars": {
         "NEXT_PUBLIC_BASE_URL": "https://myslides-staging.koutarouhanabusa.workers.dev",
-        "NEXT_PUBLIC_SERVER_URL": "https://myslides-server.koutarouhanabusa.workers.dev"
-      }
-    }
-  }
+        "NEXT_PUBLIC_SERVER_URL": "https://myslides-server.koutarouhanabusa.workers.dev",
+      },
+    },
+  },
   // "r2_buckets": [
   // 	// Use R2 incremental cache
   // 	// See https://opennext.js.org/cloudflare/caching
