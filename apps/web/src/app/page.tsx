@@ -1,5 +1,3 @@
-"use client";
-
 import type { Route } from "next";
 import { SlideCard } from "@/components/slides";
 import { SLIDES_CONFIG } from "@/lib/slides/config";
