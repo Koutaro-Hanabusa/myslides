@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -30,8 +30,36 @@ export function AutofocusBadDemo() {
   );
 }
 
+function useFocusTrap(dialogRef: React.RefObject<HTMLDialogElement | null>) {
+  return useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key !== "Tab") return;
+      const dialog = dialogRef.current;
+      if (!dialog) return;
+
+      const focusable = dialog.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      );
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    },
+    [dialogRef],
+  );
+}
+
 export function AutofocusDialogDemo() {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const handleKeyDown = useFocusTrap(dialogRef);
 
   return (
     <div className="mx-auto mt-8 flex max-w-3xl flex-col items-center justify-center rounded-xl border border-green-600/50 bg-gray-900/80 p-8">
@@ -44,6 +72,7 @@ export function AutofocusDialogDemo() {
       </button>
       <dialog
         ref={dialogRef}
+        onKeyDown={handleKeyDown}
         className="fixed inset-0 m-auto h-fit w-full max-w-lg rounded-2xl border border-gray-600 bg-gray-900 p-8 text-white backdrop:bg-black/60"
       >
         <h3 className="mb-6 font-bold text-2xl">ログイン</h3>
@@ -71,14 +100,14 @@ export function AutofocusDialogDemo() {
           <button
             type="button"
             onClick={() => dialogRef.current?.close()}
-            className="rounded-lg bg-gray-700 px-6 py-3 text-lg text-white hover:bg-gray-600"
+            className="rounded-lg bg-gray-700 px-6 py-3 text-lg text-white outline-none hover:bg-gray-600 focus:ring-2 focus:ring-gray-400"
           >
             キャンセル
           </button>
           <button
             type="button"
             onClick={() => dialogRef.current?.close()}
-            className="rounded-lg bg-green-600 px-6 py-3 font-bold text-lg text-white hover:bg-green-700"
+            className="rounded-lg bg-green-600 px-6 py-3 font-bold text-lg text-white outline-none hover:bg-green-700 focus:ring-2 focus:ring-green-400"
           >
             ログイン
           </button>
@@ -90,6 +119,7 @@ export function AutofocusDialogDemo() {
 
 export function AutofocusCancelDemo() {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const handleKeyDown = useFocusTrap(dialogRef);
 
   return (
     <div className="mx-auto mt-8 flex max-w-3xl flex-col items-center justify-center rounded-xl border border-blue-600/50 bg-gray-900/80 p-8">
@@ -102,6 +132,7 @@ export function AutofocusCancelDemo() {
       </button>
       <dialog
         ref={dialogRef}
+        onKeyDown={handleKeyDown}
         className="fixed inset-0 m-auto h-fit w-full max-w-lg rounded-2xl border border-gray-600 bg-gray-900 p-8 text-white backdrop:bg-black/60"
       >
         <h3 className="mb-4 font-bold text-2xl text-red-400">⚠️ アカウント削除</h3>
@@ -115,14 +146,14 @@ export function AutofocusCancelDemo() {
             // oxlint-disable-next-line jsx-a11y/no-autofocus -- デモ用
             autoFocus
             onClick={() => dialogRef.current?.close()}
-            className="rounded-lg bg-gray-700 px-6 py-3 font-bold text-lg text-white outline-none ring-2 ring-blue-500 hover:bg-gray-600 focus:ring-blue-400"
+            className="rounded-lg bg-gray-700 px-6 py-3 font-bold text-lg text-white outline-none hover:bg-gray-600 focus:ring-2 focus:ring-blue-400"
           >
             キャンセル
           </button>
           <button
             type="button"
             onClick={() => dialogRef.current?.close()}
-            className="rounded-lg bg-red-600 px-6 py-3 text-lg text-white hover:bg-red-700"
+            className="rounded-lg bg-red-600 px-6 py-3 text-lg text-white outline-none hover:bg-red-700 focus:ring-2 focus:ring-red-400"
           >
             削除する
           </button>
@@ -142,7 +173,7 @@ function FocusAwareButton({ buttonRef }: { buttonRef: React.RefObject<HTMLButton
         ref={buttonRef}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
-        className="rounded-lg bg-gray-200 px-6 py-3 font-bold text-lg text-gray-800 outline-none ring-2 ring-purple-500 hover:bg-gray-300 focus:ring-purple-400"
+        className="rounded-lg bg-gray-200 px-6 py-3 font-bold text-lg text-gray-800 outline-none hover:bg-gray-300 focus:ring-2 focus:ring-purple-400"
       >
         {isFocused ? "✅ フォーカス中！" : "キャンセル"}
       </button>
@@ -180,7 +211,7 @@ export function RadixDialogDemo() {
             <FocusAwareButton buttonRef={cancelRef} />
             <button
               type="button"
-              className="rounded-lg bg-red-600 px-6 py-3 text-lg text-white hover:bg-red-700"
+              className="rounded-lg bg-red-600 px-6 py-3 text-lg text-white outline-none hover:bg-red-700 focus:ring-2 focus:ring-red-400"
             >
               削除する
             </button>
