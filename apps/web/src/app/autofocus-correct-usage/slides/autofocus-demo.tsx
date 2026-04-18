@@ -12,36 +12,20 @@ import {
 } from "@/components/ui/dialog";
 
 export function AutofocusBadDemo() {
-  const [show, setShow] = useState(false);
-
   return (
-    <div className="mx-auto mt-8 max-w-3xl rounded-xl border border-red-600/50 bg-gray-900/80 p-8">
-      <button
-        type="button"
-        onClick={() => setShow(!show)}
-        className="mb-6 rounded-lg bg-red-600 px-6 py-3 font-bold text-white text-xl hover:bg-red-700"
+    <div className="mx-auto mt-8 w-full max-w-3xl space-y-4 rounded-xl border border-red-600/50 bg-gray-900/80 p-8 text-left">
+      <p className="text-gray-400 text-lg">↓ 本来はここから順番に読んでほしい</p>
+      <p className="text-white text-xl">1. まずはこの説明を読んでください</p>
+      <p className="text-white text-xl">2. 次にこちらの内容を確認してください</p>
+      <div
+        // oxlint-disable-next-line jsx-a11y/no-autofocus -- デモ用
+        autoFocus
+        // oxlint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- デモ用
+        tabIndex={0}
+        className="rounded-lg border border-red-500 bg-red-900/40 px-4 py-3 text-white text-xl outline-none ring-2 ring-red-500 focus:ring-red-400"
       >
-        {show ? "リセット" : "表示する"}
-      </button>
-      {show && (
-        <div className="space-y-4">
-          <p className="text-left text-gray-300 text-lg">↓ なぜかお知らせバナーにautofocusが…</p>
-          <div
-            // oxlint-disable-next-line jsx-a11y/no-autofocus -- デモ用
-            autoFocus
-            // oxlint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- デモ用
-            tabIndex={0}
-            className="rounded-lg border border-red-500 bg-red-900/40 px-4 py-3 text-left text-white text-xl outline-none ring-2 ring-red-500 focus:ring-red-400"
-          >
-            🔔 お知らせ: メンテナンスを予定しています
-          </div>
-          <input
-            type="text"
-            placeholder="本来フォーカスしたい検索フィールド"
-            className="block w-full rounded-lg border border-gray-500 bg-gray-800 px-4 py-3 text-white text-xl placeholder-gray-400 outline-none focus:ring-2 focus:ring-gray-400"
-          />
-        </div>
-      )}
+        3. でもこのdivにautofocusが付いているので、ここに飛ばされる
+      </div>
     </div>
   );
 }
