@@ -5,29 +5,29 @@ import { createTRPCOptionsProxy } from "@trpc/tanstack-react-query";
 import { toast } from "sonner";
 
 export const queryClient = new QueryClient({
-	queryCache: new QueryCache({
-		onError: (error) => {
-			toast.error(error.message, {
-				action: {
-					label: "retry",
-					onClick: () => {
-						queryClient.invalidateQueries();
-					},
-				},
-			});
-		},
-	}),
+  queryCache: new QueryCache({
+    onError: (error) => {
+      toast.error(error.message, {
+        action: {
+          label: "retry",
+          onClick: () => {
+            queryClient.invalidateQueries();
+          },
+        },
+      });
+    },
+  }),
 });
 
 const trpcClient = createTRPCClient<AppRouter>({
-	links: [
-		httpBatchLink({
-			url: `${process.env.NEXT_PUBLIC_SERVER_URL || "https://myslides-server.koutarouhanabusa.workers.dev"}/trpc`,
-		}),
-	],
+  links: [
+    httpBatchLink({
+      url: `${process.env.NEXT_PUBLIC_SERVER_URL || "https://myslides-server.koutarouhanabusa.workers.dev"}/trpc`,
+    }),
+  ],
 });
 
 export const trpc = createTRPCOptionsProxy<AppRouter>({
-	client: trpcClient,
-	queryClient,
+  client: trpcClient,
+  queryClient,
 });
