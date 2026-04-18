@@ -4,6 +4,7 @@ import {
   AutofocusBadDemo,
   AutofocusCancelDemo,
   AutofocusDialogDemo,
+  RadixDialogDemo,
 } from "./slides/autofocus-demo";
 
 <SelfIntroduction>
@@ -141,39 +142,52 @@ autofocusってなーに？
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="jsx-a11y/no-autofocusの設定">
+<PersonalContentSlide title="デザインシステムとDialog">
 
-- このルールには`ignoreNonDOM`オプションがある
-- Reactのポータルやモーダルライブラリで使う場合は許可できる
-
-```json
-{
-  "jsx-a11y/no-autofocus": [
-    "error",
-    {
-      "ignoreNonDOM": true
-    }
-  ]
-}
-```
-
-- ただし、ページ直接のautofocusは引き続き警告される
+- 最近チームでデザインシステムを構築中
+- チームメンバーがDialogコンポーネントを実装
+- レビュー時に「フォーカス制御あるかな？」と確認したら…あった！
 
 </PersonalContentSlide>
 
-<PersonalHeadingSlide>
+<PersonalContentSlide title="Radix UI Dialog の onOpenAutoFocus">
 
-{"Base UIでも指定できる\nあれがあったよん"}
+- `Dialog.Content` に `onOpenAutoFocus` propがある
+- HTML `autofocus` を使わずにフォーカス制御ができる → Linterにも怒られない
 
-</PersonalHeadingSlide>
+```tsx
+<Dialog.Content
+  onOpenAutoFocus={(event) => {
+    event.preventDefault();
+    cancelButtonRef.current?.focus();
+  }}
+>
+  ...
+</Dialog.Content>
+```
 
-<PersonalContentSlide title="Base UIのDialog">
+- `onCloseAutoFocus` で閉じた後のフォーカス先も制御できる
 
-{/* TODO: 壁打ちで具体的な内容を詰める */}
+</PersonalContentSlide>
 
-- Base UIのDialogコンポーネントでもフォーカス制御が可能
-- ダイアログを開いた時に特定の要素にフォーカスを当てられる
-- HTML autofocusなしで実現可能 → Linterにも怒られない
+<PersonalContentSlide title="Demo: onOpenAutoFocus でキャンセルにフォーカス">
+
+HTML autofocusなしで、Linterにも怒られない
+
+<RadixDialogDemo />
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="Base UIにも同様の仕組みがある">
+
+- Base UIのDialogには `initialFocus` propがある
+- Radix UI: `onOpenAutoFocus` / Base UI: `initialFocus` — アプローチは違うが同じことができる
+- **shadcn/uiはどちらのプリミティブにも対応**しているので、いい感じにフォーカス制御できる
+
+|          | Radix UI           | Base UI        |
+| -------- | ------------------ | -------------- |
+| 開いた時 | `onOpenAutoFocus`  | `initialFocus` |
+| 閉じた時 | `onCloseAutoFocus` | `finalFocus`   |
 
 </PersonalContentSlide>
 
@@ -185,10 +199,10 @@ autofocusってなーに？
 
 <PersonalContentSlide title="まとめ">
 
-- **autofocus**はフォーカスを当てるHTML属性
+- **autofocus**はどの要素にも付けられるグローバル属性
 - Linterが警告するのはアクセシビリティ上の理由
 - **ダイアログやモーダル内での使用が正しいパターン**
-- Base UIでもフォーカス制御の仕組みが用意されている
+- UIライブラリにもフォーカス制御の仕組みが用意されている
 - ESLintのエラーを「消す」のではなく「調べた」ことで正しい知識を得られた
 
 </PersonalContentSlide>
