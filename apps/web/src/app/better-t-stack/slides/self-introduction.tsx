@@ -1,3 +1,4 @@
+import Image from "next/image";
 import burioImg from "./assets/burio.png";
 
 const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
@@ -9,7 +10,7 @@ export default function SelfIntroduction() {
       data-background-size="contain"
     >
       <div className="flex h-full flex-row flex-row items-center justify-evenly">
-        <img src={burioImg.src} alt="ぶりおの写真" className="r-stretch" />
+        <Image src={burioImg} alt="ぶりおの写真" className="r-stretch" />
 
         <div className="flex flex-col">
           <h2 className="text-black">自己紹介</h2>

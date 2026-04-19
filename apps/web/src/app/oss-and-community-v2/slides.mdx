@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { HeadingSlide, ContentSlide } from "@/components/slides";
 import SelfIntroduction from "./slides/self-introduction";
 import Cover from "./slides/cover";
@@ -19,18 +20,22 @@ import Cover from "./slides/cover";
 <ContentSlide title="もちろん行きました">
 
 <div className="r-stack">
-  <img
+  <Image
     className="fragment fade-out"
     data-fragment-index="0"
     src="/slides/oss-and-community-v2/assets/tacos.JPG"
     alt="React Tokyoフェス"
+    width={4032}
+    height={3024}
     style={{ margin: "0 auto", display: "block", maxHeight: "700px" }}
   />
-  <img
+  <Image
     className="fragment fade-in"
     data-fragment-index="0"
     src="/slides/oss-and-community-v2/assets/react-tokyo-fes.JPG"
     alt="タコス"
+    width={4032}
+    height={3024}
     style={{ margin: "0 auto", display: "block", maxHeight: "700px" }}
   />
 </div>
@@ -42,9 +47,11 @@ import Cover from "./slides/cover";
 - ぜひ読んでください！(書いた人ではありません)
 - [React Tokyoフェス2026イベントレポート](https://zenn.dev/react_tokyo/articles/2026-02-28-fest-report)
 
-<img
+<Image
   src="/slides/oss-and-community-v2/assets/reacttokyo-report.png"
   alt="React Tokyoフェス 2026 イベントレポート"
+  width={1200}
+  height={630}
   style={{ margin: "0 auto", display: "block", maxHeight: "700px" }}
 />
 
@@ -182,9 +189,11 @@ vitest.storybook-browser.config.ts
 
 <ContentSlide title="changelogにも名前が載った✌️">
 
-<img
+<Image
   src="/slides/oss-and-community/assets/changelog.png"
   alt="vitest changelog"
+  width={1760}
+  height={326}
   style={{ margin: "0 auto", display: "block" }}
 />
 

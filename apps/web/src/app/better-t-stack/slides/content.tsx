@@ -73,7 +73,7 @@ export default function Content() {
         </div>
       </section>
       <section data-background-image={BG_CONTENT} data-background-size="contain">
-        <img src={betterTstackImg.src} alt="Better T-Stackのトップ画面" className="r-stretch" />
+        <Image src={betterTstackImg} alt="Better T-Stackのトップ画面" className="r-stretch" />
       </section>
       <section data-background-image={BG_CONTENT} data-background-size="contain">
         <div className="flex h-full flex-row items-center justify-center">
@@ -90,14 +90,14 @@ export default function Content() {
           </div>
 
           <div className="r-stack">
-            <img
-              src={webBuilderImg.src}
+            <Image
+              src={webBuilderImg}
               className="fragment fade-out"
               data-fragment-index="0"
               alt="Web Builder"
             />
-            <img
-              src={cliBuilderImg.src}
+            <Image
+              src={cliBuilderImg}
               className="fragment fade-in"
               data-fragment-index="0"
               alt="CLI Builder"
@@ -142,15 +142,15 @@ export default function Content() {
             <div className="text-left text-black">
               vercelのOSS支援プログラムに選ばれていました🔥
             </div>
-            <img src={vercelImg.src} alt="vercelの支援プログラム" className="r-stretch" />{" "}
+            <Image src={vercelImg} alt="vercelの支援プログラム" className="r-stretch" />{" "}
           </div>
         </section>
       </section>
       <section data-background-image={BG_CONTENT} data-background-size="contain">
         <div className="flex h-full flex-row items-center justify-center gap-8">
           <div className="w-[30%] text-left text-black">issue建ててみました。</div>
-          <img
-            src={issueImg.src}
+          <Image
+            src={issueImg}
             alt="ぶりおがissue建てている様子"
             className="r-stretch !max-w-[60%]"
           />
@@ -164,8 +164,8 @@ export default function Content() {
             <br />
             日本好きそうじゃね...?
           </div>
-          <img
-            src={amanProfileImg.src}
+          <Image
+            src={amanProfileImg}
             alt="アマンのプロフィール"
             className="r-stretch !max-w-[60%]"
           />
@@ -174,7 +174,7 @@ export default function Content() {
       <section data-background-image={BG_CONTENT} data-background-size="contain">
         <div className="flex h-full flex-row items-center justify-center gap-8">
           <div className="w-[30%] text-left text-black">Twitterで釣ろうとしてみました。</div>
-          <img src={burioTweetImg.src} alt="ぶりおのツイート" className="r-stretch !max-w-[60%]" />
+          <Image src={burioTweetImg} alt="ぶりおのツイート" className="r-stretch !max-w-[60%]" />
         </div>
       </section>
       <section data-background-image={BG_CONTENT} data-background-size="contain">
@@ -184,7 +184,7 @@ export default function Content() {
             <br />
             お願いしてみました。
           </div>
-          <img src={amanReplyImg.src} alt="アマンのリプライ" className="r-stretch !max-w-[60%]" />
+          <Image src={amanReplyImg} alt="アマンのリプライ" className="r-stretch !max-w-[60%]" />
         </div>
       </section>
       <section data-background-image={BG_CONTENT} data-background-size="contain">
@@ -194,7 +194,7 @@ export default function Content() {
             <br />
             無念。
           </div>
-          <img src={SorryImg.src} alt="ごめんなさい" className="r-stretch !max-w-[60%]" />
+          <Image src={SorryImg} alt="ごめんなさい" className="r-stretch !max-w-[60%]" />
         </div>
       </section>
       <section data-background-image={BG_HEADING} data-background-size="contain">

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { PersonalHeadingSlide, PersonalContentSlide } from "@/components/slides";
 import SelfIntroduction from "./slides/self-introduction";
 import {
@@ -11,6 +12,7 @@ import {
 
 - ぶりお [@burio_16](https://x.com/burio_16)
 - タコスとTottenham Hotspur FCが大好き
+- 最近食品衛生責任者の資格講習を受けたので<br />みんなにタコスを振る舞うことができるようになりました🌮
 
 </SelfIntroduction>
 
@@ -56,9 +58,11 @@ autofocusってなーに？
 - **そこで初めてautofocusという属性の存在を知った**
 
 </div>
-<img
+<Image
   src="/slides/autofocus-correct-usage/assets/pr-532.png"
   alt="a11y周り修正 PR #532"
+  width={1820}
+  height={1316}
   className="max-w-[40%] h-auto rounded-lg"
 />
 </div>
@@ -89,9 +93,11 @@ autofocusってなーに？
   - フォーカスが突然移動し、現在位置を見失う
 
 </div>
-<img
+<Image
   src="/slides/autofocus-correct-usage/assets/oxlint-no-autofocus.png"
   alt="oxlint jsx-a11y/no-autofocus の警告出力"
+  width={1108}
+  height={211}
   className="max-w-[45%] h-auto rounded-lg"
 />
 </div>
@@ -237,9 +243,11 @@ HTML autofocusなしで、Linterにも怒られない
 <PersonalContentSlide title="【宣伝】Frontend Conference Nagoya 2026 前夜祭！">
 
 <div className="flex items-center gap-8">
-<img
+<Image
   src="/slides/autofocus-correct-usage/assets/fcn2026-eve.png"
   alt="Frontend Conference Nagoya 2026 前夜祭 - 2026.05.08(Fri) 19:00 株式会社スタメン 名古屋オフィス"
+  width={762}
+  height={443}
   className="max-w-[55%] h-auto rounded-lg"
 />
 <div>

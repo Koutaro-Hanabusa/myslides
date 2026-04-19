@@ -76,7 +76,7 @@ export default function Content() {
               </li>
             </ul>
           </div>
-          <img src={revealImg.src} alt="reveal.js" className="w-[50%]" />
+          <Image src={revealImg} alt="reveal.js" className="w-[50%]" />
         </div>
       </section>
       <section data-background-image={BG_CONTENT} data-background-size="contain">
@@ -110,7 +110,7 @@ export default function Content() {
             </ul>
           </div>
           <div className="r-stack">
-            <img src={ogpImg.src} alt="ogp画像" />
+            <Image src={ogpImg} alt="ogp画像" />
           </div>
         </div>
       </section>
@@ -178,7 +178,7 @@ export default function Content() {
               <li>Tailwind競合して文字色が変わらなかった</li>
             </ul>
           </div>
-          <img src={pdfExportImg.src} alt="ogp画像" className="w-[50%]" />
+          <Image src={pdfExportImg} alt="ogp画像" className="w-[50%]" />
         </div>
       </section>
       <section data-background-image={BG_CONTENT} data-background-size="contain">
