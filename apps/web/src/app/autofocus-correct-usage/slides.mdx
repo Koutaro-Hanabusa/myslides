@@ -80,10 +80,21 @@ autofocusってなーに？
 
 <PersonalContentSlide title="jsx-a11y/no-autofocusの理由">
 
+<div className="flex items-start gap-8">
+<div>
+
 - autofocusはページ読み込み時にフォーカスを強制的に移動させる
 - スクリーンリーダーユーザーにとって混乱の原因になる
   - ページの先頭から読み上げが始まらない
   - フォーカスが突然移動し、現在位置を見失う
+
+</div>
+<img
+  src="/slides/autofocus-correct-usage/assets/oxlint-no-autofocus.png"
+  alt="oxlint jsx-a11y/no-autofocus の警告出力"
+  className="max-w-[45%] h-auto rounded-lg"
+/>
+</div>
 
 </PersonalContentSlide>
   
