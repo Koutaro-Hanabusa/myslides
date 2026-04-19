@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ReactNode } from "react";
 
 const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
@@ -11,9 +12,11 @@ export default function SelfIntroduction({ children }: SelfIntroductionProps) {
   return (
     <section data-background-image={BG_CONTENT} data-background-size="contain">
       <div className="flex h-full flex-row items-center justify-evenly">
-        <img
+        <Image
           src="/slides/react-three-fiber/assets/burio.png"
           alt="ぶりおの写真"
+          width={500}
+          height={500}
           className="r-stretch"
         />
 

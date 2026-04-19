@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { PersonalHeadingSlide, PersonalContentSlide } from "@/components/slides";
 import SelfIntroduction from "./slides/self-introduction";
 
@@ -14,9 +15,11 @@ import SelfIntroduction from "./slides/self-introduction";
 - チキンティンガタコス
 - マンゴーとハラペーニョのサルサ
 
-<img
+<Image
   src="/slides/oss-and-community/assets/chikintinga.JPG"
   alt="チキンティンガ"
+  width={1474}
+  height={1110}
   style={{ margin: "0 auto", display: "block", maxHeight: "700px" }}
 />
 
@@ -77,9 +80,11 @@ import SelfIntroduction from "./slides/self-introduction";
 - 2人のメンテナーにapproveされてマージ（2026/3/5）
 - PR: [vitest-dev/vitest #9760](https://github.com/vitest-dev/vitest/pull/9760)
 
-<img
+<Image
   src="/slides/oss-and-community/assets/vitest.png"
   alt="vitest PR #9760"
+  width={1200}
+  height={600}
   style={{ margin: "0 auto" }}
 />
 
@@ -87,9 +92,11 @@ import SelfIntroduction from "./slides/self-introduction";
 
 <PersonalContentSlide title="changelogにも名前が載った✌️">
 
-<img
+<Image
   src="/slides/oss-and-community/assets/changelog.png"
   alt="vitest changelog"
+  width={1760}
+  height={326}
   style={{ margin: "0 auto", display: "block" }}
 />
 

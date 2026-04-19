@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   HeadingSlide,
   ContentSlide,
@@ -33,9 +34,11 @@ Nixを使ってdotfilesをやりたい方は、[2026年にnixを始める方法]
 <ContentSlide>
   <div className="flex items-center gap-8">
     {"私は管理してます"}
-    <img
+    <Image
       src="/slides/you-must-have-dotfiles/assets/mydotfiles.png"
       alt="mydotfiles"
+      width={1850}
+      height={1138}
       className="max-w-[75%] h-auto"
     />
   </div>
@@ -51,7 +54,7 @@ Nixを使ってdotfilesをやりたい方は、[2026年にnixを始める方法]
 - 設定してる部分送ってくれや！<br />でもLINEだと送りにくいか😢
 
 </div>
-<img src="/slides/you-must-have-dotfiles/assets/LINE.png" alt="同期とのLINEのやりとり" className="max-w-[75%] h-auto" />
+<Image src="/slides/you-must-have-dotfiles/assets/LINE.png" alt="同期とのLINEのやりとり" width={768} height={348} className="max-w-[75%] h-auto" />
 </div>
 </ContentSlide>
 
@@ -97,7 +100,7 @@ dotfilesで管理できると便利じゃない？
 - GitHub上でスター数が17k以上ありdotfilesの管理ツールとして人気
 
 </div>
-<img src="/slides/you-must-have-dotfiles/assets/chezmoi.png" alt="chezmoiの画像" className="max-w-[50%]" />
+<Image src="/slides/you-must-have-dotfiles/assets/chezmoi.png" alt="chezmoiの画像" width={2510} height={1586} className="max-w-[50%]" />
 </div>
 </ContentSlide>
 
