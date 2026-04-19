@@ -130,11 +130,7 @@ const CONFIG_REGEXP = /^vite(?:st)?(?:\\.\\w+)?\\.config\\./
 - CLIで直接指定 → そのまま使うのでOK ✅
 
 <pre>
-  <code
-    className="language-bash"
-    data-trim
-    data-noescape
-  >{`# CLI直接指定 → 問題なし
+  <code className="language-bash" data-trim data-noescape>{`# CLI直接指定 → 問題なし
 $ vitest --config vitest.storybook-browser.config.ts
 
 # glob検索 → ハイフン入りファイル名がマッチしない

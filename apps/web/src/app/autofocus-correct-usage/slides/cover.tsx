@@ -12,7 +12,11 @@ export default function Cover() {
       <div className="text-left">
         <h3>{config.event}</h3>
         <br />
-        <h1 className="leading-tight">{config.title}</h1>
+        <h1 className="leading-tight">
+          autofocusの正しい用法を
+          <br />
+          知っていますか？
+        </h1>
         <br />
         <h3>{config.author} @burio_16</h3>
       </div>
