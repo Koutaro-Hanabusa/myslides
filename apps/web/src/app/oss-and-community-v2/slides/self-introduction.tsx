@@ -1,0 +1,33 @@
+import Image from "next/image";
+import type { ReactNode } from "react";
+
+const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
+const BG_CONTENT = `${R2_BASE}/外部登壇資料テンプレ/千_外部登壇スライド_本文.png`;
+
+interface SelfIntroductionProps {
+  children: ReactNode;
+}
+
+export default function SelfIntroduction({ children }: SelfIntroductionProps) {
+  return (
+    <section data-background-image={BG_CONTENT} data-background-size="contain">
+      <div className="flex h-full flex-row items-center justify-evenly">
+        <Image
+          src="/slides/react-three-fiber/assets/burio.png"
+          alt="ぶりおの写真"
+          width={500}
+          height={500}
+          className="r-stretch"
+        />
+
+        <div className="flex flex-col">
+          <h2 className="text-black">自己紹介</h2>
+
+          <div className="space-y-2 text-left text-black md:space-y-4 lg:space-y-6 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-6 md:[&_ul]:space-y-4 lg:[&_ul]:space-y-6">
+            {children}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

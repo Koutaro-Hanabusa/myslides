@@ -11,35 +11,35 @@ const app = new Hono();
 app.use(logger());
 
 const allowedOrigins = (env.CORS_ORIGIN || "")
-	.split(",")
-	.map((origin) => origin.trim())
-	.filter(Boolean);
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
 
 app.use(
-	"/*",
-	cors({
-		origin: (origin) => {
-			if (allowedOrigins.includes(origin)) {
-				return origin;
-			}
-			return null;
-		},
-		allowMethods: ["GET", "POST", "OPTIONS"],
-	}),
+  "/*",
+  cors({
+    origin: (origin) => {
+      if (allowedOrigins.includes(origin)) {
+        return origin;
+      }
+      return null;
+    },
+    allowMethods: ["GET", "POST", "OPTIONS"],
+  }),
 );
 
 app.use(
-	"/trpc/*",
-	trpcServer({
-		router: appRouter,
-		createContext: (_opts, context) => {
-			return createContext({ context });
-		},
-	}),
+  "/trpc/*",
+  trpcServer({
+    router: appRouter,
+    createContext: (_opts, context) => {
+      return createContext({ context });
+    },
+  }),
 );
 
 app.get("/", (c) => {
-	return c.text("OK");
+  return c.text("OK");
 });
 
 export default app;

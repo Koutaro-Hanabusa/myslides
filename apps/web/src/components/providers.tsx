@@ -7,18 +7,18 @@ import { ThemeProvider } from "./theme-provider";
 import { Toaster } from "./ui/sonner";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
-	return (
-		<ThemeProvider
-			attribute="class"
-			defaultTheme="dark"
-			forcedTheme="dark"
-			disableTransitionOnChange
-		>
-			<QueryClientProvider client={queryClient}>
-				{children}
-				{!process.env.NEXT_PUBLIC_HIDE_DEVTOOLS && <ReactQueryDevtools />}
-			</QueryClientProvider>
-			<Toaster richColors />
-		</ThemeProvider>
-	);
+  return (
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="dark"
+      forcedTheme="dark"
+      disableTransitionOnChange
+    >
+      <QueryClientProvider client={queryClient}>
+        {children}
+        {!process.env.NEXT_PUBLIC_HIDE_DEVTOOLS && <ReactQueryDevtools />}
+      </QueryClientProvider>
+      <Toaster richColors />
+    </ThemeProvider>
+  );
 }

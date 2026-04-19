@@ -1,0 +1,217 @@
+import Image from "next/image";
+import { HeadingSlide, ContentSlide } from "@/components/slides";
+import SelfIntroduction from "./slides/self-introduction";
+import Cover from "./slides/cover";
+
+<SelfIntroduction>
+
+- ぶりお [@burio_16](https://x.com/burio_16)
+- ついに2年目になってしまいました
+- タコスとTottenham Hotspur FCが大好き
+- いろんな人にタコスの人だと思われている
+
+</SelfIntroduction>
+
+<HeadingSlide>
+
+みなさんReact Tokyo Fes<br />行きましたか？
+
+</HeadingSlide>
+<ContentSlide title="もちろん行きました">
+
+<div className="r-stack">
+  <Image
+    className="fragment fade-out"
+    data-fragment-index="0"
+    src="/slides/oss-and-community-v2/assets/tacos.JPG"
+    alt="React Tokyoフェス"
+    width={4032}
+    height={3024}
+    style={{ margin: "0 auto", display: "block", maxHeight: "700px" }}
+  />
+  <Image
+    className="fragment fade-in"
+    data-fragment-index="0"
+    src="/slides/oss-and-community-v2/assets/react-tokyo-fes.JPG"
+    alt="タコス"
+    width={4032}
+    height={3024}
+    style={{ margin: "0 auto", display: "block", maxHeight: "700px" }}
+  />
+</div>
+
+</ContentSlide>
+
+<ContentSlide title="レポートも出てましたね">
+
+- ぜひ読んでください！(書いた人ではありません)
+- [React Tokyoフェス2026イベントレポート](https://zenn.dev/react_tokyo/articles/2026-02-28-fest-report)
+
+<Image
+  src="/slides/oss-and-community-v2/assets/reacttokyo-report.png"
+  alt="React Tokyoフェス 2026 イベントレポート"
+  width={1200}
+  height={630}
+  style={{ margin: "0 auto", display: "block", maxHeight: "700px" }}
+/>
+
+</ContentSlide>
+
+<HeadingSlide>
+
+ただの参加者の感想
+
+</HeadingSlide>
+
+<HeadingSlide>
+
+めちゃくちゃ<br />~~タコスがうまかったです~~<br />学びも多く楽しかったです！
+
+</HeadingSlide>
+
+<HeadingSlide>
+
+終
+
+</HeadingSlide>
+
+<Cover />
+
+<HeadingSlide>
+
+今日はReact Tokyoフェスに参加したからできたことの話です
+
+</HeadingSlide>
+
+<HeadingSlide>VitestにPRマージされました</HeadingSlide>
+
+<ContentSlide title="Vitestとは？">
+
+- JavaScriptの世界的なテストフレームワーク
+- あのvoidzeroが開発しているテストフレームワーク
+- GitHubスター数 16k+
+
+</ContentSlide>
+
+<HeadingSlide>
+
+きっかけはPRのレビュー中
+
+</HeadingSlide>
+
+<ContentSlide title="バグ発見の経緯">
+
+- Storybook用にインタラクションテストのconfigを作成
+- ファイル名: `vitest.storybook-browser.config.ts`（ハイフン入り）
+
+</ContentSlide>
+
+<ContentSlide title="原因を突き止めた">
+
+- Storybookから実行するとglobでconfigを検索 → 引っかからない
+- `resolveProjects.ts` の正規表現がハイフンを許容していなかった
+- [実際のコード](https://github.com/vitest-dev/vitest/blob/main/packages/vitest/src/node/projects/resolveProjects.ts)
+
+<pre>
+  <code
+    className="language-typescript"
+    data-trim
+    data-noescape
+  >{`// packages/vitest/src/node/projects/resolveProjects.ts
+
+// vitest.config.*
+// vite.config.*
+// vitest.unit.config.*
+// vitest.unit-test.config.* ← これがマッチしない！
+
+const CONFIG_REGEXP = /^vite(?:st)?(?:\\.\\w+)?\\.config\\./
+//                                     ^^^^
+// \\w+ は [a-zA-Z0-9_] のみ → "-" にマッチしない 😱
+// vitest.storybook-browser.config.ts → マッチしない`}</code>
+</pre>
+
+</ContentSlide>
+
+<ContentSlide title="実際のglobの挙動">
+
+- CLIで直接指定 → そのまま使うのでOK ✅
+
+<pre>
+  <code className="language-bash" data-trim data-noescape>{`# CLI直接指定 → 問題なし
+$ vitest --config vitest.storybook-browser.config.ts
+
+# glob検索 → ハイフン入りファイル名がマッチしない
+vitest.storybook-browser.config.ts
+       ^^^^^^^^^^^^^^^^^^
+       \\w+ は [a-zA-Z0-9_] のみ → "-" にマッチしない`}</code>
+</pre>
+
+</ContentSlide>
+
+<ContentSlide title="人生初のissue">
+
+- 恐る恐るissueを立ててみた
+- [vitest-dev/vitest #9739](https://github.com/vitest-dev/vitest/issues/9739)
+- 「とりあえず報告だけ...」くらいの温度感
+- この時はドキュメントを直そうぜの提案
+
+</ContentSlide>
+
+<ContentSlide title="偶然の出会い">
+
+- React Tokyoフェスでvoidzeroの人と話す機会が！
+- 「こんなissue立てたんですよ」と話してみた
+- 「初めてなんですが、どんなスタンスでいればいいですか？」と聞いた
+- **この会話はReact Tokyoフェスがなければ絶対に生まれなかった**
+
+</ContentSlide>
+
+<ContentSlide title="PR提出 → マージ">
+
+- 修正はたった1文字の変更
+- 2人のメンテナーにapproveされてマージ（2026/3/5）
+- PR: [vitest-dev/vitest #9760](https://github.com/vitest-dev/vitest/pull/9760)
+
+<pre>
+  <code
+    className="language-diff"
+    data-trim
+    data-noescape
+  >{`// packages/vitest/src/node/projects/resolveProjects.ts
+
+- const CONFIG_REGEXP = /^vite(?:st)?(?:\\.\\w+)?\\.config\\./
++ const CONFIG_REGEXP = /^vite(?:st)?(?:\\.[\\w-]+)?\\.config\\./
+//                                       ^^^
+//                                   ハイフンを追加！`}</code>
+</pre>
+
+</ContentSlide>
+
+<ContentSlide title="changelogにも名前が載った✌️">
+
+<Image
+  src="/slides/oss-and-community/assets/changelog.png"
+  alt="vitest changelog"
+  width={1760}
+  height={326}
+  style={{ margin: "0 auto", display: "block" }}
+/>
+
+</ContentSlide>
+
+<ContentSlide title="感謝">
+
+- React TokyoフェスのおかげでまさかのOSSコントリビュート！
+  - [Hiroshi Ogawa](https://x.com/hiroshi_18181)さんありがとうございます
+- フロントエンドをやりたいけど知識不足な自分にも少し自信がついた
+  - コミュニティに参加して良かった！イベントに参加して良かった！！
+- 今年もフェス楽しみにしてます！
+  - 次はスタッフ側としてReact Tokyoに貢献する動きをしたいと思います！
+
+</ContentSlide>
+
+<HeadingSlide>
+
+以上、Vitestコントリビューター(語弊)<br />ぶりおの自分語りLTでした。
+
+</HeadingSlide>

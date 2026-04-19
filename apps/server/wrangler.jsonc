@@ -5,7 +5,7 @@
   "compatibility_flags": ["nodejs_compat"],
   "vars": {
     "NODE_ENV": "production",
-    "CORS_ORIGIN": "https://slide.burio16.com,https://myslides.koutarouhanabusa.workers.dev,https://myslides-staging.koutarouhanabusa.workers.dev"
+    "CORS_ORIGIN": "https://slide.burio16.com,https://myslides.koutarouhanabusa.workers.dev,https://myslides-staging.koutarouhanabusa.workers.dev",
   },
   "d1_databases": [
     {
@@ -13,13 +13,13 @@
       "database_name": "myslides-db",
       "database_id": "be09388c-f311-46f4-ae09-542da403fdf3",
       "preview_database_id": "local-test-db",
-      "migrations_dir": "./src/db/migrations"
-    }
+      "migrations_dir": "./src/db/migrations",
+    },
   ],
   "r2_buckets": [
     {
       "binding": "STORAGE",
-      "bucket_name": "myslides-storage"
-    }
-  ]
+      "bucket_name": "myslides-storage",
+    },
+  ],
 }
