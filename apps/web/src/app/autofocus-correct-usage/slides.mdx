@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { PersonalHeadingSlide, PersonalContentSlide } from "@/components/slides";
 import SelfIntroduction from "./slides/self-introduction";
 import {
@@ -11,6 +12,7 @@ import {
 
 - ぶりお [@burio_16](https://x.com/burio_16)
 - タコスとTottenham Hotspur FCが大好き
+- 最近食品衛生責任者の資格講習を受けたので<br />みんなにタコスを振る舞うことができるようになりました🌮
 
 </SelfIntroduction>
 
@@ -30,19 +32,11 @@ autofocusってなーに？
 
 - HTMLの**グローバル属性**で、ページ読み込み時に要素にフォーカスを当てる
 - どの要素にも付与できる（フォーカス可能な要素でのみ効果あり）
-- **何にでも付けられるからこそ、不適切な使い方が生まれやすい**
+- 複数の要素に付与することができるが、フォーカスは最初のものに当たる
 
 ```html
 <input type="text" autofocus />
 ```
-
-</PersonalContentSlide>
-
-<PersonalContentSlide title="Demo: よくないautofocusの使い方">
-
-ページ読み込み時に意図しない場所へフォーカスが飛ぶ
-
-<AutofocusBadDemo />
 
 </PersonalContentSlide>
 
@@ -64,9 +58,11 @@ autofocusってなーに？
 - **そこで初めてautofocusという属性の存在を知った**
 
 </div>
-<img
+<Image
   src="/slides/autofocus-correct-usage/assets/pr-532.png"
   alt="a11y周り修正 PR #532"
+  width={1820}
+  height={1316}
   className="max-w-[40%] h-auto rounded-lg"
 />
 </div>
@@ -88,12 +84,31 @@ autofocusってなーに？
 
 <PersonalContentSlide title="jsx-a11y/no-autofocusの理由">
 
+<div className="flex items-start gap-8">
+<div>
+
 - autofocusはページ読み込み時にフォーカスを強制的に移動させる
 - スクリーンリーダーユーザーにとって混乱の原因になる
   - ページの先頭から読み上げが始まらない
   - フォーカスが突然移動し、現在位置を見失う
-- キーボードナビゲーションのユーザーにも影響
-  - Tabキーの順序が期待と異なる
+
+</div>
+<Image
+  src="/slides/autofocus-correct-usage/assets/oxlint-no-autofocus.png"
+  alt="oxlint jsx-a11y/no-autofocus の警告出力"
+  width={1108}
+  height={211}
+  className="max-w-[45%] h-auto rounded-lg"
+/>
+</div>
+
+</PersonalContentSlide>
+  
+<PersonalContentSlide title="Demo: よくないautofocusの使い方">
+
+ページ読み込み時に意図しない場所へフォーカスが飛ぶ
+
+<AutofocusBadDemo />
 
 </PersonalContentSlide>
 
@@ -212,9 +227,37 @@ HTML autofocusなしで、Linterにも怒られない
 <PersonalContentSlide title="まとめ">
 
 - **autofocus**はどの要素にも付けられるグローバル属性
-- Linterが警告するのはアクセシビリティ上の理由
+- Linterが警告するのはa11y的にユーザーを混乱させる可能性がある
 - **ダイアログやモーダル内での使用が正しいパターン**
 - UIライブラリにもフォーカス制御の仕組みが用意されている
 - ESLintのエラーを「消す」のではなく「調べた」ことで正しい知識を得られた
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+次は絶対にプロポーザル通すぞ！！！！<br />目指せカンファレンス登壇！！
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="【宣伝】Frontend Conference Nagoya 2026 前夜祭！">
+
+<div className="flex items-center gap-8">
+<Image
+  src="/slides/autofocus-correct-usage/assets/fcn2026-eve.png"
+  alt="Frontend Conference Nagoya 2026 前夜祭 - 2026.05.08(Fri) 19:00 株式会社スタメン 名古屋オフィス"
+  width={762}
+  height={443}
+  className="max-w-[55%] h-auto rounded-lg"
+/>
+<div>
+
+- **2026.05.08(Fri) 19:00**
+- 株式会社スタメン 名古屋オフィス
+- プロポーザルの供養がてら登壇してきます！！
+- [stmn.connpass.com/event/390165](https://stmn.connpass.com/event/390165/)
+
+</div>
+</div>
 
 </PersonalContentSlide>
