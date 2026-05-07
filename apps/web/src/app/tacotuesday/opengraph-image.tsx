@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { loadOgpFonts } from "@/lib/ogp/load-fonts";
 import { createOgpProps } from "@/lib/slides/config";
 
 const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
@@ -11,7 +12,7 @@ export const size = {
 };
 export const contentType = "image/png";
 
-export default function Image() {
+export default async function Image() {
   return new ImageResponse(
     <div
       style={{
@@ -21,6 +22,7 @@ export default function Image() {
         alignItems: "center",
         justifyContent: "center",
         position: "relative",
+        fontFamily: '"Source Sans Pro", "Noto Sans JP", sans-serif',
       }}
     >
       <img
@@ -92,6 +94,7 @@ export default function Image() {
     {
       width: 1200,
       height: 630,
+      fonts: await loadOgpFonts(),
     },
   );
 }

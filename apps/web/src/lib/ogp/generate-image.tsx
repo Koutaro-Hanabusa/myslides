@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { loadOgpFonts } from "@/lib/ogp/load-fonts";
 
 export interface OGPImageParams {
   title: string;
@@ -20,14 +21,14 @@ export const gradientPresets = {
   teal: ["#0cebeb", "#20e3b2"] as [string, string],
 } as const;
 
-export function generateOGPImage({
+export async function generateOGPImage({
   title,
   subtitle,
   gradient = gradientPresets.purple,
   author,
   backgroundImage,
   backgroundSize = "cover",
-}: OGPImageParams): ImageResponse {
+}: OGPImageParams): Promise<ImageResponse> {
   const backgroundStyle = backgroundImage
     ? {
         backgroundImage: `url(${backgroundImage})`,
@@ -52,7 +53,7 @@ export function generateOGPImage({
         alignItems: "center",
         justifyContent: "center",
         color: "white",
-        fontFamily: "system-ui, sans-serif",
+        fontFamily: '"Source Sans Pro", "Noto Sans JP", sans-serif',
         fontSize: 64,
         ...backgroundStyle,
       }}
@@ -106,6 +107,7 @@ export function generateOGPImage({
     {
       width: 1200,
       height: 630,
+      fonts: await loadOgpFonts(),
     },
   );
 }
