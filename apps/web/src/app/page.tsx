@@ -31,6 +31,7 @@ export default function Home() {
           title={autofocus.title}
           date={autofocus.date}
           event={autofocus.event}
+          url={autofocus.eventUrl}
         >
           <AutofocusCover />
         </SlideCard>
