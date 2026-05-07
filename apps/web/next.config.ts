@@ -18,6 +18,16 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        // /api 配下は除外して全 HTML に edge cache を効かせる
+        source: "/((?!api/).*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=0, s-maxage=600, stale-while-revalidate=86400",
+          },
+        ],
+      },
     ];
   },
 };
