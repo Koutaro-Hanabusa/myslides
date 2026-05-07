@@ -1,4 +1,4 @@
-import { getSlideConfig } from "@/lib/slides/config";
+import { formatEvent, getSlideConfig } from "@/lib/slides/config";
 
 const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
 const TEMPLATE_PATH = "外部登壇資料テンプレ";
@@ -11,7 +11,7 @@ export default function Cover() {
       data-background-size="contain"
     >
       <div className="text-left">
-        <h3>{config.event}</h3>
+        <h3>{formatEvent(config.event)}</h3>
         <br />
         <h1 className="leading-tight">{config.title}</h1>
         <br />

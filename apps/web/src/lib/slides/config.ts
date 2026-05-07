@@ -7,8 +7,13 @@ export interface SlideConfig {
   author: string;
   authorUrl: string;
   date: string;
-  event?: string;
-  eventUrl?: string;
+  event?: string | string[];
+  eventUrl?: string | string[];
+}
+
+export function formatEvent(event: string | string[] | undefined): string {
+  if (!event) return "";
+  return Array.isArray(event) ? event.join(" / ") : event;
 }
 
 export const SLIDES_CONFIG: Record<string, SlideConfig> = {
@@ -100,7 +105,8 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
     author: "ぶりお",
     authorUrl: "https://twitter.com/burio_16",
     date: "2026/4/20",
-    event: "社内LT会",
+    event: ["社内LT会", "Frontend Conference Nagoya 2026 前夜祭！"],
+    eventUrl: ["", "https://stmn.connpass.com/event/390165/"],
   },
 };
 
@@ -126,12 +132,13 @@ export function createSlideMetadata(slug: string): Metadata {
   const config = getSlideConfig(slug);
   const slideUrl = `${BASE_URL}/${slug}`;
   const handle = getAuthorHandle(config.authorUrl);
-  const ogDescription = config.event
-    ? `${config.event} での発表資料 by ${config.author} @${handle}`
+  const eventLabel = formatEvent(config.event);
+  const ogDescription = eventLabel
+    ? `${eventLabel} での発表資料 by ${config.author} @${handle}`
     : config.description;
 
   return {
-    title: config.event ? `${config.title} | ${config.event}` : `${config.title} | mySlides`,
+    title: eventLabel ? `${config.title} | ${eventLabel}` : `${config.title} | mySlides`,
     description: config.description,
     openGraph: {
       title: config.title,
@@ -164,7 +171,7 @@ export function createOgpProps(slug: string): OgpProps {
   return {
     alt: config.title,
     title: config.title,
-    event: config.event ?? "",
+    event: formatEvent(config.event),
     author: `${config.author} @${handle}`,
   };
 }
