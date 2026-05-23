@@ -1,6 +1,6 @@
 import type { Route } from "next";
 import { SlideCard } from "@/components/slides";
-import { SLIDES_CONFIG } from "@/lib/slides/config";
+import { getSlideTitle, SLIDES_CONFIG } from "@/lib/slides/config";
 import GraduateCover from "./25-graduate/slides/cover";
 import AutofocusCover from "./autofocus-correct-usage/slides/cover";
 import Cover from "./better-t-stack/slides/cover";
@@ -9,6 +9,8 @@ import VitestCoverV2 from "./oss-and-community-v2/slides/cover";
 import R3FCover from "./react-three-fiber/slides/cover";
 import RevealCover from "./revealjs-slideDeck/slides/cover";
 import TacosCover from "./tacotuesday/slides/cover";
+import TanstackRouterDirStructureCover from "./tanstack-router-dir-structure/slides/cover";
+import VitePlusRetroCover from "./vite-plus-retro/slides/cover";
 import YouMustHaveDotfilesCover from "./you-must-have-dotfiles/slides/cover";
 
 const autofocus = SLIDES_CONFIG["autofocus-correct-usage"];
@@ -21,14 +23,38 @@ const tacos = SLIDES_CONFIG.tacotuesday;
 const betterT = SLIDES_CONFIG["better-t-stack"];
 const r3f = SLIDES_CONFIG["react-three-fiber"];
 
+const vitePlusRetro = SLIDES_CONFIG["vite-plus-retro"];
+
+const tanstackRouterDirStructure = SLIDES_CONFIG["tanstack-router-dir-structure"];
+
 export default function Home() {
   return (
     <div className="mx-auto w-full p-4 md:w-3/4 md:p-8 lg:w-1/2">
       <h1 className="text-center text-2xl md:text-4xl lg:text-6xl">Burio's slide deck</h1>
       <div className="grid grid-cols-1 gap-4 md:gap-8">
         <SlideCard
+          href={`/${tanstackRouterDirStructure.slug}` as Route}
+          title={getSlideTitle(tanstackRouterDirStructure)}
+          date={tanstackRouterDirStructure.date}
+          event={tanstackRouterDirStructure.event}
+          url={tanstackRouterDirStructure.eventUrl}
+        >
+          <TanstackRouterDirStructureCover />
+        </SlideCard>
+
+        <SlideCard
+          href={`/${vitePlusRetro.slug}` as Route}
+          title={getSlideTitle(vitePlusRetro)}
+          date={vitePlusRetro.date}
+          event={vitePlusRetro.event}
+          url={vitePlusRetro.eventUrl}
+        >
+          <VitePlusRetroCover />
+        </SlideCard>
+
+        <SlideCard
           href={`/${autofocus.slug}` as Route}
-          title={autofocus.title}
+          title={getSlideTitle(autofocus)}
           date={autofocus.date}
           event={autofocus.event}
           url={autofocus.eventUrl}
@@ -38,7 +64,7 @@ export default function Home() {
 
         <SlideCard
           href={`/${ossV2.slug}` as Route}
-          title={ossV2.title}
+          title={getSlideTitle(ossV2)}
           date={ossV2.date}
           event={ossV2.event}
           url={ossV2.eventUrl}
@@ -48,7 +74,7 @@ export default function Home() {
 
         <SlideCard
           href={`/${oss.slug}` as Route}
-          title={oss.title}
+          title={getSlideTitle(oss)}
           date={oss.date}
           event={oss.event}
         >
@@ -57,7 +83,7 @@ export default function Home() {
 
         <SlideCard
           href={`/${graduate.slug}` as Route}
-          title={graduate.title}
+          title={getSlideTitle(graduate)}
           date={graduate.date}
           event={graduate.event}
           url={graduate.eventUrl}
@@ -67,7 +93,7 @@ export default function Home() {
 
         <SlideCard
           href={`/${dotfiles.slug}` as Route}
-          title={dotfiles.title}
+          title={getSlideTitle(dotfiles)}
           date={dotfiles.date}
           event={dotfiles.event}
           url={dotfiles.eventUrl}
@@ -77,7 +103,7 @@ export default function Home() {
 
         <SlideCard
           href={`/${reveal.slug}` as Route}
-          title={reveal.title}
+          title={getSlideTitle(reveal)}
           date={reveal.date}
           event={reveal.event}
         >
@@ -85,7 +111,7 @@ export default function Home() {
         </SlideCard>
         <SlideCard
           href={`/${tacos.slug}` as Route}
-          title={tacos.title}
+          title={getSlideTitle(tacos)}
           date={tacos.date}
           event={tacos.event}
         >
@@ -93,7 +119,7 @@ export default function Home() {
         </SlideCard>
         <SlideCard
           href={`/${betterT.slug}` as Route}
-          title={betterT.title}
+          title={getSlideTitle(betterT)}
           date={betterT.date}
           event={betterT.event}
           url={betterT.eventUrl}
@@ -102,7 +128,7 @@ export default function Home() {
         </SlideCard>
         <SlideCard
           href={`/${r3f.slug}` as Route}
-          title={r3f.title}
+          title={getSlideTitle(r3f)}
           date={r3f.date}
           event={r3f.event}
           url={r3f.eventUrl}
