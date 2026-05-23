@@ -108,6 +108,25 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
     event: ["社内LT会", "Frontend Conference Nagoya 2026 前夜祭！"],
     eventUrl: ["", "https://stmn.connpass.com/event/390165/"],
   },
+  "vite-plus-retro": {
+    slug: "vite-plus-retro",
+    title: "Vite+ を採用して良かったこと・辛かったこと",
+    description: "Vite+ を実プロジェクトに採用して感じたメリットと、運用で直面した辛みを振り返る",
+    author: "ぶりお",
+    authorUrl: "https://twitter.com/burio_16",
+    date: "YYYY/MM/DD",
+    event: "イベント名",
+  },
+  "tanstack-router-dir-structure": {
+    slug: "tanstack-router-dir-structure",
+    title: "ぼくの考えた最強の TanStack Router ディレクトリ構成",
+    description:
+      "TanStack Router で実際に運用してたどり着いた、スケールするディレクトリ構成のベストプラクティス",
+    author: "ぶりお",
+    authorUrl: "https://twitter.com/burio_16",
+    date: "YYYY/MM/DD",
+    event: "イベント名",
+  },
 };
 
 export function getSlideConfig(slug: string): SlideConfig {

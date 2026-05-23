@@ -1,0 +1,24 @@
+"use client";
+
+import RevealPresentation from "@/components/reveal-presentation";
+import Cover from "./slides/cover";
+
+const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
+const BG_CONTENT = `${R2_BASE}/burioSlide/content.png`;
+
+export default function PresentationPage() {
+  return (
+    <div className="h-full w-full">
+      <RevealPresentation transition="slide">
+        <Cover />
+        <section
+          data-markdown="/slides/tanstack-router-dir-structure/slides.md"
+          data-separator="^\n---\n$"
+          data-separator-vertical="^\n--\n$"
+          data-background-image={BG_CONTENT}
+          data-background-size="contain"
+        />
+      </RevealPresentation>
+    </div>
+  );
+}

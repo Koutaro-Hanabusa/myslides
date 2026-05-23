@@ -9,6 +9,8 @@ import VitestCoverV2 from "./oss-and-community-v2/slides/cover";
 import R3FCover from "./react-three-fiber/slides/cover";
 import RevealCover from "./revealjs-slideDeck/slides/cover";
 import TacosCover from "./tacotuesday/slides/cover";
+import TanstackRouterDirStructureCover from "./tanstack-router-dir-structure/slides/cover";
+import VitePlusRetroCover from "./vite-plus-retro/slides/cover";
 import YouMustHaveDotfilesCover from "./you-must-have-dotfiles/slides/cover";
 
 const autofocus = SLIDES_CONFIG["autofocus-correct-usage"];
@@ -21,11 +23,35 @@ const tacos = SLIDES_CONFIG.tacotuesday;
 const betterT = SLIDES_CONFIG["better-t-stack"];
 const r3f = SLIDES_CONFIG["react-three-fiber"];
 
+const vitePlusRetro = SLIDES_CONFIG["vite-plus-retro"];
+
+const tanstackRouterDirStructure = SLIDES_CONFIG["tanstack-router-dir-structure"];
+
 export default function Home() {
   return (
     <div className="mx-auto w-full p-4 md:w-3/4 md:p-8 lg:w-1/2">
       <h1 className="text-center text-2xl md:text-4xl lg:text-6xl">Burio's slide deck</h1>
       <div className="grid grid-cols-1 gap-4 md:gap-8">
+        <SlideCard
+          href={`/${tanstackRouterDirStructure.slug}` as Route}
+          title={tanstackRouterDirStructure.title}
+          date={tanstackRouterDirStructure.date}
+          event={tanstackRouterDirStructure.event}
+          url={tanstackRouterDirStructure.eventUrl}
+        >
+          <TanstackRouterDirStructureCover />
+        </SlideCard>
+
+        <SlideCard
+          href={`/${vitePlusRetro.slug}` as Route}
+          title={vitePlusRetro.title}
+          date={vitePlusRetro.date}
+          event={vitePlusRetro.event}
+          url={vitePlusRetro.eventUrl}
+        >
+          <VitePlusRetroCover />
+        </SlideCard>
+
         <SlideCard
           href={`/${autofocus.slug}` as Route}
           title={autofocus.title}
