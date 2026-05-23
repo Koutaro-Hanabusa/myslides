@@ -2,9 +2,13 @@ import type { Metadata } from "next";
 
 export interface SlideConfig {
   slug: string;
+  /**
+   * スライドの正タイトル（唯一の管理元）。
+   * 表紙で改行したい位置に `\n` を入れてよい（表紙では `\n` が改行になる）。
+   * 一覧カード・メタデータ・OGP では getSlideTitle() で `\n` を除去したフラット版を使う。
+   * フラット版で半角空白が要る箇所（英単語の前など）は `\n` の直前に空白を置く。
+   */
   title: string;
-  /** 表紙の見た目用。改行したい位置で行を分けて指定する。未指定なら title をそのまま1行表示。メタデータ・一覧カードは常に title（フラット）を使う。 */
-  titleLines?: string[];
   description: string;
   author: string;
   authorUrl: string;
@@ -16,6 +20,16 @@ export interface SlideConfig {
 export function formatEvent(event: string | string[] | undefined): string {
   if (!event) return "";
   return Array.isArray(event) ? event.join(" / ") : event;
+}
+
+/** 一覧カード・メタデータ・OGP 用のフラットなタイトル（表紙用の改行 `\n` を除去）。 */
+export function getSlideTitle(config: SlideConfig): string {
+  return config.title.replace(/\n/g, "");
+}
+
+/** 表紙用のタイトル行配列（`\n` で分割）。 */
+export function getSlideTitleLines(config: SlideConfig): string[] {
+  return config.title.split("\n");
 }
 
 export const SLIDES_CONFIG: Record<string, SlideConfig> = {
@@ -112,8 +126,7 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
   },
   "vite-plus-retro": {
     slug: "vite-plus-retro",
-    title: "Vite+ を採用して良かったこと・辛かったこと",
-    titleLines: ["Vite+ を採用して", "良かったこと・辛かったこと"],
+    title: "Vite+ を採用して\n良かったこと・辛かったこと",
     description: "Vite+ を実プロジェクトに採用して感じたメリットと、運用で直面した辛みを振り返る",
     author: "ぶりお",
     authorUrl: "https://twitter.com/burio_16",
@@ -122,8 +135,7 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
   },
   "tanstack-router-dir-structure": {
     slug: "tanstack-router-dir-structure",
-    title: "ぼくの考えた最強の TanStack Router ディレクトリ構成",
-    titleLines: ["ぼくの考えた最強の", "TanStack Router ディレクトリ構成"],
+    title: "ぼくの考えた最強の \nTanStack Router ディレクトリ構成",
     description:
       "TanStack Router で実際に運用してたどり着いた、スケールするディレクトリ構成のベストプラクティス",
     author: "ぶりお",
@@ -153,6 +165,7 @@ function getAuthorHandle(authorUrl: string): string {
 
 export function createSlideMetadata(slug: string): Metadata {
   const config = getSlideConfig(slug);
+  const title = getSlideTitle(config);
   const slideUrl = `${BASE_URL}/${slug}`;
   const handle = getAuthorHandle(config.authorUrl);
   const eventLabel = formatEvent(config.event);
@@ -161,16 +174,16 @@ export function createSlideMetadata(slug: string): Metadata {
     : config.description;
 
   return {
-    title: eventLabel ? `${config.title} | ${eventLabel}` : `${config.title} | mySlides`,
+    title: eventLabel ? `${title} | ${eventLabel}` : `${title} | mySlides`,
     description: config.description,
     openGraph: {
-      title: config.title,
+      title,
       description: ogDescription,
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
-      title: config.title,
+      title,
       description: ogDescription,
     },
     alternates: {
@@ -190,10 +203,11 @@ export interface OgpProps {
 
 export function createOgpProps(slug: string): OgpProps {
   const config = getSlideConfig(slug);
+  const title = getSlideTitle(config);
   const handle = getAuthorHandle(config.authorUrl);
   return {
-    alt: config.title,
-    title: config.title,
+    alt: title,
+    title,
     event: formatEvent(config.event),
     author: `${config.author} @${handle}`,
   };

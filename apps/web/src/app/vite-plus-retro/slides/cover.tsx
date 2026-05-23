@@ -1,9 +1,9 @@
 import { Fragment } from "react";
-import { getSlideConfig } from "@/lib/slides/config";
+import { getSlideConfig, getSlideTitleLines } from "@/lib/slides/config";
 
 const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
 const config = getSlideConfig("vite-plus-retro");
-const titleLines = config.titleLines ?? [config.title];
+const titleLines = getSlideTitleLines(config);
 
 export default function Cover() {
   return (
