@@ -1,6 +1,6 @@
 <!-- .slide: style="color: white;"-->
 
-# 僕の考えた最強の<br />TanStack Router ディレクトリ構成<!-- .element: style="color: white;" -->
+# ぼくの考えた最強の<br />TanStack Router ディレクトリ構成<!-- .element: style="color: white;" -->
 
 ---
 
@@ -20,7 +20,7 @@
 
 - TanStack Router のおさらい
 - よくある構成と困りごと
-- 僕の考えた最強の構成
+- ぼくの考えた最強の構成
 - なぜこの形に落ち着いたか
 
 ---
@@ -47,7 +47,7 @@
 
 <!-- .slide: style="color: white; text-align: left;" -->
 
-## 僕の考えた最強の構成<!-- .element: style="color: white;" -->
+## ぼくの考えた最強の構成<!-- .element: style="color: white;" -->
 
 ```text
 src/

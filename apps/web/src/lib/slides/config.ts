@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 export interface SlideConfig {
   slug: string;
   title: string;
+  /** 表紙の見た目用。改行したい位置で行を分けて指定する。未指定なら title をそのまま1行表示。メタデータ・一覧カードは常に title（フラット）を使う。 */
+  titleLines?: string[];
   description: string;
   author: string;
   authorUrl: string;
@@ -111,6 +113,7 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
   "vite-plus-retro": {
     slug: "vite-plus-retro",
     title: "Vite+ を採用して良かったこと・辛かったこと",
+    titleLines: ["Vite+ を採用して", "良かったこと・辛かったこと"],
     description: "Vite+ を実プロジェクトに採用して感じたメリットと、運用で直面した辛みを振り返る",
     author: "ぶりお",
     authorUrl: "https://twitter.com/burio_16",
@@ -120,6 +123,7 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
   "tanstack-router-dir-structure": {
     slug: "tanstack-router-dir-structure",
     title: "ぼくの考えた最強の TanStack Router ディレクトリ構成",
+    titleLines: ["ぼくの考えた最強の", "TanStack Router ディレクトリ構成"],
     description:
       "TanStack Router で実際に運用してたどり着いた、スケールするディレクトリ構成のベストプラクティス",
     author: "ぶりお",
