@@ -130,8 +130,9 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
     description: "Vite+ を実プロジェクトに採用して感じたメリットと、運用で直面した辛みを振り返る",
     author: "ぶりお",
     authorUrl: "https://twitter.com/burio_16",
-    date: "YYYY/MM/DD",
-    event: "イベント名",
+    date: "2026/06/25",
+    event: "TSKaigi 2026事後勉強会",
+    eventUrl: "https://smarthr.connpass.com/event/392342/",
   },
   "tanstack-router-dir-structure": {
     slug: "tanstack-router-dir-structure",
@@ -140,8 +141,9 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
       "TanStack Router で実際に運用してたどり着いた、スケールするディレクトリ構成のベストプラクティス",
     author: "ぶりお",
     authorUrl: "https://twitter.com/burio_16",
-    date: "YYYY/MM/DD",
-    event: "イベント名",
+    date: "2026/06/12",
+    event: "TSKaigi2026〜アフターパーティー〜",
+    eventUrl: "https://every.connpass.com/event/393937/",
   },
 };
 

@@ -1,65 +1,222 @@
+import Image from "next/image";
 import { PersonalContentSlide, PersonalHeadingSlide } from "@/components/slides";
+import SelfIntroduction from "./slides/self-introduction";
 
-<PersonalContentSlide title="自己紹介">
+<SelfIntroduction>
 
 - ぶりお [@burio_16](https://x.com/burio_16)
-- 所属・担当（ここに記入）
-- 普段やっていること（ここに記入）
+- タコスとTottenham Hotspur FCが大好き
+- TSKaigiは初参加でした
+- 会場で5回くらいタコスの人ですか！？と言われた(???)
+
+</SelfIntroduction>
+
+<PersonalContentSlide title="TSKaigi2026">
+
+みなさん楽しかったですか？？
+
+<div className="r-stack mt-6">
+  <Image
+    className="fragment fade-out"
+    data-fragment-index="0"
+    src="/slides/tanstack-router-dir-structure/assets/tskaigi-banner.jpg"
+    alt="Welcome to TSKaigi 2026 のスポンサーバナー"
+    width={2443}
+    height={1559}
+    style={{
+      margin: "0 auto",
+      display: "block",
+      width: "auto",
+      height: "auto",
+      maxHeight: "700px",
+      maxWidth: "100%",
+    }}
+  />
+  <Image
+    className="fragment fade-in"
+    data-fragment-index="0"
+    src="/slides/tanstack-router-dir-structure/assets/tskaigi-group.jpg"
+    alt="TSKaigi 2026 アフターパーティーでの集合写真"
+    width={2048}
+    height={1536}
+    style={{
+      margin: "0 auto",
+      display: "block",
+      width: "auto",
+      height: "auto",
+      maxHeight: "700px",
+      maxWidth: "100%",
+    }}
+  />
+</div>
+
+初参加でしたが、とても楽しかったです！[参加レポート](https://burio16.com/blog/8)も書きました
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="アジェンダ">
+<PersonalHeadingSlide>
 
-- TanStack Router のおさらい
-- よくある構成と困りごと
-- ぼくの考えた最強の構成
-- なぜこの形に落ち着いたか
+第 1 部
+TanStack Router
 
-</PersonalContentSlide>
+</PersonalHeadingSlide>
 
-<PersonalContentSlide title="TanStack Router のおさらい">
+<PersonalHeadingSlide>
 
-- ファイルベース / コードベースの 2 方式
-- 型安全なルーティングが強み
-- 採用したプロジェクトの前提（ここに記入）
+そもそも、なぜ TanStack？
 
-</PersonalContentSlide>
+</PersonalHeadingSlide>
 
-<PersonalContentSlide title="よくある構成と困りごと">
+<PersonalContentSlide title="技術選定">
 
-- 困りごと 1（ここに記入）
-- 困りごと 2（ここに記入）
-- 困りごと 3（ここに記入）
+- 社内で 0 から作り直す大規模なリプレイス中、フロントの技術選定を行った
+- 候補は **Next / React Router / TanStack Router** の三案
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="ぼくの考えた最強の構成">
+<PersonalContentSlide title="三案の比較">
+
+- **Next** … ロックインの辛さ、キャッシュコンポーネント等の難しい概念
+- **React Router** … 現状使用中。でも新しく作るなら新し目を選びたい
+- **TanStack** … 辛くなく、モダン寄りって感覚
+
+→ **TanStack Router を採用**
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+TanStack の良さって？
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="TanStack の良さ">
+
+- 型安全なルーティング
+- URL での状態管理
+- ファイルベースルーティング
+- `-` での routes 配下の子ロケーション
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="でも、意外と大変だった">
+
+- 実際の事例が少なく、採用してみると躓いた
+- PoC を進めつつ、**どうすれば TanStack の良さを活かせるか**を考えた
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+構成、どうする？
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="三案を考えた">
+
+1. **features に寄せる**
+   一般的な形。bulletproof react などでも出てくる
+2. **routes に全部押し込む**
+   `-` でコロケーションできるので全部詰める
+3. **ハイブリッド**
+   TanStack の影響を受ける部分は routes、ロジックの実態は features
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="ハイブリッドを採用">
+
+- 機能を活かしつつ、変更も容易にしたい
+- → 結果的に **三つ目（ハイブリッド）** を採用
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+こんな感じにしました！
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="ディレクトリ構成">
 
 ```text
-src/
-├── routes/          # ルート定義（ファイルベース）
-│   ├── __root.tsx
-│   └── ...
-├── features/        # 機能単位のロジック・UI
-├── components/      # 共通UI
-├── lib/             # ユーティリティ・API クライアント
-└── ...
+apps/<appname>/src/
+├── features/
+│   └── <domain>/
+│       ├── api/        ← queryOptions / mutationOptions / API I/O
+│       ├── hooks/      ← useSuspenseQuery / useMutation を呼ぶ hook
+│       ├── components/ ← View 断片（Router 非依存）
+│       └── types.ts    ← ドメイン型・route と共有する Enum
+└── routes/
+    └── <route>/
+        ├── -components/
+        │   ├── fallbacks/  ← 必要なルートのみ（pending / error の中身）
+        │   └── Page.tsx    ← Page 本体（Router 依存を features に注入）
+        └── index.tsx       ← validateSearch / loader / アダプタの宣言のみ
 ```
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="なぜこの形に落ち着いたか">
+<PersonalHeadingSlide>
 
-- ポイント 1（ここに記入）
-- ポイント 2（ここに記入）
-- ポイント 3（ここに記入）
+第 2 部
+TanStack Start / Server Function
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+server 処理が必要になった
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="Start 採用">
+
+- PoC を進めるなか、認証周りなど **server で処理する必要性** が出てきた
+- これまでを活かして **TanStack Start** の採用を決めた
+- PoC なので「失敗してもええやろ」の精神でのチャレンジ
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="まとめ">
+<PersonalHeadingSlide>
 
-- routes は薄く、ロジックは features へ
-- 迷ったら（ここに記入）
+TSKaigi のこの 2 本が刺さった
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="Server Function の置き場（案 E）">
+
+- [TanStack Start の createServerFn で作る、型が通る API（yt4）](https://2026.tskaigi.org/talks/25)
+- [実践 TanStack Start：サーバーとクライアント境界の設計パターン（kaminashi）](https://2026.tskaigi.org/talks/26)
+
+→ この 2 つを参考に Server Function の置き場を決めた
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+そしてこんな形にした！
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="ディレクトリ構成（+ server）">
+
+```text
+apps/<appname>/src/
+├── features/
+│   └── <domain>/
+│       ├── api/        ← queryOptions / mutationOptions / use-<verb>-<entity>
+│       ├── server/     ← ★ Server Function
+│       │   ├── <entity>.functions.ts  ← createServerFn のラッパー
+│       │   ├── <entity>-schema.ts     ← 入出力の schema
+│       │   └── <verb>-<entity>.server.ts ← ロジック
+│       ├── hooks/      ← useSuspenseQuery / useMutation を呼ぶ hook
+│       ├── components/ ← View 断片（Router 非依存）
+│       └── types.ts    ← ドメイン型・route と共有する Enum
+└── routes/
+    └── <route>/
+        ├── -components/ ← fallbacks / Page.tsx
+        └── index.tsx    ← validateSearch / loader / アダプタの宣言のみ
+```
 
 </PersonalContentSlide>
 
