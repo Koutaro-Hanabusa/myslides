@@ -54,31 +54,32 @@ import SelfIntroduction from "./slides/self-introduction";
 
 </PersonalContentSlide>
 
+<PersonalContentSlide title="先に言っておくと">
+
+- TanStack Router / Start は事例が少なく、正直まだ **手探り**
+- 「これが正解」ではなく、**試行錯誤の途中** を共有したい
+- TanStack 仲間と **一緒に考えたい**！
+
+</PersonalContentSlide>
+
 <PersonalHeadingSlide>
 
-第 1 部
-TanStack Router
-
-</PersonalHeadingSlide>
-
-<PersonalHeadingSlide>
-
-そもそも、なぜ TanStack？
+そもそも、なぜ TanStack Router？
 
 </PersonalHeadingSlide>
 
 <PersonalContentSlide title="技術選定">
 
 - 社内で 0 から作り直す大規模なリプレイス中、フロントの技術選定を行った
-- 候補は **Next / React Router / TanStack Router** の三案
+- 候補は **Next.js / React Router / TanStack Router** の三案
 
 </PersonalContentSlide>
 
 <PersonalContentSlide title="三案の比較">
 
-- **Next** … ロックインの辛さ、キャッシュコンポーネント等の難しい概念
-- **React Router** … 現状使用中。でも新しく作るなら新し目を選びたい
-- **TanStack** … 辛くなく、モダン寄りって感覚
+- **Next** … App Router / Cache Components など、乗る前提で覚える概念が多い
+- **React Router** … 現状使用中。ただ、今回ほしい型安全な URL 状態管理は別途工夫が要る
+- **TanStack** … 型安全なルーティング / search params / loader 周りが今回の要件に合った
 
 → **TanStack Router を採用**
 
@@ -86,23 +87,23 @@ TanStack Router
 
 <PersonalHeadingSlide>
 
-TanStack の良さって？
+TanStack Routerの良さって？
 
 </PersonalHeadingSlide>
 
-<PersonalContentSlide title="TanStack の良さ">
+<PersonalContentSlide title="TanStack Routerの良さ">
 
 - 型安全なルーティング
-- URL での状態管理
+- 型安全な search params
 - ファイルベースルーティング
-- `-` での routes 配下の子ロケーション
+- `-` prefix で route tree から除外したコロケーションができる
 
 </PersonalContentSlide>
 
 <PersonalContentSlide title="でも、意外と大変だった">
 
 - 実際の事例が少なく、採用してみると躓いた
-- PoC を進めつつ、**どうすれば TanStack の良さを活かせるか**を考えた
+- PoC を進めつつ、どうすれば TanStack の良さを活かせるかを考えた
 
 </PersonalContentSlide>
 
@@ -115,11 +116,13 @@ TanStack の良さって？
 <PersonalContentSlide title="三案を考えた">
 
 1. **features に寄せる**
-   一般的な形。bulletproof react などでも出てくる
+   - 一般的な形。bulletproof react などでも出てくる
+   - TanStack の機能を活かしきれない
 2. **routes に全部押し込む**
-   `-` でコロケーションできるので全部詰める
+   - `-` でコロケーションできるので全部詰め込める
+   - 機能は活かせるが、肥大化してぐちゃぐちゃに
 3. **ハイブリッド**
-   TanStack の影響を受ける部分は routes、ロジックの実態は features
+   - TanStack の影響を受ける部分は routes、ロジックの実体は features
 
 </PersonalContentSlide>
 
@@ -156,12 +159,52 @@ apps/<appname>/src/
 
 </PersonalContentSlide>
 
-<PersonalHeadingSlide>
+<PersonalContentSlide title="なぜ fallbacks が要る？">
 
-第 2 部
-TanStack Start / Server Function
+- loader で `ensureQueryData`、component は `useSuspenseQuery` で読む
+- loader が pending になると `pendingComponent`、失敗すると `errorComponent` が出る
+- `ensureQueryData` で先に埋めておくので、`Page` 側は「取得済み前提」で書ける
+- だから `-components/fallbacks/` に中身を用意する
+- prefetch するルートだけなので **「必要なルートのみ」**
 
-</PersonalHeadingSlide>
+</PersonalContentSlide>
+
+<PersonalContentSlide title="コードで見ると">
+
+```tsx
+// routes/contracts/index.tsx — 宣言だけ
+export const Route = createFileRoute("/contracts")({
+  loader: ({ context }) => context.queryClient.ensureQueryData(contractsQueryOptions),
+  pendingComponent: ContractsPending, // -components/fallbacks/
+  errorComponent: ContractsError, //    -components/fallbacks/
+  component: Page,
+});
+
+// -components/Page.tsx — データは取得済みとして読む
+function Page() {
+  const { data } = useSuspenseQuery(contractsQueryOptions);
+  return <ContractList items={data} />;
+}
+```
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="採用してどうなった">
+
+- features のベストプラクティスと TanStack の機能、**両方を活かせる形**に
+- TanStack の影響が **routes に閉じている**ので、今後の変更も加えやすい
+- 実体は **Router 非依存** → 変更・テスト・再利用がしやすい
+- 反面、component の置き場が **3 つ**に → **AI が迷わない整備**が重要に
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="ここまでは自力で">
+
+- 構成までは **自分で考えて** たどり着けた
+- でも **TanStack Start** は TSKaigi 前に採用が決まっただけで、設計は **ノープラン**だった
+- → ここから手探り。でも TSKaigi で学べた
+
+</PersonalContentSlide>
 
 <PersonalHeadingSlide>
 
@@ -172,7 +215,7 @@ server 処理が必要になった
 <PersonalContentSlide title="Start 採用">
 
 - PoC を進めるなか、認証周りなど **server で処理する必要性** が出てきた
-- これまでを活かして **TanStack Start** の採用を決めた
+- 既存の Router ベース設計を活かしたまま server function / SSR を足せるので **TanStack Start** を採用
 - PoC なので「失敗してもええやろ」の精神でのチャレンジ
 
 </PersonalContentSlide>
@@ -183,12 +226,49 @@ TSKaigi のこの 2 本が刺さった
 
 </PersonalHeadingSlide>
 
-<PersonalContentSlide title="Server Function の置き場（案 E）">
+<PersonalContentSlide title="Server Function の置き場">
 
 - [TanStack Start の createServerFn で作る、型が通る API（yt4）](https://2026.tskaigi.org/talks/25)
 - [実践 TanStack Start：サーバーとクライアント境界の設計パターン（kaminashi）](https://2026.tskaigi.org/talks/26)
 
 → この 2 つを参考に Server Function の置き場を決めた
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="2 本から学んだこと">
+
+- **kaminashi** … 境界は薄く、**ロジックは外へ**。横断関心事は middleware に分離
+- **yt4** … `createServerFn` は **schema / logic / wiring** の 3 ファイルに責務分離
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+serverFn、どこに置く？
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="また三案を考えた">
+
+1. **src/server に寄せる**
+   - アプリ横断の共通 server ディレクトリに集約する
+   - 悪くはないが、管理する場所が **3 つ**に増える
+2. **routes にハイブリッド**
+   - wrapper は `routes/-api`、schema / logic は features（構成と同じ発想）
+   - 技術的には可能。でも **routes はルーティング宣言に専念させたい**
+   - そのため **features から routes を import する形は避けた**
+3. **features に寄せる**
+   - wrapper まで含めて `features/<domain>/server` に全部置く
+   - 管理対象が増えず、「**ロジックの処理**」という性質とも合う
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="features 寄せを採用">
+
+- 構成では「ハイブリッド」が勝った。でも今回は **二つ目（ハイブリッド）を蹴った**
+- `createServerFn` の wrapper は `Page` のような薄い層ではなく、schema / logic と密結合した **実体側** だった
+- routes に切り出すと、ドメインが routes と features の **2 箇所に分散** する
+- → 軸は同じ「実体は features」。wrapper の見立てだけ変えて **三つ目（features 寄せ）** を採用
 
 </PersonalContentSlide>
 
@@ -217,6 +297,15 @@ apps/<appname>/src/
         ├── -components/ ← fallbacks / Page.tsx
         └── index.tsx    ← validateSearch / loader / アダプタの宣言のみ
 ```
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="まとめ">
+
+- TanStack Router / Start は、**責務の境界を適切に設計する** ことで機能を活かしやすい
+- routes は **ルーティング宣言に専念**、実体は features に寄せると変更しやすかった
+- server function も routes ではなく **domain の処理として置く** と整理しやすかった
+- さらに **Vite 周辺の成熟したツールチェーン** も活用でき、実践的な選択肢になりうる
 
 </PersonalContentSlide>
 
