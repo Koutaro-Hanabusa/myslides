@@ -55,11 +55,11 @@ import { DIR_STRUCTURE, DIR_STRUCTURE_WITH_SERVER, ROUTE_EXAMPLE } from "./slide
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="先に言っておくと">
+<PersonalContentSlide title="本題に入る前に">
 
-- TanStack Router / Start は事例が少なく、正直まだ **手探り**
-- 「これが正解」ではなく、**試行錯誤の途中** を共有したい
-- TanStack 仲間と **一緒に考えたい**！
+- TanStack Router / Start は事例が少なく、手探りです！
+- 「これが正解」ではなく、試行錯誤の途中を共有したい
+- もし知見を持っている方は懇親会でマサカリしてください
 
 </PersonalContentSlide>
 
@@ -78,9 +78,9 @@ import { DIR_STRUCTURE, DIR_STRUCTURE_WITH_SERVER, ROUTE_EXAMPLE } from "./slide
 
 <PersonalContentSlide title="三案の比較">
 
-- **Next** … App Router / Cache Components など、乗る前提で覚える概念が多い
-- **React Router** … 現状使用中。ただ、今回ほしい型安全な URL 状態管理は別途工夫が要る
-- **TanStack** … 型安全なルーティング / search params / loader 周りが今回の要件に合った
+- **Next.js** … Vercelへのロックインの辛さや、Cache Components などの難解さを考えて見送り
+- **React Router** … 現状使用中。せっかく作り替えるのに同じ技術使っても楽しくない
+- **TanStack** … Next.jsほど辛くなく、React Routerよりもモダンな印象があったので採用！！
 
 → **TanStack Router を採用**
 
@@ -105,6 +105,56 @@ TanStack Routerの良さって？
 
 - 実際の事例が少なく、採用してみると躓いた
 - PoC を進めつつ、どうすれば TanStack の良さを活かせるかを考えた
+- この辺を参考に考えた
+  https://speakerdeck.com/ytaisei/tanstack-routerwo-xin-gui-purodakutode1nian-jian-yun-yong-sitemitajie-guo
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="呟いたらメンテナーが降臨した">
+
+<div className="flex items-center gap-8">
+
+<div className="flex-1 text-left">
+
+- 何も分からず X で「本日も TanStack に頭を悩ませた」と呟く
+- すると TanStack メンテナーが降臨
+- 悩みを伝えると → **「どっちでもええんちゃう？**
+- ……たぶん悩みをうまく伝えきれてなかった説
+
+</div>
+
+<div className="r-stack shrink-0" style={{ width: "760px" }}>
+  <Image
+    className="fragment fade-out"
+    data-fragment-index="0"
+    src="/slides/tanstack-router-dir-structure/assets/maintainer-x-question.png"
+    alt="X で TanStack の構成について悩みを伝えているスクリーンショット"
+    width={1006}
+    height={838}
+    style={{
+      display: "block",
+      width: "100%",
+      height: "auto",
+      borderRadius: "8px",
+    }}
+  />
+  <Image
+    className="fragment fade-in"
+    data-fragment-index="0"
+    src="/slides/tanstack-router-dir-structure/assets/maintainer-x-answer.png"
+    alt="メンテナー Manuel Schiller さんが matter of taste と返信し Virtual File Routes を案内しているスクリーンショット"
+    width={960}
+    height={698}
+    style={{
+      display: "block",
+      width: "100%",
+      height: "auto",
+      borderRadius: "8px",
+    }}
+  />
+</div>
+
+</div>
 
 </PersonalContentSlide>
 
@@ -124,10 +174,6 @@ TanStack Routerの良さって？
    - 機能は活かせるが、肥大化してぐちゃぐちゃに
 3. **ハイブリッド**
    - TanStack の影響を受ける部分は routes、ロジックの実体は features
-
-</PersonalContentSlide>
-
-<PersonalContentSlide title="ハイブリッドを採用">
 
 - 機能を活かしつつ、変更も容易にしたい
 - → 結果的に **三つ目（ハイブリッド）** を採用
@@ -150,8 +196,8 @@ TanStack Routerの良さって？
 
 - loader で `ensureQueryData`、component は `useSuspenseQuery` で読む
 - loader が pending になると `pendingComponent`、失敗すると `errorComponent` が出る
-- `ensureQueryData` で先に埋めておくので、`Page` 側は「取得済み前提」で書ける
-- だから `-components/fallbacks/` に中身を用意する
+  - `ensureQueryData` で先に埋めておくので、`Page` 側は「取得済み前提」で書ける
+- `-components/fallbacks/` に中身を用意する
 - prefetch するルートだけなので **「必要なルートのみ」**
 
 </PersonalContentSlide>
@@ -171,27 +217,26 @@ TanStack Routerの良さって？
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="ここまでは自力で">
+<PersonalHeadingSlide>
 
-- 構成までは **自分で考えて** たどり着けた
-- でも **TanStack Start** は TSKaigi 前に採用が決まっただけで、設計は **ノープラン**だった
-- → ここから手探り。でも TSKaigi で学べた
+しかし！<br />突如として<br />server 処理が必要になった
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="思い切って Start を採用">
+
+- PoC を進めるなか、認証周りなど **server で処理する必要性** が出てきた
+- 案① **React Router の SSR モード**に乗り換える / 案② **Hono などで BFF** を立てる
+- でも、すでに **TanStack Router 採用済み** → 既存設計を活かしたまま server function / SSR を足せる
+- → 思い切って **TanStack Start** に踏み切った（PoC なので「失敗してもええやろ」の精神）
 
 </PersonalContentSlide>
 
 <PersonalHeadingSlide>
 
-server 処理が必要になった
+とはいえ何も分からん！！！
 
 </PersonalHeadingSlide>
-
-<PersonalContentSlide title="Start 採用">
-
-- PoC を進めるなか、認証周りなど **server で処理する必要性** が出てきた
-- 既存の Router ベース設計を活かしたまま server function / SSR を足せるので **TanStack Start** を採用
-- PoC なので「失敗してもええやろ」の精神でのチャレンジ
-
-</PersonalContentSlide>
 
 <PersonalHeadingSlide>
 
