@@ -255,8 +255,10 @@ TSKaigi のこの 2 本が刺さった
 
 <PersonalContentSlide title="2 本から学んだこと">
 
-- **kaminashi** … 境界は薄く、**ロジックは外へ**。横断関心事は middleware に分離
-- **yt4** … `createServerFn` は **schema / logic / wiring** の 3 ファイルに責務分離
+- 2 本に共通していたのは **「`createServerFn` の中身は薄く保つ」** という点
+- → ロジックは serverFn の外に出し、wrapper は薄い層に留める
+- さらに **schema / server / function** に分けると良い（公式推奨)
+- https://tanstack.com/start/v0/docs/framework/react/guide/server-functions#file-organization
 
 </PersonalContentSlide>
 
