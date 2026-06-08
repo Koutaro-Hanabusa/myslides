@@ -251,7 +251,8 @@ body {
   padding: 1.15em 1.4em;
   background: transparent;
   box-shadow: none;
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: visible;
   font-size: 0.5em;
   line-height: 1.7;
   tab-size: 2;
@@ -264,6 +265,9 @@ body {
   background: transparent;
   white-space: pre;
   text-shadow: none;
+  /* reveal 既定の max-height:400px / overflow:auto を解除し children に合わせて伸ばす */
+  max-height: none;
+  overflow: visible;
 }
 .sh-code .sh__token--comment {
   font-style: italic;

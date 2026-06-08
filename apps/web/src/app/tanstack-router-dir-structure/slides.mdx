@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { PersonalContentSlide, PersonalHeadingSlide } from "@/components/slides";
+import { CodeBlock, PersonalContentSlide, PersonalHeadingSlide } from "@/components/slides";
 import SelfIntroduction from "./slides/self-introduction";
+import { DIR_STRUCTURE, DIR_STRUCTURE_WITH_SERVER, ROUTE_EXAMPLE } from "./slides/code-samples";
 
 <SelfIntroduction>
 
@@ -141,21 +142,7 @@ TanStack Routerの良さって？
 
 <PersonalContentSlide title="ディレクトリ構成">
 
-```text
-apps/<appname>/src/
-├── features/
-│   └── <domain>/
-│       ├── api/        ← queryOptions / mutationOptions / API I/O
-│       ├── hooks/      ← useSuspenseQuery / useMutation を呼ぶ hook
-│       ├── components/ ← View 断片（Router 非依存）
-│       └── types.ts    ← ドメイン型・route と共有する Enum
-└── routes/
-    └── <route>/
-        ├── -components/
-        │   ├── fallbacks/  ← 必要なルートのみ（pending / error の中身）
-        │   └── Page.tsx    ← Page 本体（Router 依存を features に注入）
-        └── index.tsx       ← validateSearch / loader / アダプタの宣言のみ
-```
+<CodeBlock lang="text" code={DIR_STRUCTURE} />
 
 </PersonalContentSlide>
 
@@ -171,21 +158,7 @@ apps/<appname>/src/
 
 <PersonalContentSlide title="コードで見ると">
 
-```tsx
-// routes/contracts/index.tsx — 宣言だけ
-export const Route = createFileRoute("/contracts")({
-  loader: ({ context }) => context.queryClient.ensureQueryData(contractsQueryOptions),
-  pendingComponent: ContractsPending, // -components/fallbacks/
-  errorComponent: ContractsError, //    -components/fallbacks/
-  component: Page,
-});
-
-// -components/Page.tsx — データは取得済みとして読む
-function Page() {
-  const { data } = useSuspenseQuery(contractsQueryOptions);
-  return <ContractList items={data} />;
-}
-```
+<CodeBlock lang="tsx" code={ROUTE_EXAMPLE} />
 
 </PersonalContentSlide>
 
@@ -280,23 +253,7 @@ serverFn、どこに置く？
 
 <PersonalContentSlide title="ディレクトリ構成（+ server）">
 
-```text
-apps/<appname>/src/
-├── features/
-│   └── <domain>/
-│       ├── api/        ← queryOptions / mutationOptions / use-<verb>-<entity>
-│       ├── server/     ← ★ Server Function
-│       │   ├── <entity>.functions.ts  ← createServerFn のラッパー
-│       │   ├── <entity>-schema.ts     ← 入出力の schema
-│       │   └── <verb>-<entity>.server.ts ← ロジック
-│       ├── hooks/      ← useSuspenseQuery / useMutation を呼ぶ hook
-│       ├── components/ ← View 断片（Router 非依存）
-│       └── types.ts    ← ドメイン型・route と共有する Enum
-└── routes/
-    └── <route>/
-        ├── -components/ ← fallbacks / Page.tsx
-        └── index.tsx    ← validateSearch / loader / アダプタの宣言のみ
-```
+<CodeBlock lang="text" code={DIR_STRUCTURE_WITH_SERVER} />
 
 </PersonalContentSlide>
 
