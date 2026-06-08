@@ -200,3 +200,83 @@ body {
 .reveal.reveal .text-pink-500 {
   color: #ec4899;
 }
+
+/* MDX コードブロック (CodeBlock) — sugar-high のトークン色は --sh-* で定義 */
+.sh-code {
+  --sh-code-bg: #1e1e2e;
+  --sh-code-bar: #181825;
+  --sh-code-border: rgba(255, 255, 255, 0.08);
+  --sh-identifier: #cdd6f4;
+  --sh-keyword: #cba6f7;
+  --sh-string: #a6e3a1;
+  --sh-class: #f9e2af;
+  --sh-property: #89b4fa;
+  --sh-entity: #89b4fa;
+  --sh-jsxliterals: #f5c2e7;
+  --sh-sign: #9399b2;
+  --sh-comment: #6c7086;
+
+  display: block;
+  margin: 0.7em auto;
+  max-width: 92%;
+  overflow: hidden;
+  border: 1px solid var(--sh-code-border);
+  border-radius: 14px;
+  background: var(--sh-code-bg);
+  box-shadow:
+    0 30px 60px -20px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(0, 0, 0, 0.25);
+  text-align: left;
+}
+.sh-code__bar {
+  display: flex;
+  align-items: center;
+  padding: 0.5em 1.1em;
+  background: var(--sh-code-bar);
+  border-bottom: 1px solid var(--sh-code-border);
+}
+.sh-code__lang {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.72em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #7f849c;
+}
+/* reveal の .reveal pre 既定を上書き */
+.reveal .sh-code__pre,
+.sh-code__pre {
+  margin: 0;
+  width: auto;
+  max-width: none;
+  padding: 1.15em 1.4em;
+  background: transparent;
+  box-shadow: none;
+  overflow: auto;
+  font-size: 0.5em;
+  line-height: 1.7;
+  tab-size: 2;
+}
+.reveal .sh-code__pre code,
+.sh-code__pre code {
+  display: block;
+  font-family: var(--font-geist-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color: var(--sh-identifier);
+  background: transparent;
+  white-space: pre;
+  text-shadow: none;
+}
+.sh-code .sh__token--comment {
+  font-style: italic;
+}
+
+/* インラインコード */
+.reveal .myslides-inline-code,
+.myslides-inline-code {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.85em;
+  padding: 0.12em 0.4em;
+  border-radius: 0.35em;
+  background: rgba(203, 166, 247, 0.16);
+  color: #cba6f7;
+  white-space: nowrap;
+}

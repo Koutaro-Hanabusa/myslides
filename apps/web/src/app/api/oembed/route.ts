@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { getSlideConfig } from "@/lib/slides/config";
+import { getSlideConfig, getSlideTitle } from "@/lib/slides/config";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3001";
 
@@ -51,7 +51,7 @@ export async function GET(request: NextRequest) {
     type: "rich",
     provider_name: "mySlides",
     provider_url: BASE_URL,
-    title: slideConfig.title,
+    title: getSlideTitle(slideConfig),
     author_name: slideConfig.author,
     author_url: slideConfig.authorUrl,
     width,
