@@ -1,7 +1,17 @@
 import Image from "next/image";
 import { CodeBlock, PersonalContentSlide, PersonalHeadingSlide } from "@/components/slides";
 import SelfIntroduction from "./slides/self-introduction";
-import { DIR_STRUCTURE, DIR_STRUCTURE_WITH_SERVER, ROUTE_EXAMPLE } from "./slides/code-samples";
+import {
+  DIR_OPT_FEATURES,
+  DIR_OPT_HYBRID,
+  DIR_OPT_ROUTES,
+  DIR_STRUCTURE,
+  DIR_STRUCTURE_WITH_SERVER,
+  ROUTE_EXAMPLE,
+  SERVER_FN_FEATURES,
+  SERVER_FN_ROUTES,
+  SERVER_FN_SRC,
+} from "./slides/code-samples";
 
 <SelfIntroduction>
 
@@ -180,6 +190,24 @@ TanStack Routerの良さって？
 
 </PersonalContentSlide>
 
+<PersonalContentSlide title="案① features に寄せる">
+
+<CodeBlock lang="text" code={DIR_OPT_FEATURES} />
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="案② routes に全部押し込む">
+
+<CodeBlock lang="text" code={DIR_OPT_ROUTES} />
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="案③ ハイブリッド（採用）">
+
+<CodeBlock lang="text" code={DIR_OPT_HYBRID} />
+
+</PersonalContentSlide>
+
 <PersonalHeadingSlide>
 
 こんな感じにしました！
@@ -276,10 +304,28 @@ serverFn、どこに置く？
 2. **routes にハイブリッド**
    - wrapper は `routes/-api`、schema / logic は features（構成と同じ発想）
    - 技術的には可能。でも **routes はルーティング宣言に専念させたい**
-   - そのため **features から routes を import する形は避けた**
+   - さらに serverFn は `useServerFn` で **component から呼べる** → wrapper を routes に置くと **features が routes に依存する逆転構造**になり避けた
 3. **features に寄せる**
    - wrapper まで含めて `features/<domain>/server` に全部置く
    - 管理対象が増えず、「**ロジックの処理**」という性質とも合う
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="案① src/server に集約">
+
+<CodeBlock lang="text" code={SERVER_FN_SRC} />
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="案② routes にハイブリッド">
+
+<CodeBlock lang="text" code={SERVER_FN_ROUTES} />
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="案③ features に集約">
+
+<CodeBlock lang="text" code={SERVER_FN_FEATURES} />
 
 </PersonalContentSlide>
 

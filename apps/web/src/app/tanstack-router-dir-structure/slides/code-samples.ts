@@ -16,6 +16,24 @@ export const DIR_STRUCTURE = `apps/<appname>/src/
         │   └── Page.tsx    ← Page 本体（Router 依存を features に注入）
         └── index.tsx       ← validateSearch / loader / アダプタの宣言のみ`;
 
+export const DIR_OPT_FEATURES = `src/
+├── features/<domain>/   ← api / hooks / components / Page まで集約
+└── routes/<route>/
+    └── index.tsx         ← features を読むだけの薄い wrapper`;
+
+export const DIR_OPT_ROUTES = `src/routes/<route>/
+├── -api/         ← queryOptions / mutationOptions
+├── -hooks/       ← hook
+├── -components/  ← View 断片 / fallbacks / Page
+└── index.tsx     ← loader / validateSearch`;
+
+export const DIR_OPT_HYBRID = `src/
+├── features/<domain>/   ← ロジックの実体（Router 非依存）
+│   └── api / hooks / components
+└── routes/<route>/      ← TanStack 依存部分だけ
+    ├── -components/  ← fallbacks / Page
+    └── index.tsx     ← loader / validateSearch`;
+
 export const ROUTE_EXAMPLE = `// routes/contracts/index.tsx — 宣言だけ
 export const Route = createFileRoute("/contracts")({
   loader: ({ context }) => context.queryClient.ensureQueryData(contractsQueryOptions),
@@ -29,6 +47,28 @@ function Page() {
   const { data } = useSuspenseQuery(contractsQueryOptions);
   return <ContractList items={data} />;
 }`;
+
+export const SERVER_FN_SRC = `src/
+├── features/<domain>/   ← api / hooks / components
+├── routes/<route>/      ← ルーティング宣言のみ
+└── server/<entity>/     ← ★ serverFn を全部ここへ集約
+    ├── <entity>.functions.ts      wrapper
+    ├── <entity>-schema.ts         schema
+    └── <verb>-<entity>.server.ts  logic`;
+
+export const SERVER_FN_ROUTES = `src/
+├── features/<domain>/
+│   ├── <entity>-schema.ts         schema
+│   └── <verb>-<entity>.server.ts  logic（実体）
+└── routes/<route>/
+    └── -api/
+        └── <entity>.functions.ts  ★ wrapper だけ routes 側`;
+
+export const SERVER_FN_FEATURES = `src/features/<domain>/
+└── server/                        ← ★ wrapper も含めて全部 features
+    ├── <entity>.functions.ts      wrapper
+    ├── <entity>-schema.ts         schema
+    └── <verb>-<entity>.server.ts  logic`;
 
 export const DIR_STRUCTURE_WITH_SERVER = `apps/<appname>/src/
 ├── features/
