@@ -293,7 +293,7 @@ TanStack Routerの良さって？
 <CodeBlock lang="text" code={DIR_OPT_HYBRID} />
 
 - TanStack Router 依存部分だけ routes、ロジックの実体は features
-- **機能を活かしつつ、変更も容易**ないいとこ取り
+- 機能はフル活用しつつ、**Router 依存を routes に閉じ込められる**いいとこ取り
 
 </PersonalContentSlide>
 
@@ -308,7 +308,7 @@ TanStack Routerの良さって？
 <CodeBlock lang="text" code={DIR_STRUCTURE} />
 
 - routes は **宣言だけ**、ロジックの実体は features に
-- 責務の境界が **ディレクトリ構造で見える**形に
+- routes と features の分担が **ディレクトリ構造で見える**形に
 
 </PersonalContentSlide>
 
@@ -349,9 +349,9 @@ TanStack Routerの良さって？
 <PersonalContentSlide title="思い切って Start を採用">
 
 - PoC を進めるなか、認証周りなど **server で処理する必要性** が出てきた
-- 案① **React Router の SSR モード**に乗り換える / 案② **Hono などで BFF** を立てる
-- ただ、すでに **TanStack Router 採用済み** → 既存設計を活かしたまま server function / SSR を足せる
-- → 思い切って **TanStack Start** に踏み切った（PoC なので「失敗してもええやろ」の精神）
+- **React Router の SSR モード**に乗り換える / **Hono などで BFF** を立てる
+- すでに **TanStack Router 採用済み** → 既存設計を活かしたまま server function / SSR を足せる
+  - 思い切って **TanStack Start** に踏み切った（PoC なので「失敗してもええやろ」の精神）
 
 </PersonalContentSlide>
 
@@ -397,8 +397,6 @@ serverFn、どこに置く？
 2. **routes にハイブリッド**
 3. **features に寄せる**
 
-- → 結果的に **3つ目（features 寄せ）** を採用
-
 </PersonalContentSlide>
 
 <PersonalContentSlide title="案① src/server に集約">
@@ -431,8 +429,8 @@ serverFn、どこに置く？
 
 <PersonalContentSlide title="features 寄せを採用">
 
-- 構成では「ハイブリッド」が勝った。ただ今回は **2つ目（ハイブリッド）を蹴った**
-- `createServerFn` の wrapper は `Page` のような薄い層ではなく、schema / logic と密結合した **実体側** だった
+- 構成では「ハイブリッド」が勝った。今回は **3つ目（ハイブリッド）を蹴った**
+- `createServerFn` の wrapper は `Page` のような薄い層ではなく、**実体** だった
 - routes に切り出すと、ドメインが routes と features の **2 箇所に分散** する
 - → 軸は同じ「実体は features」。wrapper の見立てだけ変えて **3つ目（features 寄せ）** を採用
 
@@ -464,10 +462,11 @@ serverFn、どこに置く？
 
 <PersonalContentSlide title="まとめ">
 
-- TanStack Router / Start は、**責務の境界を適切に設計する** ことで機能を活かしやすい
-- routes は **ルーティング宣言に専念**、実体は features に寄せると変更しやすかった
-- server function も routes ではなく **domain の処理として置く** と整理しやすかった
-- さらに **Vite 周辺の成熟したツールチェーン** も活用でき、実践的な選択肢になりうる
+- 事例の少ない TanStack Router / Start も、**置き場のルールを自分で決めれば**活かせた
+- **routes は宣言だけ・実体は features に寄せる**
+  - この一本で **ディレクトリ構成も server function の置き場も**まとまり、不安だった **AI のクソコード量産も起きない**
+- TanStack は **Vite の恩恵を受けながら色々できるモダンなやつ** → **もっと事例が増えてほしい！**
+- **TanStack Router をいい感じに設計できたし、TSKaigi 最高だった！！！** 🌮
 
 </PersonalContentSlide>
 
