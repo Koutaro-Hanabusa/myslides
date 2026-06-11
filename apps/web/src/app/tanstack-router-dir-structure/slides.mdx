@@ -7,6 +7,9 @@ import {
   DIR_OPT_ROUTES,
   DIR_STRUCTURE,
   DIR_STRUCTURE_WITH_SERVER,
+  GOOD_COLOCATION,
+  GOOD_TYPE_SAFE_ROUTING,
+  GOOD_TYPE_SAFE_SEARCH,
   ROUTE_EXAMPLE,
   SERVER_FN_FEATURES,
   SERVER_FN_ROUTES,
@@ -147,7 +150,6 @@ import {
 <PersonalContentSlide title="でも、現実は無法地帯だった">
 
 - なんとなく作ってたら **書き方バラバラ** に
-- TanStack は事例も少ない、自分もよく知らん → 「**正解**」がない
 - このままだと AI が **クソコード生成マシン** になってまう
 - **ゼロから好きに設計できる絶好のチャンス**
 
@@ -161,12 +163,42 @@ TanStack Routerの良さって？
 
 <PersonalContentSlide title="TanStack Routerの良さ">
 
-- 型安全なルーティング
-- 型安全な search params
-- ファイルベースルーティング
-- `-` prefix で route tree から除外したコロケーションができる
+- **型安全なルーティング** … Link / params が補完され、存在しないパスはコンパイルエラー
+- **型安全な search params** … URL がそのまま型付きの state になる
+- **ファイルベースルーティング** … `routeTree.gen.ts` に自動集約
+- **`-` prefix コロケーション** … route tree から除外して、ルート専用の物を隣に置ける
 
 </PersonalContentSlide>
+
+<PersonalContentSlide title="① 型安全なルーティング">
+
+<CodeBlock lang="tsx" code={GOOD_TYPE_SAFE_ROUTING} />
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="② 型安全な search params">
+
+<CodeBlock lang="tsx" code={GOOD_TYPE_SAFE_SEARCH} />
+
+- 戻る / 進む / 直リンクで来た値も **検証済み**で受け取れる
+- URL state のための **nuqs** のような追加ライブラリも要らない
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="③ - prefix でコロケーション">
+
+<CodeBlock lang="text" code={GOOD_COLOCATION} />
+
+- ルートに関わる物を **同じ階層**に、でも URL は汚さない
+- この性質が、後の **構成の三案** を考える土台になる
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+構成、どうする？
+
+</PersonalHeadingSlide>
 
 <PersonalContentSlide title="でも、意外と大変だった">
 
@@ -224,12 +256,6 @@ TanStack Routerの良さって？
 </div>
 
 </PersonalContentSlide>
-
-<PersonalHeadingSlide>
-
-構成、どうする？
-
-</PersonalHeadingSlide>
 
 <PersonalContentSlide title="三案を考えた">
 
@@ -342,7 +368,7 @@ TSKaigi のこの 2 本が刺さった
 
 - 2 本に共通していたのは **「`createServerFn` の中身は薄く保つ」** という点
 - → ロジックは serverFn の外に出し、wrapper は薄い層に留める
-- さらに **schema / server / function** に分けると良い（公式推奨)
+- さらに **schema / server / function** に分けると良い
 - https://tanstack.com/start/v0/docs/framework/react/guide/server-functions#file-organization
 
 </PersonalContentSlide>
