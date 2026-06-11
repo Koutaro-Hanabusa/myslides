@@ -133,11 +133,11 @@ import {
 <PersonalContentSlide title="技術選定">
 
 - 社内で 0 から作り直す大規模なリプレイス中、フロントの技術選定を行った
-- 候補は **Next.js / React Router / TanStack Router** の三案
+- 候補は **Next.js / React Router / TanStack Router** の3案
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="三案の比較">
+<PersonalContentSlide title="3案の比較">
 
 - **Next.js** … Vercelへのロックインの辛さや、Cache Components などの難解さを考えて見送り
 - **React Router** … 現状使用中。せっかく作り替えるのに同じ技術使っても楽しくない
@@ -193,7 +193,7 @@ TanStack Routerの良さって？
 <CodeBlock lang="text" code={GOOD_COLOCATION} />
 
 - ルートに関わる物を **同じ階層**に、でも URL は汚さない
-- この性質が、後の **構成の三案** を考える土台になる
+- この性質が、後の **構成の3案** を考える土台になる
 
 </PersonalContentSlide>
 
@@ -260,7 +260,7 @@ TanStack Routerの良さって？
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="三案を考えた">
+<PersonalContentSlide title="3案を考えた">
 
 1. **features に寄せる**
    - 一般的な形。bulletproof react などでも出てくる
@@ -272,7 +272,7 @@ TanStack Routerの良さって？
    - TanStack Router の影響を受ける部分は routes、ロジックの実体は features
 
 - 機能を活かしつつ、変更も容易にしたい
-- → 結果的に **三つ目（ハイブリッド）** を採用
+- → 結果的に **3つ目（ハイブリッド）** を採用
 
 </PersonalContentSlide>
 
@@ -397,7 +397,7 @@ serverFn、どこに置く？
 
 </PersonalHeadingSlide>
 
-<PersonalContentSlide title="また三案を考えた">
+<PersonalContentSlide title="また3案を考えた">
 
 1. **src/server に寄せる**
    - アプリ横断の共通 server ディレクトリに集約する
@@ -441,10 +441,10 @@ serverFn、どこに置く？
 
 <PersonalContentSlide title="features 寄せを採用">
 
-- 構成では「ハイブリッド」が勝った。でも今回は **二つ目（ハイブリッド）を蹴った**
+- 構成では「ハイブリッド」が勝った。でも今回は **2つ目（ハイブリッド）を蹴った**
 - `createServerFn` の wrapper は `Page` のような薄い層ではなく、schema / logic と密結合した **実体側** だった
 - routes に切り出すと、ドメインが routes と features の **2 箇所に分散** する
-- → 軸は同じ「実体は features」。wrapper の見立てだけ変えて **三つ目（features 寄せ）** を採用
+- → 軸は同じ「実体は features」。wrapper の見立てだけ変えて **3つ目（features 寄せ）** を採用
 
 </PersonalContentSlide>
 
