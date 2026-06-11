@@ -139,7 +139,7 @@ import {
 
 <PersonalContentSlide title="3案の比較">
 
-- **Next.js** … Vercelへのロックインの辛さや、Cache Components などの難解さを考えて見送り
+- **Next.js** … Vercel 以外で運用するときの考慮の多さや、Cache Components などの難解さを考えて見送り
 - **React Router** … 現状使用中。せっかく作り替えるのに同じ技術使っても楽しくない
 - **TanStack** … Next.jsほど辛くなく、React Routerよりもモダンな印象があったので採用！！
 
@@ -307,7 +307,7 @@ TanStack Routerの良さって？
 
 <CodeBlock lang="text" code={DIR_STRUCTURE} />
 
-- routes は **宣言だけ**、ロジックの実体は features に
+- **Router 依存の宣言は routes**、ドメインの実体は features に
 - routes と features の分担が **ディレクトリ構造で見える**形に
 
 </PersonalContentSlide>
@@ -315,7 +315,7 @@ TanStack Routerの良さって？
 <PersonalContentSlide title="なぜ fallbacks が要る？">
 
 - loader で `ensureQueryData`、component は `useSuspenseQuery` で読む
-- loader が pending になると `pendingComponent`、失敗すると `errorComponent` が出る
+- loader が一定時間 pending になると `pendingComponent`、失敗すると `errorComponent` が出る
   - `ensureQueryData` で先に埋めておくので、`Page` 側は「取得済み前提」で書ける
 - `-components/fallbacks/` に中身を用意する
 - prefetch するルートだけなので **「必要なルートのみ」**
@@ -429,10 +429,10 @@ serverFn、どこに置く？
 
 <PersonalContentSlide title="features 寄せを採用">
 
-- 構成では「ハイブリッド」が勝った。今回は **3つ目（ハイブリッド）を蹴った**
-- `createServerFn` の wrapper は `Page` のような薄い層ではなく、**実体** だった
+- 判断基準は同じ → **Router 依存なら routes、ドメインの実体なら features**
+- `createServerFn` の wrapper は `Page` のような薄い層ではなく、**ドメインの実体** だった
 - routes に切り出すと、ドメインが routes と features の **2 箇所に分散** する
-- → 軸は同じ「実体は features」。wrapper の見立てだけ変えて **3つ目（features 寄せ）** を採用
+- → serverFn は **2つ目（routes ハイブリッド）を蹴って、3つ目（features 寄せ）** を採用
 
 </PersonalContentSlide>
 
@@ -462,11 +462,10 @@ serverFn、どこに置く？
 
 <PersonalContentSlide title="まとめ">
 
-- 事例の少ない TanStack Router / Start も、**置き場のルールを自分で決めれば**活かせた
-- **routes は宣言だけ・実体は features に寄せる**
-  - この一本で **ディレクトリ構成も server function の置き場も**まとまり、不安だった **AI のクソコード量産も起きない**
-- TanStack は **Vite の恩恵を受けながら色々できるモダンなやつ** → **もっと事例が増えてほしい！**
-- **TanStack Router をいい感じに設計できたし、TSKaigi 最高だった！！！** 🌮
+- TanStack Router / Start は事例が少なく、決まり事がないと機能を活かしきれない
+- TanStack Router の機能を活かしつつ、**Router 依存は routes、ドメインの実体は features** と線引きした
+- TSKaigiでの学びを活かし、serverFn の置き場もまとめて決められた
+- 成熟した Vite のエコシステムに乗れるので、Next より採用されてほしい
 
 </PersonalContentSlide>
 

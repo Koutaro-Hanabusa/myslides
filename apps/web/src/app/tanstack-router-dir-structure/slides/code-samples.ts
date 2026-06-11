@@ -28,8 +28,8 @@ export const GOOD_COLOCATION = `routes/contracts/
 export const DIR_STRUCTURE = `apps/<appname>/src/
 ├── features/
 │   └── <domain>/
-│       ├── api/        ← queryOptions / mutationOptions / API I/O
-│       ├── hooks/      ← useSuspenseQuery / useMutation を呼ぶ hook
+│       ├── api/        ← データ取得・更新 hook（queryOptions + useSuspenseQuery / useMutation）
+│       ├── hooks/      ← form / フローなど画面ロジックの hook（Router 非依存）
 │       ├── components/ ← View 断片（Router 非依存）
 │       └── types.ts    ← ドメイン型・route と共有する Enum
 └── routes/
@@ -96,12 +96,12 @@ export const SERVER_FN_FEATURES = `src/features/<domain>/
 export const DIR_STRUCTURE_WITH_SERVER = `apps/<appname>/src/
 ├── features/
 │   └── <domain>/
-│       ├── api/        ← queryOptions / mutationOptions / use-<verb>-<entity>
+│       ├── api/        ← データ取得・更新 hook（queryOptions + useSuspenseQuery / useMutation）
 │       ├── server/     ← ★ Server Function
 │       │   ├── <entity>.functions.ts  ← createServerFn のラッパー
 │       │   ├── <entity>-schema.ts     ← 入出力の schema
 │       │   └── <verb>-<entity>.server.ts ← ロジック
-│       ├── hooks/      ← useSuspenseQuery / useMutation を呼ぶ hook
+│       ├── hooks/      ← form / フローなど画面ロジックの hook（Router 非依存）
 │       ├── components/ ← View 断片（Router 非依存）
 │       └── types.ts    ← ドメイン型・route と共有する Enum
 └── routes/
