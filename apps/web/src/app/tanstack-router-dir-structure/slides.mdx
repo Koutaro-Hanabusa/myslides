@@ -192,7 +192,7 @@ TanStack Routerの良さって？
 
 <CodeBlock lang="text" code={GOOD_COLOCATION} />
 
-- ルートに関わる物を **同じ階層**に、でも URL は汚さない
+- ルートに関わる物を **同じ階層**に置けて、URL も汚さない
 - この性質が、後の **構成の3案** を考える土台になる
 
 </PersonalContentSlide>
@@ -203,7 +203,7 @@ TanStack Routerの良さって？
 
 </PersonalHeadingSlide>
 
-<PersonalContentSlide title="でも、意外と大変だった">
+<PersonalContentSlide title="意外と大変だった">
 
 - 実際の事例が少なく、採用してみると躓いた
 - PoC を進めつつ、どうすれば TanStack Router の良さを活かせるかを考えた
@@ -218,8 +218,8 @@ TanStack Routerの良さって？
 
 <div className="flex-1 text-left">
 
-- 何も分からず X で「本日も TanStack に頭を悩ませた」と呟く
-- すると TanStack メンテナーが降臨
+- 何も分からず X で「本日も TanStack Router に頭を悩ませた」と呟く
+- すると TanStack Router メンテナーが降臨
 - 悩みを伝えると → **「どっちでもええんちゃう？**
 - ……たぶん悩みをうまく伝えきれてなかった説
 
@@ -263,15 +263,9 @@ TanStack Routerの良さって？
 <PersonalContentSlide title="3案を考えた">
 
 1. **features に寄せる**
-   - 一般的な形。bulletproof react などでも出てくる
-   - TanStack Router の機能を活かしきれない
 2. **routes に全部押し込む**
-   - `-` でコロケーションできるので全部詰め込める
-   - 機能は活かせるが、肥大化してぐちゃぐちゃに
 3. **ハイブリッド**
-   - TanStack Router の影響を受ける部分は routes、ロジックの実体は features
 
-- 機能を活かしつつ、変更も容易にしたい
 - → 結果的に **3つ目（ハイブリッド）** を採用
 
 </PersonalContentSlide>
@@ -290,7 +284,7 @@ TanStack Routerの良さって？
 <CodeBlock lang="text" code={DIR_OPT_ROUTES} />
 
 - `-` prefix で全部 routes に詰め込める → **機能はフル活用**
-- でもルートが肥大化して **ぐちゃぐちゃ**になりがち
+- ただしルートが肥大化して **ぐちゃぐちゃ**になりがち
 
 </PersonalContentSlide>
 
@@ -299,7 +293,7 @@ TanStack Routerの良さって？
 <CodeBlock lang="text" code={DIR_OPT_HYBRID} />
 
 - TanStack Router 依存部分だけ routes、ロジックの実体は features
-- **機能を活かしつつ、変更も容易**ないいとこ取り
+- 機能はフル活用しつつ、**Router 依存を routes に閉じ込められる**いいとこ取り
 
 </PersonalContentSlide>
 
@@ -314,7 +308,7 @@ TanStack Routerの良さって？
 <CodeBlock lang="text" code={DIR_STRUCTURE} />
 
 - routes は **宣言だけ**、ロジックの実体は features に
-- 責務の境界が **ディレクトリ構造で見える**形に
+- routes と features の分担が **ディレクトリ構造で見える**形に
 
 </PersonalContentSlide>
 
@@ -355,9 +349,9 @@ TanStack Routerの良さって？
 <PersonalContentSlide title="思い切って Start を採用">
 
 - PoC を進めるなか、認証周りなど **server で処理する必要性** が出てきた
-- 案① **React Router の SSR モード**に乗り換える / 案② **Hono などで BFF** を立てる
-- でも、すでに **TanStack Router 採用済み** → 既存設計を活かしたまま server function / SSR を足せる
-- → 思い切って **TanStack Start** に踏み切った（PoC なので「失敗してもええやろ」の精神）
+- **React Router の SSR モード**に乗り換える / **Hono などで BFF** を立てる
+- すでに **TanStack Router 採用済み** → 既存設計を活かしたまま server function / SSR を足せる
+  - 思い切って **TanStack Start** に踏み切った（PoC なので「失敗してもええやろ」の精神）
 
 </PersonalContentSlide>
 
@@ -400,15 +394,8 @@ serverFn、どこに置く？
 <PersonalContentSlide title="また3案を考えた">
 
 1. **src/server に寄せる**
-   - アプリ横断の共通 server ディレクトリに集約する
-   - 悪くはないが、管理する場所が **3 つ**に増える
 2. **routes にハイブリッド**
-   - wrapper は `routes/-api`、schema / logic は features（構成と同じ発想）
-   - 技術的には可能。でも **routes はルーティング宣言に専念させたい**
-   - さらに serverFn は `useServerFn` で **component から呼べる** → wrapper を routes に置くと **features が routes に依存する逆転構造**になり避けた
 3. **features に寄せる**
-   - wrapper まで含めて `features/<domain>/server` に全部置く
-   - 管理対象が増えず、「**ロジックの処理**」という性質とも合う
 
 </PersonalContentSlide>
 
@@ -426,7 +413,8 @@ serverFn、どこに置く？
 <CodeBlock lang="text" code={SERVER_FN_ROUTES} />
 
 - wrapper だけ routes、schema / logic は features
-- でも **features が routes に依存する逆転構造**が起きる
+- serverFn は `useServerFn` で **component（features 側）から呼べる**
+- → wrapper を routes に置くと **features が routes に依存する逆転構造**になる
 
 </PersonalContentSlide>
 
@@ -441,8 +429,8 @@ serverFn、どこに置く？
 
 <PersonalContentSlide title="features 寄せを採用">
 
-- 構成では「ハイブリッド」が勝った。でも今回は **2つ目（ハイブリッド）を蹴った**
-- `createServerFn` の wrapper は `Page` のような薄い層ではなく、schema / logic と密結合した **実体側** だった
+- 構成では「ハイブリッド」が勝った。今回は **3つ目（ハイブリッド）を蹴った**
+- `createServerFn` の wrapper は `Page` のような薄い層ではなく、**実体** だった
 - routes に切り出すと、ドメインが routes と features の **2 箇所に分散** する
 - → 軸は同じ「実体は features」。wrapper の見立てだけ変えて **3つ目（features 寄せ）** を採用
 
@@ -474,10 +462,11 @@ serverFn、どこに置く？
 
 <PersonalContentSlide title="まとめ">
 
-- TanStack Router / Start は、**責務の境界を適切に設計する** ことで機能を活かしやすい
-- routes は **ルーティング宣言に専念**、実体は features に寄せると変更しやすかった
-- server function も routes ではなく **domain の処理として置く** と整理しやすかった
-- さらに **Vite 周辺の成熟したツールチェーン** も活用でき、実践的な選択肢になりうる
+- 事例の少ない TanStack Router / Start も、**置き場のルールを自分で決めれば**活かせた
+- **routes は宣言だけ・実体は features に寄せる**
+  - この一本で **ディレクトリ構成も server function の置き場も**まとまり、不安だった **AI のクソコード量産も起きない**
+- TanStack は **Vite の恩恵を受けながら色々できるモダンなやつ** → **もっと事例が増えてほしい！**
+- **TanStack Router をいい感じに設計できたし、TSKaigi 最高だった！！！** 🌮
 
 </PersonalContentSlide>
 
