@@ -53,7 +53,7 @@ export const DIR_OPT_ROUTES = `src/routes/<route>/
 export const DIR_OPT_HYBRID = `src/
 ├── features/<domain>/   ← ロジックの実体（Router 非依存）
 │   └── api / hooks / components
-└── routes/<route>/      ← TanStack 依存部分だけ
+└── routes/<route>/      ← TanStack Router 依存部分だけ
     ├── -components/  ← fallbacks / Page
     └── index.tsx     ← loader / validateSearch`;
 
