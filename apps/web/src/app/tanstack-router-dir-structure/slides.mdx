@@ -7,6 +7,9 @@ import {
   DIR_OPT_ROUTES,
   DIR_STRUCTURE,
   DIR_STRUCTURE_WITH_SERVER,
+  GOOD_COLOCATION,
+  GOOD_TYPE_SAFE_ROUTING,
+  GOOD_TYPE_SAFE_SEARCH,
   ROUTE_EXAMPLE,
   SERVER_FN_FEATURES,
   SERVER_FN_ROUTES,
@@ -130,11 +133,11 @@ import {
 <PersonalContentSlide title="技術選定">
 
 - 社内で 0 から作り直す大規模なリプレイス中、フロントの技術選定を行った
-- 候補は **Next.js / React Router / TanStack Router** の三案
+- 候補は **Next.js / React Router / TanStack Router** の3案
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="三案の比較">
+<PersonalContentSlide title="3案の比較">
 
 - **Next.js** … Vercelへのロックインの辛さや、Cache Components などの難解さを考えて見送り
 - **React Router** … 現状使用中。せっかく作り替えるのに同じ技術使っても楽しくない
@@ -147,7 +150,6 @@ import {
 <PersonalContentSlide title="でも、現実は無法地帯だった">
 
 - なんとなく作ってたら **書き方バラバラ** に
-- TanStack は事例も少ない、自分もよく知らん → 「**正解**」がない
 - このままだと AI が **クソコード生成マシン** になってまう
 - **ゼロから好きに設計できる絶好のチャンス**
 
@@ -164,14 +166,47 @@ TanStack Routerの良さって？
 - 型安全なルーティング
 - 型安全な search params
 - ファイルベースルーティング
-- `-` prefix で route tree から除外したコロケーションができる
+- `-` prefix コロケーション
 
 </PersonalContentSlide>
+
+<PersonalContentSlide title="① 型安全なルーティング">
+
+<CodeBlock lang="tsx" code={GOOD_TYPE_SAFE_ROUTING} />
+
+- `Link` / `params` が補完され、存在しないパスは **コンパイルエラー**
+- リンク切れや typo を **型で**潰せる
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="② 型安全な search params">
+
+<CodeBlock lang="tsx" code={GOOD_TYPE_SAFE_SEARCH} />
+
+- 戻る / 進む / 直リンクで来た値も **検証済み**で受け取れる
+- URL state のための **nuqs** のような追加ライブラリも要らない
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="③ - prefix でコロケーション">
+
+<CodeBlock lang="text" code={GOOD_COLOCATION} />
+
+- ルートに関わる物を **同じ階層**に、でも URL は汚さない
+- この性質が、後の **構成の3案** を考える土台になる
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+構成、どうする？
+
+</PersonalHeadingSlide>
 
 <PersonalContentSlide title="でも、意外と大変だった">
 
 - 実際の事例が少なく、採用してみると躓いた
-- PoC を進めつつ、どうすれば TanStack の良さを活かせるかを考えた
+- PoC を進めつつ、どうすれば TanStack Router の良さを活かせるかを考えた
 - この辺を参考に考えた
   https://speakerdeck.com/ytaisei/tanstack-routerwo-xin-gui-purodakutode1nian-jian-yun-yong-sitemitajie-guo
 
@@ -195,7 +230,7 @@ TanStack Routerの良さって？
     className="fragment fade-out"
     data-fragment-index="0"
     src="/slides/tanstack-router-dir-structure/assets/maintainer-x-question.png"
-    alt="X で TanStack の構成について悩みを伝えているスクリーンショット"
+    alt="X で TanStack Router の構成について悩みを伝えているスクリーンショット"
     width={1006}
     height={838}
     style={{
@@ -225,25 +260,19 @@ TanStack Routerの良さって？
 
 </PersonalContentSlide>
 
-<PersonalHeadingSlide>
-
-構成、どうする？
-
-</PersonalHeadingSlide>
-
-<PersonalContentSlide title="三案を考えた">
+<PersonalContentSlide title="3案を考えた">
 
 1. **features に寄せる**
    - 一般的な形。bulletproof react などでも出てくる
-   - TanStack の機能を活かしきれない
+   - TanStack Router の機能を活かしきれない
 2. **routes に全部押し込む**
    - `-` でコロケーションできるので全部詰め込める
    - 機能は活かせるが、肥大化してぐちゃぐちゃに
 3. **ハイブリッド**
-   - TanStack の影響を受ける部分は routes、ロジックの実体は features
+   - TanStack Router の影響を受ける部分は routes、ロジックの実体は features
 
 - 機能を活かしつつ、変更も容易にしたい
-- → 結果的に **三つ目（ハイブリッド）** を採用
+- → 結果的に **3つ目（ハイブリッド）** を採用
 
 </PersonalContentSlide>
 
@@ -251,17 +280,26 @@ TanStack Routerの良さって？
 
 <CodeBlock lang="text" code={DIR_OPT_FEATURES} />
 
+- `Page` まで features に集約、routes は読むだけの薄い wrapper
+- シンプルだが、`-` コロケーションなど **TanStack Router の機能を活かしきれない**
+
 </PersonalContentSlide>
 
 <PersonalContentSlide title="案② routes に全部押し込む">
 
 <CodeBlock lang="text" code={DIR_OPT_ROUTES} />
 
+- `-` prefix で全部 routes に詰め込める → **機能はフル活用**
+- でもルートが肥大化して **ぐちゃぐちゃ**になりがち
+
 </PersonalContentSlide>
 
 <PersonalContentSlide title="案③ ハイブリッド（採用）">
 
 <CodeBlock lang="text" code={DIR_OPT_HYBRID} />
+
+- TanStack Router 依存部分だけ routes、ロジックの実体は features
+- **機能を活かしつつ、変更も容易**ないいとこ取り
 
 </PersonalContentSlide>
 
@@ -274,6 +312,9 @@ TanStack Routerの良さって？
 <PersonalContentSlide title="ディレクトリ構成">
 
 <CodeBlock lang="text" code={DIR_STRUCTURE} />
+
+- routes は **宣言だけ**、ロジックの実体は features に
+- 責務の境界が **ディレクトリ構造で見える**形に
 
 </PersonalContentSlide>
 
@@ -291,12 +332,15 @@ TanStack Routerの良さって？
 
 <CodeBlock lang="tsx" code={ROUTE_EXAMPLE} />
 
+- `index` は宣言だけ、`Page` は「取得済み前提」で `useSuspenseQuery`
+- loader の `ensureQueryData` が **routes と features の繋ぎ目**
+
 </PersonalContentSlide>
 
 <PersonalContentSlide title="採用してどうなった">
 
-- features のベストプラクティスと TanStack の機能、**両方を活かせる形**に
-- TanStack の影響が **routes に閉じている**ので、今後の変更も加えやすい
+- features のベストプラクティスと TanStack Router の機能、**両方を活かせる形**に
+- TanStack Router の影響が **routes に閉じている**ので、今後の変更も加えやすい
 - 実体は **Router 非依存** → 変更・テスト・再利用がしやすい
 - 反面、component の置き場が **3 つ**に → **AI が迷わない整備**が重要に
 
@@ -342,7 +386,7 @@ TSKaigi のこの 2 本が刺さった
 
 - 2 本に共通していたのは **「`createServerFn` の中身は薄く保つ」** という点
 - → ロジックは serverFn の外に出し、wrapper は薄い層に留める
-- さらに **schema / server / function** に分けると良い（公式推奨)
+- さらに **schema / server / function** に分けると良い
 - https://tanstack.com/start/v0/docs/framework/react/guide/server-functions#file-organization
 
 </PersonalContentSlide>
@@ -353,7 +397,7 @@ serverFn、どこに置く？
 
 </PersonalHeadingSlide>
 
-<PersonalContentSlide title="また三案を考えた">
+<PersonalContentSlide title="また3案を考えた">
 
 1. **src/server に寄せる**
    - アプリ横断の共通 server ディレクトリに集約する
@@ -372,11 +416,17 @@ serverFn、どこに置く？
 
 <CodeBlock lang="text" code={SERVER_FN_SRC} />
 
+- serverFn を横断の `src/server` に全部集約
+- 分かりやすいが、管理する場所が **3 つ目**に増える
+
 </PersonalContentSlide>
 
 <PersonalContentSlide title="案② routes にハイブリッド">
 
 <CodeBlock lang="text" code={SERVER_FN_ROUTES} />
+
+- wrapper だけ routes、schema / logic は features
+- でも **features が routes に依存する逆転構造**が起きる
 
 </PersonalContentSlide>
 
@@ -384,14 +434,17 @@ serverFn、どこに置く？
 
 <CodeBlock lang="text" code={SERVER_FN_FEATURES} />
 
+- wrapper も含めて `features/<domain>/server` に全部
+- 管理対象が増えず、「**ロジックの処理**」という性質とも合う
+
 </PersonalContentSlide>
 
 <PersonalContentSlide title="features 寄せを採用">
 
-- 構成では「ハイブリッド」が勝った。でも今回は **二つ目（ハイブリッド）を蹴った**
+- 構成では「ハイブリッド」が勝った。でも今回は **2つ目（ハイブリッド）を蹴った**
 - `createServerFn` の wrapper は `Page` のような薄い層ではなく、schema / logic と密結合した **実体側** だった
 - routes に切り出すと、ドメインが routes と features の **2 箇所に分散** する
-- → 軸は同じ「実体は features」。wrapper の見立てだけ変えて **三つ目（features 寄せ）** を採用
+- → 軸は同じ「実体は features」。wrapper の見立てだけ変えて **3つ目（features 寄せ）** を採用
 
 </PersonalContentSlide>
 
@@ -405,6 +458,18 @@ serverFn、どこに置く？
 
 <CodeBlock lang="text" code={DIR_STRUCTURE_WITH_SERVER} />
 
+- features に `server/`（schema / function / logic）を追加しただけ
+- routes は変わらず **宣言に専念**、軸はブレていない
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="TSKaigi が学びになった">
+
+- 何も分からなかった server 周りを、**TSKaigi のあの 2 本**で前に進められた
+- 「`createServerFn` は薄く保つ」という共通の指針が、構成を決める軸になった
+- カンファレンスで得た知見を、 **設計に落とし込めた**
+- TSKaigi最高！！！
+
 </PersonalContentSlide>
 
 <PersonalContentSlide title="まとめ">
@@ -413,7 +478,6 @@ serverFn、どこに置く？
 - routes は **ルーティング宣言に専念**、実体は features に寄せると変更しやすかった
 - server function も routes ではなく **domain の処理として置く** と整理しやすかった
 - さらに **Vite 周辺の成熟したツールチェーン** も活用でき、実践的な選択肢になりうる
-- 無法地帯 ＆ AI のクソコード量産も、**"責務の軸"を引けば AI も人も迷わなくなる**
 
 </PersonalContentSlide>
 

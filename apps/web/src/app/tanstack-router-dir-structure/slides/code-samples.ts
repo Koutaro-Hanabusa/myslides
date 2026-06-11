@@ -2,6 +2,29 @@
 // MDX のテンプレートリテラルは各行先頭インデントが剥がれるため、
 // インデントを保持したいコードはこの .ts ファイル側で定義する。
 
+export const GOOD_TYPE_SAFE_ROUTING = `// パスも params も補完が効く・存在しないパスはコンパイルエラー
+<Link to="/contracts/$contractId" params={{ contractId }} />
+
+// 受け取る側も型付き（contractId: string）
+const { contractId } = Route.useParams();`;
+
+export const GOOD_TYPE_SAFE_SEARCH = `// URL の ?page=2&tab=archived を schema で定義
+export const Route = createFileRoute("/contracts")({
+  validateSearch: z.object({
+    page: z.number().default(1),
+    tab: z.enum(["active", "archived"]).default("active"),
+  }),
+});
+
+// 読む側は完全に型付き → URL がそのまま型安全な state に
+const { page, tab } = Route.useSearch();`;
+
+export const GOOD_COLOCATION = `routes/contracts/
+├── index.tsx        ← これだけが /contracts になる
+└── -components/     ← \`-\` prefix で route tree から除外
+    ├── Page.tsx
+    └── fallbacks/   ← ルート専用の物を隣に置ける`;
+
 export const DIR_STRUCTURE = `apps/<appname>/src/
 ├── features/
 │   └── <domain>/
@@ -30,7 +53,7 @@ export const DIR_OPT_ROUTES = `src/routes/<route>/
 export const DIR_OPT_HYBRID = `src/
 ├── features/<domain>/   ← ロジックの実体（Router 非依存）
 │   └── api / hooks / components
-└── routes/<route>/      ← TanStack 依存部分だけ
+└── routes/<route>/      ← TanStack Router 依存部分だけ
     ├── -components/  ← fallbacks / Page
     └── index.tsx     ← loader / validateSearch`;
 
