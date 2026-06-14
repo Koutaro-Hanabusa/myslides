@@ -1,49 +1,180 @@
-import { PersonalContentSlide, PersonalHeadingSlide } from "@/components/slides";
+import Image from "next/image";
+import { CodeBlock, PersonalContentSlide, PersonalHeadingSlide } from "@/components/slides";
+import SelfIntroduction from "./slides/self-introduction";
+import { BEFORE_AFTER_CONFIG } from "./slides/code-samples";
 
-<PersonalContentSlide title="自己紹介">
+<SelfIntroduction>
 
 - ぶりお [@burio_16](https://x.com/burio_16)
-- 所属・担当（ここに記入）
-- 普段やっていること（ここに記入）
+- タコスとTottenham Hotspur FCが大好き
+- TSKaigiは初参加でした
+- VoidZeroのﾊｧﾝ
+
+</SelfIntroduction>
+
+<PersonalContentSlide title="VoidZero のﾊｧﾝです">
+
+<div className="r-stack mt-6">
+  <Image
+    className="fragment fade-out"
+    data-fragment-index="0"
+    src="/slides/vite-plus-retro/assets/sponsor-vite-tweet.png"
+    alt="ぶりおが @vitejs を GitHub Sponsors でスポンサーしたツイート"
+    width={470}
+    height={233}
+    style={{
+      margin: "0 auto",
+      display: "block",
+      width: "900px",
+      height: "auto",
+      maxWidth: "100%",
+      borderRadius: "8px",
+    }}
+  />
+  <Image
+    className="fragment fade-in"
+    data-fragment-index="0"
+    src="/slides/vite-plus-retro/assets/vite-plus-sensu.png"
+    alt="TSKaigi 会場で「Vite+」と書かれた扇子を持つぶりおと VoidZero メンバーのツーショット"
+    width={2048}
+    height={1536}
+    style={{
+      margin: "0 auto",
+      display: "block",
+      width: "auto",
+      height: "auto",
+      maxHeight: "640px",
+      maxWidth: "100%",
+      borderRadius: "8px",
+    }}
+  />
+</div>
+
+スポンサーするくらいには好き。会場では扇子にVite+と入れてもらってAlexとツーショ撮った///
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="アジェンダ">
+<PersonalHeadingSlide>
 
-- Vite+ とは / 採用の背景
-- 良かったこと
-- 辛かったこと
-- まとめ
+そもそも Vite+ って？
 
-</PersonalContentSlide>
+</PersonalHeadingSlide>
 
-<PersonalContentSlide title="Vite+ とは / 採用の背景">
+<PersonalContentSlide title="Vite+ とは">
 
-- どんなプロジェクトで採用したか（ここに記入）
-- なぜ Vite+ を選んだか（ここに記入）
-
-</PersonalContentSlide>
-
-<PersonalContentSlide title="良かったこと">
-
-- 良かった点 1（ここに記入）
-- 良かった点 2（ここに記入）
-- 良かった点 3（ここに記入）
+- 2026/3/13 に公開された **統合ツールチェイン**（VoidZero 製）
+- テスト / lint / フォーマット / タスク実行 / Node 管理を **`vp` ひとつ**に束ねる
+- 中身は Vite / Vitest / Oxlint / Oxfmt / tsdown /vite task
+- ただし、**まだ α 版**
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="辛かったこと">
+<PersonalContentSlide title="なぜ統合ツールチェイン？">
 
-- 辛かった点 1（ここに記入）
-- 辛かった点 2（ここに記入）
-- 辛かった点 3（ここに記入）
+- 他の言語では統合ツールチェインが当たり前（Cargo, Go …）
+- JS は **ツールが乱立**してバラバラになりがち
+- その断片化を解決することができるのが Vite+
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+どこに導入した？
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="社内デザインシステム">
+
+- 社内で **デザインシステム**を作っている
+- 構成は **Vite + Vitest + Oxlint + Oxfmt** のモノレポ（タスクランナーは Turborepo）
+- → Vite+ が束ねる範囲と **ほぼ重なっていた**
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+公開10日で移行した話
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="3/13 → 3/24">
+
+- **3/13** Vite+ 公開
+- **3/24** もう移行完了 → わずか **10日ちょっと**
+- 「α版をもう本番に入れたの？」と思いますよね
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="なぜ飛び込めた？">
+
+- まだ **大々的には使っていなかった**（リプレイス後に本格運用する想定だった）
+- 元から **ほとんどのツールが Vite+ の範囲内**だった
+- 面白そう、でも α 版…と **躊躇**していた
+- マネージャー「**ビルドできればよくない？**」→ 確かに、で踏み切った
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+実際どうだった？
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="良かった① 設定が一箇所に">
+
+<CodeBlock lang="text" code={BEFORE_AFTER_CONFIG} />
+
+- `vite.config.ts` に **設定をまとめて書ける**のが最高だった
+- テストも lint もタスクも **同じ場所**で完結する
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="良かった② vp task が強力">
+
+- `vp` の **task** 機能がなかなか強力（まだ使いこなせてないけど）
+- Turborepo 的なタスク実行を **Vite+ の中**で賄える感触
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="良かった③ ライブラリモード">
+
+- デザインシステムは **ライブラリ**として配布する
+- その **ライブラリモードの設定も簡単**だった
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+もちろん辛みもあった
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="辛かった① lefthook が壊れた">
+
+- `vp` への移行時、**lefthook** を使っていると pre-commit の設定が弾かれる
+- 気づかず **pre-commit が壊れていた** → 自分で設定を直す必要があった
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="辛かった② Astro が壊れがち">
+
+- 関連で **Astro が壊れがち**（astro のメジャー移行などで都度対応した）
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="辛かった③ AI が vp を知らない">
+
+- **AI が `vite+` / `vp` コマンドを知らない**ことが多い
+- α版ゆえ学習データに無く、提案が外しがち
 
 </PersonalContentSlide>
 
 <PersonalContentSlide title="まとめ">
 
-- 結局おすすめできる？（ここに記入）
-- どんなチーム・規模に向いているか（ここに記入）
+- 公開直後の α版でも、**範囲が自分たちの構成と重なれば**爆速で乗れる
+- 設定が一箇所に集約される体験は **普通に良い**
+- α版なので **壊れる前提**で、lefthook / Astro / AI には注意
+- 気になってる人は、**一回触ってみてほしい**
 
 </PersonalContentSlide>
 

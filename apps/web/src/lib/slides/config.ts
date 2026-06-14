@@ -126,7 +126,7 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
   },
   "vite-plus-retro": {
     slug: "vite-plus-retro",
-    title: "Vite+ を採用して\n良かったこと・辛かったこと",
+    title: "Vite+を爆速で社内デザインシステムに導入してみた",
     description: "Vite+ を実プロジェクトに採用して感じたメリットと、運用で直面した辛みを振り返る",
     author: "ぶりお",
     authorUrl: "https://twitter.com/burio_16",
