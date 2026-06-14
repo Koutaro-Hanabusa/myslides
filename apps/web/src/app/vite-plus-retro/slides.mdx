@@ -1,7 +1,14 @@
 import Image from "next/image";
 import { CodeBlock, PersonalContentSlide, PersonalHeadingSlide } from "@/components/slides";
 import SelfIntroduction from "./slides/self-introduction";
-import { BEFORE_AFTER_CONFIG } from "./slides/code-samples";
+import {
+  ALL_IN_ONE_CONFIG,
+  VP_TASK_CONFIG,
+  VP_TASK_CACHE_LOG,
+  LIBRARY_MODE_CONFIG,
+  PACK_SIZE_DIFF,
+  STAGED_HOOKS_CONFIG,
+} from "./slides/code-samples";
 
 <SelfIntroduction>
 
@@ -69,9 +76,9 @@ import { BEFORE_AFTER_CONFIG } from "./slides/code-samples";
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="なぜ統合ツールチェイン？">
+<PersonalContentSlide title="Vite+が解決する課題">
 
-- 他の言語では統合ツールチェインが当たり前（Cargo, Go …）
+- 他の言語では統合ツールチェインが当たり前
 - JS は **ツールが乱立**してバラバラになりがち
 - その断片化を解決することができるのが Vite+
 
@@ -93,7 +100,7 @@ import { BEFORE_AFTER_CONFIG } from "./slides/code-samples";
 
 <PersonalHeadingSlide>
 
-公開10日で移行した話
+爆速(当社比)で移行
 
 </PersonalHeadingSlide>
 
@@ -109,8 +116,35 @@ import { BEFORE_AFTER_CONFIG } from "./slides/code-samples";
 
 - まだ **大々的には使っていなかった**（リプレイス後に本格運用する想定だった）
 - 元から **ほとんどのツールが Vite+ の範囲内**だった
+  - Vite,Vitest,Oxlint,Oxfmtは導入ずみ
 - 面白そう、でも α 版…と **躊躇**していた
-- マネージャー「**ビルドできればよくない？**」→ 確かに、で踏み切った
+- マネージャー「**ビルドできればいいんじゃない？**」
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+ほな導入したろか！
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="爆速！！(当社比)">
+
+<Image
+  src="/slides/vite-plus-retro/assets/pr-135.png"
+  alt="Vite+ への移行 PR #135（Turborepo 廃止・ツールチェーン統合、25 commits を main にマージ）"
+  width={1069}
+  height={254}
+  style={{
+    margin: "1.5rem auto 0",
+    display: "block",
+    width: "auto",
+    height: "auto",
+    maxWidth: "100%",
+    maxHeight: "520px",
+    borderRadius: "8px",
+  }}
+/>
 
 </PersonalContentSlide>
 
@@ -122,24 +156,53 @@ import { BEFORE_AFTER_CONFIG } from "./slides/code-samples";
 
 <PersonalContentSlide title="良かった① 設定が一箇所に">
 
-<CodeBlock lang="text" code={BEFORE_AFTER_CONFIG} />
+<CodeBlock lang="ts" code={ALL_IN_ONE_CONFIG} />
 
-- `vite.config.ts` に **設定をまとめて書ける**のが最高だった
-- テストも lint もタスクも **同じ場所**で完結する
-
-</PersonalContentSlide>
-
-<PersonalContentSlide title="良かった② vp task が強力">
-
-- `vp` の **task** 機能がなかなか強力（まだ使いこなせてないけど）
-- Turborepo 的なタスク実行を **Vite+ の中**で賄える感触
+- `vite.config.ts` の `defineConfig` に **設定が全部同居**するのが最高だった
+- test / staged / fmt / run / lint が **同じ場所**で完結する
+- `vp lint` だけで **type linting**（oxlint-tsgolint）まで走るのも地味に嬉しい
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="良かった③ ライブラリモード">
+<PersonalContentSlide title="良かった② Vite Task (vp run)">
 
-- デザインシステムは **ライブラリ**として配布する
-- その **ライブラリモードの設定も簡単**だった
+<CodeBlock lang="ts" code={VP_TASK_CONFIG} />
+
+- `-r` で **全 workspace を「依存順」に実行**（既定で最大4並列）
+- **モノレポでも問題なく動いた**（base / business / config / mcp / ui-preview）
+- Turborepo 的なタスク実行を **Vite+ の中**で賄える
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="良かった②' cache があると爆速">
+
+<CodeBlock lang="text" code={VP_TASK_CACHE_LOG} />
+
+- コマンドが **使ったファイルを自動追跡** → 変化なしなら**実行せずリプレイ**
+- 実測で **4/5 cache hit・27.38s 短縮**（2回目以降は差分だけ走る）
+- Astro の ui-preview だけは入力を書き換えるので**正直キャッシュ外**
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="良かった③ ライブラリモード = vp pack">
+
+<div className="grid grid-cols-2 gap-4">
+  <CodeBlock lang="ts" code={LIBRARY_MODE_CONFIG} />
+  <CodeBlock lang="text" code={PACK_SIZE_DIFF} />
+</div>
+
+- `dts: true` の1行で型定義（**`vite-plugin-dts` 不要**）、react 系は **自動 external**
+- 旧 **Vite build.lib（rollup）→ tsdown** で gzip **ESM 117KB → 36KB（約1/3）**
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="良かった④ 個別ツールが要らない">
+
+<CodeBlock lang="ts" code={STAGED_HOOKS_CONFIG} />
+
+- git hooks も **`vp` 同梱**（`staged` に書くだけ）→ **husky / lefthook 不要**
+- 独自の pre-commit も **`.vite-hooks/`** で仕込める
+- ついでに **Node も `.node-version` だけ**（mise / volta 不要）も地味に楽
 
 </PersonalContentSlide>
 
