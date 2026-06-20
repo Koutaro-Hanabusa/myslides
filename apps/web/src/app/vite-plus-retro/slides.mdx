@@ -57,7 +57,7 @@ import {
   />
 </div>
 
-スポンサーするくらいには好き。会場では扇子にVite+と入れてもらってAlexとツーショ撮った///
+スポンサーするくらいには好き。会場では扇子にVite+と入れてもらってAlexとツーショ撮った。
 
 </PersonalContentSlide>
 
@@ -71,12 +71,12 @@ import {
 
 - 2026/3/13 に公開された **統合ツールチェイン**（VoidZero 製）
 - テスト / lint / フォーマット / タスク実行 / Node 管理を **`vp` ひとつ**に束ねる
-- 中身は Vite / Vitest / Oxlint / Oxfmt / tsdown /vite task
+- 中身は Vite / Vitest / Oxlint / Oxfmt / tsdown / Vite Task
 - ただし、**まだ α 版**
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="Vite+が解決する課題">
+<PersonalContentSlide title="Vite+ が解決する課題">
 
 - 他の言語では統合ツールチェインが当たり前
 - JS は **ツールが乱立**してバラバラになりがち
@@ -116,7 +116,7 @@ import {
 
 - まだ **大々的には使っていなかった**（リプレイス後に本格運用する想定だった）
 - 元から **ほとんどのツールが Vite+ の範囲内**だった
-  - Vite,Vitest,Oxlint,Oxfmtは導入ずみ
+  - Vite, Vitest, Oxlint, Oxfmt は導入済み
 - 面白そう、でも α 版…と **躊躇**していた
 - マネージャー「**ビルドできればいいんじゃない？**」
 
@@ -145,6 +145,15 @@ import {
     borderRadius: "8px",
   }}
 />
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="移行 PR #135 でやったこと">
+
+- `vp migrate` で **Vite / Vitest / Oxlint / Oxfmt / Turborepo** を Vite+ へ統合
+- `turbo.json` / `.oxlintrc.json` / `.oxfmtrc.json` / `vitest.config.ts` を削除
+- テスト import を **`vitest` → `vite-plus/test`** に変更
+- GitHub Actions を **`voidzero-dev/setup-vp`** ベースに変更
 
 </PersonalContentSlide>
 
@@ -191,7 +200,7 @@ import {
   <CodeBlock lang="text" code={PACK_SIZE_DIFF} />
 </div>
 
-- `dts: true` の1行で型定義（**`vite-plugin-dts` 不要**）、react 系は **自動 external**
+- `dts: true` の1行で型定義（**`vite-plugin-dts` 不要**）、peer の React 系は **external 扱い**
 - 旧 **Vite build.lib（rollup）→ tsdown** で gzip **ESM 117KB → 36KB（約1/3）**
 
 </PersonalContentSlide>
@@ -200,9 +209,9 @@ import {
 
 <CodeBlock lang="ts" code={STAGED_HOOKS_CONFIG} />
 
-- git hooks も **`vp` 同梱**（`staged` に書くだけ）→ **husky / lefthook 不要**
+- git hooks も **`vp` 同梱**（`staged` に書くだけ）→ 今回は **husky / lefthook 不要**にできた
 - 独自の pre-commit も **`.vite-hooks/`** で仕込める
-- ついでに **Node も `.node-version` だけ**（mise / volta 不要）も地味に楽
+- ついでに **Node も `.node-version` だけ**（今回の用途では mise / volta 不要）も地味に楽
 
 </PersonalContentSlide>
 
@@ -212,25 +221,31 @@ import {
 
 </PersonalHeadingSlide>
 
-<PersonalContentSlide title="辛かった① lefthook が壊れた">
+<PersonalContentSlide title="辛かった① lefthook使用時にmigrateされない">
 
-- `vp` への移行時、**lefthook** を使っていると pre-commit の設定が弾かれる
+- `vp migrate` 時、**lefthook** は自動移行されず警告だけ出る
 - 気づかず **pre-commit が壊れていた** → 自分で設定を直す必要があった
+- **意図的なスキップ**（RFC に明記：`warns and skips`）
+  - 自動移行対象は **husky / lint-staged のみ**
+  - **lefthook / simple-git-hooks / yorkie** は検出はするが移行せず警告のみ
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="辛かった② Astro が壊れがち">
+<PersonalContentSlide title="辛かった② Astro がよく壊れた">
 
-- 関連で **Astro が壊れがち**（astro のメジャー移行などで都度対応した）
+- 直後に **Astro 6 へ手動移行**（#198）
+- `vite-plus-core@0.1.14` で Astro 互換リグレッション → **0.1.15 で解消確認**（#255）
+- `overrides.vite` が Astro 内部の Vite まで置換 → **Release が落ちた**（#467）
 
 </PersonalContentSlide>
 
 <PersonalContentSlide title="辛かった③ AI が vp を知らない">
 
-- **AI が `vite+` / `vp` コマンドを知らない**ことが多い
+- **AI が `Vite+` / `vp` コマンドを知らない**ことが多い
 - α版ゆえ学習データに無く、提案が外しがち
+- めっちゃnpxで実行してくる
 
-</PersonalContentSlide>
+  </PersonalContentSlide>
 
 <PersonalContentSlide title="まとめ">
 
