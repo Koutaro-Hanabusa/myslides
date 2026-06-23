@@ -228,7 +228,15 @@ import {
 
 - `vp migrate` 時、**lefthook** は自動移行されず警告のみ
 - 気づかず **pre-commit が壊れていた** → 設定を手動修正
-- 仕様（RFC: `warns and skips`）。自動移行は **husky / lint-staged のみ**
+- 自動移行されたのは **husky / lint-staged** だけ
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="その後 → 実は仕様でした">
+
+- **バグだと思って issue 起票**（[#1854](https://github.com/voidzero-dev/vite-plus/issues/1854)）
+- よく見ると **仕様だった**（RFC に記載あり）
+- → **Migration Guide に追記**する形で対応（[PR #1901](https://github.com/voidzero-dev/vite-plus/pull/1901)・マージ済み）
 
 </PersonalContentSlide>
 
