@@ -12,7 +12,7 @@
     }
   },
   "scripts": {
-    "build": "tsdown"
+    "build": "vp pack"
   },
   "dependencies": {
     "@mySlides/db": "workspace:*",
@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@mySlides/config": "workspace:*",
-    "tsdown": "catalog:"
+    "vite-plus": "catalog:"
   },
   "peerDependencies": {
     "typescript": "^5"

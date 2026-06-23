@@ -12,14 +12,23 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
+      - uses: voidzero-dev/setup-vp@v1
         with:
-          bun-version: "1.2.23"
-      - run: bun install --frozen-lockfile
-      - name: Lint (oxlint)
-        run: bun oxlint
-      - name: Format check (oxfmt)
-        run: bun oxfmt --check
+          node-version: "24"
+          cache: true
+      - run: vp install
+      # build を先に実行: next build が next-env.d.ts / .next/types を生成し、
+      # 後段の type-aware lint で *.png 等のモジュール型を解決できるようにする。
+      - name: Build
+        env:
+          # OGP 画像生成（opengraph-image）で参照する R2 公開 URL。
+          # 公開 URL のため secret ではなく deploy-staging.yml と同値。
+          NEXT_PUBLIC_R2_BASE_URL: "https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev"
+        run: vp run -r build
+      - name: Lint
+        run: vp lint
+      - name: Format check
+        run: vp fmt --check

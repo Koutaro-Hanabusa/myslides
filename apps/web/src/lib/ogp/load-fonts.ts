@@ -37,8 +37,8 @@ async function fetchFontViaAssets(file: string): Promise<ArrayBuffer | null> {
 async function fetchFontViaFs(file: string): Promise<ArrayBuffer | null> {
   try {
     const { readFile } = await import("node:fs/promises");
-    const { join } = await import("node:path");
-    const buffer = await readFile(join(process.cwd(), "public/fonts", file));
+    const path = await import("node:path");
+    const buffer = await readFile(path.join(process.cwd(), "public/fonts", file));
     return buffer.buffer.slice(
       buffer.byteOffset,
       buffer.byteOffset + buffer.byteLength,

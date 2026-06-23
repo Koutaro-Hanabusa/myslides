@@ -37,7 +37,7 @@ export default function RevealPresentation({
     if (!deckDivRef.current) return;
 
     // Dynamic import to avoid esbuild __name issue
-    Promise.all([import("reveal.js"), import("reveal.js/plugin/markdown/markdown")]).then(
+    void Promise.all([import("reveal.js"), import("reveal.js/plugin/markdown/markdown")]).then(
       ([RevealModule, MarkdownModule]) => {
         const Reveal = RevealModule.default;
         const Markdown = MarkdownModule.default;
@@ -85,7 +85,7 @@ export default function RevealPresentation({
           ...config,
         });
 
-        deck.initialize().then(() => {
+        void deck.initialize().then(() => {
           setIsReady(true);
         });
 
