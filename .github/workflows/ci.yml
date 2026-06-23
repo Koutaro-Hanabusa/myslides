@@ -23,6 +23,10 @@ jobs:
       # build を先に実行: next build が next-env.d.ts / .next/types を生成し、
       # 後段の type-aware lint で *.png 等のモジュール型を解決できるようにする。
       - name: Build
+        env:
+          # OGP 画像生成（opengraph-image）で参照する R2 公開 URL。
+          # 公開 URL のため secret ではなく deploy-staging.yml と同値。
+          NEXT_PUBLIC_R2_BASE_URL: "https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev"
         run: vp run -r build
       - name: Lint
         run: vp lint
