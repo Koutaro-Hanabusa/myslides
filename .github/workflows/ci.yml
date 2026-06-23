@@ -15,11 +15,12 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
+      - uses: voidzero-dev/setup-vp@v1
         with:
-          bun-version: "1.2.23"
-      - run: bun install --frozen-lockfile
-      - name: Lint (oxlint)
-        run: bun oxlint
-      - name: Format check (oxfmt)
-        run: bun oxfmt --check
+          node-version: "24"
+          cache: true
+      - run: vp install
+      - name: Lint
+        run: vp lint
+      - name: Format check
+        run: vp fmt --check
