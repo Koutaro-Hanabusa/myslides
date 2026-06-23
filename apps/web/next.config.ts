@@ -1,9 +1,16 @@
 import createMDX from "@next/mdx";
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import type { NextConfig } from "next";
+
+const monorepoRoot = join(dirname(fileURLToPath(import.meta.url)), "../..");
 
 const nextConfig: NextConfig = {
   typedRoutes: true,
+  turbopack: {
+    root: monorepoRoot,
+  },
   // reactCompiler: true, // Disabled due to __name esbuild helper conflict with Cloudflare Workers
   devIndicators: process.env.NEXT_PUBLIC_HIDE_DEVTOOLS ? false : undefined,
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
