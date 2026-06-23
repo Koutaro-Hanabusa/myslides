@@ -3,6 +3,7 @@ import { CodeBlock, PersonalContentSlide, PersonalHeadingSlide } from "@/compone
 import SelfIntroduction from "./slides/self-introduction";
 import {
   ALL_IN_ONE_CONFIG,
+  BEFORE_AFTER_CONFIG,
   VP_TASK_CONFIG,
   VP_TASK_CACHE_LOG,
   LIBRARY_MODE_CONFIG,
@@ -83,6 +84,15 @@ import {
 
 </PersonalContentSlide>
 
+<PersonalContentSlide title="設定ファイル、散らばりがち">
+
+<CodeBlock lang="text" code={BEFORE_AFTER_CONFIG} />
+
+- test / lint / fmt / build / task / hooks が **別々の道具**になりがち
+- Vite+ はこの散らばりを **`vite.config.ts` に寄せる**
+
+</PersonalContentSlide>
+
 <PersonalHeadingSlide>
 
 どこに導入した？
@@ -114,7 +124,7 @@ import {
 
 - まだ **本格運用前**（リプレイス後に使う想定）
 - 元から **ツールがほぼ Vite+ の範囲内**（Vite/Vitest/Oxlint/Oxfmt）
-- 興味はあれど α 版で **躊躇**
+- とはいえ α 版なので **最後の一歩は躊躇**
 
 </PersonalContentSlide>
 
@@ -250,21 +260,34 @@ import {
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="辛かった③ AI が vp を知らない">
+<PersonalContentSlide title="気をつけた③ AI が vp を知らない">
 
 - **AI が `Vite+` / `vp` を知らない**ことが多い
 - α版ゆえ学習データに無く、提案を外しがち
 - **`npx` で実行しがち**
+
+→`AGENTS.md` / `CLAUDE.md` / Cursor rules などに **`vp` 前提の運用を書く**
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="導入しやすい / 注意したい条件">
+
+- **導入しやすい**
+  - Vite / Vitest / Oxlint / Oxfmt を **すでに使っている**
+  - **新規リポジトリ**、または本格運用前
+
+- **注意したい**
+- framework 側の Vite 依存
+- α版の破壊的変更を追えない
 
 </PersonalContentSlide>
 
 <PersonalContentSlide title="まとめ">
 
 - 設定を **`vite.config.ts` 一つに集約**できるのが最高
-- α版でも、**もう使う価値は十分**
-- かなり強力なツール → **ここに全部賭ける価値あり**
-- 特に **新規リポジトリは Vite+ 一択**かもしれない
-  - とはいえα版なので注意！
+- Vite / Vitest / Oxlint / Oxfmt を使っているなら、**導入価値はかなり高い**
+- 新規リポジトリや本格運用前なら、**早めに試す価値あり**
+- α 版なので注意は必要だが、今回の辛みは **改善・運用で吸収できる範囲**
 
 </PersonalContentSlide>
 
