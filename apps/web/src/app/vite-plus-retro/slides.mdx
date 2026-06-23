@@ -57,7 +57,7 @@ import {
   />
 </div>
 
-スポンサーするくらいには好き。会場では扇子にVite+と入れてもらってAlexとツーショ撮った///
+スポンサーするくらいには好き。会場では扇子にVite+と入れてもらってAlexとツーショ撮った。
 
 </PersonalContentSlide>
 
@@ -69,18 +69,17 @@ import {
 
 <PersonalContentSlide title="Vite+ とは">
 
-- 2026/3/13 に公開された **統合ツールチェイン**（VoidZero 製）
-- テスト / lint / フォーマット / タスク実行 / Node 管理を **`vp` ひとつ**に束ねる
-- 中身は Vite / Vitest / Oxlint / Oxfmt / tsdown /vite task
-- ただし、**まだ α 版**
+- **test / lint / fmt / task / Node** を `vp` ひとつに束ねる統合ツールチェイン
+- 中身は Vite / Vitest / Oxlint / Oxfmt / tsdown / Vite Task（VoidZero 製）
+- 2026/3/13 公開・**まだ α 版**
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="Vite+が解決する課題">
+<PersonalContentSlide title="Vite+ が解決する課題">
 
-- 他の言語では統合ツールチェインが当たり前
-- JS は **ツールが乱立**してバラバラになりがち
-- その断片化を解決することができるのが Vite+
+- 他の言語：統合ツールチェインが **当たり前**
+- JS：ツールの選択肢が多く、環境ごとにバラバラになりがち
+- → その課題を **Vite+ が解決**
 
 </PersonalContentSlide>
 
@@ -92,8 +91,8 @@ import {
 
 <PersonalContentSlide title="社内デザインシステム">
 
-- 社内で **デザインシステム**を作っている
-- 構成は **Vite + Vitest + Oxlint + Oxfmt** のモノレポ（タスクランナーは Turborepo）
+- 社内で **デザインシステム** を開発中
+- 構成は **Vite + Vitest + Oxlint + Oxfmt** のモノレポ（タスクは Turborepo）
 - → Vite+ が束ねる範囲と **ほぼ重なっていた**
 
 </PersonalContentSlide>
@@ -106,21 +105,24 @@ import {
 
 <PersonalContentSlide title="3/13 → 3/24">
 
-- **3/13** Vite+ 公開
-- **3/24** もう移行完了 → わずか **10日ちょっと**
-- 「α版をもう本番に入れたの？」と思いますよね
+- 公開から移行完了まで、わずか **10日ちょっと**
+- α版をもう本番に投入
 
 </PersonalContentSlide>
 
 <PersonalContentSlide title="なぜ飛び込めた？">
 
-- まだ **大々的には使っていなかった**（リプレイス後に本格運用する想定だった）
-- 元から **ほとんどのツールが Vite+ の範囲内**だった
-  - Vite,Vitest,Oxlint,Oxfmtは導入ずみ
-- 面白そう、でも α 版…と **躊躇**していた
-- マネージャー「**ビルドできればいいんじゃない？**」
+- まだ **本格運用前**（リプレイス後に使う想定）
+- 元から **ツールがほぼ Vite+ の範囲内**（Vite/Vitest/Oxlint/Oxfmt）
+- 興味はあれど α 版で **躊躇**
 
 </PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+マネージャー<br />「**ビルドできればいいんじゃない？**」
+
+</PersonalHeadingSlide>
 
 <PersonalHeadingSlide>
 
@@ -148,6 +150,15 @@ import {
 
 </PersonalContentSlide>
 
+<PersonalContentSlide title="移行 PR でやったこと">
+
+- `vp migrate` で **Vite / Vitest / Oxlint / Oxfmt / Turborepo** を統合
+- `turbo.json` ほか各種設定ファイルを **まとめて削除**
+- テスト import を **`vitest` → `vite-plus/test`** に変更
+- CI も **`voidzero-dev/setup-vp`** ベースに変更
+
+</PersonalContentSlide>
+
 <PersonalHeadingSlide>
 
 実際どうだった？
@@ -158,9 +169,9 @@ import {
 
 <CodeBlock lang="ts" code={ALL_IN_ONE_CONFIG} />
 
-- `vite.config.ts` の `defineConfig` に **設定が全部同居**するのが最高だった
-- test / staged / fmt / run / lint が **同じ場所**で完結する
-- `vp lint` だけで **type linting**（oxlint-tsgolint）まで走るのも地味に嬉しい
+- `vite.config.ts` の `defineConfig` に **設定が全部同居**
+- test / staged / fmt / run / lint が **1ファイル**で完結
+- `vp lint` だけで **type linting**（oxlint-tsgolint）まで実行
 
 </PersonalContentSlide>
 
@@ -168,9 +179,9 @@ import {
 
 <CodeBlock lang="ts" code={VP_TASK_CONFIG} />
 
-- `-r` で **全 workspace を「依存順」に実行**（既定で最大4並列）
-- **モノレポでも問題なく動いた**（base / business / config / mcp / ui-preview）
-- Turborepo 的なタスク実行を **Vite+ の中**で賄える
+- `-r` で **全 workspace を依存順に実行**
+- **モノレポでも問題なく動作**
+- Turborepo 的なタスク実行を **Vite+ の中**で完結
 
 </PersonalContentSlide>
 
@@ -178,9 +189,10 @@ import {
 
 <CodeBlock lang="text" code={VP_TASK_CACHE_LOG} />
 
-- コマンドが **使ったファイルを自動追跡** → 変化なしなら**実行せずリプレイ**
-- 実測で **4/5 cache hit・27.38s 短縮**（2回目以降は差分だけ走る）
-- Astro の ui-preview だけは入力を書き換えるので**正直キャッシュ外**
+- 使ったファイルを **自動追跡** → 変化なしなら **実行せずリプレイ**
+- 実測で **4/5 cache hit・27.38s 短縮**
+- 詳しくはこちらがとても参考になります
+  - https://zenn.dev/herp_inc/articles/strange-task-runner
 
 </PersonalContentSlide>
 
@@ -191,8 +203,8 @@ import {
   <CodeBlock lang="text" code={PACK_SIZE_DIFF} />
 </div>
 
-- `dts: true` の1行で型定義（**`vite-plugin-dts` 不要**）、react 系は **自動 external**
-- 旧 **Vite build.lib（rollup）→ tsdown** で gzip **ESM 117KB → 36KB（約1/3）**
+- `dts: true` の1行で型定義（**`vite-plugin-dts` 不要**）、React 系は **external 扱い**
+- rollup → **tsdown** で gzip **ESM 117KB → 36KB（約1/3）**
 
 </PersonalContentSlide>
 
@@ -201,8 +213,8 @@ import {
 <CodeBlock lang="ts" code={STAGED_HOOKS_CONFIG} />
 
 - git hooks も **`vp` 同梱**（`staged` に書くだけ）→ **husky / lefthook 不要**
-- 独自の pre-commit も **`.vite-hooks/`** で仕込める
-- ついでに **Node も `.node-version` だけ**（mise / volta 不要）も地味に楽
+- 独自の pre-commit は **`.vite-hooks/`** で対応
+- Node も **`.node-version` だけ**（今回の用途では mise / volta 不要）
 
 </PersonalContentSlide>
 
@@ -212,32 +224,47 @@ import {
 
 </PersonalHeadingSlide>
 
-<PersonalContentSlide title="辛かった① lefthook が壊れた">
+<PersonalContentSlide title="辛かった① lefthook使用時にmigrateされない">
 
-- `vp` への移行時、**lefthook** を使っていると pre-commit の設定が弾かれる
-- 気づかず **pre-commit が壊れていた** → 自分で設定を直す必要があった
+- `vp migrate` 時、**lefthook** は自動移行されず警告のみ
+- 気づかず **pre-commit が壊れていた** → 設定を手動修正
+- 自動移行されたのは **husky / lint-staged** だけ
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="辛かった② Astro が壊れがち">
+<PersonalContentSlide title="その後 → 実は仕様でした">
 
-- 関連で **Astro が壊れがち**（astro のメジャー移行などで都度対応した）
+- **バグだと思って issue 起票**（[#1854](https://github.com/voidzero-dev/vite-plus/issues/1854)）
+- よく見ると **仕様だった**（RFC に記載あり）
+- → **Migration Guide に追記**する形で対応（[PR #1901](https://github.com/voidzero-dev/vite-plus/pull/1901)・マージ済み）
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="辛かった② Astro がよく壊れた">
+
+- 直後に **Astro 6 へ手動移行**（#198）
+- `core@0.1.14` で Astro 互換リグレッション → **0.1.15 で解消**
+- `overrides.vite` が Astro 内部の Vite まで置換 → **Release 失敗**
+
+  →AstroV7でVite8がデフォになったり、同じCloudflareになったことで上手いこと行くことに期待
 
 </PersonalContentSlide>
 
 <PersonalContentSlide title="辛かった③ AI が vp を知らない">
 
-- **AI が `vite+` / `vp` コマンドを知らない**ことが多い
-- α版ゆえ学習データに無く、提案が外しがち
+- **AI が `Vite+` / `vp` を知らない**ことが多い
+- α版ゆえ学習データに無く、提案を外しがち
+- **`npx` で実行しがち**
 
 </PersonalContentSlide>
 
 <PersonalContentSlide title="まとめ">
 
-- 公開直後の α版でも、**範囲が自分たちの構成と重なれば**爆速で乗れる
-- 設定が一箇所に集約される体験は **普通に良い**
-- α版なので **壊れる前提**で、lefthook / Astro / AI には注意
-- 気になってる人は、**一回触ってみてほしい**
+- 設定を **`vite.config.ts` 一つに集約**できるのが最高
+- α版でも、**もう使う価値は十分**
+- かなり強力なツール → **ここに全部賭ける価値あり**
+- 特に **新規リポジトリは Vite+ 一択**かもしれない
+  - とはいえα版なので注意！
 
 </PersonalContentSlide>
 
