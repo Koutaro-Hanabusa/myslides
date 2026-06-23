@@ -282,6 +282,36 @@ import {
 
 </PersonalContentSlide>
 
+<PersonalHeadingSlide>
+
+余談：このスライドも Vite+ です
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="Next 製でも Vite+ に乗れる">
+
+<Image
+  src="/slides/vite-plus-retro/assets/pr-220.png"
+  alt="mySlides を Vite+ へ移行した PR #220（build: Vite+ への移行・ツールチェーン統合、26 files・+10366 -285）"
+  width={1200}
+  height={600}
+  style={{
+    margin: "0 auto 1rem",
+    display: "block",
+    width: "auto",
+    height: "auto",
+    maxWidth: "100%",
+    maxHeight: "340px",
+    borderRadius: "8px",
+  }}
+/>
+
+- この LT スライド（mySlides）自体も Vite+ へ移行（[PR #220](https://github.com/Koutaro-Hanabusa/myslides/pull/220)）
+- web は **Next 製**（OGP を `opengraph-image.tsx` で組みたくて採用）、ビルドは **Next のまま**
+- `vp` は **lint / fmt / task / staged** 担当 → 名前は Vite+ でも中身は **バンドラ非依存**
+
+</PersonalContentSlide>
+
 <PersonalContentSlide title="まとめ">
 
 - 設定を **`vite.config.ts` 一つに集約**できるのが最高
