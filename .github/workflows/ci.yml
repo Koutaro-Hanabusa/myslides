@@ -12,7 +12,7 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: voidzero-dev/setup-vp@v1
@@ -20,6 +20,10 @@ jobs:
           node-version: "24"
           cache: true
       - run: vp install
+      # build を先に実行: next build が next-env.d.ts / .next/types を生成し、
+      # 後段の type-aware lint で *.png 等のモジュール型を解決できるようにする。
+      - name: Build
+        run: vp run -r build
       - name: Lint
         run: vp lint
       - name: Format check
