@@ -11,7 +11,7 @@ export const queryClient = new QueryClient({
         action: {
           label: "retry",
           onClick: () => {
-            queryClient.invalidateQueries();
+            void queryClient.invalidateQueries();
           },
         },
       });
