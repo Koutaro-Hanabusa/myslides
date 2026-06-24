@@ -140,7 +140,9 @@ import {
 
 </PersonalHeadingSlide>
 
-<PersonalContentSlide title="爆速！！(当社比)">
+<PersonalHeadingSlide>
+
+爆速！！(当社比)
 
 <Image
   src="/slides/vite-plus-retro/assets/pr-135.png"
@@ -158,7 +160,7 @@ import {
   }}
 />
 
-</PersonalContentSlide>
+</PersonalHeadingSlide>
 
 <PersonalContentSlide title="移行 PR でやったこと">
 
@@ -175,7 +177,15 @@ import {
 
 </PersonalHeadingSlide>
 
-<PersonalContentSlide title="良かった① 設定が一箇所に">
+<PersonalContentSlide title="良かった① vp migrate が最高">
+
+- 既存プロジェクトを Vite+ に移行するための **スタート地点**
+- 依存関係・import・設定ファイル・scripts を **まとめて更新**
+- hooks・AI agent・エディタ設定のセットアップにも対応
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="良かった② 設定が一箇所に">
 
 <CodeBlock lang="ts" code={ALL_IN_ONE_CONFIG} />
 
@@ -185,7 +195,7 @@ import {
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="良かった② Vite Task (vp run)">
+<PersonalContentSlide title="良かった③ Vite Task (vp run)">
 
 <CodeBlock lang="ts" code={VP_TASK_CONFIG} />
 
@@ -195,7 +205,7 @@ import {
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="良かった②' cache があると爆速">
+<PersonalContentSlide title="良かった③ キャッシュがあると爆速">
 
 <CodeBlock lang="text" code={VP_TASK_CACHE_LOG} />
 
@@ -206,7 +216,7 @@ import {
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="良かった③ ライブラリモード = vp pack">
+<PersonalContentSlide title="良かった⑤ ライブラリモード = vp pack">
 
 <div className="grid grid-cols-2 gap-4">
   <CodeBlock lang="ts" code={LIBRARY_MODE_CONFIG} />
@@ -218,7 +228,7 @@ import {
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="良かった④ 個別ツールが要らない">
+<PersonalContentSlide title="良かった⑥ 個別ツールが要らない">
 
 <CodeBlock lang="ts" code={STAGED_HOOKS_CONFIG} />
 
@@ -309,6 +319,28 @@ import {
 - この LT スライド（mySlides）自体も Vite+ へ移行（[PR #220](https://github.com/Koutaro-Hanabusa/myslides/pull/220)）
 - web は **Next 製**（OGP を `opengraph-image.tsx` で組みたくて採用）、ビルドは **Next のまま**
 - `vp` は **lint / fmt / task / staged** 担当 → 名前は Vite+ でも中身は **バンドラ非依存**
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="そして Vite+ の沼へ">
+
+<Image
+  src="/slides/vite-plus-retro/assets/vite-plus-bad-spiral.png"
+  alt="Vite+への熱中がさらに深まっていく様子を表した悪循環ポスター"
+  width={515}
+  height={645}
+  style={{
+    margin: "0 auto 0.5rem",
+    display: "block",
+    width: "auto",
+    height: "auto",
+    maxWidth: "100%",
+    maxHeight: "580px",
+    borderRadius: "8px",
+  }}
+/>
+
+［[悪循環画像ジェネレータ](https://furandon-pig.github.io/fpig_sample/hobby/bad_spiral/)で作成］
 
 </PersonalContentSlide>
 
