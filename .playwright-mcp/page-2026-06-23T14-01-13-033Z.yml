@@ -1,0 +1,154 @@
+- generic [active] [ref=e1]:
+    - generic [ref=e3]:
+        - heading "Burio's slide deck" [level=1] [ref=e4]
+        - generic [ref=e5]:
+            - generic [ref=e6]:
+                - link [ref=e7] [cursor=pointer]:
+                    - /url: /vite-plus-retro
+                    - application [ref=e9]:
+                        - generic [ref=e11]:
+                            - heading "TSKaigi 2026事後勉強会" [level=3] [ref=e12]
+                            - heading "Vite+を爆速で社内デザインシステムに導入してみた" [level=1] [ref=e13]
+                            - heading "ぶりお @burio_16" [level=3] [ref=e14]
+                        - text: Speaker notes
+                        - generic [ref=e18]: TSKaigi 2026事後勉強会 Vite+を爆速で社内デザインシステムに導入してみた ぶりお @burio_16
+                - generic [ref=e19]:
+                    - heading "Vite+を爆速で社内デザインシステムに導入してみた" [level=3] [ref=e20]
+                    - generic [ref=e21]:
+                        - generic [ref=e22]: 2026/06/25
+                        - generic [ref=e23]: "|"
+                        - link "TSKaigi 2026事後勉強会" [ref=e24] [cursor=pointer]:
+                            - /url: https://smarthr.connpass.com/event/392342/
+            - generic [ref=e25]:
+                - link [ref=e26] [cursor=pointer]:
+                    - /url: /tanstack-router-dir-structure
+                    - application [ref=e28]:
+                        - generic [ref=e30]:
+                            - heading "TSKaigi2026〜アフターパーティー〜" [level=3] [ref=e31]
+                            - heading "ぼくの考えた最強の TanStack Router ディレクトリ構成" [level=1] [ref=e32]:
+                                - text: ぼくの考えた最強の
+                                - text: TanStack Router ディレクトリ構成
+                            - heading "ぶりお @burio_16" [level=3] [ref=e33]
+                        - text: Speaker notes
+                        - generic [ref=e37]: TSKaigi2026〜アフターパーティー〜 ぼくの考えた最強の TanStack Router ディレクトリ構成 ぶりお @burio_16
+                - generic [ref=e38]:
+                    - heading "ぼくの考えた最強の TanStack Router ディレクトリ構成" [level=3] [ref=e39]
+                    - generic [ref=e40]:
+                        - generic [ref=e41]: 2026/06/12
+                        - generic [ref=e42]: "|"
+                        - link "TSKaigi2026〜アフターパーティー〜" [ref=e43] [cursor=pointer]:
+                            - /url: https://every.connpass.com/event/393937/
+            - generic [ref=e44]:
+                - link [ref=e45] [cursor=pointer]:
+                    - /url: /autofocus-correct-usage
+                    - application [ref=e47]:
+                        - generic [ref=e49]:
+                            - heading "社内LT会 / Frontend Conference Nagoya 2026 前夜祭！" [level=3] [ref=e50]
+                            - heading "autofocusの正しい用法を 知っていますか？" [level=1] [ref=e51]:
+                                - text: autofocusの正しい用法を
+                                - text: 知っていますか？
+                            - heading "ぶりお @burio_16" [level=3] [ref=e52]
+                        - text: Speaker notes
+                        - generic [ref=e56]: 社内LT会 / Frontend Conference Nagoya 2026 前夜祭！ autofocusの正しい用法を 知っていますか？ ぶりお @burio_16
+                - generic [ref=e57]:
+                    - heading "autofocusの正しい用法を知っていますか？" [level=3] [ref=e58]
+                    - generic [ref=e59]:
+                        - generic [ref=e60]: 2026/4/20
+                        - generic [ref=e61]: "|"
+                        - generic [ref=e62]: 社内LT会
+                        - generic [ref=e63]: /
+                        - link "Frontend Conference Nagoya 2026 前夜祭！" [ref=e64] [cursor=pointer]:
+                            - /url: https://stmn.connpass.com/event/390165/
+            - generic [ref=e65]:
+                - link "Loading..." [ref=e66] [cursor=pointer]:
+                    - /url: /oss-and-community-v2
+                    - generic [ref=e68]: Loading...
+                - generic [ref=e69]:
+                    - heading "実績解除：OSSコントリビュート V2" [level=3] [ref=e70]
+                    - generic [ref=e71]:
+                        - generic [ref=e72]: 2026/4/17
+                        - generic [ref=e73]: "|"
+                        - 'link "React Tokyo ミートアップ #15" [ref=e74] [cursor=pointer]':
+                            - /url: https://react-tokyo.connpass.com/event/386779/
+            - generic [ref=e75]:
+                - link "Loading..." [ref=e76] [cursor=pointer]:
+                    - /url: /oss-and-community
+                    - generic [ref=e78]: Loading...
+                - generic [ref=e79]:
+                    - heading "実績解除：OSSコントリビュート" [level=3] [ref=e80]
+                    - generic [ref=e81]:
+                        - generic [ref=e82]: 2026/3/23
+                        - generic [ref=e83]: "|"
+                        - generic [ref=e84]: 社内LT会
+            - generic [ref=e85]:
+                - link "Loading..." [ref=e86] [cursor=pointer]:
+                    - /url: /25-graduate
+                    - generic [ref=e88]: Loading...
+                - generic [ref=e89]:
+                    - heading "アウトプット、怖くないですか？" [level=3] [ref=e90]
+                    - generic [ref=e91]:
+                        - generic [ref=e92]: 2026/3/6
+                        - generic [ref=e93]: "|"
+                        - link "【25卒】新卒のつまずきを糧にしNight" [ref=e94] [cursor=pointer]:
+                            - /url: https://25-graduate.connpass.com/event/382072/
+            - generic [ref=e95]:
+                - link "Loading..." [ref=e96] [cursor=pointer]:
+                    - /url: /you-must-have-dotfiles
+                    - generic [ref=e98]: Loading...
+                - generic [ref=e99]:
+                    - heading "Vim使いでなくてもdotfilesを管理しよう" [level=3] [ref=e100]
+                    - generic [ref=e101]:
+                        - generic [ref=e102]: 2026/1/25
+                        - generic [ref=e103]: "|"
+                        - link "Yoriai.cafe 二日間限定オープン！" [ref=e104] [cursor=pointer]:
+                            - /url: https://peatix.com/event/4736534
+            - generic [ref=e105]:
+                - link "Loading..." [ref=e106] [cursor=pointer]:
+                    - /url: /revealjs-slideDeck
+                    - generic [ref=e108]: Loading...
+                - generic [ref=e109]:
+                    - heading "自分だけのスライドデッキを作ってみた" [level=3] [ref=e110]
+                    - generic [ref=e111]:
+                        - generic [ref=e112]: 2025/12/15
+                        - generic [ref=e113]: "|"
+                        - generic [ref=e114]: 社内LT会
+            - generic [ref=e115]:
+                - link "Loading..." [ref=e116] [cursor=pointer]:
+                    - /url: /tacotuesday
+                    - generic [ref=e118]: Loading...
+                - generic [ref=e119]:
+                    - heading "全人類タコスを食え" [level=3] [ref=e120]
+                    - generic [ref=e121]:
+                        - generic [ref=e122]: 2025/12/15
+                        - generic [ref=e123]: "|"
+                        - generic [ref=e124]: 社内LT会
+            - generic [ref=e125]:
+                - link "Loading..." [ref=e126] [cursor=pointer]:
+                    - /url: /better-t-stack
+                    - generic [ref=e128]: Loading...
+                - generic [ref=e129]:
+                    - heading "より良い技術スタックでcloudflareにデプロイしよう" [level=3] [ref=e130]
+                    - generic [ref=e131]:
+                        - generic [ref=e132]: 2025/12/10
+                        - generic [ref=e133]: "|"
+                        - link "Cloudflare Meet-up Tokyo Vol.9" [ref=e134] [cursor=pointer]:
+                            - /url: https://cfm-cts.connpass.com/event/374413/
+            - generic [ref=e135]:
+                - link "Loading..." [ref=e136] [cursor=pointer]:
+                    - /url: /react-three-fiber
+                    - generic [ref=e138]: Loading...
+                - generic [ref=e139]:
+                    - heading "WebGL入門 - Three.jsで良さげなプロフィールサイト作ってみた" [level=3] [ref=e140]
+                    - generic [ref=e141]:
+                        - generic [ref=e142]: 2025/11/14
+                        - generic [ref=e143]: "|"
+                        - link "React Tokyo ミートアップ#11" [ref=e144] [cursor=pointer]:
+                            - /url: https://react-tokyo.connpass.com/event/372887/
+    - generic [ref=e145]:
+        - img [ref=e147]
+        - button "Open Tanstack query devtools" [ref=e195] [cursor=pointer]:
+            - img [ref=e196]
+    - region "Notifications alt+T"
+    - button "Open Next.js Dev Tools" [ref=e249] [cursor=pointer]:
+        - img [ref=e250]
+    - alert [ref=e253]
