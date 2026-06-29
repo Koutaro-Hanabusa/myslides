@@ -1,5 +1,3 @@
-import createMDX from "@next/mdx";
-import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { NextConfig } from "next";
@@ -11,12 +9,10 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: monorepoRoot,
   },
-  // reactCompiler: true, // Disabled due to __name esbuild helper conflict with Cloudflare Workers
   devIndicators: process.env.NEXT_PUBLIC_HIDE_DEVTOOLS ? false : undefined,
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {
-    // /_next/image の Cache-Control の max-age を制御する。
-    // headers() では上書きできないため、ここで明示する。
+    // /_next/image の Cache-Control max-age を制御。headers() では上書き不可。
     minimumCacheTTL: 3600,
   },
   async headers() {
@@ -31,7 +27,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        // /api 配下は除外して全 HTML に edge cache を効かせる
+        // /api 配下を除外して全 HTML に edge cache を効かせる
         source: "/((?!api/).*)",
         headers: [
           {
@@ -44,12 +40,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-const withMDX = createMDX({
-  options: {
-    remarkPlugins: ["remark-gfm"],
-  },
-});
-
-export default withMDX(nextConfig);
-
-void initOpenNextCloudflareForDev();
+export default nextConfig;

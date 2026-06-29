@@ -30,16 +30,16 @@ run: {
   cache: { scripts: true }, // 使ったファイルを自動追跡してキャッシュ
 }`;
 
-// ② cache ヒット時の実ターミナル出力（2回目・変更なし）8122-cheese 実測
+// ② cache ヒット時の実ターミナル出力（2回目・変更なし） 実測
 export const VP_TASK_CACHE_LOG = `$ vp run -r build      # 2回目（変更なし）
-  ~/packages/cheese-base$     vp pack  ◉ cache hit, replaying
-  ~/packages/cheese-mcp$      tsc ...   ◉ cache hit, replaying
-  ~/packages/cheese-business$ vp pack  ◉ cache hit, replaying
+  ~/packages/hoge$     vp pack  ◉ cache hit, replaying
+  ~/packages/fuga$      tsc ...   ◉ cache hit, replaying
+  ~/packages/piyo$ vp pack  ◉ cache hit, replaying
   ──────────────────────────────────────
   vp run: 4/5 cache hit (80%), 27.38s saved
   ↑ ui-preview(Astro) だけは入力を書き換えるので非キャッシュ`;
 
-export const LIBRARY_MODE_CONFIG = `// packages/cheese-base/vite.config.ts
+export const LIBRARY_MODE_CONFIG = `// packages/hoge/vite.config.ts
 pack: {
   entry: ["./src/index.ts"],
   format: ["esm", "cjs"],
