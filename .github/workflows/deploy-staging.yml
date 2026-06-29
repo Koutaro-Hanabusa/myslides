@@ -26,7 +26,9 @@ jobs:
           NEXT_PUBLIC_R2_BASE_URL: "https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev"
           NEXT_PUBLIC_BASE_URL: "https://myslides-staging.koutarouhanabusa.workers.dev"
           NEXT_PUBLIC_SERVER_URL: "https://myslides-server.koutarouhanabusa.workers.dev"
-        run: bun run deploy:staging
+        run: |
+          bun run build
+          bun run deploy:staging
       - run: |
           echo "## Staging Preview" >> $GITHUB_STEP_SUMMARY
           echo "https://myslides-staging.koutarouhanabusa.workers.dev" >> $GITHUB_STEP_SUMMARY
