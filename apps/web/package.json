@@ -7,7 +7,6 @@
     "dev": "vinext dev --port=3001",
     "generate:ogp": "bun scripts/generate-ogp.tsx",
     "prebuild": "bun scripts/generate-ogp.tsx",
-    "predev": "bun scripts/generate-ogp.tsx",
     "build": "vinext build",
     "start": "vinext start",
     "deploy": "vinext deploy",
