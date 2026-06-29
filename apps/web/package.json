@@ -9,8 +9,8 @@
     "prebuild": "bun scripts/generate-ogp.tsx",
     "build": "vinext build",
     "start": "vinext start",
-    "deploy": "bun run build && wrangler deploy",
-    "deploy:staging": "bun run build && wrangler deploy --env staging",
+    "deploy": "wrangler deploy",
+    "deploy:staging": "wrangler deploy --env staging",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "test:ogp": "vinext build && bun scripts/test-ogp.ts",
     "test:ogp:remote": "bun scripts/test-ogp.ts"
