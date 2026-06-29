@@ -1,20 +1,17 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  "main": ".open-next/worker.js",
+  "main": "vinext/server/app-router-entry",
   "name": "myslides",
-  "compatibility_date": "2025-07-05",
-  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "compatibility_date": "2026-02-12",
+  "compatibility_flags": ["nodejs_compat"],
   "vars": {
     "NEXT_PUBLIC_BASE_URL": "https://slide.burio16.com",
     "NEXT_PUBLIC_SERVER_URL": "https://myslides-server.koutarouhanabusa.workers.dev",
   },
   "assets": {
-    "directory": ".open-next/assets",
+    "not_found_handling": "none",
     "binding": "ASSETS",
   },
-  // Fix next-themes __name is not defined error
-  // See: https://opennext.js.org/cloudflare/howtos/keep_names
-  "keep_names": false,
   "observability": {
     "logs": {
       "enabled": false,
@@ -31,15 +28,4 @@
       },
     },
   },
-  // "r2_buckets": [
-  // 	// Use R2 incremental cache
-  // 	// See https://opennext.js.org/cloudflare/caching
-  // 	{
-  // 		"binding": "NEXT_INC_CACHE_R2_BUCKET",
-  // 		// Create the bucket before deploying
-  // 		// You can change the bucket name if you want
-  // 		// See https://developers.cloudflare.com/workers/wrangler/commands/#r2-bucket-create
-  // 		"bucket_name": "cache"
-  // 	}
-  // ]
 }
