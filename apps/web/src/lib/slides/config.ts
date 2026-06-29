@@ -175,6 +175,7 @@ export function createSlideMetadata(slug: string): Metadata {
     ? `${eventLabel} での発表資料 by ${config.author} @${handle}`
     : config.description;
 
+  const ogpImageUrl = `${BASE_URL}/${slug}/opengraph-image.png`;
   return {
     title: eventLabel ? `${title} | ${eventLabel}` : `${title} | mySlides`,
     description: config.description,
@@ -182,11 +183,13 @@ export function createSlideMetadata(slug: string): Metadata {
       title,
       description: ogDescription,
       type: "website",
+      images: [{ url: ogpImageUrl, width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description: ogDescription,
+      images: [ogpImageUrl],
     },
     alternates: {
       types: {
