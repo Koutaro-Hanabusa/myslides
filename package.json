@@ -15,9 +15,8 @@
       "wrangler": "^4.107.0",
       "@types/node": "^22.13.11",
       "@trpc/client": "^11.5.0",
-      "vite": "npm:@voidzero-dev/vite-plus-core@latest",
-      "vitest": "npm:@voidzero-dev/vite-plus-test@latest",
-      "vite-plus": "latest"
+      "vite": "npm:@voidzero-dev/vite-plus-core@0.2.4",
+      "vite-plus": "0.2.4"
     }
   },
   "type": "module",
@@ -49,8 +48,7 @@
     "vite-plus": "catalog:"
   },
   "overrides": {
-    "vite": "catalog:",
-    "vitest": "catalog:"
+    "vite": "catalog:"
   },
   "packageManager": "bun@1.2.23"
 }
