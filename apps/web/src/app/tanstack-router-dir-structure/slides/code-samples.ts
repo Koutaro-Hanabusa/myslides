@@ -31,12 +31,12 @@ export const DIR_STRUCTURE = `apps/<appname>/src/
 │       ├── api/        ← データ取得・更新 hook（queryOptions + useSuspenseQuery / useMutation）
 │       ├── hooks/      ← form / フローなど画面ロジックの hook（Router 非依存）
 │       ├── components/ ← View 断片（Router 非依存）
-│       └── types.ts    ← ドメイン型・route と共有する Enum
+│       └── その他もろもろ
 └── routes/
     └── <route>/
         ├── -components/
         │   ├── fallbacks/  ← 必要なルートのみ（pending / error の中身）
-        │   └── Page.tsx    ← Page 本体（Router 依存を features に注入）
+        │   └── Page.tsx    ← Page 本体（components/を使用して画面を構築、Router 依存を features に注入）
         └── index.tsx       ← validateSearch / loader / アダプタの宣言のみ`;
 
 export const DIR_OPT_FEATURES = `src/

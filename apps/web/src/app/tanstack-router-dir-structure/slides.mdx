@@ -1,5 +1,9 @@
 import Image from "next/image";
-import { CodeBlock, PersonalContentSlide, PersonalHeadingSlide } from "@/components/slides";
+import {
+  CodeBlock,
+  PersonalContentSlide,
+  PersonalHeadingSlide,
+} from "@/components/slides";
 import SelfIntroduction from "./slides/self-introduction";
 import {
   DIR_OPT_FEATURES,
@@ -266,7 +270,7 @@ TanStack Routerの良さって？
 2. **routes に全部押し込む**
 3. **ハイブリッド**
 
-- → 結果的に **3つ目（ハイブリッド）** を採用
+→ 結果的に **3つ目（ハイブリッド）** を採用
 
 </PersonalContentSlide>
 
@@ -379,7 +383,7 @@ TSKaigi のこの 2 本が刺さった
 <PersonalContentSlide title="2 本から学んだこと">
 
 - 2 本に共通していたのは **「`createServerFn` の中身は薄く保つ」** という点
-- → ロジックは serverFn の外に出し、wrapper は薄い層に留める
+- → ロジックは serverFn の外に出す
 - さらに **schema / server / function** に分けると良い
 - https://tanstack.com/start/v0/docs/framework/react/guide/server-functions#file-organization
 
@@ -429,8 +433,8 @@ serverFn、どこに置く？
 
 <PersonalContentSlide title="features 寄せを採用">
 
-- 判断基準は同じ → **Router 依存なら routes、ドメインの実体なら features**
-- `createServerFn` の wrapper は `Page` のような薄い層ではなく、**ドメインの実体** だった
+- 判断基準は同じ → **Router 依存なら routes、ドメインに関係するなら features**
+- `createServerFn` の wrapper は `Page` のような薄い層ではなく、ドメインに関係していた
 - routes に切り出すと、ドメインが routes と features の **2 箇所に分散** する
 - → serverFn は **2つ目（routes ハイブリッド）を蹴って、3つ目（features 寄せ）** を採用
 
