@@ -266,7 +266,7 @@ TanStack Routerの良さって？
 2. **routes に全部押し込む**
 3. **ハイブリッド**
 
-- → 結果的に **3つ目（ハイブリッド）** を採用
+→ 結果的に **3つ目（ハイブリッド）** を採用
 
 </PersonalContentSlide>
 
@@ -334,8 +334,10 @@ TanStack Routerの良さって？
 <PersonalContentSlide title="採用してどうなった">
 
 - features のベストプラクティスと TanStack Router の機能、**両方を活かせる形**に
-- TanStack Router の影響が **routes に閉じている**ので、今後の変更も加えやすい
-- 実体は **Router 非依存** → 変更・テスト・再利用がしやすい
+- Router の変更影響は **routes に閉じる** → features は Router 非依存のまま
+- テストの境界も明確に
+  - features は依存を mock した単体 / コンポーネントテスト
+  - routes は backend だけ mock した **e2e ライクなテスト**
 - 反面、component の置き場が **3 つ**に → **AI が迷わない整備**が重要に
 
 </PersonalContentSlide>
@@ -379,7 +381,7 @@ TSKaigi のこの 2 本が刺さった
 <PersonalContentSlide title="2 本から学んだこと">
 
 - 2 本に共通していたのは **「`createServerFn` の中身は薄く保つ」** という点
-- → ロジックは serverFn の外に出し、wrapper は薄い層に留める
+- → ロジックは serverFn の外に出す
 - さらに **schema / server / function** に分けると良い
 - https://tanstack.com/start/v0/docs/framework/react/guide/server-functions#file-organization
 
@@ -429,8 +431,8 @@ serverFn、どこに置く？
 
 <PersonalContentSlide title="features 寄せを採用">
 
-- 判断基準は同じ → **Router 依存なら routes、ドメインの実体なら features**
-- `createServerFn` の wrapper は `Page` のような薄い層ではなく、**ドメインの実体** だった
+- 判断基準は同じ → **Router 依存なら routes、ドメインに関係するなら features**
+- `createServerFn` の wrapper は `Page` のような薄い層ではなく、ドメインに関係していた
 - routes に切り出すと、ドメインが routes と features の **2 箇所に分散** する
 - → serverFn は **2つ目（routes ハイブリッド）を蹴って、3つ目（features 寄せ）** を採用
 

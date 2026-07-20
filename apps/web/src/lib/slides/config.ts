@@ -142,8 +142,11 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
     author: "ぶりお",
     authorUrl: "https://twitter.com/burio_16",
     date: "2026/06/12",
-    event: "TSKaigi2026〜アフターパーティー〜",
-    eventUrl: "https://every.connpass.com/event/393937/",
+    event: ["TSKaigi2026〜アフターパーティー〜", "TSKaigi Mashup #5 any"],
+    eventUrl: [
+      "https://every.connpass.com/event/393937/",
+      "https://typescript-jpc.connpass.com/event/397059/",
+    ],
   },
 };
 
