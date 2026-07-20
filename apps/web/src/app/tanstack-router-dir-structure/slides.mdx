@@ -1,9 +1,5 @@
 import Image from "next/image";
-import {
-  CodeBlock,
-  PersonalContentSlide,
-  PersonalHeadingSlide,
-} from "@/components/slides";
+import { CodeBlock, PersonalContentSlide, PersonalHeadingSlide } from "@/components/slides";
 import SelfIntroduction from "./slides/self-introduction";
 import {
   DIR_OPT_FEATURES,
@@ -338,8 +334,10 @@ TanStack Routerの良さって？
 <PersonalContentSlide title="採用してどうなった">
 
 - features のベストプラクティスと TanStack Router の機能、**両方を活かせる形**に
-- TanStack Router の影響が **routes に閉じている**ので、今後の変更も加えやすい
-- 実体は **Router 非依存** → 変更・テスト・再利用がしやすい
+- Router の変更影響は **routes に閉じる** → features は Router 非依存のまま
+- テストの境界も明確に
+  - features は依存を mock した単体 / コンポーネントテスト
+  - routes は backend だけ mock した **e2e ライクなテスト**
 - 反面、component の置き場が **3 つ**に → **AI が迷わない整備**が重要に
 
 </PersonalContentSlide>
