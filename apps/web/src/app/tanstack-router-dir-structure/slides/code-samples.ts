@@ -103,7 +103,7 @@ export const DIR_STRUCTURE_WITH_SERVER = `apps/<appname>/src/
 │       │   └── <verb>-<entity>.server.ts ← ロジック
 │       ├── hooks/      ← form / フローなど画面ロジックの hook（Router 非依存）
 │       ├── components/ ← View 断片（Router 非依存）
-│       └── types.ts    ← ドメイン型・route と共有する Enum
+│       └── その他諸々
 └── routes/
     └── <route>/
         ├── -components/ ← fallbacks / Page.tsx
