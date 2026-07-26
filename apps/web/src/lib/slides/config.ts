@@ -148,6 +148,16 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
       "https://typescript-jpc.connpass.com/event/397059/",
     ],
   },
+  "times-working-out-aloud": {
+    slug: "times-working-out-aloud",
+    title: "timesとwork out loudで\n働き方を再考する",
+    description:
+      "timesと分報の原点、Work Out Loudの考え方を振り返りながら、AI時代における作業と思考の可視性を再考するLT資料",
+    author: "ぶりお",
+    authorUrl: "https://twitter.com/burio_16",
+    date: "2026/07/27",
+    event: "社内LT会",
+  },
 };
 
 export function getSlideConfig(slug: string): SlideConfig {

@@ -374,7 +374,7 @@ tasks:
         " "$PAGE_FILE"
 
         # SlideCardコンポーネントを追加 (グリッドの一番上に追加)
-        perl -i -pe "s|^(\t\t\t<div className=\"grid grid-cols-1 gap-4 md:gap-8\">)|\1\n\t\t\t\t<SlideCard\n\t\t\t\t\thref={\`/\\\${${CAMEL_NAME}.slug}\` as Route}\n\t\t\t\t\ttitle={${CAMEL_NAME}.title}\n\t\t\t\t\tdate={${CAMEL_NAME}.date}\n\t\t\t\t\tevent={${CAMEL_NAME}.event}\n\t\t\t\t\turl={${CAMEL_NAME}.eventUrl}\n\t\t\t\t>\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n|" "$PAGE_FILE"
+        perl -i -pe "s|^(\s*<div className=\"grid grid-cols-1 gap-4 md:gap-8\">)|\1\n\t\t\t\t<SlideCard\n\t\t\t\t\thref={\`/\\\${${CAMEL_NAME}.slug}\` as Route}\n\t\t\t\t\ttitle={${CAMEL_NAME}.title}\n\t\t\t\t\tdate={${CAMEL_NAME}.date}\n\t\t\t\t\tevent={${CAMEL_NAME}.event}\n\t\t\t\t\turl={${CAMEL_NAME}.eventUrl}\n\t\t\t\t>\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n|" "$PAGE_FILE"
 
         echo "✓ Created presentation '$NAME' with 7 slides"
         echo "  - 表紙: 1枚"
@@ -666,7 +666,7 @@ tasks:
         " "$PAGE_FILE"
 
         # SlideCardコンポーネントを追加 (グリッドの一番上に追加)
-        perl -i -pe "s|^(\t\t\t<div className=\"grid grid-cols-1 gap-4 md:gap-8\">)|\1\n\t\t\t\t<SlideCard\n\t\t\t\t\thref={\`/\\\${${CAMEL_NAME}.slug}\` as Route}\n\t\t\t\t\ttitle={${CAMEL_NAME}.title}\n\t\t\t\t\tdate={${CAMEL_NAME}.date}\n\t\t\t\t\tevent={${CAMEL_NAME}.event}\n\t\t\t\t\turl={${CAMEL_NAME}.eventUrl}\n\t\t\t\t>\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n|" "$PAGE_FILE"
+        perl -i -pe "s|^(\s*<div className=\"grid grid-cols-1 gap-4 md:gap-8\">)|\1\n\t\t\t\t<SlideCard\n\t\t\t\t\thref={\`/\\\${${CAMEL_NAME}.slug}\` as Route}\n\t\t\t\t\ttitle={${CAMEL_NAME}.title}\n\t\t\t\t\tdate={${CAMEL_NAME}.date}\n\t\t\t\t\tevent={${CAMEL_NAME}.event}\n\t\t\t\t\turl={${CAMEL_NAME}.eventUrl}\n\t\t\t\t>\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n|" "$PAGE_FILE"
 
         echo "✓ Created presentation '$NAME' with 2 slides"
         echo "  - 表紙: 1枚 (burio16Cover.png)"
@@ -958,7 +958,7 @@ tasks:
         " "$PAGE_FILE"
 
         # SlideCardコンポーネントを追加 (グリッドの一番上に追加)
-        perl -i -pe "s|^(\t\t\t<div className=\"grid grid-cols-1 gap-4 md:gap-8\">)|\1\n\t\t\t\t<SlideCard\n\t\t\t\t\thref={\`/\\\${${CAMEL_NAME}.slug}\` as Route}\n\t\t\t\t\ttitle={${CAMEL_NAME}.title}\n\t\t\t\t\tdate={${CAMEL_NAME}.date}\n\t\t\t\t\tevent={${CAMEL_NAME}.event}\n\t\t\t\t\turl={${CAMEL_NAME}.eventUrl}\n\t\t\t\t>\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n|" "$PAGE_FILE"
+        perl -i -pe "s|^(\s*<div className=\"grid grid-cols-1 gap-4 md:gap-8\">)|\1\n\t\t\t\t<SlideCard\n\t\t\t\t\thref={\`/\\\${${CAMEL_NAME}.slug}\` as Route}\n\t\t\t\t\ttitle={${CAMEL_NAME}.title}\n\t\t\t\t\tdate={${CAMEL_NAME}.date}\n\t\t\t\t\tevent={${CAMEL_NAME}.event}\n\t\t\t\t\turl={${CAMEL_NAME}.eventUrl}\n\t\t\t\t>\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n|" "$PAGE_FILE"
 
         echo "✓ Created Markdown presentation '$NAME'"
         echo "  - 表紙: $TARGET_DIR/slides/cover.tsx"
@@ -1239,7 +1239,7 @@ tasks:
         " "$PAGE_FILE"
 
         # SlideCardコンポーネントを追加 (グリッドの一番上に追加)
-        perl -i -pe "s|^(\t\t\t<div className=\"grid grid-cols-1 gap-4 md:gap-8\">)|\1\n\t\t\t\t<SlideCard\n\t\t\t\t\thref={\`/\\\${${CAMEL_NAME}.slug}\` as Route}\n\t\t\t\t\ttitle={${CAMEL_NAME}.title}\n\t\t\t\t\tdate={${CAMEL_NAME}.date}\n\t\t\t\t\tevent={${CAMEL_NAME}.event}\n\t\t\t\t\turl={${CAMEL_NAME}.eventUrl}\n\t\t\t\t>\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n|" "$PAGE_FILE"
+        perl -i -pe "s|^(\s*<div className=\"grid grid-cols-1 gap-4 md:gap-8\">)|\1\n\t\t\t\t<SlideCard\n\t\t\t\t\thref={\`/\\\${${CAMEL_NAME}.slug}\` as Route}\n\t\t\t\t\ttitle={${CAMEL_NAME}.title}\n\t\t\t\t\tdate={${CAMEL_NAME}.date}\n\t\t\t\t\tevent={${CAMEL_NAME}.event}\n\t\t\t\t\turl={${CAMEL_NAME}.eventUrl}\n\t\t\t\t>\n\t\t\t\t\t<${PASCAL_NAME}Cover />\n\t\t\t\t</SlideCard>\n|" "$PAGE_FILE"
 
         echo "✓ Created MDX corporate presentation '$NAME'"
         echo "  - ページ: $TARGET_DIR/page.tsx"
