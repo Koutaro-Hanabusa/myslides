@@ -1,0 +1,190 @@
+import Image from "next/image";
+import { PersonalContentSlide, PersonalHeadingSlide } from "@/components/slides";
+import SelfIntroduction from "./slides/self-introduction";
+
+{/* ① 解決したい課題感 */}
+
+<SelfIntroduction>
+
+- ぶりお [@burio_16](https://x.com/burio_16)
+- 絶賛禁酒中
+- W杯の試合起きれなくて見れないがち
+
+</SelfIntroduction>
+
+<PersonalHeadingSlide>
+
+チームメンバーが
+何しているか
+何を考えているか
+知っていますか？
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="このLTの動機">
+
+- 最近、プロジェクトのメンバーが何をやっているのか<br />分からない状態が自分の中で課題になっている
+- 少し前はtimesが盛んだった気がするけれど、最近は静かになってきた
+- チームメンバーが何をしているか,考えているかを知ることができる状態になれば、<br />より良いものが作れる環境にできそう
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+そこで、timesを再考してみる
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="timesとは">
+
+- [Slackで簡単に「日報」ならぬ「分報」をチームで実現する3ステップ 〜Problemが10分で解決するチャットを作ろう〜](https://craftsman-software.com/posts/56)が初出とされる
+- 日報のさらに細かい版のような立ち位置
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="timesをやる意味(個人的見解)">
+
+- 証跡となり、あとから自分のやっていたことを遡れる
+- 思考の整理にもつかうことできる
+- チャンネル参加者からの知見共有がおこる
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="timesのデメリット">
+
+<div className="flex items-center gap-8">
+<div className="shrink-0">
+
+- 井戸端会議化する
+  - 見えていない人には、タバコ部屋以上にタチが悪い
+- 承認欲求の過激化
+
+</div>
+
+<figure className="m-0 flex min-w-0 flex-1 flex-col gap-2">
+  <Image
+    src="/slides/times-working-out-aloud/assets/songmu-times-tobacco-room.png"
+    alt="個人timesを、物理的に見えないためタバコ部屋以上にタチが悪いと表現したsongmuの投稿"
+    width={970}
+    height={392}
+    className="h-auto w-full rounded-lg"
+  />
+  <figcaption className="text-right text-sm">
+    <a href="https://x.com/songmu/status/831505012857544704?s=20">@songmu, 2017</a>
+  </figcaption>
+</figure>
+</div>
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+業務上の真実を<br />timesに書いてはいけない(戒め)
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+必ずしもtimesをやる必要はない
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+チームメンバーが<br />何をしているか、何を考えているかを<br />知ることができる状態を目指したい
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+Working Out Loud
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="Working Out Loudとは">
+
+- 作業を見えるようにして、考えていることも言葉にすること
+  - **Observable Work** + **Narrating Your Work**
+- 作りかけを見せ、詰まったらすぐに聞く
+- 早いフィードバックや、思いがけないコラボレーションを生む
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+<Image
+  src="/slides/times-working-out-aloud/assets/working-out-loud-in-slack.png"
+  alt="Working Out Loud を実践するよう呼びかけるSlack投稿"
+  width={2360}
+  height={1550}
+  className="h-auto w-auto max-w-full rounded-lg"
+/>
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+しかし
+
+<div className="flex flex-col gap-6">
+  <figure className="m-0 self-center">
+    <Image
+      src="/slides/times-working-out-aloud/assets/burio-yasagure.png"
+      alt="7月は本当にエンジニアとしてやさぐれているため、業務以外でPCを触っていないというぶりおの投稿"
+      width={486}
+      height={190}
+      className="h-auto w-[80rem] max-w-full rounded-lg"
+    />
+  </figure>
+</div>
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+注:人としてもやさぐれています<br /><br />自分の考えを一方的に<br />押し付けてしまっています
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+ソフトウェア開発は<br />チームスポーツである。
+
+<small className="mt-8 block text-right text-2xl">出典: Team Geek 1.4「チームがすべて」</small>
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="HRT">
+
+- **Humility**: 全知全能ではないので、自らも改善しよう
+- **Respect**: 相手の能力や功績を称えよう
+- **Trust**: 有能と信じ、任せる
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+HRTをもった上でのチーム開発<br />チームビルディング
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="timesはWOLを実現する手段のひとつ">
+
+- timesでなくてもよい
+  - プロジェクトのチャンネル、作業用スレッド、カンバンなど
+- 大事なのは、作業や思考が必要な人に見えること
+- だから重要な議論や決定を個人timesで閉じない
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+まとめ（自戒)
+まずはHRTを持ち、チームと対話することで適した手段を模索しよう
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+ご清聴ありがとうございました
+
+</PersonalHeadingSlide>

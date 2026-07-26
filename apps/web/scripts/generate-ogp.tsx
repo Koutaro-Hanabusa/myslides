@@ -64,6 +64,7 @@ const SPECS: Spec[] = [
   },
   { slug: "tacotuesday", cover: "burio", titleFontSize: 64 },
   { slug: "tanstack-router-dir-structure", cover: "burio" },
+  { slug: "times-working-out-aloud", cover: "burio" },
   { slug: "vite-plus-retro", cover: "burio" },
   {
     slug: "you-must-have-dotfiles",
