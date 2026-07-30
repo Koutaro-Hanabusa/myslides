@@ -158,6 +158,16 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
     date: "2026/07/27",
     event: "社内LT会",
   },
+  "community-and-me": {
+    slug: "community-and-me",
+    title: "コミュニティと私",
+    description: "コミュニティとの出会いが自分の挑戦に変わるまでを考える個人スライド",
+    author: "ぶりお",
+    authorUrl: "https://twitter.com/burio_16",
+    date: "2026/08/01",
+    event: "湘.なんか #5",
+    eventUrl: "https://shonanka.connpass.com/event/394970/",
+  },
 };
 
 export function getSlideConfig(slug: string): SlideConfig {
