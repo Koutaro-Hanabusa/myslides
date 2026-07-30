@@ -44,6 +44,7 @@ const SPECS: Spec[] = [
       { text: "Cloudflareにデプロイしよう", fontSize: 56 },
     ],
   },
+  { slug: "community-and-me", cover: "burio" },
   { slug: "oss-and-community", cover: "burio" },
   { slug: "oss-and-community-v2", cover: "chi" },
   {
