@@ -1,6 +1,7 @@
 import type { Route } from "next";
 import TimesWorkingOutAloudCover from "./times-working-out-aloud/slides/cover";
 import CommunityAndMeCover from "./community-and-me/slides/cover";
+import MyFavoriteThingCover from "./my-favorite-thing/slides/cover";
 import { SlideCard } from "@/components/slides";
 import { getSlideTitle, SLIDES_CONFIG } from "@/lib/slides/config";
 import GraduateCover from "./25-graduate/slides/cover";
@@ -33,11 +34,23 @@ const timesWorkingOutAloud = SLIDES_CONFIG["times-working-out-aloud"];
 
 const communityAndMe = SLIDES_CONFIG["community-and-me"];
 
+const myFavoriteThing = SLIDES_CONFIG["my-favorite-thing"];
+
 export default function Home() {
   return (
     <div className="mx-auto w-full p-4 md:w-3/4 md:p-8 lg:w-1/2">
       <h1 className="text-center text-2xl md:text-4xl lg:text-6xl">Burio's slide deck</h1>
       <div className="grid grid-cols-1 gap-4 md:gap-8">
+        <SlideCard
+          href={`/${myFavoriteThing.slug}` as Route}
+          title={myFavoriteThing.title}
+          date={myFavoriteThing.date}
+          event={myFavoriteThing.event}
+          url={myFavoriteThing.eventUrl}
+        >
+          <MyFavoriteThingCover />
+        </SlideCard>
+
         <SlideCard
           href={`/${communityAndMe.slug}` as Route}
           title={communityAndMe.title}
