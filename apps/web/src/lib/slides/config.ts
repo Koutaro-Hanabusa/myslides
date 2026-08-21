@@ -168,6 +168,15 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
     event: "湘.なんか #5",
     eventUrl: "https://shonanka.connpass.com/event/394970/",
   },
+  "tacos-spanish": {
+    slug: "tacos-spanish",
+    title: "タコスから学ぶ\nスペイン語",
+    description: "タコスに使う食材たちからスペイン語を学びましょう",
+    author: "ぶりお",
+    authorUrl: "https://twitter.com/burio_16",
+    date: "2026/08/22",
+    event: "印西LT会",
+  },
 };
 
 export function getSlideConfig(slug: string): SlideConfig {
