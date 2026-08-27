@@ -388,6 +388,21 @@ tasks:
         echo "✓ Added config entry to config.ts"
     silent: false
 
+  enable-markdown-for-agents:
+    desc: Enable Cloudflare Markdown for Agents on the zone
+    summary: |
+      Usage:
+        task enable-markdown-for-agents
+
+      Required env vars:
+        CLOUDFLARE_API_TOKEN - API token with Zone Settings edit permission
+        CLOUDFLARE_ZONE_ID   - Target zone ID
+
+      Or configure via Cloudflare dashboard:
+        AI > AI Crawl Control > Markdown for Agents → On
+    cmds:
+      - ./scripts/enable-markdown-for-agents.sh
+
   pdf:
     desc: Export a presentation to PDF using decktape
     summary: |
