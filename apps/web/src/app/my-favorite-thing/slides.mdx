@@ -69,9 +69,26 @@ A.タコス！！！！！🌮
 <PersonalContentSlide title="技術スタック">
 
 - **フロントエンド**：React 19 / TanStack Router / TanStack Query / MapLibre GL / Tailwind CSS
-- **バックエンド**：Hono / tRPC / MCP SDK / @hono/mcp / MCP Apps / Drizzle ORM
+- **バックエンド**：Hono / MCP SDK / Drizzle ORM
 - **言語**：TypeScript
 - **インフラ**：Cloudflare Workers / D1 / R2 / Images / Alchemy
 - **ツールチェイン**：Vite+
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+デモ
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="MCP Appsとは？">
+
+## MCPツールの結果を、会話の中で操作できるUIにする仕組み
+
+- MCPサーバーが、**Tool**と`ui://`形式の**UI Resource**を紐づけて提供する
+- ホストはToolの実行結果を渡し、UIを安全なiframe内に表示する
+- UIからToolの再実行や入力ができ、地図・グラフ・フォームなどを会話内で操作できる
+- 非対応ホストでは通常のテキスト結果として動作する
 
 </PersonalContentSlide>
