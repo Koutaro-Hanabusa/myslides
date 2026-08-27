@@ -168,15 +168,6 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
     event: "湘.なんか #5",
     eventUrl: "https://shonanka.connpass.com/event/394970/",
   },
-  "my-favorite-thing": {
-    slug: "my-favorite-thing",
-    title: "タコス！！",
-    description: "my-favorite-thing - A presentation created with mySlides",
-    author: "ぶりお",
-    authorUrl: "https://twitter.com/burio_16",
-    date: "2026/08/20",
-    event: "MOSH Tech Meetup #5 あなたが「好きなこと」× エンジニアリング",
-  },
   "tacos-spanish": {
     slug: "tacos-spanish",
     title: "タコスから学ぶ\nスペイン語",
@@ -185,6 +176,15 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
     authorUrl: "https://twitter.com/burio_16",
     date: "2026/08/22",
     event: "印西LT会",
+  },
+  "my-favorite-thing": {
+    slug: "my-favorite-thing",
+    title: "大好きなアレをMCPにしてみた",
+    description: "my-favorite-thing - A presentation created with mySlides",
+    author: "ぶりお",
+    authorUrl: "https://twitter.com/burio_16",
+    date: "2026/9/9",
+    event: "MOSH Tech Meetup #5 あなたが「好きなこと」× エンジニアリング",
   },
 };
 
