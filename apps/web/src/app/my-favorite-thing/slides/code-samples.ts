@@ -1,4 +1,5 @@
-export const MCP_APP_RESOURCE_EXAMPLE = `const resourceUri = "ui://example/results.html";
+export const MCP_APP_RESOURCE_EXAMPLE = `const RESOURCE_MIME_TYPE = "text/html;profile=mcp-app";
+const resourceUri = "ui://example/results.html";
 
 registerAppResource(
   server,
