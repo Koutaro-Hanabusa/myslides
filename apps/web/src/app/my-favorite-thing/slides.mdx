@@ -95,18 +95,18 @@ A.タコス！！！！！🌮
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="1. UI Resourceを登録">
+<PersonalContentSlide title="1. ToolをUIに紐づける">
 
-Toolの結果を表示するHTMLを、`ui://` URIでホストへ公開する
+[公式Quickstart](https://apps.extensions.modelcontextprotocol.io/api/documents/quickstart.html)の時刻表示アプリを抜粋
 
-<CodeBlock lang="ts" code={MCP_APP_RESOURCE_EXAMPLE} />
+<CodeBlock lang="ts" code={MCP_APP_TOOL_EXAMPLE} />
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="2. ToolとUIを紐づける">
+<PersonalContentSlide title="2. UI Resourceを登録">
 
-同じURIをToolに紐づけ、`structuredContent`をUIへ渡す
+同じURIで、iframeに表示するHTMLをResourceとして返す
 
-<CodeBlock lang="ts" code={MCP_APP_TOOL_EXAMPLE} />
+<CodeBlock lang="ts" code={MCP_APP_RESOURCE_EXAMPLE} />
 
 </PersonalContentSlide>
