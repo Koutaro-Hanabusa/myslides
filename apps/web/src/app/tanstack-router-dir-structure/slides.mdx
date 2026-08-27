@@ -1,6 +1,10 @@
 import Image from "next/image";
-import { CodeBlock, PersonalContentSlide, PersonalHeadingSlide } from "@/components/slides";
-import SelfIntroduction from "./slides/self-introduction";
+import {
+  CodeBlock,
+  PersonalContentSlide,
+  PersonalHeadingSlide,
+  PersonalSelfIntroductionSlide,
+} from "@/components/slides";
 import {
   DIR_OPT_FEATURES,
   DIR_OPT_HYBRID,
@@ -16,14 +20,14 @@ import {
   SERVER_FN_SRC,
 } from "./slides/code-samples";
 
-<SelfIntroduction>
+<PersonalSelfIntroductionSlide>
 
 - ぶりお [@burio_16](https://x.com/burio_16)
 - タコスとTottenham Hotspur FCが大好き
 - TSKaigiは初参加でした
 - 会場で5回くらいタコスの人ですか！？と言われた(???)
 
-</SelfIntroduction>
+</PersonalSelfIntroductionSlide>
 
 <PersonalContentSlide title="タコスといえば...?">
 
