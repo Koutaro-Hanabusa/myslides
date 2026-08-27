@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { SelfIntroductionSlideLayout } from "./self-introduction-slide";
 
 const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
 const TEMPLATE_PATH = "外部登壇資料テンプレ";
@@ -38,6 +39,19 @@ export function ContentSlide({ title, children }: ContentSlideProps) {
         <div className="text-left text-black">{children}</div>
       </div>
     </section>
+  );
+}
+
+interface SelfIntroductionSlideProps {
+  children: ReactNode;
+}
+
+/** 千の外部登壇テンプレ - 自己紹介スライド */
+export function SelfIntroductionSlide({ children }: SelfIntroductionSlideProps) {
+  return (
+    <SelfIntroductionSlideLayout backgroundImage={BG_CONTENT} textColorClassName="text-black">
+      {children}
+    </SelfIntroductionSlideLayout>
   );
 }
 

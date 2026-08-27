@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { SelfIntroductionSlideLayout } from "./self-introduction-slide";
 
 const R2_BASE = process.env.NEXT_PUBLIC_R2_BASE_URL;
 
@@ -33,5 +34,21 @@ export function PersonalContentSlide({ title, children }: PersonalContentSlidePr
         <div className="text-left text-white">{children}</div>
       </div>
     </section>
+  );
+}
+
+interface PersonalSelfIntroductionSlideProps {
+  children: ReactNode;
+}
+
+/** 個人テンプレ - 自己紹介スライド */
+export function PersonalSelfIntroductionSlide({ children }: PersonalSelfIntroductionSlideProps) {
+  return (
+    <SelfIntroductionSlideLayout
+      backgroundImage={BG_PERSONAL_CONTENT}
+      textColorClassName="text-white"
+    >
+      {children}
+    </SelfIntroductionSlideLayout>
   );
 }

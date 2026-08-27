@@ -1,5 +1,10 @@
 export { CodeBlock } from "./CodeBlock";
-export { BG_PERSONAL_CONTENT, PersonalContentSlide, PersonalHeadingSlide } from "./personal-slide";
+export {
+  BG_PERSONAL_CONTENT,
+  PersonalContentSlide,
+  PersonalHeadingSlide,
+  PersonalSelfIntroductionSlide,
+} from "./personal-slide";
 export { default as SlideCard } from "./SlideCard";
 export { SlidePreviewCard } from "./SlidePreviewCard";
 export {
@@ -13,4 +18,5 @@ export {
   ContentSlide,
   CorporatePhilosophySlide,
   HeadingSlide,
+  SelfIntroductionSlide,
 } from "./slide";

@@ -177,6 +177,15 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
     date: "2026/08/22",
     event: "印西LT会",
   },
+  "my-favorite-thing": {
+    slug: "my-favorite-thing",
+    title: "大好きなアレをMCPにしてみた",
+    description: "my-favorite-thing - A presentation created with mySlides",
+    author: "ぶりお",
+    authorUrl: "https://twitter.com/burio_16",
+    date: "2026/9/9",
+    event: "MOSH Tech Meetup #5 あなたが「好きなこと」× エンジニアリング",
+  },
 };
 
 export function getSlideConfig(slug: string): SlideConfig {

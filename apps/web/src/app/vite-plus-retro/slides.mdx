@@ -1,6 +1,10 @@
 import Image from "next/image";
-import { CodeBlock, PersonalContentSlide, PersonalHeadingSlide } from "@/components/slides";
-import SelfIntroduction from "./slides/self-introduction";
+import {
+  CodeBlock,
+  PersonalContentSlide,
+  PersonalHeadingSlide,
+  PersonalSelfIntroductionSlide,
+} from "@/components/slides";
 import {
   ALL_IN_ONE_CONFIG,
   BEFORE_AFTER_CONFIG,
@@ -11,14 +15,14 @@ import {
   STAGED_HOOKS_CONFIG,
 } from "./slides/code-samples";
 
-<SelfIntroduction>
+<PersonalSelfIntroductionSlide>
 
 - ぶりお [@burio_16](https://x.com/burio_16)
 - タコスとTottenham Hotspur FCが大好き
 - TSKaigiは初参加でした
 - VoidZeroのﾊｧﾝ
 
-</SelfIntroduction>
+</PersonalSelfIntroductionSlide>
 
 <PersonalContentSlide title="VoidZero のﾊｧﾝです">
 
