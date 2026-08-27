@@ -177,6 +177,15 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
     date: "2026/08/20",
     event: "MOSH Tech Meetup #5 あなたが「好きなこと」× エンジニアリング",
   },
+  "tacos-spanish": {
+    slug: "tacos-spanish",
+    title: "タコスから学ぶ\nスペイン語",
+    description: "タコスに使う食材たちからスペイン語を学びましょう",
+    author: "ぶりお",
+    authorUrl: "https://twitter.com/burio_16",
+    date: "2026/08/22",
+    event: "印西LT会",
+  },
 };
 
 export function getSlideConfig(slug: string): SlideConfig {
