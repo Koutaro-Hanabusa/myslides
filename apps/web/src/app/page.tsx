@@ -52,51 +52,22 @@ const slides = [
 
 export default function Home() {
   return (
-    <main className="relative isolate min-h-full overflow-y-auto bg-[#11100f] text-stone-100 selection:bg-orange-300 selection:text-stone-950">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-48 right-[-12rem] -z-10 h-[36rem] w-[36rem] rounded-full bg-orange-500/15 blur-3xl"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-[-16rem] top-[34rem] -z-10 h-[32rem] w-[32rem] rounded-full bg-amber-200/10 blur-3xl"
-      />
-
-      <div className="mx-auto max-w-7xl px-5 py-8 sm:px-8 lg:px-12 lg:py-12">
-        <header className="mb-10 border-b border-stone-100/15 pb-6 lg:mb-14 lg:pb-8">
-          <h1 className="font-serif text-5xl font-medium tracking-[-0.05em] text-stone-50 sm:text-7xl lg:text-8xl">
-            Burio's slide deck
-          </h1>
-        </header>
-
-        <section aria-labelledby="slides-heading">
-          <h2 id="slides-heading" className="sr-only">
-            Slides
-          </h2>
-
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {slides.map(({ config, Cover: SlideCover }, index) => (
-              <article
-                key={config.slug}
-                className={`group rounded-[1.25rem] border border-stone-100/10 bg-stone-100/[0.035] p-1 shadow-2xl shadow-black/20 transition duration-300 hover:-translate-y-1 hover:border-orange-300/40 hover:bg-stone-100/[0.07] ${index === 0 ? "lg:col-span-2" : ""}`}
-              >
-                <div className="flex items-center justify-between px-3 pb-2 pt-2 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-stone-500">
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                </div>
-                <SlideCard
-                  href={`/${config.slug}` as Route}
-                  title={getSlideTitle(config)}
-                  date={config.date}
-                  event={config.event}
-                  url={config.eventUrl}
-                >
-                  <SlideCover />
-                </SlideCard>
-              </article>
-            ))}
-          </div>
-        </section>
+    <div className="mx-auto w-full p-4 md:w-3/4 md:p-8 lg:w-1/2">
+      <h1 className="text-center text-2xl md:text-4xl lg:text-6xl">Burio's slide deck</h1>
+      <div className="grid grid-cols-1 gap-4 md:gap-8">
+        {slides.map(({ config, Cover: SlideCover }) => (
+          <SlideCard
+            key={config.slug}
+            href={`/${config.slug}` as Route}
+            title={getSlideTitle(config)}
+            date={config.date}
+            event={config.event}
+            url={config.eventUrl}
+          >
+            <SlideCover />
+          </SlideCard>
+        ))}
       </div>
-    </main>
+    </div>
   );
 }
