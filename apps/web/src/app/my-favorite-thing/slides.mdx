@@ -5,7 +5,7 @@ import {
   PersonalHeadingSlide,
   PersonalSelfIntroductionSlide,
 } from "@/components/slides";
-import { MCP_APPS_EXAMPLE } from "./slides/code-samples";
+import { MCP_APP_RESOURCE_EXAMPLE, MCP_APP_TOOL_EXAMPLE } from "./slides/code-samples";
 
 <PersonalSelfIntroductionSlide>
 
@@ -95,8 +95,18 @@ A.タコス！！！！！🌮
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="MCP Appsの最小構成">
+<PersonalContentSlide title="1. UI Resourceを登録">
 
-<CodeBlock lang="ts" code={MCP_APPS_EXAMPLE} />
+Toolの結果を表示するHTMLを、`ui://` URIでホストへ公開する
+
+<CodeBlock lang="ts" code={MCP_APP_RESOURCE_EXAMPLE} />
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="2. ToolとUIを紐づける">
+
+同じURIをToolに紐づけ、`structuredContent`をUIへ渡す
+
+<CodeBlock lang="ts" code={MCP_APP_TOOL_EXAMPLE} />
 
 </PersonalContentSlide>
