@@ -14,17 +14,19 @@ registerAppTool(
   },
 );`;
 
-export const MCP_APP_RESOURCE_EXAMPLE = `const mimeType = "text/html;profile=mcp-app";
-
-registerAppResource(
+export const MCP_APP_RESOURCE_EXAMPLE = `registerAppResource(
   server,
+  "Get Time UI",
   resourceUri,
-  resourceUri,
-  { mimeType },
+  { mimeType: RESOURCE_MIME_TYPE },
   async () => {
     const html = await fs.readFile("dist/mcp-app.html", "utf-8");
     return {
-      contents: [{ uri: resourceUri, mimeType, text: html }],
+      contents: [{
+        uri: resourceUri,
+        mimeType: RESOURCE_MIME_TYPE,
+        text: html,
+      }],
     };
   },
 );`;
