@@ -1,0 +1,140 @@
+import Image from "next/image";
+import {
+  CodeBlock,
+  PersonalContentSlide,
+  PersonalHeadingSlide,
+  PersonalSelfIntroductionSlide,
+} from "@/components/slides";
+import { MCP_APP_RESOURCE_EXAMPLE, MCP_APP_TOOL_EXAMPLE } from "./slides/code-samples";
+
+<PersonalSelfIntroductionSlide>
+
+- ぶりお([@burio_16](https://x.com/burio_16))
+- しがない2年目フロントエンドエンジニア
+- Tottenham Hotspur FCが大好き
+
+</PersonalSelfIntroductionSlide>
+
+<PersonalHeadingSlide>
+
+Q.ぶりおと言えばなんでしょう？
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+A.タコス！！！！！🌮
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+タコス好きすぎて<br />家でも作ってます
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+好きなこと×エンジニアリング
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+タコス×MCP
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+<span className="block text-[0.8em]">Burio de Tacosをリリースしました！！</span>
+
+<Image
+  src="/slides/my-favorite-thing/assets/burio-de-tacos.png"
+  alt="Burio de Tacosのタコス店一覧と地図"
+  width={2048}
+  height={1027}
+  className="block h-auto w-[85%] rounded-lg"
+  style={{ margin: "2rem auto 0" }}
+/>
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="コンセプト">
+
+- 自他共に認めるタコスおじさんが好きなタコスを共有したい！
+- あくまで自分が行ったことある店しか掲載しない
+- やってみたかったMCP Appsにも対応したい
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="技術スタック">
+
+- **フロントエンド**：React 19 / TanStack Router / TanStack Query / MapLibre GL / Tailwind CSS
+- **バックエンド**：Hono / MCP SDK / Drizzle ORM
+- **言語**：TypeScript
+- **インフラ**：Cloudflare Workers / D1 / R2 / Images / Alchemy
+- **ツールチェイン**：Vite+
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+デモ
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="MCP Appsとは？">
+
+- MCPサーバーが、Toolと`ui://`形式のUIを紐づけて提供する
+- ホストはToolの実行結果を渡し、UIをiframe内に表示する
+- UIからToolの再実行や入力ができ、地図・グラフ・フォームなどを会話内で操作できる
+- あくまでMCPの拡張機能の一つであり、非対応ホストでは通常のテキスト結果として動作する
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="1. ToolをUIに紐づける">
+
+[公式Quickstart](https://apps.extensions.modelcontextprotocol.io/api/documents/quickstart.html)の時刻表示アプリを抜粋
+
+<CodeBlock lang="ts" code={MCP_APP_TOOL_EXAMPLE} />
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="2. UI Resourceを登録">
+
+同じURIで、iframeに表示するHTMLをResourceとして返す
+
+<CodeBlock lang="ts" code={MCP_APP_RESOURCE_EXAMPLE} />
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="MCP Appsが向いているケース">
+
+- 複雑なデータ探索：地図・グラフを操作して深掘りする
+- 選択肢の多い設定：フォームでまとめて入力・検証する
+- リッチメディア：PDF・3D・画像をその場で閲覧する
+- リアルタイム監視：メトリクス・ログを継続的に更新する
+- 複数ステップの作業：レビュー・承認を状態付きで進める
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+tacos mcp使って<br />お気に入りのタコス屋<br />見つけてください！
+
+<small>お店の提案は[GitHubのissue](https://github.com/Koutaro-Hanabusa/tacos/issues)から！</small>
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+皆様良きタコスライフを🌮
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+¡Gracias!
+
+</PersonalHeadingSlide>

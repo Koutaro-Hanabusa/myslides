@@ -1,6 +1,9 @@
 import Image from "next/image";
-import { PersonalHeadingSlide, PersonalContentSlide } from "@/components/slides";
-import SelfIntroduction from "./slides/self-introduction";
+import {
+  PersonalContentSlide,
+  PersonalHeadingSlide,
+  PersonalSelfIntroductionSlide,
+} from "@/components/slides";
 import {
   AutofocusBadDemo,
   AutofocusCancelDemo,
@@ -8,13 +11,13 @@ import {
   RadixDialogDemo,
 } from "./slides/autofocus-demo";
 
-<SelfIntroduction>
+<PersonalSelfIntroductionSlide>
 
 - ぶりお [@burio_16](https://x.com/burio_16)
 - タコスとTottenham Hotspur FCが大好き
 - 最近食品衛生責任者の資格講習を受けたので<br />みんなにタコスを振る舞うことができるようになりました🌮
 
-</SelfIntroduction>
+</PersonalSelfIntroductionSlide>
 
 <PersonalHeadingSlide>
 
