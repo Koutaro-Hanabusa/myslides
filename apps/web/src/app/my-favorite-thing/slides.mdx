@@ -1,9 +1,11 @@
 import Image from "next/image";
 import {
+  CodeBlock,
   PersonalContentSlide,
   PersonalHeadingSlide,
   PersonalSelfIntroductionSlide,
 } from "@/components/slides";
+import { MCP_APPS_EXAMPLE } from "./slides/code-samples";
 
 <PersonalSelfIntroductionSlide>
 
@@ -86,9 +88,15 @@ A.タコス！！！！！🌮
 
 ## MCPツールの結果を、会話の中で操作できるUIにする仕組み
 
-- MCPサーバーが、**Tool**と`ui://`形式の**UI Resource**を紐づけて提供する
-- ホストはToolの実行結果を渡し、UIを安全なiframe内に表示する
+- MCPサーバーが、Toolと`ui://`形式のUIを紐づけて提供する
+- ホストはToolの実行結果を渡し、UIをiframe内に表示する
 - UIからToolの再実行や入力ができ、地図・グラフ・フォームなどを会話内で操作できる
 - 非対応ホストでは通常のテキスト結果として動作する
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="MCP Appsの最小構成">
+
+<CodeBlock lang="ts" code={MCP_APPS_EXAMPLE} />
 
 </PersonalContentSlide>
