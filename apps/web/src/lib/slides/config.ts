@@ -186,6 +186,16 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
     date: "2026/9/9",
     event: "MOSH Tech Meetup #5 あなたが「好きなこと」× エンジニアリング",
   },
+  "nix-for-everyone": {
+    slug: "nix-for-everyone",
+    title: "AI時代に、みんなでフロントを作るためのNix",
+    description: "AI時代に、みんなでフロントを作るためのNix",
+    author: "ぶりお",
+    authorUrl: "https://twitter.com/burio_16",
+    date: "2026/10/12",
+    event: "フロントエンドカンファレンス関西2026",
+    eventUrl: "https://2026.frontend-conf.osaka.jp/",
+  },
 };
 
 export function getSlideConfig(slug: string): SlideConfig {
