@@ -185,6 +185,7 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
     authorUrl: "https://twitter.com/burio_16",
     date: "2026/9/9",
     event: "MOSH Tech Meetup #5 あなたが「好きなこと」× エンジニアリング",
+    eventUrl: "https://mosh.connpass.com/event/400858/",
   },
 };
 
