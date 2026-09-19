@@ -15,14 +15,21 @@ import {
 
 <PersonalHeadingSlide >
 
-Nix = dotfiles文脈 ≠ フロントエンド...?
+Nix = dotfiles<br />フロントエンド...?
 
 </PersonalHeadingSlide>
 
 <PersonalContentSlide title="このLTのモチベーション">
 
-- AI時代になり、エンジニアでなくても、claudecodeやcodexなどの<br />ai agentを使うことでコードを書くことができる
-- デザイナーがプロトタイプを作成するための環境にNixを活用すれば、<br />開発環境の構築などの負担を軽減できるのでは...?
+- Claude CodeなどのAIにより、<br />エンジニアでなくてもコードを書くハードルは下がった
+- デザイナーチームが一つのリポジトリでプロトタイプを開発するとなると、<br />Node.jsなどの開発環境を準備する必要がある
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="みんなで同じリポジトリを使うには">
+
+- 各自が手作業やAIで環境を用意すると、ツールやバージョンに差が出ることがある
+- Nixを導入することで、開発ツールの構成を定義・共有すれば負荷を軽減できそう！
 
 </PersonalContentSlide>
 
@@ -30,39 +37,86 @@ Nix = dotfiles文脈 ≠ フロントエンド...?
 
 <PersonalContentSlide title="Nix">
 
-Nixについて書く
-
-</PersonalContentSlide>
-
-<PersonalContentSlide title="Nix">
-
-Nixについて書く
+- 純粋関数型パッケージマネージャー。<br />パッケージや開発環境を設定ファイルに宣言して管理する
+- 必要なツールを一人ずつ手作業で入れるのではなく、<br />プロジェクトの環境として共有できる
 
 </PersonalContentSlide>
 
 <PersonalContentSlide title="flake">
 
-flakeについて書く
+- `flake.nix` に、利用するパッケージや開発環境を定義する
+- 生成される`flake.lock` に入力元のバージョンを固定する
+- 定義とlockファイルを共有することで、<br />同じ入力から環境を作り直せる
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="devshell">
+<PersonalContentSlide title="devShell">
 
-devshellについて書く
+- プロジェクトで必要なNode.jsなどのツールを定義する場所
+- `nix develop` を実行すると、<br />定義したツールが使えるシェルに入れる
+- 個人ごとの環境構築を、プロジェクトの設定へ移せる
+
+</PersonalContentSlide>
+
+<PersonalContentSlide>
+
+実演：Node.jsを使えるようにする
+
+devShellにNode.jsを定義 → `nix develop` → `node --version`
+
+<small>※説明用の最小例</small>
 
 </PersonalContentSlide>
 
 <PersonalContentSlide title="direnv">
 
-direnvについて書く
+- ディレクトリごとに、環境変数を切り替えるツール
+- `.envrc` に `use flake` と書くと、<br />devShellを毎回手動で起動せずに使える
+- direnvの導入・シェル連携と、最初の `direnv allow` が必要
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+Nixめっちゃええ感じやん！
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+Nix ≠ dotfiles
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+Nix = (開発)環境の管理<br />フロントエンドでも活用できる！
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+実際に活用してみた
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="課題">
+
+- 認識合わせやユーザーテストにプロトタイプを使いたい
+- 今回の運用では、Figma MakeのAIクレジット上限による<br />都度追加課金と、社外共有の制約がネックに
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="取り組み">
+
+- 共通UI部品である自社デザインシステムを使い、<br />Claude Codeでプロトタイプのコードを作成
+- エンジニアがNixで開発ツールの構成を定義・共有し、<br />デザイナーが試作・検証を始めやすい環境を用意
 
 </PersonalContentSlide>
 
 <PersonalContentSlide title="Nixを活用して成し遂げたこと">
 
-- 課題：認識合わせやユーザーテストにプロトタイプを使いたいが、<br />Figma Makeのトークン上限と社外共有の制約がネックに。
-- 取り組み：自社のデザインシステムとClaude Codeで作成できる環境を用意。<br />Nixで開発環境を整え、デザイナーが始める負担を軽減。
-- 結果：デザイナー自身で次のループを回せるように。
+デザイナー自身で次のループを回せるように。
 
 プロトタイプを作る → ユーザーテスト → FigmaのUIを改善する
 
@@ -70,14 +124,15 @@ direnvについて書く
 
 <PersonalContentSlide title="つまずき">
 
-デザインシステム(skills,MCPも含む)をprivate registryで配布しているためtokenが必要だった。
-自分はcliからneovimでやるから気づいてなかったけど、direnvでの適用がVSCodeに伝播しなかった
-拡張機能が必要だった
+- 社内デザインシステムをprivate registryから取得するには、<br />認証用の環境変数が必要だった
+- direnvで設定した値がVS Code側に伝わらず取得に失敗したため、<br />mkhl.direnv拡張を導入して解決
 
 </PersonalContentSlide>
 
 <PersonalContentSlide title="まとめ">
 
-まとめいるかな？？
+- AIでコードを書くハードルが下がっても、<br />チームで動かすには開発環境の準備がいる
+- Nixで開発ツールの構成と入力を共有すれば、<br />環境の差を減らし、同じリポジトリで始めやすくできる
+- AI時代に、みんなでフロントを作るためのNix！
 
 </PersonalContentSlide>
