@@ -34,6 +34,7 @@ interface Spec {
 }
 
 const SPECS: Spec[] = [
+  { slug: "vite-plus-retro-v2", cover: "burio" },
   { slug: "25-graduate", cover: "chi", titleFontSize: 56 },
   { slug: "autofocus-correct-usage", cover: "burio" },
   {

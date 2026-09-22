@@ -33,6 +33,16 @@ export function getSlideTitleLines(config: SlideConfig): string[] {
 }
 
 export const SLIDES_CONFIG: Record<string, SlideConfig> = {
+  "vite-plus-retro-v2": {
+    slug: "vite-plus-retro-v2",
+    title: "vite-plus-retro-v2",
+    description: "vite-plus-retro-v2 の発表資料",
+    author: "ぶりお",
+    authorUrl: "https://twitter.com/burio_16",
+    date: "2026/10/24",
+    event: "Vue Fes Japan 2026",
+    eventUrl: "https://vuefes.jp/2026/",
+  },
   "better-t-stack": {
     slug: "better-t-stack",
     title: "より良い技術スタックでcloudflareにデプロイしよう",
