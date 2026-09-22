@@ -197,10 +197,6 @@ export function getSlideConfig(slug: string): SlideConfig {
   return config;
 }
 
-export function getAllSlideSlugs(): string[] {
-  return Object.keys(SLIDES_CONFIG);
-}
-
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3001";
 
 function getAuthorHandle(authorUrl: string): string {
@@ -210,7 +206,6 @@ function getAuthorHandle(authorUrl: string): string {
 export function createSlideMetadata(slug: string): Metadata {
   const config = getSlideConfig(slug);
   const title = getSlideTitle(config);
-  const slideUrl = `${BASE_URL}/${slug}`;
   const handle = getAuthorHandle(config.authorUrl);
   const eventLabel = formatEvent(config.event);
   const ogDescription = eventLabel
@@ -232,11 +227,6 @@ export function createSlideMetadata(slug: string): Metadata {
       title,
       description: ogDescription,
       images: [ogpImageUrl],
-    },
-    alternates: {
-      types: {
-        "application/json+oembed": `${BASE_URL}/api/oembed?url=${encodeURIComponent(slideUrl)}&format=json`,
-      },
     },
   };
 }
