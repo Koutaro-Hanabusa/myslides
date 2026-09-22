@@ -13,7 +13,6 @@ const ts = requireFromWeb("typescript");
 const registry = [
   "apps/web/src/lib/slides/config.ts",
   "apps/web/src/app/page.tsx",
-  "apps/web/src/app/embed/[slug]/slide-viewer.tsx",
   "apps/web/scripts/generate-ogp.tsx",
 ];
 
@@ -42,7 +41,7 @@ for (const [kind, cover, component] of [
       const app = join(dir, "apps/web/src/app", slug);
       const mdx = await readFile(join(app, "slides.mdx"), "utf8");
       const coverSource = await readFile(join(app, "slides/cover.tsx"), "utf8");
-      const ogp = await readFile(join(dir, registry[3]), "utf8");
+      const ogp = await readFile(join(dir, registry[2]), "utf8");
       assert.match(mdx, new RegExp(`<${component}`));
       assert.match(
         mdx,
@@ -51,7 +50,7 @@ for (const [kind, cover, component] of [
       assert.match(coverSource, /formatEvent\(config.event\)/);
       assert.match(coverSource, /getSlideTitleLines\(config\)/);
       assert.match(ogp, new RegExp(`slug: "${slug}", cover: "${cover}"`));
-      for (const file of registry.slice(0, 3))
+      for (const file of registry.slice(0, 2))
         assert.match(await readFile(join(dir, file), "utf8"), new RegExp(slug));
       for (const file of [
         ...registry,
@@ -87,12 +86,12 @@ void test("different valid slugs produce different component aliases", async () 
   fixture(async (dir) => {
     await createSlide(dir, "a1-b", "personal");
     await createSlide(dir, "a-1-b", "corporate");
-    const embed = await readFile(join(dir, registry[2]), "utf8");
-    assert.match(embed, /Slide_a1_b_Cover/);
-    assert.match(embed, /Slide_a_1_b_Cover/);
+    const home = await readFile(join(dir, registry[1]), "utf8");
+    assert.match(home, /Slide_a1_b_Cover/);
+    assert.match(home, /Slide_a_1_b_Cover/);
     const parsed = ts.createSourceFile(
-      "embed.tsx",
-      embed,
+      "page.tsx",
+      home,
       ts.ScriptTarget.Latest,
       true,
       ts.ScriptKind.TSX,
@@ -112,7 +111,7 @@ void test("invalid slug and already registered slug leave existing files untouch
 
 void test("missing registration marker fails before creating files", async () =>
   fixture(async (dir) => {
-    const ogpPath = join(dir, registry[3]);
+    const ogpPath = join(dir, registry[2]);
     await writeFile(ogpPath, "no marker");
     await assert.rejects(createSlide(dir, "safe-new-deck", "personal"), /OGP/);
     await assert.rejects(readFile(join(dir, "apps/web/src/app/safe-new-deck/page.tsx")));

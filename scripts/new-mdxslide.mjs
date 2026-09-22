@@ -152,7 +152,6 @@ export async function createSlide(root, slug, kind) {
   const paths = {
     config: join(root, "apps/web/src/lib/slides/config.ts"),
     home: join(app, "page.tsx"),
-    embed: join(app, "embed/[slug]/slide-viewer.tsx"),
     ogp: join(root, "apps/web/scripts/generate-ogp.tsx"),
   };
   const original = Object.fromEntries(
@@ -169,7 +168,6 @@ export async function createSlide(root, slug, kind) {
   }
   const alias = `Slide_${slug.replaceAll("-", "_")}`;
   const coverName = `${alias}_Cover`;
-  const contentName = `${alias}_Content`;
   const updated = {
     config: insertOnce(
       original.config,
@@ -183,12 +181,6 @@ export async function createSlide(root, slug, kind) {
       "import { SlideCard } from",
       `import ${coverName} from "./${slug}/slides/cover";\n`,
       "home imports",
-    ),
-    embed: insertOnce(
-      original.embed,
-      "// better-t-stack slides\n",
-      `const ${coverName} = dynamic(() => import("@/app/${slug}/slides/cover"));\nconst ${contentName} = dynamic(() => import("@/app/${slug}/slides.mdx"));\n\n`,
-      "embed imports",
     ),
     ogp: insertOnce(
       original.ogp,
@@ -204,12 +196,6 @@ export async function createSlide(root, slug, kind) {
     `  { config: SLIDES_CONFIG["${slug}"], Cover: ${coverName} },\n`,
     "home slides",
     true,
-  );
-  updated.embed = insertOnce(
-    updated.embed,
-    "      default:\n        notFound();",
-    `      case "${slug}":\n        return (\n          <>\n            <${coverName} />\n            <${contentName} />\n          </>\n        );\n`,
-    "embed switch",
   );
   let targetCreated = false;
   let assetsCreated = false;
