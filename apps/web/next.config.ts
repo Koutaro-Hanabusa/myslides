@@ -18,15 +18,6 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        source: "/embed/:path*",
-        headers: [
-          {
-            key: "Content-Security-Policy",
-            value: "frame-ancestors *",
-          },
-        ],
-      },
-      {
         // /api 配下を除外して全 HTML に edge cache を効かせる
         source: "/((?!api/).*)",
         headers: [
