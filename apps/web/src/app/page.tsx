@@ -15,6 +15,7 @@ import TimesWorkingOutAloudCover from "./times-working-out-aloud/slides/cover";
 import VitePlusRetroCover from "./vite-plus-retro/slides/cover";
 import YouMustHaveDotfilesCover from "./you-must-have-dotfiles/slides/cover";
 import Slide_vite_plus_retro_v2_Cover from "./vite-plus-retro-v2/slides/cover";
+import NixForEveryoneCover from "./nix-for-everyone/slides/cover";
 import { SlideCard } from "@/components/slides";
 import { getSlideTitle, SLIDES_CONFIG } from "@/lib/slides/config";
 
@@ -55,11 +56,23 @@ const slides = [
   { config: SLIDES_CONFIG["react-three-fiber"], Cover: R3FCover },
 ] as const;
 
+const nixForEveryone = SLIDES_CONFIG["nix-for-everyone"];
+
 export default function Home() {
   return (
     <div className="mx-auto w-full p-4 md:w-3/4 md:p-8 lg:w-1/2">
       <h1 className="text-center text-2xl md:text-4xl lg:text-6xl">Burio's slide deck</h1>
       <div className="grid grid-cols-1 gap-4 md:gap-8">
+        <SlideCard
+          href={`/${nixForEveryone.slug}` as Route}
+          title={getSlideTitle(nixForEveryone)}
+          date={nixForEveryone.date}
+          event={nixForEveryone.event}
+          url={nixForEveryone.eventUrl}
+        >
+          <NixForEveryoneCover />
+        </SlideCard>
+
         {slides.map(({ config, Cover: SlideCover }) => (
           <SlideCard
             key={config.slug}
