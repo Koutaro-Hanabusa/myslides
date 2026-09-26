@@ -12,7 +12,6 @@ import {
   VP_TASK_CACHE_LOG,
   LIBRARY_MODE_CONFIG,
   PACK_SIZE_DIFF,
-  STAGED_HOOKS_CONFIG,
 } from "./slides/code-samples";
 
 <PersonalContentSlide title="English slides">
@@ -22,12 +21,12 @@ import {
 
   <p>I don't speak English🙏</p>
     <p className="text-4xl">Read this presentation in English:</p>
-    <a
-      href="https://slide.burio16.com/vite-plus-retro-v2/en"
-      className="break-all text-3xl underline"
-    >
-      https://slide.burio16.com/vite-plus-retro-v2/en
-    </a>
+    <div className="break-all text-3xl underline">
+
+[https://slide.burio16.com/vite-plus-retro-v2/en](https://slide.burio16.com/vite-plus-retro-v2/en)
+
+    </div>
+
   </div>
   <div className="flex aspect-square items-center justify-center rounded-xl border-4 border-dashed border-white/60 text-2xl text-white/70">
     QR code
@@ -55,7 +54,7 @@ import {
 
 - test / lint / fmt / task などを `vp` ひとつに束ねる統合ツールチェイン
 - 中身は Vite / Vitest / Oxlint / Oxfmt / tsdown / Vite Task（VoidZero 製）
-- 2026/3/13 公開・まだ α 版
+- 2026/3/13 公開
 
 </PersonalContentSlide>
 
@@ -172,9 +171,9 @@ import {
 
 <CodeBlock lang="ts" code={ALL_IN_ONE_CONFIG} />
 
-- `vite.config.ts` の `defineConfig` に 設定が全部同居
-- test / staged / fmt / run / lint が 1ファイルで完結
-- `vp lint` だけで type linting（oxlint-tsgolint）まで実行
+- test / staged / fmt / run / lint を `vite.config.ts` に集約
+- hooks は `staged`、Node は `.node-version` で管理
+- `vp lint` で type linting（oxlint-tsgolint）まで実行
 
 </PersonalContentSlide>
 
@@ -186,28 +185,6 @@ import {
 - 実測で 4/5 cache hit・27.38s 短縮
 - 詳しくはこちらがとても参考になります
   - https://zenn.dev/herp_inc/articles/strange-task-runner
-
-</PersonalContentSlide>
-
-<PersonalContentSlide title="良かった④ ライブラリモード = vp pack">
-
-<div className="grid grid-cols-2 gap-4">
-  <CodeBlock lang="ts" code={LIBRARY_MODE_CONFIG} />
-  <CodeBlock lang="text" code={PACK_SIZE_DIFF} />
-</div>
-
-- `dts: true` の1行で型定義（`vite-plugin-dts` 不要）、React 系は external 扱い
-- rollup → tsdown で gzip ESM 117KB → 36KB（約1/3）
-
-</PersonalContentSlide>
-
-<PersonalContentSlide title="良かった⑤ 個別ツールが要らない">
-
-<CodeBlock lang="ts" code={STAGED_HOOKS_CONFIG} />
-
-- git hooks も `vp` 同梱（`staged` に書くだけ）→ husky / lefthook 不要
-- 独自の pre-commit は `.vite-hooks/` で対応
-- Node も `.node-version` だけ（今回の用途では mise / volta 不要）
 
 </PersonalContentSlide>
 
@@ -237,29 +214,28 @@ import {
 - Astro 6 は Vite 7 前提。`overrides.vite` で Vite+ の Vite 8 系に置換
 - dev-toolbar が使う esbuild API の互換処理で `Not implemented` が発生し、ビルド失敗していた
 - override を外し、Astro が使う Vite 7 に戻して復旧
-- その後 Astro 7 beta（Vite 8）と `core@0.1.24` へ更新
+- その後 Astro 7 beta（Vite 8）と Vite+ 0.1.24 へ更新
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="そして Vite+ の沼へ">
+<PersonalContentSlide title="最小構成で再現して比較">
 
-<Image
-  src="/slides/vite-plus-retro/assets/vite-plus-bad-spiral.png"
-  alt="Vite+への熱中がさらに深まっていく様子を表した悪循環ポスター"
-  width={515}
-  height={645}
-  style={{
-    margin: "0 auto 0.5rem",
-    display: "block",
-    width: "600px",
-    height: "auto",
-    maxWidth: "100%",
-    maxHeight: "720px",
-    borderRadius: "8px",
-  }}
-/>
+| Astro        | Vite+                | ビルド結果                |
+| ------------ | -------------------- | ------------------------- |
+| 6.1.10       | 未使用（Vite 7.3.3） | 成功                      |
+| 6.1.10       | 0.1.19               | 失敗（`Not implemented`） |
+| 7.0.0-beta.3 | 0.1.19               | 成功                      |
+| 7.0.0-beta.3 | 0.1.24               | 成功                      |
 
-［[悪循環画像ジェネレータ](https://furandon-pig.github.io/fpig_sample/hobby/bad_spiral/)で作成］
+**この最小構成では、Vite+ 0.1.19 のまま Astro 7 beta へ更新すると成功**
+
+<div className="text-[0.65em]">
+
+Vite+ 使用時は `vite` override を適用。integration なし・1ページで検証。
+
+[検証コード・実行手順（GitHub）](https://github.com/Koutaro-Hanabusa/astro-vite-plus-repro)
+
+</div>
 
 </PersonalContentSlide>
 
@@ -284,7 +260,19 @@ import {
 
 </PersonalHeadingSlide>
 
-<PersonalContentSlide title="良かった⑦ Viteに依存しているわけではない">
+<PersonalContentSlide title="ライブラリモード = vp pack">
+
+<div className="grid grid-cols-2 gap-4">
+  <CodeBlock lang="ts" code={LIBRARY_MODE_CONFIG} />
+  <CodeBlock lang="text" code={PACK_SIZE_DIFF} />
+</div>
+
+- `dts: true` の1行で型定義（`vite-plugin-dts` 不要）、React 系は external 扱い
+- rollup → tsdown で gzip ESM 117KB → 36KB（約1/3）
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="Viteに依存しているわけではない">
 
 <Image
   src="/slides/vite-plus-retro/assets/pr-220.png"
