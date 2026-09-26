@@ -14,11 +14,16 @@ import TanstackRouterDirStructureCover from "./tanstack-router-dir-structure/sli
 import TimesWorkingOutAloudCover from "./times-working-out-aloud/slides/cover";
 import VitePlusRetroCover from "./vite-plus-retro/slides/cover";
 import YouMustHaveDotfilesCover from "./you-must-have-dotfiles/slides/cover";
+import Slide_vite_plus_retro_v2_Cover from "./vite-plus-retro-v2/slides/cover";
 import NixForEveryoneCover from "./nix-for-everyone/slides/cover";
 import { SlideCard } from "@/components/slides";
 import { getSlideTitle, SLIDES_CONFIG } from "@/lib/slides/config";
 
 const slides = [
+  {
+    config: SLIDES_CONFIG["vite-plus-retro-v2"],
+    Cover: Slide_vite_plus_retro_v2_Cover,
+  },
   {
     config: SLIDES_CONFIG["my-favorite-thing"],
     Cover: MyFavoriteThingCover,

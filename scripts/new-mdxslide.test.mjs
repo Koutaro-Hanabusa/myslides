@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { cp, mkdtemp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { chmod, cp, mkdtemp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { execFileSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -97,6 +98,43 @@ void test("different valid slugs produce different component aliases", async () 
       ts.ScriptKind.TSX,
     );
     assert.deepEqual(parsed.parseDiagnostics, []);
+  }));
+
+void test("formatter stdout banner never enters generated source", async () =>
+  fixture(async (dir) => {
+    const bin = join(dir, "bin");
+    await mkdir(bin);
+    const realVp = execFileSync("which", ["vp"], { encoding: "utf8" }).trim();
+    const wrapper = join(bin, "vp");
+    await writeFile(
+      wrapper,
+      `#!/bin/sh\nprintf 'VITE+ - The Unified Toolchain for the Web\\n\\n'\nexec "${realVp}" "$@"\n`,
+    );
+    await chmod(wrapper, 0o755);
+    const oldPath = process.env.PATH;
+    process.env.PATH = `${bin}:${oldPath}`;
+    try {
+      for (const [kind, slug] of [
+        ["personal", "banner-personal"],
+        ["corporate", "banner-corp"],
+      ]) {
+        await createSlide(dir, slug, kind);
+        for (const file of [
+          ...registry,
+          ...["page.tsx", "layout.tsx", "slides/cover.tsx", "slides.mdx"].map(
+            (name) => `apps/web/src/app/${slug}/${name}`,
+          ),
+        ]) {
+          assert.doesNotMatch(
+            await readFile(join(dir, file), "utf8"),
+            /VITE\+ - The Unified Toolchain for the Web/,
+            file,
+          );
+        }
+      }
+    } finally {
+      process.env.PATH = oldPath;
+    }
   }));
 
 void test("invalid slug and already registered slug leave existing files untouched", async () =>

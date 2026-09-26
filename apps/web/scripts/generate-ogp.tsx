@@ -38,6 +38,8 @@ const nixForEveryoneTitleLines = getSlideTitleLines(getSlideConfig("nix-for-ever
 );
 
 const SPECS: Spec[] = [
+  { slug: "vite-plus-retro-v2/en", cover: "burio" },
+  { slug: "vite-plus-retro-v2", cover: "burio" },
   { slug: "25-graduate", cover: "chi", titleFontSize: 56 },
   { slug: "autofocus-correct-usage", cover: "burio" },
   {
