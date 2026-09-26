@@ -38,7 +38,9 @@ Nix = dotfiles<br />フロントエンド...?
 
 <PersonalHeadingSlide>そもそもNixとは...?</PersonalHeadingSlide>
 
-<PersonalContentSlide title="Nix">
+<PersonalContentSlide
+  title={<a href="https://nixos.org/" target="_blank" rel="noopener noreferrer">Nix</a>}
+>
 
 - 純粋関数型パッケージマネージャー
 - Reproducible（再現性）：同じ定義・依存関係から環境を再現できる
@@ -47,7 +49,9 @@ Nix = dotfiles<br />フロントエンド...?
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="flake">
+<PersonalContentSlide
+  title={<a href="https://nix.dev/concepts/flakes.html" target="_blank" rel="noopener noreferrer">flake</a>}
+>
 
 - `flake.nix` に、利用するパッケージや開発環境を定義する
 - 生成される`flake.lock` に入力元のバージョンを固定する
@@ -55,7 +59,9 @@ Nix = dotfiles<br />フロントエンド...?
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="devShell">
+<PersonalContentSlide
+  title={<a href="https://nix.dev/manual/nix/stable/command-ref/new-cli/nix3-develop.html" target="_blank" rel="noopener noreferrer">devShell</a>}
+>
 
 - `mkShell`関数 に必要なツールを定義して、作成する宣言的shell環境
 - `nix develop` で、定義した環境に入る
@@ -84,7 +90,9 @@ cowsayを宣言して `nix develop` すると、そのシェルでcowsayが使�
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="direnv">
+<PersonalContentSlide
+  title={<a href="https://direnv.net/" target="_blank" rel="noopener noreferrer">direnv</a>}
+>
 
 - ディレクトリごとに、環境変数を切り替えるツール
 - `.envrc` に `use flake` と書くと、<br />devShellを毎回手動で起動せずに使える

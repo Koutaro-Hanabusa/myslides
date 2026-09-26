@@ -21,7 +21,7 @@ export function PersonalHeadingSlide({ children }: PersonalHeadingSlideProps) {
 }
 
 interface PersonalContentSlideProps {
-  title?: string;
+  title?: ReactNode;
   children: ReactNode;
   align?: "left" | "center";
 }
