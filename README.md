@@ -95,3 +95,12 @@ mySlides/
 - `bun run db:studio`: Open database studio UI
 - `cd apps/server && bun run db:local`: Start the local SQLite database
 - `bun run check`: Run Biome formatting and linting
+
+### MDX スライドを作成する
+
+```sh
+task new-mdxslide -- my-talk       # 個人用テンプレート
+task new-mdxslide-corp -- my-talk  # 会社テンプレート
+```
+
+引数を省くと slug を入力できます。生成後は `apps/web/src/lib/slides/config.ts` でタイトル・日付・イベント名を編集し、`apps/web/src/app/<slug>/slides.mdx` に本文を書いてください。画像は `apps/web/public/slides/<slug>/assets/` に置けます。OGP 画像は `vp run -F web generate:ogp` または `vp run -F web build` で生成されます。
