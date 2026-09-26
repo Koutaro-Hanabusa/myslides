@@ -1,8 +1,11 @@
+import Image from "next/image";
 import {
+  CodeBlock,
   PersonalContentSlide,
   PersonalHeadingSlide,
   PersonalSelfIntroductionSlide,
 } from "@/components/slides";
+import { COWSAY_DEV_SHELL_EXAMPLE } from "./slides/code-samples";
 
 <PersonalSelfIntroductionSlide>
 
@@ -58,13 +61,25 @@ Nix = dotfiles<br />フロントエンド...?
 
 </PersonalContentSlide>
 
-<PersonalContentSlide>
+<PersonalContentSlide title="cowsayを使えるようにする">
 
-実演：Node.jsを使えるようにする
+<div className="grid grid-cols-[3fr_2fr] items-center gap-6">
+  <div className="min-w-0">
+    <p className="mt-0 text-[48px] font-bold">flake.nix（抜粋）</p>
+    <CodeBlock code={COWSAY_DEV_SHELL_EXAMPLE} />
+  </div>
+  <figure className="m-0 min-w-0">
+    <Image
+      src="/slides/nix-for-everyone/assets/cowsay-dev-shell-terminal.png"
+      alt="nix developの前後とexit後にcowsayを実行し、devShell内だけTacotuesdayと話す牛が表示されるターミナル画面"
+      width={673}
+      height={324}
+      className="h-auto w-full rounded-lg"
+    />
+  </figure>
+</div>
 
-devShellにNode.jsを定義 → `nix develop` → `node --version`
-
-<small>※説明用の最小例</small>
+cowsayを定義したdevShellに入ることで、自分でインストールしていないcowsayを使える。
 
 </PersonalContentSlide>
 
@@ -129,11 +144,15 @@ Nix = (開発)環境の管理<br />フロントエンドでも活用できる！
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="まとめ">
+<PersonalContentSlide title="まとめ" >
+
+<div className="text-[1.25em] leading-relaxed">
 
 - AIでコードを書くハードルが下がっても、<br />チームで動かすには開発環境の準備がいる
 - Nixで開発ツールの構成と入力を共有すれば、<br />環境の差を減らし、同じリポジトリで始めやすくできる
 - AI時代に、みんなでフロントを作るためのNix！
+
+</div>
 
 </PersonalContentSlide>
 

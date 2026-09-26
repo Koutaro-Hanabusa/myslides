@@ -189,7 +189,7 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
   },
   "nix-for-everyone": {
     slug: "nix-for-everyone",
-    title: "AI時代に、みんなでフロントを作るためのNix",
+    title: "AI時代に、みんなでフロントを\n作るためのNix",
     description: "AI時代に、みんなでフロントを作るためのNix",
     author: "ぶりお",
     authorUrl: "https://twitter.com/burio_16",
