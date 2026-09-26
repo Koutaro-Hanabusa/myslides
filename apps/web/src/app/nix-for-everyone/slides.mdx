@@ -40,8 +40,10 @@ Nix = dotfiles<br />フロントエンド...?
 
 <PersonalContentSlide title="Nix">
 
-- 純粋関数型パッケージマネージャー。<br />パッケージや開発環境を設定ファイルに宣言して管理する
-- 必要なツールを一人ずつ手作業で入れるのではなく、<br />プロジェクトの環境として共有できる
+- 純粋関数型パッケージマネージャー
+- Reproducible（再現性）：同じ定義・依存関係から環境を再現できる
+- Declarative（宣言的）：必要なパッケージや開発環境を設定ファイルに宣言する
+- Reliable（信頼性）：パッケージの追加・更新で、ほかのパッケージを壊しにくい
 
 </PersonalContentSlide>
 
@@ -49,15 +51,14 @@ Nix = dotfiles<br />フロントエンド...?
 
 - `flake.nix` に、利用するパッケージや開発環境を定義する
 - 生成される`flake.lock` に入力元のバージョンを固定する
-- 定義とlockファイルを共有することで、<br />同じ入力から環境を作り直せる
+- 定義とlockファイルを共有することで、<br />同じ環境を作成することができる(再現性)
 
 </PersonalContentSlide>
 
 <PersonalContentSlide title="devShell">
 
-- プロジェクトで必要なNode.jsなどのツールを定義する場所
-- `nix develop` を実行すると、<br />定義したツールが使えるシェルに入れる
-- 個人ごとの環境構築を、プロジェクトの設定へ移せる
+- `mkShell`関数 に必要なツールを定義して、作成する宣言的shell環境
+- `nix develop` で、定義した環境に入る
 
 </PersonalContentSlide>
 
@@ -79,7 +80,7 @@ Nix = dotfiles<br />フロントエンド...?
   </figure>
 </div>
 
-cowsayを定義したdevShellに入ることで、自分でインストールしていないcowsayを使える。
+cowsayを宣言して `nix develop` すると、そのシェルでcowsayが使える。<br />`exit` すると元のシェルに戻る。
 
 </PersonalContentSlide>
 
@@ -87,7 +88,6 @@ cowsayを定義したdevShellに入ることで、自分でインストールし
 
 - ディレクトリごとに、環境変数を切り替えるツール
 - `.envrc` に `use flake` と書くと、<br />devShellを毎回手動で起動せずに使える
-- direnvの導入・シェル連携と、最初の `direnv allow` が必要
 
 </PersonalContentSlide>
 
