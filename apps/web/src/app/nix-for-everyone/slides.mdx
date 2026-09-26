@@ -31,7 +31,7 @@ Nix = dotfiles<br />フロントエンド...?
 
 <PersonalContentSlide title="みんなで同じリポジトリを使うには">
 
-- 各自が手作業やAIで環境を用意すると、ツールやバージョンに差が出ることがある
+- 各自が手作業やAIで環境を用意すると、ツールやバージョンに<br />差が出る可能性がある
 - Nixを導入することで、開発ツールの構成を定義・共有すれば負荷を軽減できそう！
 
 </PersonalContentSlide>
@@ -125,7 +125,35 @@ Nix = (開発)環境の管理<br />フロントエンドでも活用できる！
 <PersonalContentSlide title="取り組み">
 
 - エンジニアがNixで開発ツールの構成を定義・共有し、<br />デザイナーが試作・検証を始めやすい環境を用意
-- 自社デザインシステム(MCP,Skillsも)を使い、<br />Claude Codeでプロトタイプのコードを作成
+- 自社デザインシステム(MCP,Skillsも)を使い、<br />ローカルのClaude Codeでプロトタイプを作成
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="プロトタイプ環境">
+
+<div className="grid grid-cols-[2fr_3fr] items-center gap-8">
+  <div>
+    <ul>
+      <li>
+        {"同じリポジトリに、"}
+        <br />
+        {"各自のプロトタイプを追加"}
+      </li>
+      <li>
+        {"一覧から試作画面を開いて"}
+        <br />
+        {"確認できる"}
+      </li>
+    </ul>
+  </div>
+  <Image
+    src="/slides/nix-for-everyone/assets/prototype-dashboard.png"
+    alt="複数のプロトタイプがカード形式で並び、それぞれの画面を開けるプロトタイプ環境の一覧"
+    width={2342}
+    height={1772}
+    className="h-auto max-h-[760px] w-full rounded-lg object-contain"
+  />
+</div>
 
 </PersonalContentSlide>
 

@@ -60,7 +60,7 @@ export default function Home() {
       <div className="grid grid-cols-1 gap-4 md:gap-8">
         <SlideCard
           href={`/${nixForEveryone.slug}` as Route}
-          title={nixForEveryone.title}
+          title={getSlideTitle(nixForEveryone)}
           date={nixForEveryone.date}
           event={nixForEveryone.event}
           url={nixForEveryone.eventUrl}
