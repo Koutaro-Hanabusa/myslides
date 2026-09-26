@@ -25,9 +25,6 @@ export default function Cover() {
         <br />
         <h3>{config.author} @burio_16</h3>
       </div>
-      <p className="absolute bottom-8 left-1/2 m-0 w-full max-w-4xl -translate-x-1/2 text-center text-2xl leading-snug text-white/90">
-        This English version was translated with generative AI and may contain errors.
-      </p>
     </section>
   );
 }
