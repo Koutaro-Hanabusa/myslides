@@ -1,22 +1,288 @@
+import Image from "next/image";
 import {
-  PersonalSelfIntroductionSlide,
-  PersonalHeadingSlide,
+  CodeBlock,
   PersonalContentSlide,
+  PersonalHeadingSlide,
+  PersonalSelfIntroductionSlide,
 } from "@/components/slides";
+import {
+  ALL_IN_ONE_CONFIG,
+  BEFORE_AFTER_CONFIG,
+  VP_TASK_CONFIG,
+  VP_TASK_CACHE_LOG,
+  LIBRARY_MODE_CONFIG,
+  PACK_SIZE_DIFF,
+  STAGED_HOOKS_CONFIG,
+} from "./slides/code-samples";
 
 <PersonalSelfIntroductionSlide>
 
-- 名前・所属
-- 自己紹介の項目
+- ぶりお [@burio_16](https://x.com/burio_16)
+- 千株式会社 フロントエンドエンジニア
+- タコスとTottenham Hotspur FCが大好き
+- 普段はVue書きません()
 
 </PersonalSelfIntroductionSlide>
 
-<PersonalHeadingSlide>見出し</PersonalHeadingSlide>
+<PersonalHeadingSlide>
 
-<PersonalContentSlide title="本文タイトル">
+そもそも Vite+ って？
 
-- 項目1
-- 項目2
-- 項目3
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="Vite+ とは">
+
+- test / lint / fmt / task などを `vp` ひとつに束ねる統合ツールチェイン
+- 中身は Vite / Vitest / Oxlint / Oxfmt / tsdown / Vite Task（VoidZero 製）
+- 2026/3/13 公開・まだ α 版
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="Vite+ が解決する課題">
+
+- 他の言語：統合ツールチェインが当たり前
+- JS：ツールの選択肢が多く、環境ごとにバラバラになりがち
+- → その課題をVite+ が解決
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="設定ファイル、散らばりがち">
+
+<CodeBlock lang="text" code={BEFORE_AFTER_CONFIG} />
+
+- test / lint / fmt / build / task / hooks が別々のツール、設定ファイルになりがち
+- Vite+ はこの散らばりを `vite.config.ts` に統一することができる
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+どこに導入した？
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="社内デザインシステム">
+
+- 社内で デザインシステム を開発中
+- 構成は Vite + Vitest + Oxlint + Oxfmt のモノレポ（タスクは Turborepo）
+- → Vite+ が束ねる範囲と ほぼ重なっていた
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+爆速(当社比)で移行
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="3/13 → 3/24">
+
+- 公開から移行完了まで、わずか 10日ちょっと
+- α版を本番に投入
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="なぜ飛び込めた？">
+
+- まだ 本格運用前（リプレイス後に使う想定）
+- 元から ツールがほぼ Vite+ の範囲内（Vite/Vitest/Oxlint/Oxfmt）
+- とはいえ α 版なので 最後の一歩は躊躇
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+マネージャー<br />「ビルドできれば<br />いいんじゃない？」
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+ほな導入したろか！
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+爆速！！(当社比)
+
+<Image
+  src="/slides/vite-plus-retro/assets/pr-135.png"
+  alt="Vite+ への移行 PR #135（Turborepo 廃止・ツールチェーン統合、25 commits を main にマージ）"
+  width={1069}
+  height={254}
+  style={{
+    margin: "1.5rem auto 0",
+    display: "block",
+    width: "1600px",
+    height: "auto",
+    maxWidth: "100%",
+    maxHeight: "520px",
+    borderRadius: "8px",
+  }}
+/>
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="移行 PR でやったこと">
+
+- `vp migrate` で Vite / Vitest / Oxlint / Oxfmt / Turborepo を統合
+- `turbo.json` ほか各種設定ファイルを まとめて削除
+- テスト import を `vitest` → `vite-plus/test` に変更
+- CI も `voidzero-dev/setup-vp` ベースに変更
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+実際どうだった？
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="良かった① vp migrate が最高">
+
+- 既存プロジェクトを Vite+ に移行するための スタート地点
+- 依存関係・import・設定ファイル・scripts を まとめて更新
+- hooks・AI agent・エディタ設定のセットアップにも対応
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="良かった② 設定が一箇所に">
+
+<CodeBlock lang="ts" code={ALL_IN_ONE_CONFIG} />
+
+- `vite.config.ts` の `defineConfig` に 設定が全部同居
+- test / staged / fmt / run / lint が 1ファイルで完結
+- `vp lint` だけで type linting（oxlint-tsgolint）まで実行
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="良かった③ キャッシュがあると爆速">
+
+<CodeBlock lang="text" code={VP_TASK_CACHE_LOG} />
+
+- 使ったファイルを 自動追跡 → 変化なしなら 実行せずリプレイ
+- 実測で 4/5 cache hit・27.38s 短縮
+- 詳しくはこちらがとても参考になります
+  - https://zenn.dev/herp_inc/articles/strange-task-runner
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="良かった④ ライブラリモード = vp pack">
+
+<div className="grid grid-cols-2 gap-4">
+  <CodeBlock lang="ts" code={LIBRARY_MODE_CONFIG} />
+  <CodeBlock lang="text" code={PACK_SIZE_DIFF} />
+</div>
+
+- `dts: true` の1行で型定義（`vite-plugin-dts` 不要）、React 系は external 扱い
+- rollup → tsdown で gzip ESM 117KB → 36KB（約1/3）
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="良かった⑤ 個別ツールが要らない">
+
+<CodeBlock lang="ts" code={STAGED_HOOKS_CONFIG} />
+
+- git hooks も `vp` 同梱（`staged` に書くだけ）→ husky / lefthook 不要
+- 独自の pre-commit は `.vite-hooks/` で対応
+- Node も `.node-version` だけ（今回の用途では mise / volta 不要）
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+もちろん辛みもあった
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="辛かった① lefthook使用時にmigrateされない">
+
+- `vp migrate` 時、lefthook は自動移行されず警告のみ
+- 気づかず pre-commit が壊れていた → 設定を手動修正
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="その後 → 実は仕様でした">
+
+- バグだと思って issue 起票（[#1854](https://github.com/voidzero-dev/vite-plus/issues/1854)）
+- よく見ると 仕様だった（RFC に記載あり）
+- → Migration Guide に追記する形で対応していただきました（[PR #1901](https://github.com/voidzero-dev/vite-plus/pull/1901)・マージ済み）
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="辛かった② Astro のビルドが壊れた">
+
+- Astro 6 は Vite 7 前提。`overrides.vite` で Vite+ の Vite 8 系に置換
+- dev-toolbar が使う esbuild API の互換処理で `Not implemented` が発生し、ビルド失敗していた
+- override を外し、Astro が使う Vite 7 に戻して復旧
+- その後 Astro 7 beta（Vite 8）と `core@0.1.24` へ更新
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="そして Vite+ の沼へ">
+
+<Image
+  src="/slides/vite-plus-retro/assets/vite-plus-bad-spiral.png"
+  alt="Vite+への熱中がさらに深まっていく様子を表した悪循環ポスター"
+  width={515}
+  height={645}
+  style={{
+    margin: "0 auto 0.5rem",
+    display: "block",
+    width: "600px",
+    height: "auto",
+    maxWidth: "100%",
+    maxHeight: "720px",
+    borderRadius: "8px",
+  }}
+/>
+
+［[悪循環画像ジェネレータ](https://furandon-pig.github.io/fpig_sample/hobby/bad_spiral/)で作成］
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="まとめ">
+
+- 設定を `vite.config.ts` 一つに集約できるのが最高
+- Vite / Vitest / Oxlint / Oxfmt を使っているなら、導入価値はかなり高い
+- 新規リポジトリや本格運用前なら、早めに試す価値あり
+- α 版なので注意は必要だが、今回の辛みは 改善・運用で吸収できる範囲
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+ご清聴ありがとうございました
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+余談
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="良かった⑦ Viteに依存しているわけではない">
+
+<Image
+  src="/slides/vite-plus-retro/assets/pr-220.png"
+  alt="mySlides を Vite+ へ移行した PR #220（build: Vite+ への移行・ツールチェーン統合、26 files・+10366 -285）"
+  width={1200}
+  height={600}
+  style={{
+    margin: "0 auto 1rem",
+    display: "block",
+    width: "1000px",
+    height: "auto",
+    maxWidth: "100%",
+    maxHeight: "500px",
+    borderRadius: "8px",
+  }}
+/>
+
+- 初期導入では、Next.js の `next build` を維持したまま Vite+ へ移行（[PR #220](https://github.com/Koutaro-Hanabusa/myslides/pull/220)）
+- アプリのビルドを Vite へ移行しなくても導入できる
+- lint / fmt / task / staged を `vp` に統一。既存の build は `vp run build` で実行できる
 
 </PersonalContentSlide>

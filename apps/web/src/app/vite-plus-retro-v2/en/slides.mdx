@@ -1,0 +1,297 @@
+import Image from "next/image";
+import {
+  CodeBlock,
+  PersonalContentSlide,
+  PersonalHeadingSlide,
+  PersonalSelfIntroductionSlide,
+} from "@/components/slides";
+import {
+  ALL_IN_ONE_CONFIG,
+  BEFORE_AFTER_CONFIG,
+  LIBRARY_MODE_CONFIG,
+  PACK_SIZE_DIFF,
+  STAGED_HOOKS_CONFIG,
+  VP_TASK_CACHE_LOG,
+} from "./slides/code-samples";
+
+<PersonalSelfIntroductionSlide title="About Me" imageAlt="Photo of Burio">
+
+- Burio [@burio_16](https://x.com/burio_16)
+- Frontend Engineer at SEN, Corp.
+- I love tacos and Tottenham Hotspur FC
+- I don’t usually write Vue code!
+
+</PersonalSelfIntroductionSlide>
+
+<PersonalHeadingSlide>
+
+What Is Vite+?
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="What Is Vite+?">
+
+- A unified toolchain that brings test / lint / fmt / task and more under one `vp` command
+- Built on Vite / Vitest / Oxlint / Oxfmt / tsdown / Vite Task, all by VoidZero
+- Released on March 13, 2026, and still in alpha
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="The Problem Vite+ Solves">
+
+- Other languages commonly have unified toolchains
+- JavaScript offers many tools, so every environment tends to use a different setup
+- → Vite+ solves this fragmentation
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="Configuration Gets Scattered">
+
+<CodeBlock lang="text" code={BEFORE_AFTER_CONFIG} />
+
+- test / lint / fmt / build / task / hooks often use separate tools and config files
+- Vite+ can consolidate them in `vite.config.ts`
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+Where Did We Adopt It?
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="Our Internal Design System">
+
+- We are building a design system in-house
+- It is a Vite + Vitest + Oxlint + Oxfmt monorepo, with Turborepo for tasks
+- → Its toolset almost completely overlapped with Vite+
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+Migrated at Breakneck Speed<br />(By Our Standards)
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="March 13 → March 24">
+
+- Just over 10 days from release to completing the migration
+- We put an alpha release into production
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="Why Could We Take the Leap?">
+
+- The system was not yet in full production; it was meant to be used after a replacement
+- Our tools already fell almost entirely within Vite+'s scope: Vite / Vitest / Oxlint / Oxfmt
+- Still, its alpha status made us hesitate at the final step
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+Manager:<br />“As long as it builds,<br />isn't that enough?”
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+Then Let's Do It!
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+Breakneck Speed!!<br />(By Our Standards)
+
+<Image
+  src="/slides/vite-plus-retro/assets/pr-135.png"
+  alt="Vite+ migration PR #135: removed Turborepo, unified the toolchain, and merged 25 commits into main"
+  width={1069}
+  height={254}
+  style={{
+    margin: "1.5rem auto 0",
+    display: "block",
+    width: "1600px",
+    height: "auto",
+    maxWidth: "100%",
+    maxHeight: "520px",
+    borderRadius: "8px",
+  }}
+/>
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="What We Changed in the Migration PR">
+
+- Used `vp migrate` to unify Vite / Vitest / Oxlint / Oxfmt / Turborepo
+- Removed `turbo.json` and the other separate config files
+- Changed test imports from `vitest` to `vite-plus/test`
+- Updated CI to use `voidzero-dev/setup-vp`
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+How Did It Go?
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="Win 1: vp migrate Is Excellent">
+
+- A starting point for migrating an existing project to Vite+
+- Updates dependencies, imports, config files, and scripts together
+- Also sets up hooks, AI agents, and editor settings
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="Win 2: Configuration in One Place">
+
+<CodeBlock lang="ts" code={ALL_IN_ONE_CONFIG} />
+
+- All configuration lives together in `defineConfig` inside `vite.config.ts`
+- test / staged / fmt / run / lint fit in one file
+- `vp lint` even runs type-aware linting with oxlint-tsgolint
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="Win 3: Caching Makes It Blazing Fast">
+
+<CodeBlock lang="text" code={VP_TASK_CACHE_LOG} />
+
+- Automatically tracks files used by a task; if nothing changes, it replays the result without running it
+- In our measurement: 4/5 cache hits and 27.38 seconds saved
+- This article explains it very well:
+  - https://zenn.dev/herp_inc/articles/strange-task-runner
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="Win 4: Library Mode = vp pack">
+
+<div className="grid grid-cols-2 gap-4">
+  <CodeBlock lang="ts" code={LIBRARY_MODE_CONFIG} />
+  <CodeBlock lang="text" code={PACK_SIZE_DIFF} />
+</div>
+
+- One line, `dts: true`, generates declarations without `vite-plugin-dts`; React packages are treated as external
+- Moving from Rollup to tsdown cut gzipped ESM from 117KB to 36KB, about one third
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="Win 5: No Separate Tools Needed">
+
+<CodeBlock lang="ts" code={STAGED_HOOKS_CONFIG} />
+
+- Git hooks come with `vp`; add `staged` and you do not need husky or lefthook
+- Custom pre-commit logic can live in `.vite-hooks/`
+- Node only needs `.node-version`; for our use case, mise or Volta was unnecessary
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+Of Course, We Hit Some Pain Points
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="Pain 1: lefthook Was Not Migrated">
+
+- During `vp migrate`, lefthook was not migrated automatically; we only got a warning
+- We missed it and our pre-commit hook broke, so we fixed the config manually
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="Then We Learned It Was Intentional">
+
+- We thought it was a bug and opened [issue #1854](https://github.com/voidzero-dev/vite-plus/issues/1854)
+- On closer reading, it was documented behavior in the RFC
+- → The team addressed it by updating the Migration Guide in [PR #1901](https://github.com/voidzero-dev/vite-plus/pull/1901), which is now merged
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="Pain 2: The Astro Build Broke">
+
+- Astro 6 expects Vite 7, but `overrides.vite` replaced it with the Vite 8 version bundled by Vite+
+- Compatibility code for an esbuild API used by dev-toolbar threw `Not implemented`, breaking the build
+- Removing the override restored Astro's Vite 7 and fixed the build
+- We later upgraded to the Astro 7 beta, which uses Vite 8, and `core@0.1.24`
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="And Deeper into the Vite+ Rabbit Hole">
+
+<div className="grid grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] items-center gap-6">
+  <Image
+    src="/slides/vite-plus-retro/assets/vite-plus-bad-spiral.png"
+    alt="A Japanese poster showing a vicious cycle of getting increasingly absorbed in Vite+"
+    width={515}
+    height={645}
+    style={{
+      margin: "0 auto",
+      display: "block",
+      width: "430px",
+      height: "auto",
+      maxWidth: "100%",
+      maxHeight: "590px",
+      borderRadius: "8px",
+    }}
+  />
+  <ol className="list-decimal space-y-3 pl-8 text-[0.78em] leading-snug">
+    <li>Vite+ unifies all the tools</li>
+    <li>“Perfect for a design system—even in alpha!”</li>
+    <li>The effect wears off, and there is no more Vite+</li>
+    <li>The craving grows: “More Vite+!”</li>
+    <li>Tolerance builds, so usage keeps increasing</li>
+    <li>Temporary relief—then Vite+ is all you can think about</li>
+  </ol>
+</div>
+
+Created with the [Vicious Cycle Image Generator](https://furandon-pig.github.io/fpig_sample/hobby/bad_spiral/).
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="Takeaways">
+
+- Consolidating configuration in one `vite.config.ts` is excellent
+- If you already use Vite / Vitest / Oxlint / Oxfmt, Vite+ offers substantial value
+- It is worth trying early in a new repository or before full production use
+- Alpha software needs care, but the pain we encountered was manageable through fixes and operational changes
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+Thank You!
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+One More Thing
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="Win 7: It Does Not Require a Vite App">
+
+<Image
+  src="/slides/vite-plus-retro/assets/pr-220.png"
+  alt="mySlides migration PR #220: migrated to Vite+, unified the toolchain, changed 26 files with 10,366 additions and 285 deletions"
+  width={1200}
+  height={600}
+  style={{
+    margin: "0 auto 1rem",
+    display: "block",
+    width: "1000px",
+    height: "auto",
+    maxWidth: "100%",
+    maxHeight: "500px",
+    borderRadius: "8px",
+  }}
+/>
+
+- In our initial adoption, we migrated to Vite+ while keeping Next.js's `next build` ([PR #220](https://github.com/Koutaro-Hanabusa/myslides/pull/220))
+- You can adopt Vite+ without moving your app build to Vite
+- We unified lint / fmt / task / staged under `vp`; the existing build still runs through `vp run build`
+
+</PersonalContentSlide>

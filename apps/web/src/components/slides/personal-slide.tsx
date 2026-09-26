@@ -39,14 +39,22 @@ export function PersonalContentSlide({ title, children }: PersonalContentSlidePr
 
 interface PersonalSelfIntroductionSlideProps {
   children: ReactNode;
+  title?: string;
+  imageAlt?: string;
 }
 
 /** 個人テンプレ - 自己紹介スライド */
-export function PersonalSelfIntroductionSlide({ children }: PersonalSelfIntroductionSlideProps) {
+export function PersonalSelfIntroductionSlide({
+  children,
+  title,
+  imageAlt,
+}: PersonalSelfIntroductionSlideProps) {
   return (
     <SelfIntroductionSlideLayout
       backgroundImage={BG_PERSONAL_CONTENT}
       textColorClassName="text-white"
+      title={title}
+      imageAlt={imageAlt}
     >
       {children}
     </SelfIntroductionSlideLayout>

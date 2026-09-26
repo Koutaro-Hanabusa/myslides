@@ -15,6 +15,7 @@ export interface SlideConfig {
   date: string;
   event?: string | string[];
   eventUrl?: string | string[];
+  locale?: "ja" | "en";
 }
 
 export function formatEvent(event: string | string[] | undefined): string {
@@ -33,15 +34,28 @@ export function getSlideTitleLines(config: SlideConfig): string[] {
 }
 
 export const SLIDES_CONFIG: Record<string, SlideConfig> = {
+  "vite-plus-retro-v2/en": {
+    slug: "vite-plus-retro-v2/en",
+    title: "We Tried Adopting Vite+ Into Our \nDesign System at Breakneck Speed",
+    description:
+      "What we learned from adopting Vite+ in a real design system project while it was still in alpha",
+    author: "Burio",
+    authorUrl: "https://twitter.com/burio_16",
+    date: "2026/10/24",
+    event: "Vue Fes Japan 2026",
+    eventUrl: "https://vuefes.jp/2026/",
+    locale: "en",
+  },
   "vite-plus-retro-v2": {
     slug: "vite-plus-retro-v2",
-    title: "vite-plus-retro-v2",
+    title: "Vite+を爆速でデザインシステムに導入してみた",
     description: "vite-plus-retro-v2 の発表資料",
     author: "ぶりお",
     authorUrl: "https://twitter.com/burio_16",
     date: "2026/10/24",
     event: "Vue Fes Japan 2026",
     eventUrl: "https://vuefes.jp/2026/",
+    locale: "ja",
   },
   "better-t-stack": {
     slug: "better-t-stack",
@@ -219,17 +233,32 @@ export function createSlideMetadata(slug: string): Metadata {
   const handle = getAuthorHandle(config.authorUrl);
   const eventLabel = formatEvent(config.event);
   const ogDescription = eventLabel
-    ? `${eventLabel} での発表資料 by ${config.author} @${handle}`
+    ? config.locale === "en"
+      ? `Slides presented at ${eventLabel} by ${config.author} @${handle}`
+      : `${eventLabel} での発表資料 by ${config.author} @${handle}`
     : config.description;
 
   const ogpImageUrl = `${BASE_URL}/${slug}/opengraph-image.png`;
   return {
     title: eventLabel ? `${title} | ${eventLabel}` : `${title} | mySlides`,
     description: config.description,
+    alternates:
+      slug === "vite-plus-retro-v2/en"
+        ? {
+            canonical: "/vite-plus-retro-v2/en",
+            languages: { ja: "/vite-plus-retro-v2", en: "/vite-plus-retro-v2/en" },
+          }
+        : slug === "vite-plus-retro-v2"
+          ? {
+              canonical: "/vite-plus-retro-v2",
+              languages: { ja: "/vite-plus-retro-v2", en: "/vite-plus-retro-v2/en" },
+            }
+          : undefined,
     openGraph: {
       title,
       description: ogDescription,
       type: "website",
+      ...(config.locale ? { locale: config.locale === "en" ? "en_US" : "ja_JP" } : {}),
       images: [{ url: ogpImageUrl, width: 1200, height: 630, alt: title }],
     },
     twitter: {
