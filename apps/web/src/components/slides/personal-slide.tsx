@@ -21,17 +21,24 @@ export function PersonalHeadingSlide({ children }: PersonalHeadingSlideProps) {
 }
 
 interface PersonalContentSlideProps {
-  title?: string;
+  title?: ReactNode;
   children: ReactNode;
+  align?: "left" | "center";
 }
 
 /** 個人テンプレ - コンテンツスライド */
-export function PersonalContentSlide({ title, children }: PersonalContentSlideProps) {
+export function PersonalContentSlide({
+  title,
+  children,
+  align = "left",
+}: PersonalContentSlideProps) {
+  const textAlignClass = align === "center" ? "text-center" : "text-left";
+
   return (
     <section data-background-image={BG_PERSONAL_CONTENT} data-background-size="contain">
       <div className="flex h-full flex-col justify-center">
-        {title && <h2 className="text-left text-white">{title}</h2>}
-        <div className="text-left text-white">{children}</div>
+        {title && <h2 className={`${textAlignClass} text-white`}>{title}</h2>}
+        <div className={`${textAlignClass} text-white`}>{children}</div>
       </div>
     </section>
   );
