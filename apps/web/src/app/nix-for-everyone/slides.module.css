@@ -1,0 +1,13 @@
+.deck :global(.reveal) {
+  --r-main-font-size: 48px;
+}
+
+.deck :global(.reveal) code {
+  font-size: 1em;
+}
+
+.deck :global(.reveal) :global(.sh-code__pre) {
+  padding: 0.6em 0.7em;
+  font-size: 48px;
+  line-height: 1.35;
+}

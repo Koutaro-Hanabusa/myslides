@@ -1,0 +1,202 @@
+import Image from "next/image";
+import {
+  CodeBlock,
+  PersonalContentSlide,
+  PersonalHeadingSlide,
+  PersonalSelfIntroductionSlide,
+} from "@/components/slides";
+import { COWSAY_DEV_SHELL_EXAMPLE } from "./slides/code-samples";
+
+<PersonalSelfIntroductionSlide>
+
+- ぶりお([@burio_16](https://x.com/burio_16))
+- 千株式会社所属 フロントエンドエンジニア
+- タコスとTottenham Hotspur FCが大好き
+- カンファレンスでは初登壇！
+
+</PersonalSelfIntroductionSlide>
+
+<PersonalHeadingSlide >
+
+Nix = dotfiles<br />フロントエンド...?
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="このLTのモチベーション">
+
+- Claude CodeなどのAIにより、<br />エンジニアでなくてもコードを書くハードルは下がった
+- デザイナーチームが一つのリポジトリでプロトタイプを開発するとなると、<br />Node.jsなどの開発環境を準備する必要がある
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="みんなで同じリポジトリを使うには">
+
+- 各自が手作業やAIで環境を用意すると、ツールやバージョンに<br />差が出る可能性がある
+- Nixを導入することで、開発ツールの構成を定義・共有すれば負荷を軽減できそう！
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>そもそもNixとは...?</PersonalHeadingSlide>
+
+<PersonalContentSlide
+  title={<a href="https://nixos.org/" target="_blank" rel="noopener noreferrer">Nix</a>}
+>
+
+- 純粋関数型パッケージマネージャー
+- Reproducible（再現性）：同じ定義・依存関係から環境を再現できる
+- Declarative（宣言的）：必要なパッケージや開発環境を設定ファイルに宣言する
+- Reliable（信頼性）：パッケージの追加・更新で、ほかのパッケージを壊しにくい
+
+</PersonalContentSlide>
+
+<PersonalContentSlide
+  title={<a href="https://nix.dev/concepts/flakes.html" target="_blank" rel="noopener noreferrer">flake</a>}
+>
+
+- `flake.nix` に、利用するパッケージや開発環境を定義する
+- 生成される`flake.lock` に入力元のバージョンを固定する
+- 定義とlockファイルを共有することで、<br />同じ環境を作成することができる(再現性)
+
+</PersonalContentSlide>
+
+<PersonalContentSlide
+  title={<a href="https://nix.dev/manual/nix/stable/command-ref/new-cli/nix3-develop.html" target="_blank" rel="noopener noreferrer">devShell</a>}
+>
+
+- `mkShell`関数 に必要なツールを定義して、作成する宣言的shell環境
+- `nix develop` で、定義した環境に入る
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="cowsayを使えるようにする">
+
+<div className="grid grid-cols-[3fr_2fr] items-center gap-6">
+  <div className="min-w-0">
+    <p className="mt-0 text-[48px] font-bold">flake.nix（抜粋）</p>
+    <CodeBlock code={COWSAY_DEV_SHELL_EXAMPLE} />
+  </div>
+  <figure className="m-0 min-w-0">
+    <Image
+      src="/slides/nix-for-everyone/assets/cowsay-dev-shell-terminal.png"
+      alt="nix developの前後とexit後にcowsayを実行し、devShell内だけTacotuesdayと話す牛が表示されるターミナル画面"
+      width={673}
+      height={324}
+      className="h-auto w-full rounded-lg"
+    />
+  </figure>
+</div>
+
+cowsayを宣言して `nix develop` すると、そのシェルでcowsayが使える。<br />`exit` すると元のシェルに戻る。
+
+</PersonalContentSlide>
+
+<PersonalContentSlide
+  title={<a href="https://direnv.net/" target="_blank" rel="noopener noreferrer">direnv</a>}
+>
+
+- ディレクトリごとに、環境変数を切り替えるツール
+- `.envrc` に `use flake` と書くと、<br />devShellを毎回手動で起動せずに使える
+
+</PersonalContentSlide>
+
+<PersonalHeadingSlide>
+
+Nixめっちゃええ感じやん！
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+Nix ≠ dotfiles
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+Nix = (開発)環境の管理<br />フロントエンドでも活用できる！
+
+</PersonalHeadingSlide>
+
+<PersonalHeadingSlide>
+
+実際に活用してみた
+
+</PersonalHeadingSlide>
+
+<PersonalContentSlide title="課題">
+
+- 認識合わせやユーザーテストにプロトタイプを使いたい
+- 今回の運用では、Figma MakeのAIクレジット上限による<br />都度追加課金と、社外共有の制約がネックに
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="取り組み">
+
+- エンジニアがNixで開発ツールの構成を定義・共有し、<br />デザイナーが試作・検証を始めやすい環境を用意
+- 自社デザインシステム(MCP,Skillsも)を使い、<br />ローカルのClaude Codeでプロトタイプを作成
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="プロトタイプ環境">
+
+<div className="grid grid-cols-[2fr_3fr] items-center gap-8">
+  <div>
+    <ul>
+      <li>
+        {"同じリポジトリに、"}
+        <br />
+        {"各自のプロトタイプを追加"}
+      </li>
+      <li>
+        {"一覧から試作画面を開いて"}
+        <br />
+        {"確認できる"}
+      </li>
+    </ul>
+  </div>
+  <Image
+    src="/slides/nix-for-everyone/assets/prototype-dashboard.png"
+    alt="複数のプロトタイプがカード形式で並び、それぞれの画面を開けるプロトタイプ環境の一覧"
+    width={2342}
+    height={1772}
+    className="h-auto max-h-[760px] w-full rounded-lg object-contain"
+  />
+</div>
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="Nixを活用して成し遂げたこと">
+
+デザイナー自身で次のループを回せるように。
+
+プロトタイプを作る → ユーザーテスト → FigmaのUIを改善する
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="つまずき">
+
+- private registry認証用のGitHubトークンを<br />direnv経由で読み込んでいたが、VS Code側に伝わらなかった
+- CLI・Neovimでは使えていたため気づかず、<br />VS Code用のdirenv拡張を導入して解決
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="まとめ" >
+
+<div className="text-[1.25em] leading-relaxed">
+
+- AIでコードを書くハードルが下がっても、<br />チームで動かすには開発環境の準備がいる
+- Nixで開発ツールの構成と入力を共有すれば、<br />環境の差を減らし、同じリポジトリで始めやすくできる
+- AI時代に、みんなでフロントを作るためのNix！
+
+</div>
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="話せなかったこと">
+
+- デザインシステムのこと
+- プロトタイピング環境自体のこと
+
+ぜひ懇親会などで話しましょう！
+
+</PersonalContentSlide>

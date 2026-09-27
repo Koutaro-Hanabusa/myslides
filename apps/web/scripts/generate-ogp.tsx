@@ -8,7 +8,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { ReactNode } from "react";
 import satori from "satori";
-import { createOgpProps } from "../src/lib/slides/config";
+import { createOgpProps, getSlideConfig, getSlideTitleLines } from "../src/lib/slides/config";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const APP_DIR = join(HERE, "../src/app");
@@ -33,6 +33,10 @@ interface Spec {
   titleFontSize?: number;
 }
 
+const nixForEveryoneTitleLines = getSlideTitleLines(getSlideConfig("nix-for-everyone")).map(
+  (text) => ({ text, fontSize: 48 }),
+);
+
 const SPECS: Spec[] = [
   { slug: "25-graduate", cover: "chi", titleFontSize: 56 },
   { slug: "autofocus-correct-usage", cover: "burio" },
@@ -45,6 +49,11 @@ const SPECS: Spec[] = [
     ],
   },
   { slug: "community-and-me", cover: "burio" },
+  {
+    slug: "nix-for-everyone",
+    cover: "burio",
+    customLines: nixForEveryoneTitleLines,
+  },
   { slug: "oss-and-community", cover: "burio" },
   { slug: "oss-and-community-v2", cover: "chi" },
   {
