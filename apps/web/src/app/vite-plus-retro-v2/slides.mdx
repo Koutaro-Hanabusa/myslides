@@ -102,9 +102,9 @@ import {
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="なぜ飛び込めた？">
+<PersonalContentSlide title="採用理由">
 
-- まだ 本格運用前（リプレイス後に使う想定）
+- まだ 本格運用前で試せる時期（リプレイス後に使う想定）
 - 元から ツールがほぼ Vite+ の範囲内（Vite/Vitest/Oxlint/Oxfmt）
 - とはいえ α 版なので 最後の一歩は躊躇
 
@@ -177,14 +177,16 @@ import {
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="良かった③ キャッシュがあると爆速">
+<PersonalContentSlide title="良かった③ vp pack でライブラリビルドを改善">
 
-<CodeBlock lang="text" code={VP_TASK_CACHE_LOG} />
+<div className="grid grid-cols-2 gap-4">
+  <CodeBlock lang="ts" code={LIBRARY_MODE_CONFIG} />
+  <CodeBlock lang="text" code={PACK_SIZE_DIFF} />
+</div>
 
-- 使ったファイルを 自動追跡 → 変化なしなら 実行せずリプレイ
-- 実測で 4/5 cache hit・27.38s 短縮
-- 詳しくはこちらがとても参考になります
-  - https://zenn.dev/herp_inc/articles/strange-task-runner
+- `vp build`（Vite Library Mode）→ [vp pack](https://viteplus.dev/guide/pack)（tsdown）へ移行
+- `dts: true` だけで型定義を生成。`vite-plugin-dts` の追加インストール・設定が不要
+- 移行設定込みの実測で、gzip ESM 117KB → 36KB（約1/3）、ビルド時間 約1.59s → 約1.0s(※ 4月時点)
 
 </PersonalContentSlide>
 
@@ -205,16 +207,15 @@ import {
 
 - バグだと思って issue 起票（[#1854](https://github.com/voidzero-dev/vite-plus/issues/1854)）
 - よく見ると 仕様だった（RFC に記載あり）
-- → Migration Guide に追記する形で対応していただきました（[PR #1901](https://github.com/voidzero-dev/vite-plus/pull/1901)・マージ済み）
+  → Migration Guide に追記する形で対応していただきました（[PR #1901](https://github.com/voidzero-dev/vite-plus/pull/1901)・マージ済み）
 
 </PersonalContentSlide>
 
 <PersonalContentSlide title="辛かった② Astro のビルドが壊れた">
 
-- Astro 6 は Vite 7 前提。`overrides.vite` で Vite+ の Vite 8 系に置換
+- docサイトに使用してるAstro 6 は Vite 7 前提。`overrides.vite` で Vite+ の Vite 8 系に置換
 - dev-toolbar が使う esbuild API の互換処理で `Not implemented` が発生し、ビルド失敗していた
 - override を外し、Astro が使う Vite 7 に戻して復旧
-- その後 Astro 7 beta（Vite 8）と Vite+ 0.1.24 へ更新
 
 </PersonalContentSlide>
 
@@ -227,32 +228,20 @@ import {
 | 7.0.0-beta.3 | 0.1.19               | 成功                      |
 | 7.0.0-beta.3 | 0.1.24               | 成功                      |
 
-**この最小構成では、Vite+ 0.1.19 のまま Astro 7 beta へ更新すると成功**
-
-<div className="text-[0.65em]">
-
+この最小構成では、Vite+ 0.1.19 のまま Astro 7 beta へ更新すると成功
 Vite+ 使用時は `vite` override を適用。integration なし・1ページで検証。
 
 [検証コード・実行手順（GitHub）](https://github.com/Koutaro-Hanabusa/astro-vite-plus-repro)
-
-</div>
 
 </PersonalContentSlide>
 
 <PersonalContentSlide title="まとめ">
 
-- 設定を `vite.config.ts` 一つに集約できるのが最高
-- Vite / Vitest / Oxlint / Oxfmt を使っているなら、導入価値はかなり高い
-- 新規リポジトリや本格運用前なら、早めに試す価値あり
-- α 版なので注意は必要だが、今回の辛みは 改善・運用で吸収できる範囲
+- vite.config.tsに全ての設定を記述でき、体験が良い
+- 9/28 Vite+ 1.0リリース今回紹介したつらみも、解消済み
+- Vite / Vitest / Oxlint / Oxfmt を使うなら、もう Vite+ にフルベットしよう
 
 </PersonalContentSlide>
-
-<PersonalHeadingSlide>
-
-ご清聴ありがとうございました
-
-</PersonalHeadingSlide>
 
 <PersonalHeadingSlide>
 
@@ -260,15 +249,14 @@ Vite+ 使用時は `vite` override を適用。integration なし・1ページ�
 
 </PersonalHeadingSlide>
 
-<PersonalContentSlide title="ライブラリモード = vp pack">
+<PersonalContentSlide title="Vite Task：自動キャッシュ">
 
-<div className="grid grid-cols-2 gap-4">
-  <CodeBlock lang="ts" code={LIBRARY_MODE_CONFIG} />
-  <CodeBlock lang="text" code={PACK_SIZE_DIFF} />
-</div>
+<CodeBlock lang="text" code={VP_TASK_CACHE_LOG} />
 
-- `dts: true` の1行で型定義（`vite-plugin-dts` 不要）、React 系は external 扱い
-- rollup → tsdown で gzip ESM 117KB → 36KB（約1/3）
+- 使ったファイルを 自動追跡 → 変化なしなら 実行せずリプレイ
+- 実測で 4/5 cache hit・27.38s 短縮
+- 詳しくはこちらがとても参考になります
+  - [https://zenn.dev/herp_inc/articles/strange-task-runner](https://zenn.dev/herp_inc/articles/strange-task-runner)
 
 </PersonalContentSlide>
 

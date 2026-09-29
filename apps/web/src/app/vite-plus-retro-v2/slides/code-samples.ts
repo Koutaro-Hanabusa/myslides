@@ -47,7 +47,6 @@ pack: {
   sourcemap: true,
   minify: true,
   deps: {
-    // react 系は peer で external、それ以外はバンドル
     alwaysBundle: ["clsx", "tailwind-merge", "dayjs"],
   },
 }`;
