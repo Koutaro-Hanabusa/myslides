@@ -14,21 +14,11 @@ if [ -z "$SLIDE_NAME" ]; then
 fi
 
 if [ -z "$OUTPUT_FILE" ]; then
-  OUTPUT_FILE="${SLIDE_NAME}.pdf"
+  OUTPUT_FILE="${SLIDE_NAME//\//-}.pdf"
 fi
 
 # Downloadsフォルダに出力
 OUTPUT_PATH="$HOME/Downloads/${OUTPUT_FILE}"
-
-# 既存のnext devプロセスを停止（ロックファイル競合を防ぐ）
-for port in 3001 $PORT; do
-  EXISTING_PID=$(lsof -ti :$port 2>/dev/null || true)
-  if [ -n "$EXISTING_PID" ]; then
-    echo "Stopping existing dev server on port $port (PID: $EXISTING_PID)..."
-    kill $EXISTING_PID 2>/dev/null || true
-  fi
-done
-sleep 2
 
 # decktapeがインストールされているか確認
 if ! command -v decktape > /dev/null 2>&1; then
@@ -37,45 +27,60 @@ if ! command -v decktape > /dev/null 2>&1; then
   exit 1
 fi
 
+if lsof -nP -iTCP:$PORT -sTCP:LISTEN -t > /dev/null 2>&1; then
+  echo "Error: Port $PORT is already in use. Stop the existing process and try again."
+  exit 1
+fi
+
 echo "Starting dev server on port $PORT (DevTools disabled)..."
 
 # DevToolsを非表示にして開発サーバーをバックグラウンドで起動
-cd apps/web && NEXT_PUBLIC_HIDE_DEVTOOLS=1 bun run next dev --port=$PORT &
+(
+  cd apps/web || exit 1
+  export NEXT_PUBLIC_HIDE_DEVTOOLS=1
+  exec vp exec vinext dev --port "$PORT"
+) &
 SERVER_PID=$!
 
 # クリーンアップ用のトラップ
 cleanup() {
-  echo "Stopping dev server..."
-  # ポートを使っているプロセスを直接終了
-  PORT_PID=$(lsof -ti :$PORT 2>/dev/null || true)
-  if [ -n "$PORT_PID" ]; then
-    kill $PORT_PID 2>/dev/null || true
-  fi
-  kill $SERVER_PID 2>/dev/null || true
-  pkill -P $SERVER_PID 2>/dev/null || true
-  sleep 1
-  # まだ残っていたら強制終了
-  PORT_PID=$(lsof -ti :$PORT 2>/dev/null || true)
-  if [ -n "$PORT_PID" ]; then
-    kill -9 $PORT_PID 2>/dev/null || true
+  if kill -0 "$SERVER_PID" 2>/dev/null; then
+    echo "Stopping dev server..."
+    kill -TERM "$SERVER_PID" 2>/dev/null || true
+    wait "$SERVER_PID" 2>/dev/null || true
   fi
 }
 trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
 
 # サーバー起動を待機
 echo "Waiting for server to start..."
-sleep 5
+SLIDE_URL="http://localhost:$PORT/$SLIDE_NAME"
 
 # サーバーが起動したか確認
 for i in $(seq 1 30); do
-  if curl -s "http://localhost:$PORT/$SLIDE_NAME" > /dev/null 2>&1; then
-    echo "Server is ready!"
-    break
-  fi
-  if [ "$i" -eq 30 ]; then
-    echo "Error: Server failed to start"
+  if ! kill -0 "$SERVER_PID" 2>/dev/null; then
+    wait "$SERVER_PID" || SERVER_STATUS=$?
+    echo "Error: Dev server exited before becoming ready (status: ${SERVER_STATUS:-0})"
     exit 1
   fi
+
+  if HTTP_CODE=$(curl --silent --max-time 2 --output /dev/null --write-out '%{http_code}' "$SLIDE_URL"); then
+    if [ "$HTTP_CODE" = "200" ]; then
+      echo "Server is ready!"
+      break
+    fi
+
+    echo "Error: $SLIDE_URL returned HTTP $HTTP_CODE"
+    exit 1
+  fi
+
+  if [ "$i" -eq 30 ]; then
+    echo "Error: Server failed to start within 30 seconds: $SLIDE_URL"
+    exit 1
+  fi
+
   sleep 1
 done
 
@@ -83,7 +88,7 @@ echo "Exporting $SLIDE_NAME to $OUTPUT_PATH..."
 
 # decktapeでPDF出力
 decktape generic --key=ArrowRight -p $WAIT_TIME \
-  "http://localhost:$PORT/$SLIDE_NAME" \
+  "$SLIDE_URL" \
   "$OUTPUT_PATH"
 
 echo "✓ PDF exported successfully: $OUTPUT_PATH"
