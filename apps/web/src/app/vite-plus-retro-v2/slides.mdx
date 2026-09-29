@@ -14,26 +14,29 @@ import {
   PACK_SIZE_DIFF,
 } from "./slides/code-samples";
 
-<PersonalContentSlide title="English">
+<PersonalContentSlide
+  title="English"
+  aside={
+    <Image
+      src="/slides/vite-plus-retro-v2/assets/english-slides-qr.png"
+      alt="QR code for the English version of this presentation"
+      width={2000}
+      height={2000}
+      className="size-full rounded-xl object-contain"
+      style={{ maxWidth: "none", maxHeight: "none" }}
+    />
+  }
+>
 
-<div className="grid grid-cols-2 items-center gap-12">
-  <div>
+<div>
   <p>I don't speak English🙏</p>
-    <p className="text-4xl">Read this presentation in English</p>
-    <div className="break-all text-3xl underline">
+  <p className="text-4xl">Read this presentation in English</p>
+  <div className="break-all text-3xl underline">
 
 [https://slide.burio16.com/vite-plus-retro-v2/en](https://slide.burio16.com/vite-plus-retro-v2/en)
 
-    </div>
-
   </div>
-  <Image
-    src="/slides/vite-plus-retro-v2/assets/english-slides-qr.png"
-    alt="QR code for the English version of this presentation"
-    width={2000}
-    height={2000}
-    className="h-auto w-full rounded-xl"
-  />
+
 </div>
 
 </PersonalContentSlide>

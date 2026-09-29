@@ -24,6 +24,7 @@ interface PersonalContentSlideProps {
   title?: ReactNode;
   children: ReactNode;
   align?: "left" | "center";
+  aside?: ReactNode;
 }
 
 /** 個人テンプレ - コンテンツスライド */
@@ -31,15 +32,25 @@ export function PersonalContentSlide({
   title,
   children,
   align = "left",
+  aside,
 }: PersonalContentSlideProps) {
   const textAlignClass = align === "center" ? "text-center" : "text-left";
 
   return (
-    <section data-background-image={BG_PERSONAL_CONTENT} data-background-size="contain">
-      <div className="flex h-full flex-col justify-center">
+    <section
+      className={aside ? "h-full" : undefined}
+      data-background-image={BG_PERSONAL_CONTENT}
+      data-background-size="contain"
+    >
+      <div className={`flex h-full flex-col justify-center${aside ? " w-1/2 pr-12" : ""}`}>
         {title && <h2 className={`${textAlignClass} text-white`}>{title}</h2>}
         <div className={`${textAlignClass} text-white`}>{children}</div>
       </div>
+      {aside && (
+        <aside className="absolute right-0 top-1/2 aspect-square w-1/2 -translate-y-1/2">
+          {aside}
+        </aside>
+      )}
     </section>
   );
 }
