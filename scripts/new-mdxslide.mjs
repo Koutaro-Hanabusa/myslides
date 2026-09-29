@@ -1,6 +1,6 @@
 import { existsSync } from "node:fs";
-import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
-import { join, dirname } from "node:path";
+import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { join, dirname, basename, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createInterface } from "node:readline/promises";
 import { execFileSync } from "node:child_process";
@@ -14,12 +14,16 @@ function insertOnce(source, marker, insertion, label, inside = false) {
   return source.replace(marker, inside ? marker + insertion : insertion + marker);
 }
 
-function formatSource(path, source) {
-  return execFileSync("vp", ["fmt", "--stdin-filepath", path], {
-    cwd: ROOT,
-    input: source,
-    encoding: "utf8",
-  });
+async function formatSource(path, source) {
+  const tempDir = await mkdtemp(join(ROOT, "scripts/new-mdxslide-format-"));
+  const tempFile = join(tempDir, basename(path));
+  try {
+    await writeFile(tempFile, source);
+    execFileSync("vp", ["fmt", relative(ROOT, tempFile)], { cwd: ROOT, stdio: "pipe" });
+    return await readFile(tempFile, "utf8");
+  } finally {
+    await rm(tempDir, { recursive: true, force: true });
+  }
 }
 
 function slideFiles(slug, kind) {
@@ -206,7 +210,7 @@ export async function createSlide(root, slug, kind) {
     for (const [name, content] of Object.entries(slideFiles(slug, kind))) {
       await writeFile(
         join(target, name),
-        formatSource(`apps/web/src/app/${slug}/${name}`, content),
+        await formatSource(`apps/web/src/app/${slug}/${name}`, content),
         { flag: "wx" },
       );
     }
@@ -215,7 +219,7 @@ export async function createSlide(root, slug, kind) {
     await mkdir(join(assets, "assets"));
     await writeFile(join(assets, "assets/.gitkeep"), "", { flag: "wx" });
     for (const [key, path] of Object.entries(paths)) {
-      await writeFile(path, formatSource(path.slice(root.length + 1), updated[key]));
+      await writeFile(path, await formatSource(path.slice(root.length + 1), updated[key]));
     }
   } catch (error) {
     for (const [key, path] of Object.entries(paths)) await writeFile(path, original[key]);
