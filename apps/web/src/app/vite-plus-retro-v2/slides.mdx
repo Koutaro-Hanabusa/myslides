@@ -14,13 +14,12 @@ import {
   PACK_SIZE_DIFF,
 } from "./slides/code-samples";
 
-<PersonalContentSlide title="English slides">
+<PersonalContentSlide title="English">
 
-<div className="grid grid-cols-[minmax(0,1fr)_280px] items-center gap-12">
+<div className="grid grid-cols-2 items-center gap-12">
   <div>
-
   <p>I don't speak English🙏</p>
-    <p className="text-4xl">Read this presentation in English:</p>
+    <p className="text-4xl">Read this presentation in English</p>
     <div className="break-all text-3xl underline">
 
 [https://slide.burio16.com/vite-plus-retro-v2/en](https://slide.burio16.com/vite-plus-retro-v2/en)
@@ -28,9 +27,13 @@ import {
     </div>
 
   </div>
-  <div className="flex aspect-square items-center justify-center rounded-xl border-4 border-dashed border-white/60 text-2xl text-white/70">
-    QR code
-  </div>
+  <Image
+    src="/slides/vite-plus-retro-v2/assets/english-slides-qr.png"
+    alt="QR code for the English version of this presentation"
+    width={2000}
+    height={2000}
+    className="h-auto w-full rounded-xl"
+  />
 </div>
 
 </PersonalContentSlide>
