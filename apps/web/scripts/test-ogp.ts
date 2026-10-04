@@ -2,7 +2,7 @@
 // 200 / image/* / 1KB 超 を満たすか検証する。
 //
 // 使い方:
-//   bun run test:ogp                                # build → vinext start → 検証 → 停止
+//   bun run test:ogp                                # build → Vite preview → 検証 → 停止
 //   TEST_OGP_BASE_URL=http://localhost:3001 bun run test:ogp  # 既存サーバに直接当てる
 //   TEST_OGP_BASE_URL=https://slide.burio16.com bun run test:ogp  # 本番
 
@@ -18,7 +18,7 @@ const REQUEST_TIMEOUT_MS = 15_000;
 const MIN_BODY_BYTES = 1024;
 
 async function discoverRoutes(): Promise<string[]> {
-  const routes: string[] = [];
+  const routes = new Set<string>();
   async function walk(dir: string, prefix: string) {
     const entries = await readdir(dir, { withFileTypes: true });
     for (const e of entries) {
@@ -26,12 +26,12 @@ async function discoverRoutes(): Promise<string[]> {
         if (e.name.startsWith("_") || e.name.startsWith(".") || e.name === "api") continue;
         await walk(join(dir, e.name), `${prefix}/${e.name}`);
       } else if (/^opengraph-image\.(tsx|png|jpg|jpeg|gif)$/.test(e.name)) {
-        routes.push(prefix);
+        routes.add(prefix);
       }
     }
   }
   await walk(APP_DIR, "");
-  return routes.sort();
+  return [...routes].sort();
 }
 
 async function waitForServer(url: string): Promise<void> {
@@ -48,11 +48,22 @@ async function waitForServer(url: string): Promise<void> {
   throw new Error(`Server did not respond within ${STARTUP_TIMEOUT_MS}ms at ${url}`);
 }
 
+function stopServer(child: ChildProcess): void {
+  if (child.killed) return;
+  try {
+    if (process.platform === "win32" || child.pid === undefined) child.kill("SIGTERM");
+    else process.kill(-child.pid, "SIGTERM");
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== "ESRCH") throw error;
+  }
+}
+
 async function startServer(): Promise<{ baseUrl: string; child: ChildProcess }> {
   const baseUrl = `http://localhost:${PORT}`;
-  console.log(`▶ Starting vinext start on ${baseUrl} ...`);
-  const child = spawn("bunx", ["vinext", "start", "--port", String(PORT)], {
+  console.log(`▶ Starting Vite preview on ${baseUrl} ...`);
+  const child = spawn("vp", ["run", "start", "--", "--port", String(PORT)], {
     cwd: join(APP_DIR, "../.."),
+    detached: process.platform !== "win32",
     stdio: ["ignore", "pipe", "pipe"],
     env: { ...process.env, NODE_ENV: "production" },
   });
@@ -61,7 +72,12 @@ async function startServer(): Promise<{ baseUrl: string; child: ChildProcess }> 
     const s = buf.toString();
     if (/error|Error/.test(s)) process.stderr.write(`[server] ${s}`);
   });
-  await waitForServer(baseUrl);
+  try {
+    await waitForServer(baseUrl);
+  } catch (error) {
+    stopServer(child);
+    throw error;
+  }
   return { baseUrl, child };
 }
 
@@ -118,7 +134,7 @@ async function main(): Promise<void> {
   }
 
   const cleanup = () => {
-    if (child && !child.killed) child.kill("SIGTERM");
+    if (child) stopServer(child);
   };
   process.on("SIGINT", () => {
     cleanup();

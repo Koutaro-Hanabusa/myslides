@@ -51,6 +51,7 @@ const SPECS: Spec[] = [
     ],
   },
   { slug: "community-and-me", cover: "burio" },
+  { slug: "my-favorite-thing", cover: "burio" },
   {
     slug: "nix-for-everyone",
     cover: "burio",

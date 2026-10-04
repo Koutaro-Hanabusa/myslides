@@ -10,11 +10,11 @@
     "build": "vinext build",
     "prebuild:staging": "cf workers types && bun scripts/generate-ogp.tsx",
     "build:staging": "vinext build --mode staging",
-    "start": "vinext start",
+    "start": "vp preview",
     "deploy": "vp run build && cf deploy --prebuilt --mode production",
     "deploy:staging": "vp run build:staging && cf deploy --prebuilt --mode staging",
     "cf-typegen": "cf workers types",
-    "test:ogp": "vinext build && bun scripts/test-ogp.ts",
+    "test:ogp": "vp run build && bun scripts/test-ogp.ts",
     "test:ogp:remote": "bun scripts/test-ogp.ts"
   },
   "dependencies": {
