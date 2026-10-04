@@ -21,7 +21,9 @@ jobs:
           cache: true
       - run: vp install
       - name: Generate Cloudflare types
-        run: vp run -F server cf-typegen
+        run: |
+          vp run -F server cf-typegen
+          vp run -F web cf-typegen
       # build を先に実行: next build が next-env.d.ts / .next/types を生成し、
       # 後段の type-aware lint で *.png 等のモジュール型を解決できるようにする。
       - name: Build
