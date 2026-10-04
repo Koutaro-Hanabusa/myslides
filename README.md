@@ -23,6 +23,7 @@ First, install the dependencies:
 
 ```bash
 bun install
+vp run -F server cf-typegen
 ```
 
 ## Database Setup
