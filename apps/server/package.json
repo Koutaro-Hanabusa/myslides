@@ -3,13 +3,15 @@
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
-    "build": "wrangler deploy --dry-run",
+    "prebuild": "cf workers types",
+    "build": "cf build",
+    "precheck-types": "cf workers types",
     "check-types": "tsc -b",
     "compile": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server",
-    "dev": "wrangler dev --port=3000 --inspector-port=9230",
-    "start": "wrangler dev",
-    "deploy": "wrangler deploy",
-    "cf-typegen": "wrangler types --env-interface CloudflareBindings"
+    "dev": "cf dev",
+    "start": "cf dev",
+    "deploy": "vp run build && cf deploy --prebuilt --mode production",
+    "cf-typegen": "cf workers types"
   },
   "dependencies": {
     "@hono/trpc-server": "^0.4.0",
@@ -21,10 +23,12 @@
     "zod": "catalog:"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "catalog:",
     "@mySlides/config": "workspace:*",
     "@types/node": "catalog:",
+    "cf": "catalog:",
     "typescript": "catalog:",
-    "vite-plus": "catalog:",
-    "wrangler": "catalog:"
+    "vite": "catalog:",
+    "vite-plus": "catalog:"
   }
 }

@@ -22,8 +22,9 @@ This project was created with [Better-T-Stack](https://github.com/AmanVarshney01
 First, install the dependencies:
 
 ```bash
-bun install
+vp install
 vp run -F server cf-typegen
+vp run -F web cf-typegen
 ```
 
 ## Database Setup
@@ -31,20 +32,21 @@ vp run -F server cf-typegen
 This project uses SQLite with Drizzle ORM.
 
 1. Start the local SQLite database:
-   Local development for a Cloudflare D1 database will already be running as part of the `wrangler dev` command.
+   Local development for a Cloudflare D1 database runs as part of `cf dev`.
+   The Cloudflare Vite plugin reuses the existing `apps/server/.wrangler/state` directory.
 
 2. Update your `.env` file in the `apps/server` directory with the appropriate connection details if needed.
 
 3. Apply the schema to your database:
 
 ```bash
-bun run db:push
+vp run db:push
 ```
 
 Then, run the development server:
 
 ```bash
-bun run dev
+vp run dev
 ```
 
 Open [http://localhost:3001](http://localhost:3001) in your browser to see the web application.
@@ -67,11 +69,33 @@ BETTER_AUTH_URL={your-production-server-domain}
 
 - In `apps/server/src/lib/auth.ts`, uncomment the `session.cookieCache` and `advanced.crossSubDomainCookies` sections and replace `<your-workers-subdomain>` with your actual workers subdomain. These settings are required to ensure cookies are transferred properly between your web and server domains.
 
-## Deployment (Cloudflare Wrangler)
+## Cloudflare CLI
 
-- Web deploy: cd apps/web && bun run deploy
-- Server dev: cd apps/server && bun run dev
-- Server deploy: cd apps/server && bun run deploy
+The Worker configuration for each app lives in `cloudflare.config.ts`. Run `cf`
+through the Vite+ scripts so it uses Node.js 24 (Node.js 22.18 or newer is
+required). Bun remains the package manager and runs the OGP generator.
+
+- Web dev: `vp run -F web dev`
+- Server dev (port 3000, inspector 9230): `vp run -F server dev`
+- Build both Workers after the shared packages: `vp run build:cloudflare`
+- Deploy the production web Worker: `vp run deploy:cloudflare`
+- Deploy the server Worker: `vp run -F server deploy`
+- Deploy only the staging web Worker: `vp run deploy:cloudflare:staging`
+
+Deployment scripts build first, then run `cf deploy --prebuilt` with the
+appropriate mode. To validate without uploading, run
+`cf deploy --prebuilt --dry-run --mode production` in each app after its build.
+For the web staging Worker, first run `vp run -F web build:staging`, then run
+`cf deploy --prebuilt --dry-run --mode staging` from `apps/web`.
+
+The former D1 `migrations_dir` is not supported in `cloudflare.config.ts`.
+When SQL migration files are added under `apps/server/src/db/migrations`, apply
+them locally from `apps/server` while preserving the existing state:
+
+```bash
+cf d1 migrations apply local-test-db \
+  --dir ./src/db/migrations --local --persist-to .wrangler/state
+```
 
 ## Project Structure
 
@@ -87,15 +111,14 @@ mySlides/
 
 ## Available Scripts
 
-- `bun run dev`: Start all applications in development mode
-- `bun run build`: Build all applications
-- `bun run dev:web`: Start only the web application
-- `bun run dev:server`: Start only the server
-- `bun run check-types`: Check TypeScript types across all apps
-- `bun run db:push`: Push schema changes to database
-- `bun run db:studio`: Open database studio UI
-- `cd apps/server && bun run db:local`: Start the local SQLite database
-- `bun run check`: Run Biome formatting and linting
+- `vp run dev`: Start all applications in development mode
+- `vp run build`: Build all applications
+- `vp run dev:web`: Start only the web application
+- `vp run dev:server`: Start only the server
+- `vp run check-types`: Generate Cloudflare types and check TypeScript types
+- `vp run db:push`: Push schema changes to database
+- `vp run db:studio`: Open database studio UI
+- `vp run check`: Run formatting and linting
 
 ### MDX スライドを作成する
 

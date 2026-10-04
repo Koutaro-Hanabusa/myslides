@@ -6,9 +6,10 @@ import vinext from "vinext";
 
 export default defineConfig({
   plugins: [
-    mdx({ remarkPlugins: [remarkGfm] }),
+    { ...mdx({ remarkPlugins: [remarkGfm] }), enforce: "pre" },
     vinext(),
     cloudflare({
+      persistState: { path: ".wrangler/state" },
       viteEnvironment: { name: "rsc", childEnvironments: ["ssr"] },
     }),
   ],

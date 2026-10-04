@@ -24,7 +24,7 @@
     }
   },
   "include": [
-    "../server/worker-configuration.d.ts",
+    "./.cloudflare/types/**/*.d.ts",
     "./next-env.d.ts",
     "./**/*.ts",
     "./**/*.tsx",

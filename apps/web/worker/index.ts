@@ -6,7 +6,7 @@
  * vite.config via the vinext({ cache }) option.
  *
  * For apps without image optimization, you can use vinext/server/app-router-entry
- * directly in wrangler.jsonc: "main": "vinext/server/app-router-entry"
+ * directly in cloudflare.config.ts as the Worker entrypoint.
  */
 import {
   handleImageOptimization,
