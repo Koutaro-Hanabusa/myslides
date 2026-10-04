@@ -18,6 +18,9 @@ jobs:
         with:
           bun-version: "1.2.23"
       - run: bun install --frozen-lockfile
+      - name: Generate Cloudflare types
+        working-directory: apps/server
+        run: bun run cf-typegen
       - name: Build and deploy
         working-directory: apps/web
         env:

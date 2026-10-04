@@ -15,8 +15,8 @@
       "wrangler": "^4.107.0",
       "@types/node": "^22.13.11",
       "@trpc/client": "^11.5.0",
-      "vite": "npm:@voidzero-dev/vite-plus-core@0.2.4",
-      "vite-plus": "0.2.4"
+      "vite": "npm:@voidzero-dev/vite-plus-core@1.0.0",
+      "vite-plus": "1.0.0"
     }
   },
   "type": "module",
