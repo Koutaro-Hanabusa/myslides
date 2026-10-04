@@ -6,13 +6,15 @@
   "scripts": {
     "dev": "vinext dev --port=3001",
     "generate:ogp": "bun scripts/generate-ogp.tsx",
-    "prebuild": "bun scripts/generate-ogp.tsx",
+    "prebuild": "cf workers types && bun scripts/generate-ogp.tsx",
     "build": "vinext build",
-    "start": "vinext start",
-    "deploy": "wrangler deploy",
-    "deploy:staging": "wrangler deploy --env staging",
-    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
-    "test:ogp": "vinext build && bun scripts/test-ogp.ts",
+    "prebuild:staging": "cf workers types && bun scripts/generate-ogp.tsx",
+    "build:staging": "vinext build --mode staging",
+    "start": "vp preview",
+    "deploy": "vp run build && cf deploy --prebuilt --mode production",
+    "deploy:staging": "vp run build:staging && cf deploy --prebuilt --mode staging",
+    "cf-typegen": "cf workers types",
+    "test:ogp": "vp run build && bun scripts/test-ogp.ts",
     "test:ogp:remote": "bun scripts/test-ogp.ts"
   },
   "dependencies": {
@@ -42,7 +44,7 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "^1.42.3",
+    "@cloudflare/vite-plugin": "catalog:",
     "@fontsource/noto-sans-jp": "^5.2.9",
     "@mdx-js/rollup": "^3.1.1",
     "@mySlides/config": "workspace:*",
@@ -55,12 +57,12 @@
     "@types/reveal.js": "^5.2.1",
     "@vitejs/plugin-react": "^6.0.3",
     "@vitejs/plugin-rsc": "^0.5.34",
+    "cf": "catalog:",
     "react-server-dom-webpack": "^19.2.7",
     "satori": "^0.26.0",
     "tailwindcss": "^4.1.10",
     "typescript": "catalog:",
     "vinext": "^1.0.0",
-    "vite": "catalog:",
-    "wrangler": "catalog:"
+    "vite": "catalog:"
   }
 }

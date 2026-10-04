@@ -14,24 +14,23 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
+      - uses: voidzero-dev/setup-vp@v1
         with:
-          bun-version: "1.2.23"
-      - run: bun install --frozen-lockfile
+          node-version: "24"
+          cache: true
+      - run: vp install --frozen-lockfile
       - name: Generate Cloudflare types
-        working-directory: apps/server
-        run: bun run cf-typegen
+        run: |
+          vp run -F server cf-typegen
+          vp run -F web cf-typegen
       - name: Build and deploy
-        working-directory: apps/web
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           NEXT_PUBLIC_R2_BASE_URL: "https://pub-12dea38316b14a799f73d17465eadeb1.r2.dev"
           NEXT_PUBLIC_BASE_URL: "https://myslides-staging.koutarouhanabusa.workers.dev"
           NEXT_PUBLIC_SERVER_URL: "https://myslides-server.koutarouhanabusa.workers.dev"
-        run: |
-          bun run build
-          bun run deploy:staging
+        run: vp run deploy:cloudflare:staging
       - run: |
           echo "## Staging Preview" >> $GITHUB_STEP_SUMMARY
           echo "https://myslides-staging.koutarouhanabusa.workers.dev" >> $GITHUB_STEP_SUMMARY
