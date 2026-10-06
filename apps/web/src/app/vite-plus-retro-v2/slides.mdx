@@ -7,8 +7,6 @@ import {
 } from "@/components/slides";
 import {
   ALL_IN_ONE_CONFIG,
-  BEFORE_AFTER_CONFIG,
-  VP_TASK_CONFIG,
   VP_TASK_CACHE_LOG,
   LIBRARY_MODE_CONFIG,
   PACK_SIZE_DIFF,
@@ -72,15 +70,6 @@ import {
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="設定ファイル、散らばりがち">
-
-<CodeBlock lang="text" code={BEFORE_AFTER_CONFIG} />
-
-- test / lint / fmt / build / task / hooks が別々のツール、設定ファイルになりがち
-- Vite+ はこの散らばりを `vite.config.ts` に統一することができる
-
-</PersonalContentSlide>
-
 <PersonalHeadingSlide>
 
 どこに導入した？
@@ -92,6 +81,7 @@ import {
 - 社内で デザインシステム を開発中
 - 構成は Vite + Vitest + Oxlint + Oxfmt のモノレポ（タスクは Turborepo）
 - → Vite+ が束ねる範囲と ほぼ重なっていた
+- まだ本格運用前で試せる時期。
 
 </PersonalContentSlide>
 
@@ -100,21 +90,6 @@ import {
 爆速(当社比)で移行
 
 </PersonalHeadingSlide>
-
-<PersonalContentSlide title="3/13 → 3/24">
-
-- 公開から移行完了まで、わずか 10日ちょっと
-- α版を本番に投入
-
-</PersonalContentSlide>
-
-<PersonalContentSlide title="採用理由">
-
-- まだ 本格運用前で試せる時期（リプレイス後に使う想定）
-- 元から ツールがほぼ Vite+ の範囲内（Vite/Vitest/Oxlint/Oxfmt）
-- とはいえ α 版なので 最後の一歩は躊躇
-
-</PersonalContentSlide>
 
 <PersonalHeadingSlide>
 
@@ -148,16 +123,9 @@ import {
   }}
 />
 
+Vite+ 0.1.13
+
 </PersonalHeadingSlide>
-
-<PersonalContentSlide title="移行 PR でやったこと">
-
-- `vp migrate` で Vite / Vitest / Oxlint / Oxfmt / Turborepo を統合
-- `turbo.json` ほか各種設定ファイルを まとめて削除
-- テスト import を `vitest` → `vite-plus/test` に変更
-- CI も `voidzero-dev/setup-vp` ベースに変更
-
-</PersonalContentSlide>
 
 <PersonalHeadingSlide>
 
@@ -168,8 +136,8 @@ import {
 <PersonalContentSlide title="良かった① vp migrate が最高">
 
 - 既存プロジェクトを Vite+ に移行するための スタート地点
-- 依存関係・import・設定ファイル・scripts を まとめて更新
-- hooks・AI agent・エディタ設定のセットアップにも対応
+- 依存関係・import・設定・scripts を まとめて更新し、既存ツールを統合
+- テスト import は `vite-plus/test`、CI は `voidzero-dev/setup-vp` へ移行
 
 </PersonalContentSlide>
 
@@ -206,14 +174,7 @@ import {
 
 - `vp migrate` 時、lefthook は自動移行されず警告のみ
 - 気づかず pre-commit が壊れていた → 設定を手動修正
-
-</PersonalContentSlide>
-
-<PersonalContentSlide title="その後 → 実は仕様でした">
-
-- バグだと思って issue 起票（[#1854](https://github.com/voidzero-dev/vite-plus/issues/1854)）
-- よく見ると 仕様だった（RFC に記載あり）
-  → Migration Guide に追記する形で対応していただきました（[PR #1901](https://github.com/voidzero-dev/vite-plus/pull/1901)・マージ済み）
+- バグだと思い [Issue #1854](https://github.com/voidzero-dev/vite-plus/issues/1854) を起票 → 実は仕様で、[PR #1901](https://github.com/voidzero-dev/vite-plus/pull/1901) で Migration Guide に追記
 
 </PersonalContentSlide>
 
