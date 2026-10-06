@@ -48,7 +48,7 @@ Nix = dotfiles<br />フロントエンド...?
 >
 
 - `flake.nix` に、利用する開発ツールや環境を定義する
-- `flake.lock` で、nixpkgsなど入力元のrevisionを固定する
+- 生成される`flake.lock` で、nixpkgsなど入力元のバージョンを固定する
 - 両方を共有すると、定義した開発ツールの構成・バージョンを揃えられる（再現性）
 
 </PersonalContentSlide>
@@ -127,13 +127,6 @@ Nix = (開発)環境の管理<br />フロントエンドでも活用できる！
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="取り組み">
-
-- 開発環境を定義した`flake.nix`を用意
-- 自社デザインシステム（MCP・Skills）を活用し、<br />ローカルのClaude Codeでプロトタイプを作成できる環境を用意
-
-</PersonalContentSlide>
-
 <PersonalContentSlide
   title="プロトタイプ環境"
   aside={
@@ -150,6 +143,14 @@ Nix = (開発)環境の管理<br />フロントエンドでも活用できる！
 
 - デザイナーが同じリポジトリにプロトタイプを追加
 - 一覧から各画面のプロトタイプを開いて確認できる
+
+</PersonalContentSlide>
+
+<PersonalContentSlide title="取り組み">
+
+- 開発環境を定義した`flake.nix`を用意
+- 自社デザインシステム（MCP・Skills）を活用し、<br />ローカルのClaude Codeでプロトタイプを作成できるように
+- Gitの操作なども意識しなくていいように、skillsを用意
 
 </PersonalContentSlide>
 
