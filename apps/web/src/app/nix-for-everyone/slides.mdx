@@ -33,7 +33,18 @@ Nix = dotfiles<br />フロントエンド...?
 <PersonalHeadingSlide>そもそもNixとは...?</PersonalHeadingSlide>
 
 <PersonalContentSlide
-  title={<a href="https://nixos.org/" target="_blank" rel="noopener noreferrer">Nix</a>}
+  title={
+    <span className="inline-flex items-center gap-6">
+      <Image
+        src="/slides/nix-for-everyone/assets/nixos-logomark.svg"
+        alt="NixOSの雪片ロゴ"
+        width={104}
+        height={96}
+        className="h-24 w-auto"
+      />
+      <a href="https://nixos.org/" target="_blank" rel="noopener noreferrer">Nix</a>
+    </span>
+  }
 >
 
 - 純粋関数型パッケージマネージャー
@@ -87,7 +98,18 @@ cowsayを宣言して `nix develop` すると、そのシェルでcowsayが使�
 </PersonalContentSlide>
 
 <PersonalContentSlide
-  title={<a href="https://direnv.net/" target="_blank" rel="noopener noreferrer">direnv</a>}
+  title={
+    <span className="inline-flex items-center gap-6">
+      <Image
+        src="/slides/nix-for-everyone/assets/direnv-logo.svg"
+        alt="direnvのロゴ"
+        width={96}
+        height={96}
+        className="size-24"
+      />
+      <a href="https://direnv.net/" target="_blank" rel="noopener noreferrer">direnv</a>
+    </span>
+  }
 >
 
 - ディレクトリごとに、環境変数を切り替えるツール
