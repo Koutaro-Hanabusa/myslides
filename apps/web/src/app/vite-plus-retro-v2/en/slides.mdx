@@ -7,7 +7,6 @@ import {
 } from "@/components/slides";
 import {
   ALL_IN_ONE_CONFIG,
-  BEFORE_AFTER_CONFIG,
   LIBRARY_MODE_CONFIG,
   PACK_SIZE_DIFF,
   VP_TASK_CACHE_LOG,
@@ -52,15 +51,6 @@ What Is Vite+?
 
 </PersonalContentSlide>
 
-<PersonalContentSlide title="Configuration Gets Scattered">
-
-<CodeBlock lang="text" code={BEFORE_AFTER_CONFIG} />
-
-- test / lint / fmt / build / task / hooks often use separate tools and config files
-- Vite+ can consolidate them in `vite.config.ts`
-
-</PersonalContentSlide>
-
 <PersonalHeadingSlide>
 
 Where Did We Adopt It?
@@ -72,6 +62,7 @@ Where Did We Adopt It?
 - We are building a design system in-house
 - It is a Vite + Vitest + Oxlint + Oxfmt monorepo, with Turborepo for tasks
 - → Its toolset almost completely overlapped with Vite+
+- It was still pre-production and easy to try
 
 </PersonalContentSlide>
 
@@ -80,21 +71,6 @@ Where Did We Adopt It?
 Migrated at Breakneck Speed<br />(By Our Standards)
 
 </PersonalHeadingSlide>
-
-<PersonalContentSlide title="March 13 → March 24">
-
-- Just over 10 days from release to completing the migration
-- We put an alpha release into production
-
-</PersonalContentSlide>
-
-<PersonalContentSlide title="Why We Adopted It">
-
-- We could try it before full production, as the system was intended for use after a replacement
-- Our tools already fell almost entirely within Vite+'s scope: Vite / Vitest / Oxlint / Oxfmt
-- Still, its alpha status made us hesitate at the final step
-
-</PersonalContentSlide>
 
 <PersonalHeadingSlide>
 
@@ -128,16 +104,9 @@ Breakneck Speed!!<br />(By Our Standards)
   }}
 />
 
+Vite+ 0.1.13
+
 </PersonalHeadingSlide>
-
-<PersonalContentSlide title="What We Changed in the Migration PR">
-
-- Used `vp migrate` to unify Vite / Vitest / Oxlint / Oxfmt / Turborepo
-- Removed `turbo.json` and the other separate config files
-- Changed test imports from `vitest` to `vite-plus/test`
-- Updated CI to use `voidzero-dev/setup-vp`
-
-</PersonalContentSlide>
 
 <PersonalHeadingSlide>
 
@@ -148,8 +117,8 @@ How Did It Go?
 <PersonalContentSlide title="Win 1: vp migrate Is Excellent">
 
 - A starting point for migrating an existing project to Vite+
-- Updates dependencies, imports, config files, and scripts together
-- Also sets up hooks, AI agents, and editor settings
+- Updates dependencies, imports, config, and scripts together while unifying the existing tools
+- Moved test imports to `vite-plus/test` and CI to `voidzero-dev/setup-vp`
 
 </PersonalContentSlide>
 
@@ -186,14 +155,7 @@ Of Course, We Hit Some Pain Points
 
 - During `vp migrate`, lefthook was not migrated automatically; we only got a warning
 - We missed it and our pre-commit hook broke, so we fixed the config manually
-
-</PersonalContentSlide>
-
-<PersonalContentSlide title="Then We Learned It Was Intentional">
-
-- We thought it was a bug and opened [issue #1854](https://github.com/voidzero-dev/vite-plus/issues/1854)
-- On closer reading, it was documented behavior in the RFC
-- → The team addressed it by updating the Migration Guide in [PR #1901](https://github.com/voidzero-dev/vite-plus/pull/1901), which is now merged
+- We opened [issue #1854](https://github.com/voidzero-dev/vite-plus/issues/1854), then learned it was intentional; [PR #1901](https://github.com/voidzero-dev/vite-plus/pull/1901) added it to the Migration Guide
 
 </PersonalContentSlide>
 
