@@ -1,9 +1,16 @@
 import { defineConfig } from "vite";
+import type {} from "@slidev/cli";
 import { resolve, extname } from "node:path";
 import { readFile } from "node:fs/promises";
 
 export default defineConfig({
   resolve: { dedupe: ["vue", "vue-router"] },
+  slidev: {
+    markdown: { markdownOptions: { typographer: false } },
+    vue: {
+      template: { transformAssetUrls: { includeAbsolute: false } },
+    },
+  },
   // Keep shared /slides and /fonts URLs at the site root, independent of --base.
   publicDir: false,
   plugins: [
