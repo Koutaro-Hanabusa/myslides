@@ -104,7 +104,7 @@
   max-height: 950px;
   object-fit: contain;
 }
-.myslides-content .r-stretch {
+.myslides-content .natural-image {
   max-width: none;
   max-height: none;
 }
@@ -152,10 +152,10 @@
   padding: 0.2em 0.5em;
   border-bottom: 1px solid;
 }
-.r-stack {
+.image-stack {
   display: grid;
 }
-.r-stack > * {
+.image-stack > * {
   grid-area: 1 / 1;
   align-self: center;
   justify-self: center;
@@ -163,60 +163,62 @@
 .nix-deck code {
   font-size: 1em;
 }
-.nix-deck .sh-code__pre {
-  padding: 0.6em 0.7em;
-  font-size: 48px;
-  line-height: 1.35;
+/* Markdown code fences use Slidev's native Shiki renderer. */
+.myslides-content .slidev-code-wrapper {
+  --slidev-code-margin: 0;
+  --slidev-code-font-size: calc(var(--slide-font-size) * 0.55);
+  --slidev-code-line-height: 1.2;
+  --slidev-code-font-family: monospace;
+  --slidev-code-padding: 0;
+  --slidev-code-radius: 0;
 }
-/* コードブロック — sugar-high のトークン色は --sh-* で定義 */
-.sh-code {
-  --sh-code-bg: #1e1e2e;
-  --sh-code-bar: #181825;
-  --sh-code-border: rgba(255, 255, 255, 0.08);
-  --sh-identifier: #cdd6f4;
-  --sh-keyword: #cba6f7;
-  --sh-string: #a6e3a1;
-  --sh-class: #f9e2af;
-  --sh-property: #89b4fa;
-  --sh-entity: #89b4fa;
-  --sh-jsxliterals: #f5c2e7;
-  --sh-sign: #9399b2;
-  --sh-comment: #6c7086;
-
+.myslides-content .slidev-code {
+  width: 90%;
+  margin: 20px auto;
+  padding: 0;
+  font-size: 0.55em;
+  font-family: monospace;
+  line-height: 1.2;
+  border-radius: 0;
+  white-space: pre-wrap;
+}
+.myslides-content .slidev-code code {
+  white-space: inherit;
+}
+.code-panel {
   display: block;
+  width: 92%;
   margin: 0.7em auto;
   max-width: 92%;
   overflow: hidden;
-  border: 1px solid var(--sh-code-border);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 14px;
-  background: var(--sh-code-bg);
+  background: #1e1e2e;
   box-shadow:
     0 30px 60px -20px rgba(0, 0, 0, 0.6),
     0 0 0 1px rgba(0, 0, 0, 0.25);
   text-align: left;
 }
-.sh-code__bar {
+.code-panel-bar {
   display: flex;
   align-items: center;
   padding: 0.5em 1.1em;
-  background: var(--sh-code-bar);
-  border-bottom: 1px solid var(--sh-code-border);
+  background: #181825;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
-.sh-code__lang {
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
+.code-panel-bar span {
+  font-family: ui-monospace, monospace;
   font-size: 0.72em;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #7f849c;
 }
-
-.myslides-content .sh-code__pre,
-.sh-code__pre {
+.myslides-content .code-panel .slidev-code {
   margin: 0;
   width: auto;
   max-width: none;
   padding: 1.15em 1.4em;
-  background: transparent;
+  background: transparent !important;
   box-shadow: none;
   overflow-x: auto;
   overflow-y: visible;
@@ -224,31 +226,103 @@
   line-height: 1.7;
   tab-size: 2;
 }
-.myslides-content .sh-code__pre code,
-.sh-code__pre code {
-  display: block;
-  font-family: var(--font-geist-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
-  color: var(--sh-identifier);
-  background: transparent;
-  white-space: pre;
-  text-shadow: none;
-
+.code-panel .slidev-code-wrapper {
+  --slidev-code-font-size: calc(var(--slide-font-size) * 0.5);
+  --slidev-code-line-height: 1.7;
+  --slidev-code-font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --slidev-code-padding: 1.15em 1.4em;
+}
+.myslides-content .code-panel .slidev-code code {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
   max-height: none;
   overflow: visible;
+  white-space: pre;
 }
-.sh-code .sh__token--comment {
-  font-style: italic;
+.slide-note {
+  font-size: 0.6em;
 }
-
-/* インラインコード */
-.myslides-inline-code {
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 0.85em;
-  padding: 0.12em 0.4em;
-  border-radius: 0.35em;
-  background: rgba(203, 166, 247, 0.16);
-  color: #cba6f7;
-  white-space: nowrap;
+.myslides-content {
+  --slide-font-size: 42px;
+}
+.myslides-content.large-type {
+  --slide-font-size: 48px;
+}
+.slide-cover {
+  text-align: left;
+}
+.slide-cover h3:first-child,
+.slide-cover h1 {
+  margin-bottom: calc(20px + var(--slide-font-size) * 1.3);
+}
+.slide-cover.compact-cover h3:first-child {
+  margin-bottom: 20px;
+}
+.slide-content {
+  text-align: left;
+}
+.slide-statement.statement-prose h1 {
+  line-height: 1.3;
+}
+.slide-profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.profile-details {
+  display: flex;
+  flex-direction: column;
+}
+.profile-details ul {
+  padding-left: 1.5rem;
+}
+.profile-details li + li {
+  margin-top: 1.5rem;
+}
+.profile-photo > p,
+.split-image > p,
+.image-stack > p {
+  margin: 0;
+}
+.image-stack > p {
+  display: contents;
+}
+.image-stack img {
+  grid-area: 1 / 1;
+  align-self: center;
+  justify-self: center;
+}
+.slide-split {
+  height: 1080px;
+}
+.split-copy {
+  width: 50%;
+  padding-right: 3rem;
+  text-align: left;
+}
+.split-copy > h2:has(+ p) {
+  margin-bottom: 40px;
+}
+.split-image {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 50%;
+  aspect-ratio: 1;
+  transform: translateY(-50%);
+}
+.split-image > p {
+  height: 100%;
+}
+.myslides-content .split-image img {
+  margin: 0;
+}
+.slide-group-bare > p {
+  margin: 0;
+}
+/* A Markdown image paragraph should keep its image as the flex/grid item. */
+.myslides-content :is(.flex, .grid) > p:has(> img:only-child),
+.myslides-content .image-stack > p {
+  display: contents;
 }
 
 /* Keep the release screenshot and both service links inside the canvas. */

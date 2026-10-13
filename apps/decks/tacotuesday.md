@@ -1,7 +1,7 @@
 ---
 theme: "none"
 title: "tacotuesday"
-layout: "migrated"
+layout: cover
 canvasWidth: 1920
 aspectRatio: "16/9"
 routerMode: "hash"
@@ -11,230 +11,420 @@ transition: "slide-left"
 download: false
 drawings: { "enabled": false }
 fonts: { "sans": "Source Sans Pro, Helvetica, sans-serif", "mono": "monospace", "provider": "none" }
-defaults: { "layout": "migrated" }
+defaults: { "layout": "default" }
 highlighter: "shiki"
 background: "/slides/templates/4830e1037835.png"
 legacyHash: "0/0"
+mdc: true
+contentClass: "compact-cover"
 ---
 
-<div class="slide-body"><div class="text-left"><h3 class="!text-white">社内LT会</h3><h1 class="!text-white leading-tight">全人類タコスを食え</h1><br><h3 class="!text-white">ぶりお @burio_16</h3></div></div>
+### 社内LT会
+
+# 全人類タコスを食え
+
+### ぶりお @burio_16
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
 legacyHash: "1/0"
+layout: default
 ---
 
-<div class="slide-body"><h1>今日のゴール：タコスを食べたくなってもらう</h1></div>
+# 今日のゴール：タコスを食べたくなってもらう
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
 legacyHash: "2/0"
+layout: default
 ---
 
-<div class="slide-body"><h1>お前もタコスを食わないか？🖐️🌮👊</h1></div>
+# お前もタコスを食わないか？🖐️🌮👊
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
 legacyHash: "3/0"
+layout: default
 ---
 
-<div class="slide-body"><h1>タコスって知ってますか？　</h1></div>
+# タコスって知ってますか？　
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
 legacyHash: "4/0"
+layout: default
 ---
 
-<div class="slide-body"><p><img :src="'/slides/tacotuesday/assets/tokyo.jpg'" alt="tokyo" style="width: 75%; display: block; margin: 0 auto;"></p></div>
+![tokyo](/slides/tacotuesday/assets/tokyo.jpg){style="width: 75%; display: block; margin: 0 auto;"}
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
 legacyHash: "5/0"
+layout: default
 ---
 
-<div class="slide-body"><p><img :src="'/slides/tacotuesday/assets/noge.jpg'" alt="tacos" style="width: 75%; display: block; margin: 0 auto;"></p></div>
+![tacos](/slides/tacotuesday/assets/noge.jpg){style="width: 75%; display: block; margin: 0 auto;"}
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
 legacyHash: "6/0"
+layout: default
 ---
 
-<div class="slide-body"><p><img :src="'/slides/tacotuesday/assets/daikanyama.jpg'" alt="tokyo" style="width: 75%; display: block; margin: 0 auto;"></p></div>
+![tokyo](/slides/tacotuesday/assets/daikanyama.jpg){style="width: 75%; display: block; margin: 0 auto;"}
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
 legacyHash: "7/0"
+layout: default
 ---
 
-<div class="slide-body"><p><img :src="'/slides/tacotuesday/assets/kitade.jpg'" alt="tokyo" style="width: 75%; display: block; margin: 0 auto;"></p></div>
+![tokyo](/slides/tacotuesday/assets/kitade.jpg){style="width: 75%; display: block; margin: 0 auto;"}
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
 legacyHash: "8/0"
+layout: default
 ---
 
-<div class="slide-body"><p>自分の家でタコス作るくらい好きです！！！！&#10;<img :src="'/slides/tacotuesday/assets/IMG_8213.JPG'" alt="selftacos" style="width: 50%; display: block; margin: 0 auto;"></p></div>
+自分の家でタコス作るくらい好きです！！！！
+![selftacos](/slides/tacotuesday/assets/IMG_8213.JPG){style="width: 50%; display: block; margin: 0 auto;"}
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
 legacyHash: "9/0"
+layout: default
 ---
 
-<div class="slide-body"><p><img :src="'/slides/tacotuesday/assets/tacobell.jpg'" alt="tacobell" style="width: 50%; display: block; margin: 0 auto;"></p>&#10;<p>これは tex-mex です。アメリカナイズされたタコスです</p></div>
+![tacobell](/slides/tacotuesday/assets/tacobell.jpg){style="width: 50%; display: block; margin: 0 auto;"}
+
+これは tex-mex です。アメリカナイズされたタコスです
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white; text-align: left;"
 legacyHash: "10/0"
+layout: default
 ---
 
-<div class="slide-body"><h2>タコスとは？</h2>&#10;<ul>&#10;<li>メキシコ料理の主食であるトルティーヤにさまざまな具材をのせる国民食</li>&#10;<li>具材は多岐に渡り、豚肉、牛肉、鶏肉にとどまらず、魚や豆、サボテン</li>&#10;</ul></div>
+## タコスとは？
+
+- メキシコ料理の主食であるトルティーヤにさまざまな具材をのせる国民食
+- 具材は多岐に渡り、豚肉、牛肉、鶏肉にとどまらず、魚や豆、サボテン
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white; text-align: left;"
 legacyHash: "11/0"
+layout: default
 ---
 
-<div class="slide-body"><h2>ぶりおがタコスを好きな理由</h2>&#10;<ul>&#10;<li>肉の種類</li>&#10;<li>豊富なトッピング</li>&#10;<li>お酒との相性</li>&#10;</ul></div>
+## ぶりおがタコスを好きな理由
+
+- 肉の種類
+- 豊富なトッピング
+- お酒との相性
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
 legacyHash: "12/0"
+layout: default
 ---
 
-<div class="slide-body"><h2>ぶりおが好きなタコスその１</h2>&#10;<p>アル・パストール&#10;<img :src="'/slides/tacotuesday/assets/pine.jpg'" alt="pine" style="width: 50%; display: block; margin: 0 auto;"></p></div>
+## ぶりおが好きなタコスその１
+
+アル・パストール
+![pine](/slides/tacotuesday/assets/pine.jpg){style="width: 50%; display: block; margin: 0 auto;"}
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
 legacyHash: "13/0"
+layout: default
 ---
 
-<div class="slide-body"><h2>ぶりおが好きなタコスその２</h2>&#10;<p>ケサビリア&#10;<img :src="'/slides/tacotuesday/assets/quesa.jpg'" alt="quesa" style="width: 50%; display: block; margin: 0 auto;"></p></div>
+## ぶりおが好きなタコスその２
+
+ケサビリア
+![quesa](/slides/tacotuesday/assets/quesa.jpg){style="width: 50%; display: block; margin: 0 auto;"}
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
 legacyHash: "14/0"
+layout: default
 ---
 
-<div class="slide-body"><h2>好きなタコス屋発表ドラゴン</h2>&#10;<p>タコファナティコ(中目黒店)&#10;<img :src="'/slides/tacotuesday/assets/tacofanatico.png'" alt="tacofanatico" style="width: 50%; display: block; margin: 0 auto;"></p></div>
+## 好きなタコス屋発表ドラゴン
+
+タコファナティコ(中目黒店)
+![tacofanatico](/slides/tacotuesday/assets/tacofanatico.png){style="width: 50%; display: block; margin: 0 auto;"}
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white; text-align: left;"
 legacyHash: "15/0"
+layout: default
 ---
 
-<div class="slide-body"><h2>こんな人におすすめ</h2>&#10;<ul>&#10;<li>お肉が好きな人</li>&#10;<li>スパイシーな料理が好きな人</li>&#10;<li>パクチーが嫌いな人</li>&#10;</ul></div>
+## こんな人におすすめ
+
+- お肉が好きな人
+- スパイシーな料理が好きな人
+- パクチーが嫌いな人
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
 legacyHash: "16/0"
+layout: default
 ---
 
-<div class="slide-body"><h1>◯ ぬ...!! <br> ◯ んでしまうぞ杏寿郎</h1></div>
+# ◯ ぬ...!! <br> ◯ んでしまうぞ杏寿郎
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
 legacyHash: "17/0"
+layout: default
 ---
 
-<div class="slide-body"><h1>タコスを食え ！<br> タコスを食うといえ！</h1></div>
+# タコスを食え ！<br> タコスを食うといえ！
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "18/0"
+layout: statement
 ---
 
-<div class="slide-body"><div class="flex h-full items-center justify-center"><h1 class="text-center text-white">というスライドを<br>reveal.jsを使用して作成しました。</h1></div></div>
+# というスライドを<br>reveal.jsを使用して作成しました。
 
 ---
 background: "/slides/templates/4830e1037835.png"
 legacyHash: "19/0"
+layout: cover
 ---
 
-<div class="slide-body"><div class="text-left"><h3>社内LT会</h3><br><h1 class="leading-tight">自分だけの<br>スライドデッキを作ってみた</h1><br><h3>ぶりお @burio_16</h3></div></div>
+### 社内LT会
+
+# 自分だけの<br>スライドデッキを作ってみた
+
+### ぶりお @burio_16
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "20/0"
+layout: statement
 ---
 
-<div class="slide-body"><div class="flex h-full items-center justify-center"><h1 class="text-center">スライド作成して、登壇したら<br>PDFにして共有するのめんどくさくないですか？</h1></div></div>
+# スライド作成して、登壇したら<br>PDFにして共有するのめんどくさくないですか？
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "21/0"
+layout: statement
 ---
 
-<div class="slide-body"><div class="flex h-full items-center justify-center"><h1 class="text-center">作成したら、 自動的に<br>公開されるようになってほしい</h1></div></div>
+# 作成したら、 自動的に<br>公開されるようになってほしい
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "22/0"
+layout: default
 ---
 
-<div class="slide-body"><div class="flex h-full flex-row items-center justify-center"><div class="pr-12 text-left text-black"><a href="https://slide.burio16.com/">https://slide.burio16.com</a><p class="text-white">自分のスライドを公開できる<br>自分だけのスライドデッキを作りました。</p></div><img :src="'/slides/migrated-assets/burioSlide.png'" alt="説明" class="w-[50%]"></div></div>
+<SlideGroup class="flex h-full flex-row items-center justify-center">
+
+<SlideGroup class="pr-12 text-left text-black">
+
+[https://slide.burio16.com](https://slide.burio16.com/)
+
+自分のスライドを公開できる\
+自分だけのスライドデッキを作りました。 {class="text-white"}
+
+</SlideGroup>
+
+![説明](/slides/migrated-assets/burioSlide.png){class="w-[50%]"}
+
+</SlideGroup>
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "23/0"
+layout: statement
 ---
 
-<div class="slide-body"><div class="flex h-full items-center justify-center"><h1 class="text-center">自分だけのものって<br>かっこいいし、イケてるし、クール<br>じゃないですか？</h1></div></div>
+# 自分だけのものって<br>かっこいいし、イケてるし、クール<br>じゃないですか？
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "24/0"
+layout: default
 ---
 
-<div class="slide-body"><div class="flex h-full flex-row items-center justify-center"><div class="flex flex-col pr-12"><h2 class="text-left text-white">技術スタック </h2><ul class="text-left text-white"><li>フロントエンド：<a href="https://ja.react.dev/">React</a></li><li> フロントエンド：<a href="https://nextjs.org/">Next.js(app router)</a></li><li>スライド表示：<a href="https://revealjs.com/">reveal.js</a></li><li>デプロイ：<a href="https://www.cloudflare.com/ja-jp/developer-platform/products/workers/">Cloudflare Workers</a></li></ul></div><img :src="'/slides/migrated-assets/reveal.png'" alt="reveal.js" class="w-[50%]"></div></div>
+<SlideGroup class="flex h-full flex-row items-center justify-center">
+
+<SlideGroup class="flex flex-col pr-12">
+
+## 技術スタック
+
+- フロントエンド：[React](https://ja.react.dev/)
+- フロントエンド：[Next.js(app router)](https://nextjs.org/)
+- スライド表示：[reveal.js](https://revealjs.com/)
+- デプロイ：[Cloudflare Workers](https://www.cloudflare.com/ja-jp/developer-platform/products/workers/)
+{class="text-left text-white"}
+
+</SlideGroup>
+
+![reveal.js](/slides/migrated-assets/reveal.png){class="w-[50%]"}
+
+</SlideGroup>
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "25/0"
+layout: default
 ---
 
-<div class="slide-body"><div class="flex h-full flex-row items-center justify-center"><div class="flex flex-col pr-12"><h2 class="text-left text-white">できること</h2><ul class="text-left text-white"><li>Next.js<ul><li>スライドごとのOGP画像を設定する</li></ul></li><li>Reveal.js<ul><li>プレゼンター表示</li><li>フルスクリーン表示</li></ul></li><li>Cloudflare<ul><li>GitHub連携により、Mainブランチ<br>マージ時に自動デプロイ</li></ul></li></ul></div><div class="r-stack"><img :src="'/slides/migrated-assets/ogp.png'" alt="ogp画像"></div></div></div>
+<SlideGroup class="flex h-full flex-row items-center justify-center">
+
+<SlideGroup class="flex flex-col pr-12">
+
+## できること
+
+- Next.js
+  - スライドごとのOGP画像を設定する
+- Reveal.js
+  - プレゼンター表示
+  - フルスクリーン表示
+- Cloudflare
+  - GitHub連携により、Mainブランチ\
+    マージ時に自動デプロイ
+{class="text-left text-white"}
+
+</SlideGroup>
+
+<SlideGroup class="image-stack">
+
+![ogp画像](/slides/migrated-assets/ogp.png)
+
+</SlideGroup>
+
+</SlideGroup>
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "26/0"
+layout: default
 ---
 
-<div class="slide-body"><div class="flex flex-row"><div class="flex h-full flex-col justify-center"><h2 class="text-left text-white">reveal.jsよかった点</h2><ul class="text-white"><li>HTMLでもMarkdownでもスライド作成可能</li><li> スライドを縦と横に展開可能</li><li>Googleスライドでできることと同等のことができる</li></ul></div><div class="r-stack"><pre v-pre class="" data-fragment-index="0" v-click.hide="1"><code class="language-javascript" data-trim="true" data-noescape="true">&#10;&lt;section&#10;  data-background-image={BG_CONTENT}&#10;  data-background-size="contain"&#10;&gt;&#10;  &lt;div className="flex h-full flex-col items-center justify-center"&gt;&#10;    &lt;h2 className="text-left text-white"&gt;reveal.jsよかった点&lt;/h2&gt;&#10;    &lt;ul className="text-white"&gt;&#10;      &lt;li&gt;HTMLでもMarkdownでもスライド作成可能&lt;/li&gt;&#10;      &lt;li&gt;スライドを縦と横に展開可能&lt;/li&gt;&#10;      &lt;li&gt;Googleスライドでできることと同等のことができる&lt;/li&gt;&#10;    &lt;/ul&gt;&#10;  &lt;/div&gt;&#10;&lt;/section&gt;</code></pre><pre v-pre class="" data-fragment-index="0" v-click="1"><code class="language-markdown" data-trim="true" data-noescape="true">&#10;&lt;!-- .slide: style="color: white; text-align: left;" --&gt;&#10;&#10;## ぶりおがタコスを好きな理由&lt;!-- .element: style="color: white;" --&gt;&#10;&#10;- 肉の種類&#10;- 豊富なトッピング&#10;- お酒との相性&#10;&#10;---</code></pre></div></div></div>
+<SlideGroup class="flex flex-row">
+
+<SlideGroup class="flex h-full flex-col justify-center">
+
+## reveal.jsよかった点
+
+- HTMLでもMarkdownでもスライド作成可能
+- スライドを縦と横に展開可能
+- Googleスライドでできることと同等のことができる
+{class="text-white"}
+
+</SlideGroup>
+
+<SlideGroup class="image-stack">
+
+```javascript
+
+<section
+  data-background-image={BG_CONTENT}
+  data-background-size="contain"
+>
+  <div className="flex h-full flex-col items-center justify-center">
+    <h2 className="text-left text-white">reveal.jsよかった点</h2>
+    <ul className="text-white">
+      <li>HTMLでもMarkdownでもスライド作成可能</li>
+      <li>スライドを縦と横に展開可能</li>
+      <li>Googleスライドでできることと同等のことができる</li>
+    </ul>
+  </div>
+</section>
+```
+
+```markdown
+
+<!-- .slide: style="color: white; text-align: left;" -->
+
+## ぶりおがタコスを好きな理由<!-- .element: style="color: white;" -->
+
+- 肉の種類
+- 豊富なトッピング
+- お酒との相性
+
+---
+```
+
+</SlideGroup>
+
+</SlideGroup>
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "26/1"
+layout: default
 ---
 
-<div class="slide-body"><h1>こいつが縦のスライドです。<br>余談に使いやすい</h1></div>
+# こいつが縦のスライドです。<br>余談に使いやすい
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "27/0"
+layout: default
 ---
 
-<div class="slide-body"><div class="flex h-full flex-row items-center justify-start pl-16"><div class="flex flex-col pr-12"><h2 class="text-left text-white">reveal.js残念だった点</h2><ul class="text-white"><li>PDF出力が動作しない</li><li>Tailwind競合して文字色が変わらなかった</li></ul></div><img :src="'/slides/migrated-assets/pdfExport.png'" alt="ogp画像" class="w-[50%]"></div></div>
+<SlideGroup class="flex h-full flex-row items-center justify-start pl-16">
+
+<SlideGroup class="flex flex-col pr-12">
+
+## reveal.js残念だった点
+
+- PDF出力が動作しない
+- Tailwind競合して文字色が変わらなかった
+{class="text-white"}
+
+</SlideGroup>
+
+![ogp画像](/slides/migrated-assets/pdfExport.png){class="w-[50%]"}
+
+</SlideGroup>
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "28/0"
+layout: default
 ---
 
-<div class="slide-body"><div class="flex h-full flex-row items-center justify-start pl-16"><div class="flex flex-col pr-12"><h2 class="text-left text-white">まとめ</h2><ul class="text-white"><li>reveal.jsはスライドをマークダウンやHTMLでかけるだけでなく、<br>プレゼンのための機能を提供してくれる</li><li>作成から登壇、共有まで全てを担えるものを作れる</li><li>自分だけのスライドデッキめちゃくちゃカッコいい！</li></ul></div></div></div>
+<SlideGroup class="flex h-full flex-row items-center justify-start pl-16">
+
+<SlideGroup class="flex flex-col pr-12">
+
+## まとめ
+
+- reveal.jsはスライドをマークダウンやHTMLでかけるだけでなく、\
+  プレゼンのための機能を提供してくれる
+- 作成から登壇、共有まで全てを担えるものを作れる
+- 自分だけのスライドデッキめちゃくちゃカッコいい！
+{class="text-white"}
+
+</SlideGroup>
+
+</SlideGroup>

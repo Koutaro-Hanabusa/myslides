@@ -1,7 +1,7 @@
 ---
 theme: "none"
 title: "vite-plus-retro"
-layout: "migrated"
+layout: cover
 canvasWidth: 1920
 aspectRatio: "16/9"
 routerMode: "hash"
@@ -11,241 +11,512 @@ transition: "slide-left"
 download: false
 drawings: { "enabled": false }
 fonts: { "sans": "Source Sans Pro, Helvetica, sans-serif", "mono": "monospace", "provider": "none" }
-defaults: { "layout": "migrated" }
+defaults: { "layout": "default" }
 highlighter: "shiki"
 background: "/slides/templates/4830e1037835.png"
 legacyHash: "0/0"
+mdc: true
 ---
 
-<div class="slide-body"><div class="text-left"><h3>TSKaigi 2026事後勉強会</h3><br><h1 class="leading-tight">Vite+を爆速で社内デザインシステムに導入してみた</h1><br><h3>ぶりお @burio_16</h3></div></div>
+### TSKaigi 2026事後勉強会
+
+# Vite+を爆速で社内デザインシステムに導入してみた
+
+### ぶりお @burio_16
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "1/0"
+layout: profile
+color: white
 ---
 
-<div class="slide-body"><div class="flex h-full flex-row items-center justify-evenly"><img :src="'/slides/react-three-fiber/assets/burio.png'" alt="ぶりおの写真" width="500" height="500" class="r-stretch"><div class="flex flex-col"><h2 class="text-white">自己紹介</h2><div class="space-y-2 text-left text-white md:space-y-4 lg:space-y-6 [&amp;_ul]:list-disc [&amp;_ul]:space-y-2 [&amp;_ul]:pl-6 md:[&amp;_ul]:space-y-4 lg:[&amp;_ul]:space-y-6"><ul>&#10;<li>ぶりお <a href="https://x.com/burio_16">@burio_16</a></li>&#10;<li>タコスとTottenham Hotspur FCが大好き</li>&#10;<li>TSKaigiは初参加でした</li>&#10;<li>VoidZeroのﾊｧﾝ</li>&#10;</ul></div></div></div></div>
+## 自己紹介
+
+- ぶりお [@burio_16](https://x.com/burio_16)
+- タコスとTottenham Hotspur FCが大好き
+- TSKaigiは初参加でした
+- VoidZeroのﾊｧﾝ
+
+::photo::
+
+![ぶりおの写真](/slides/react-three-fiber/assets/burio.png){width="500" height="500" class="natural-image"}
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "2/0"
+layout: content
 ---
 
-<div class="slide-body"><div class="flex h-full flex-col justify-center"><h2 class="text-left text-white">VoidZero のﾊｧﾝです</h2><div class="text-left text-white"><div class="r-stack mt-6"><img :src="'/slides/vite-plus-retro/assets/sponsor-vite-tweet.png'" alt="ぶりおが @vitejs を GitHub Sponsors でスポンサーしたツイート" class="" data-fragment-index="0" width="470" height="233" style="margin:0 auto;display:block;width:900px;height:auto;max-width:100%;border-radius:8px" v-click.hide="1"><img :src="'/slides/vite-plus-retro/assets/vite-plus-sensu.png'" alt="TSKaigi 会場で「Vite+」と書かれた扇子を持つぶりおと VoidZero メンバーのツーショット" class="" data-fragment-index="0" width="2048" height="1536" style="margin:0 auto;display:block;width:1100px;height:auto;max-height:760px;max-width:100%;border-radius:8px" v-click="1"></div><p>スポンサーするくらいには好き。会場では扇子にVite+と入れてもらってAlexとツーショ撮った。</p></div></div></div>
+## VoidZero のﾊｧﾝです
+
+<SlideGroup class="image-stack mt-6">
+
+![ぶりおが @vitejs を GitHub Sponsors でスポンサーしたツイート](/slides/vite-plus-retro/assets/sponsor-vite-tweet.png){class="" data-fragment-index="0" width="470" height="233" style="margin:0 auto;display:block;width:900px;height:auto;max-width:100%;border-radius:8px" v-click.hide="1"}
+
+![TSKaigi 会場で「Vite+」と書かれた扇子を持つぶりおと VoidZero メンバーのツーショット](/slides/vite-plus-retro/assets/vite-plus-sensu.png){class="" data-fragment-index="0" width="2048" height="1536" style="margin:0 auto;display:block;width:1100px;height:auto;max-height:760px;max-width:100%;border-radius:8px" v-click="1"}
+
+</SlideGroup>
+
+スポンサーするくらいには好き。会場では扇子にVite+と入れてもらってAlexとツーショ撮った。
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "3/0"
+layout: statement
+contentClass: "statement-prose"
 ---
 
-<div class="slide-body"><div class="flex h-full items-center justify-center"><h1 class="whitespace-pre-line text-center"><p>そもそも Vite+ って？</p></h1></div></div>
+# そもそも Vite+ って？
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "4/0"
+layout: content
 ---
 
-<div class="slide-body"><div class="flex h-full flex-col justify-center"><h2 class="text-left text-white">Vite+ とは</h2><div class="text-left text-white"><ul>&#10;<li><strong>test / lint / fmt / task / Node</strong> を <code>vp</code> ひとつに束ねる統合ツールチェイン</li>&#10;<li>中身は Vite / Vitest / Oxlint / Oxfmt / tsdown / Vite Task（VoidZero 製）</li>&#10;<li>2026/3/13 公開・<strong>まだ α 版</strong></li>&#10;</ul></div></div></div>
+## Vite+ とは
+
+- **test / lint / fmt / task / Node** を `vp` ひとつに束ねる統合ツールチェイン
+- 中身は Vite / Vitest / Oxlint / Oxfmt / tsdown / Vite Task（VoidZero 製）
+- 2026/3/13 公開・**まだ α 版**
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "5/0"
+layout: content
 ---
 
-<div class="slide-body"><div class="flex h-full flex-col justify-center"><h2 class="text-left text-white">Vite+ が解決する課題</h2><div class="text-left text-white"><ul>&#10;<li>他の言語：統合ツールチェインが <strong>当たり前</strong></li>&#10;<li>JS：ツールの選択肢が多く、環境ごとにバラバラになりがち</li>&#10;<li>→ その課題を <strong>Vite+ が解決</strong></li>&#10;</ul></div></div></div>
+## Vite+ が解決する課題
+
+- 他の言語：統合ツールチェインが **当たり前**
+- JS：ツールの選択肢が多く、環境ごとにバラバラになりがち
+- → その課題を **Vite+ が解決**
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "6/0"
+layout: content
 ---
 
-<div class="slide-body"><div class="flex h-full flex-col justify-center"><h2 class="text-left text-white">設定ファイル、散らばりがち</h2><div class="text-left text-white"><div class="sh-code"><div class="sh-code__bar"><span class="sh-code__lang">text</span></div><pre v-pre class="sh-code__pre"><code>Before: ツールごとに設定が散らばる&#10;  turbo.json&#10;  vitest.config.ts&#10;  oxlint / oxfmt の設定&#10;  lefthook.yml&#10;  ...&#10;&#10;After: vite.config.ts に寄せられた&#10;  vite.config.ts  ← test / lint / fmt / build / task</code></pre></div><ul>&#10;<li>test / lint / fmt / build / task / hooks が <strong>別々の道具</strong>になりがち</li>&#10;<li>Vite+ はこの散らばりを <strong><code>vite.config.ts</code> に寄せる</strong></li>&#10;</ul></div></div></div>
+## 設定ファイル、散らばりがち
+
+<CodePanel language="text">
+
+```text
+Before: ツールごとに設定が散らばる
+  turbo.json
+  vitest.config.ts
+  oxlint / oxfmt の設定
+  lefthook.yml
+  ...
+
+After: vite.config.ts に寄せられた
+  vite.config.ts  ← test / lint / fmt / build / task
+```
+
+</CodePanel>
+
+- test / lint / fmt / build / task / hooks が **別々の道具**になりがち
+- Vite+ はこの散らばりを **`vite.config.ts` に寄せる**
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "7/0"
+layout: statement
+contentClass: "statement-prose"
 ---
 
-<div class="slide-body"><div class="flex h-full items-center justify-center"><h1 class="whitespace-pre-line text-center"><p>どこに導入した？</p></h1></div></div>
+# どこに導入した？
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "8/0"
+layout: content
 ---
 
-<div class="slide-body"><div class="flex h-full flex-col justify-center"><h2 class="text-left text-white">社内デザインシステム</h2><div class="text-left text-white"><ul>&#10;<li>社内で <strong>デザインシステム</strong> を開発中</li>&#10;<li>構成は <strong>Vite + Vitest + Oxlint + Oxfmt</strong> のモノレポ（タスクは Turborepo）</li>&#10;<li>→ Vite+ が束ねる範囲と <strong>ほぼ重なっていた</strong></li>&#10;</ul></div></div></div>
+## 社内デザインシステム
+
+- 社内で **デザインシステム** を開発中
+- 構成は **Vite + Vitest + Oxlint + Oxfmt** のモノレポ（タスクは Turborepo）
+- → Vite+ が束ねる範囲と **ほぼ重なっていた**
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "9/0"
+layout: statement
+contentClass: "statement-prose"
 ---
 
-<div class="slide-body"><div class="flex h-full items-center justify-center"><h1 class="whitespace-pre-line text-center"><p>爆速(当社比)で移行</p></h1></div></div>
+# 爆速(当社比)で移行
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "10/0"
+layout: content
 ---
 
-<div class="slide-body"><div class="flex h-full flex-col justify-center"><h2 class="text-left text-white">3/13 → 3/24</h2><div class="text-left text-white"><ul>&#10;<li>公開から移行完了まで、わずか <strong>10日ちょっと</strong></li>&#10;<li>α版をもう本番に投入</li>&#10;</ul></div></div></div>
+## 3/13 → 3/24
+
+- 公開から移行完了まで、わずか **10日ちょっと**
+- α版をもう本番に投入
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "11/0"
+layout: content
 ---
 
-<div class="slide-body"><div class="flex h-full flex-col justify-center"><h2 class="text-left text-white">なぜ飛び込めた？</h2><div class="text-left text-white"><ul>&#10;<li>まだ <strong>本格運用前</strong>（リプレイス後に使う想定）</li>&#10;<li>元から <strong>ツールがほぼ Vite+ の範囲内</strong>（Vite/Vitest/Oxlint/Oxfmt）</li>&#10;<li>とはいえ α 版なので <strong>最後の一歩は躊躇</strong></li>&#10;</ul></div></div></div>
+## なぜ飛び込めた？
+
+- まだ **本格運用前**（リプレイス後に使う想定）
+- 元から **ツールがほぼ Vite+ の範囲内**（Vite/Vitest/Oxlint/Oxfmt）
+- とはいえ α 版なので **最後の一歩は躊躇**
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "12/0"
+layout: statement
+contentClass: "statement-prose"
 ---
 
-<div class="slide-body"><div class="flex h-full items-center justify-center"><h1 class="whitespace-pre-line text-center"><p>マネージャー<br>「<strong>ビルドできればいいんじゃない？</strong>」</p></h1></div></div>
+# マネージャー<br>「**ビルドできればいいんじゃない？**」
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "13/0"
+layout: statement
+contentClass: "statement-prose"
 ---
 
-<div class="slide-body"><div class="flex h-full items-center justify-center"><h1 class="whitespace-pre-line text-center"><p>ほな導入したろか！</p></h1></div></div>
+# ほな導入したろか！
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "14/0"
+layout: statement
+contentClass: "statement-prose"
 ---
 
-<div class="slide-body"><div class="flex h-full items-center justify-center"><h1 class="whitespace-pre-line text-center"><p>爆速！！(当社比)</p><img :src="'/slides/vite-plus-retro/assets/pr-135.png'" alt="Vite+ への移行 PR #135（Turborepo 廃止・ツールチェーン統合、25 commits を main にマージ）" width="1069" height="254" style="margin:1.5rem auto 0;display:block;width:1600px;height:auto;max-width:100%;max-height:520px;border-radius:8px"></h1></div></div>
+# 爆速！！(当社比)![Vite+ への移行 PR #135（Turborepo 廃止・ツールチェーン統合、25 commits を main にマージ）](/slides/vite-plus-retro/assets/pr-135.png){width="1069" height="254" style="margin:1.5rem auto 0;display:block;width:1600px;height:auto;max-width:100%;max-height:520px;border-radius:8px"}
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "15/0"
+layout: content
 ---
 
-<div class="slide-body"><div class="flex h-full flex-col justify-center"><h2 class="text-left text-white">移行 PR でやったこと</h2><div class="text-left text-white"><ul>&#10;<li><code>vp migrate</code> で <strong>Vite / Vitest / Oxlint / Oxfmt / Turborepo</strong> を統合</li>&#10;<li><code>turbo.json</code> ほか各種設定ファイルを <strong>まとめて削除</strong></li>&#10;<li>テスト import を <strong><code>vitest</code> → <code>vite-plus/test</code></strong> に変更</li>&#10;<li>CI も <strong><code>voidzero-dev/setup-vp</code></strong> ベースに変更</li>&#10;</ul></div></div></div>
+## 移行 PR でやったこと
+
+- `vp migrate` で **Vite / Vitest / Oxlint / Oxfmt / Turborepo** を統合
+- `turbo.json` ほか各種設定ファイルを **まとめて削除**
+- テスト import を **`vitest` → `vite-plus/test`** に変更
+- CI も **`voidzero-dev/setup-vp`** ベースに変更
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "16/0"
+layout: statement
+contentClass: "statement-prose"
 ---
 
-<div class="slide-body"><div class="flex h-full items-center justify-center"><h1 class="whitespace-pre-line text-center"><p>実際どうだった？</p></h1></div></div>
+# 実際どうだった？
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "17/0"
+layout: content
 ---
 
-<div class="slide-body"><div class="flex h-full flex-col justify-center"><h2 class="text-left text-white">良かった① vp migrate が最高</h2><div class="text-left text-white"><ul>&#10;<li>既存プロジェクトを Vite+ に移行するための <strong>スタート地点</strong></li>&#10;<li>依存関係・import・設定ファイル・scripts を <strong>まとめて更新</strong></li>&#10;<li>hooks・AI agent・エディタ設定のセットアップにも対応</li>&#10;</ul></div></div></div>
+## 良かった① vp migrate が最高
+
+- 既存プロジェクトを Vite+ に移行するための **スタート地点**
+- 依存関係・import・設定ファイル・scripts を **まとめて更新**
+- hooks・AI agent・エディタ設定のセットアップにも対応
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "18/0"
+layout: content
 ---
 
-<div class="slide-body"><div class="flex h-full flex-col justify-center"><h2 class="text-left text-white">良かった② 設定が一箇所に</h2><div class="text-left text-white"><div class="sh-code"><div class="sh-code__bar"><span class="sh-code__lang">ts</span></div><pre v-pre class="sh-code__pre"><code><span class="sh__line"><span class="sh__token--comment" style="color:var(--sh-comment)">// vite.config.ts （実物）</span></span>&#10;<span class="sh__line"><span class="sh__token--comment" style="color:var(--sh-comment)"></span><span class="sh__token--keyword" style="color:var(--sh-keyword)">export</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--keyword" style="color:var(--sh-keyword)">default</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--identifier" style="color:var(--sh-identifier)">defineConfig</span><span class="sh__token--sign" style="color:var(--sh-sign)">(</span><span class="sh__token--sign" style="color:var(--sh-sign)">{</span></span>&#10;<span class="sh__line"><span class="sh__token--space" style="color:var(--sh-space)">  </span><span class="sh__token--identifier" style="color:var(--sh-identifier)">test</span><span class="sh__token--sign" style="color:var(--sh-sign)">:</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--space" style="color:var(--sh-space)">  </span><span class="sh__token--sign" style="color:var(--sh-sign)">{</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--class" style="color:var(--sh-class)">…</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--sign" style="color:var(--sh-sign)">}</span><span class="sh__token--sign" style="color:var(--sh-sign)">,</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--comment" style="color:var(--sh-comment)">// Vitest</span></span>&#10;<span class="sh__line"><span class="sh__token--comment" style="color:var(--sh-comment)"></span><span class="sh__token--space" style="color:var(--sh-space)">  </span><span class="sh__token--identifier" style="color:var(--sh-identifier)">staged</span><span class="sh__token--sign" style="color:var(--sh-sign)">:</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--sign" style="color:var(--sh-sign)">{</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--class" style="color:var(--sh-class)">…</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--sign" style="color:var(--sh-sign)">}</span><span class="sh__token--sign" style="color:var(--sh-sign)">,</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--comment" style="color:var(--sh-comment)">// git hooks（pre-commit）</span></span>&#10;<span class="sh__line"><span class="sh__token--comment" style="color:var(--sh-comment)"></span><span class="sh__token--space" style="color:var(--sh-space)">  </span><span class="sh__token--identifier" style="color:var(--sh-identifier)">fmt</span><span class="sh__token--sign" style="color:var(--sh-sign)">:</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--space" style="color:var(--sh-space)">   </span><span class="sh__token--sign" style="color:var(--sh-sign)">{</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--class" style="color:var(--sh-class)">…</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--sign" style="color:var(--sh-sign)">}</span><span class="sh__token--sign" style="color:var(--sh-sign)">,</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--comment" style="color:var(--sh-comment)">// Oxfmt</span></span>&#10;<span class="sh__line"><span class="sh__token--comment" style="color:var(--sh-comment)"></span><span class="sh__token--space" style="color:var(--sh-space)">  </span><span class="sh__token--identifier" style="color:var(--sh-identifier)">run</span><span class="sh__token--sign" style="color:var(--sh-sign)">:</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--space" style="color:var(--sh-space)">   </span><span class="sh__token--sign" style="color:var(--sh-sign)">{</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--class" style="color:var(--sh-class)">…</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--sign" style="color:var(--sh-sign)">}</span><span class="sh__token--sign" style="color:var(--sh-sign)">,</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--comment" style="color:var(--sh-comment)">// タスク実行（キャッシュ付き）</span></span>&#10;<span class="sh__line"><span class="sh__token--comment" style="color:var(--sh-comment)"></span><span class="sh__token--space" style="color:var(--sh-space)">  </span><span class="sh__token--identifier" style="color:var(--sh-identifier)">lint</span><span class="sh__token--sign" style="color:var(--sh-sign)">:</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--space" style="color:var(--sh-space)">  </span><span class="sh__token--sign" style="color:var(--sh-sign)">{</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--class" style="color:var(--sh-class)">…</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--sign" style="color:var(--sh-sign)">}</span><span class="sh__token--sign" style="color:var(--sh-sign)">,</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--comment" style="color:var(--sh-comment)">// Oxlint</span></span>&#10;<span class="sh__line"><span class="sh__token--comment" style="color:var(--sh-comment)"></span><span class="sh__token--sign" style="color:var(--sh-sign)">}</span><span class="sh__token--sign" style="color:var(--sh-sign)">)</span><span class="sh__token--sign" style="color:var(--sh-sign)">;</span></span></code></pre></div><ul>&#10;<li><code>vite.config.ts</code> の <code>defineConfig</code> に <strong>設定が全部同居</strong></li>&#10;<li>test / staged / fmt / run / lint が <strong>1ファイル</strong>で完結</li>&#10;<li><code>vp lint</code> だけで <strong>type linting</strong>（oxlint-tsgolint）まで実行</li>&#10;</ul></div></div></div>
+## 良かった② 設定が一箇所に
+
+<CodePanel language="ts">
+
+```ts
+// vite.config.ts （実物）
+export default defineConfig({
+  test:   { … },  // Vitest
+  staged: { … },  // git hooks（pre-commit）
+  fmt:    { … },  // Oxfmt
+  run:    { … },  // タスク実行（キャッシュ付き）
+  lint:   { … },  // Oxlint
+});
+```
+
+</CodePanel>
+
+- `vite.config.ts` の `defineConfig` に **設定が全部同居**
+- test / staged / fmt / run / lint が **1ファイル**で完結
+- `vp lint` だけで **type linting**（oxlint-tsgolint）まで実行
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "19/0"
+layout: content
 ---
 
-<div class="slide-body"><div class="flex h-full flex-col justify-center"><h2 class="text-left text-white">良かった③ Vite Task (vp run)</h2><div class="text-left text-white"><div class="sh-code"><div class="sh-code__bar"><span class="sh-code__lang">ts</span></div><pre v-pre class="sh-code__pre"><code><span class="sh__line"><span class="sh__token--comment" style="color:var(--sh-comment)">// package.json</span></span>&#10;<span class="sh__line"><span class="sh__token--comment" style="color:var(--sh-comment)"></span><span class="sh__token--string" style="color:var(--sh-string)">"</span><span class="sh__token--string" style="color:var(--sh-string)">build</span><span class="sh__token--string" style="color:var(--sh-string)">"</span><span class="sh__token--sign" style="color:var(--sh-sign)">:</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--string" style="color:var(--sh-string)">"</span><span class="sh__token--string" style="color:var(--sh-string)">vp run -r build</span><span class="sh__token--string" style="color:var(--sh-string)">"</span></span>&#10;<span class="sh__line"><span class="sh__token--comment" style="color:var(--sh-comment)">// -r = 全 workspace を依存順に実行（既定で最大4並列）</span></span>&#10;<span class="sh__line"><span class="sh__token--comment" style="color:var(--sh-comment)"></span></span>&#10;<span class="sh__line"><span class="sh__token--comment" style="color:var(--sh-comment)">// vite.config.ts</span></span>&#10;<span class="sh__line"><span class="sh__token--comment" style="color:var(--sh-comment)"></span><span class="sh__token--identifier" style="color:var(--sh-identifier)">run</span><span class="sh__token--sign" style="color:var(--sh-sign)">:</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--sign" style="color:var(--sh-sign)">{</span></span>&#10;<span class="sh__line"><span class="sh__token--space" style="color:var(--sh-space)">  </span><span class="sh__token--identifier" style="color:var(--sh-identifier)">cache</span><span class="sh__token--sign" style="color:var(--sh-sign)">:</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--sign" style="color:var(--sh-sign)">{</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--identifier" style="color:var(--sh-identifier)">scripts</span><span class="sh__token--sign" style="color:var(--sh-sign)">:</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--keyword" style="color:var(--sh-keyword)">true</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--sign" style="color:var(--sh-sign)">}</span><span class="sh__token--sign" style="color:var(--sh-sign)">,</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--comment" style="color:var(--sh-comment)">// 使ったファイルを自動追跡してキャッシュ</span></span>&#10;<span class="sh__line"><span class="sh__token--comment" style="color:var(--sh-comment)"></span><span class="sh__token--sign" style="color:var(--sh-sign)">}</span></span></code></pre></div><ul>&#10;<li><code>-r</code> で <strong>全 workspace を依存順に実行</strong></li>&#10;<li><strong>モノレポでも問題なく動作</strong></li>&#10;<li>Turborepo 的なタスク実行を <strong>Vite+ の中</strong>で完結</li>&#10;</ul></div></div></div>
+## 良かった③ Vite Task (vp run)
+
+<CodePanel language="ts">
+
+```ts
+// package.json
+"build": "vp run -r build"
+// -r = 全 workspace を依存順に実行（既定で最大4並列）
+
+// vite.config.ts
+run: {
+  cache: { scripts: true }, // 使ったファイルを自動追跡してキャッシュ
+}
+```
+
+</CodePanel>
+
+- `-r` で **全 workspace を依存順に実行**
+- **モノレポでも問題なく動作**
+- Turborepo 的なタスク実行を **Vite+ の中**で完結
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "20/0"
+layout: content
 ---
 
-<div class="slide-body"><div class="flex h-full flex-col justify-center"><h2 class="text-left text-white">良かった③ キャッシュがあると爆速</h2><div class="text-left text-white"><div class="sh-code"><div class="sh-code__bar"><span class="sh-code__lang">text</span></div><pre v-pre class="sh-code__pre"><code>$ vp run -r build      # 2回目（変更なし）&#10;  ~/packages/hoge$     vp pack  ◉ cache hit, replaying&#10;  ~/packages/fuga$      tsc ...   ◉ cache hit, replaying&#10;  ~/packages/piyo$ vp pack  ◉ cache hit, replaying&#10;  ──────────────────────────────────────&#10;  vp run: 4/5 cache hit (80%), 27.38s saved&#10;  ↑ ui-preview(Astro) だけは入力を書き換えるので非キャッシュ</code></pre></div><ul>&#10;<li>使ったファイルを <strong>自動追跡</strong> → 変化なしなら <strong>実行せずリプレイ</strong></li>&#10;<li>実測で <strong>4/5 cache hit・27.38s 短縮</strong></li>&#10;<li>詳しくはこちらがとても参考になります&#10;<ul>&#10;<li><a href="https://zenn.dev/herp_inc/articles/strange-task-runner">https://zenn.dev/herp_inc/articles/strange-task-runner</a></li>&#10;</ul>&#10;</li>&#10;</ul></div></div></div>
+## 良かった③ キャッシュがあると爆速
+
+<CodePanel language="text">
+
+```text
+$ vp run -r build      # 2回目（変更なし）
+  ~/packages/hoge$     vp pack  ◉ cache hit, replaying
+  ~/packages/fuga$      tsc ...   ◉ cache hit, replaying
+  ~/packages/piyo$ vp pack  ◉ cache hit, replaying
+  ──────────────────────────────────────
+  vp run: 4/5 cache hit (80%), 27.38s saved
+  ↑ ui-preview(Astro) だけは入力を書き換えるので非キャッシュ
+```
+
+</CodePanel>
+
+- 使ったファイルを **自動追跡** → 変化なしなら **実行せずリプレイ**
+- 実測で **4/5 cache hit・27.38s 短縮**
+- 詳しくはこちらがとても参考になります
+  - [https://zenn.dev/herp_inc/articles/strange-task-runner](https://zenn.dev/herp_inc/articles/strange-task-runner)
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "21/0"
+layout: content
 ---
 
-<div class="slide-body"><div class="flex h-full flex-col justify-center"><h2 class="text-left text-white">良かった⑤ ライブラリモード = vp pack</h2><div class="text-left text-white"><div class="grid grid-cols-2 gap-4"><div class="sh-code"><div class="sh-code__bar"><span class="sh-code__lang">ts</span></div><pre v-pre class="sh-code__pre"><code><span class="sh__line"><span class="sh__token--comment" style="color:var(--sh-comment)">// packages/hoge/vite.config.ts</span></span>&#10;<span class="sh__line"><span class="sh__token--comment" style="color:var(--sh-comment)"></span><span class="sh__token--identifier" style="color:var(--sh-identifier)">pack</span><span class="sh__token--sign" style="color:var(--sh-sign)">:</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--sign" style="color:var(--sh-sign)">{</span></span>&#10;<span class="sh__line"><span class="sh__token--space" style="color:var(--sh-space)">  </span><span class="sh__token--identifier" style="color:var(--sh-identifier)">entry</span><span class="sh__token--sign" style="color:var(--sh-sign)">:</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--sign" style="color:var(--sh-sign)">[</span><span class="sh__token--string" style="color:var(--sh-string)">"</span><span class="sh__token--string" style="color:var(--sh-string)">./src/index.ts</span><span class="sh__token--string" style="color:var(--sh-string)">"</span><span class="sh__token--sign" style="color:var(--sh-sign)">]</span><span class="sh__token--sign" style="color:var(--sh-sign)">,</span></span>&#10;<span class="sh__line"><span class="sh__token--space" style="color:var(--sh-space)">  </span><span class="sh__token--identifier" style="color:var(--sh-identifier)">format</span><span class="sh__token--sign" style="color:var(--sh-sign)">:</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--sign" style="color:var(--sh-sign)">[</span><span class="sh__token--string" style="color:var(--sh-string)">"</span><span class="sh__token--string" style="color:var(--sh-string)">esm</span><span class="sh__token--string" style="color:var(--sh-string)">"</span><span class="sh__token--sign" style="color:var(--sh-sign)">,</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--string" style="color:var(--sh-string)">"</span><span class="sh__token--string" style="color:var(--sh-string)">cjs</span><span class="sh__token--string" style="color:var(--sh-string)">"</span><span class="sh__token--sign" style="color:var(--sh-sign)">]</span><span class="sh__token--sign" style="color:var(--sh-sign)">,</span></span>&#10;<span class="sh__line"><span class="sh__token--space" style="color:var(--sh-space)">  </span><span class="sh__token--identifier" style="color:var(--sh-identifier)">dts</span><span class="sh__token--sign" style="color:var(--sh-sign)">:</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--keyword" style="color:var(--sh-keyword)">true</span><span class="sh__token--sign" style="color:var(--sh-sign)">,</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--space" style="color:var(--sh-space)">       </span><span class="sh__token--comment" style="color:var(--sh-comment)">// 型定義も出力</span></span>&#10;<span class="sh__line"><span class="sh__token--comment" style="color:var(--sh-comment)"></span><span class="sh__token--space" style="color:var(--sh-space)">  </span><span class="sh__token--identifier" style="color:var(--sh-identifier)">sourcemap</span><span class="sh__token--sign" style="color:var(--sh-sign)">:</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--keyword" style="color:var(--sh-keyword)">true</span><span class="sh__token--sign" style="color:var(--sh-sign)">,</span></span>&#10;<span class="sh__line"><span class="sh__token--space" style="color:var(--sh-space)">  </span><span class="sh__token--identifier" style="color:var(--sh-identifier)">minify</span><span class="sh__token--sign" style="color:var(--sh-sign)">:</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--keyword" style="color:var(--sh-keyword)">true</span><span class="sh__token--sign" style="color:var(--sh-sign)">,</span></span>&#10;<span class="sh__line"><span class="sh__token--space" style="color:var(--sh-space)">  </span><span class="sh__token--identifier" style="color:var(--sh-identifier)">deps</span><span class="sh__token--sign" style="color:var(--sh-sign)">:</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--sign" style="color:var(--sh-sign)">{</span></span>&#10;<span class="sh__line"><span class="sh__token--space" style="color:var(--sh-space)">    </span><span class="sh__token--comment" style="color:var(--sh-comment)">// react 系は peer で external、それ以外はバンドル</span></span>&#10;<span class="sh__line"><span class="sh__token--comment" style="color:var(--sh-comment)"></span><span class="sh__token--space" style="color:var(--sh-space)">    </span><span class="sh__token--identifier" style="color:var(--sh-identifier)">alwaysBundle</span><span class="sh__token--sign" style="color:var(--sh-sign)">:</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--sign" style="color:var(--sh-sign)">[</span><span class="sh__token--string" style="color:var(--sh-string)">"</span><span class="sh__token--string" style="color:var(--sh-string)">clsx</span><span class="sh__token--string" style="color:var(--sh-string)">"</span><span class="sh__token--sign" style="color:var(--sh-sign)">,</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--string" style="color:var(--sh-string)">"</span><span class="sh__token--string" style="color:var(--sh-string)">tailwind-merge</span><span class="sh__token--string" style="color:var(--sh-string)">"</span><span class="sh__token--sign" style="color:var(--sh-sign)">,</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--string" style="color:var(--sh-string)">"</span><span class="sh__token--string" style="color:var(--sh-string)">dayjs</span><span class="sh__token--string" style="color:var(--sh-string)">"</span><span class="sh__token--sign" style="color:var(--sh-sign)">]</span><span class="sh__token--sign" style="color:var(--sh-sign)">,</span></span>&#10;<span class="sh__line"><span class="sh__token--space" style="color:var(--sh-space)">  </span><span class="sh__token--sign" style="color:var(--sh-sign)">}</span><span class="sh__token--sign" style="color:var(--sh-sign)">,</span></span>&#10;<span class="sh__line"><span class="sh__token--sign" style="color:var(--sh-sign)">}</span></span></code></pre></div><div class="sh-code"><div class="sh-code__bar"><span class="sh-code__lang">text</span></div><pre v-pre class="sh-code__pre"><code>             Before              After&#10;             vp build(Vite/lib)  vp pack(tsdown)&#10;  ESM  gzip   117KB         →     36KB   (459KB→144KB)&#10;  CJS  gzip   102KB         →     36KB   (340KB→148KB)&#10;  build       ~1.59s        →     ~1.0s&#10;  型定義      vite-plugin-dts →    tsdown 内蔵</code></pre></div></div><ul>&#10;<li><code>dts: true</code> の1行で型定義（<strong><code>vite-plugin-dts</code> 不要</strong>）、React 系は <strong>external 扱い</strong></li>&#10;<li>rollup → <strong>tsdown</strong> で gzip <strong>ESM 117KB → 36KB（約1/3）</strong></li>&#10;</ul></div></div></div>
+## 良かった⑤ ライブラリモード = vp pack
+
+<SlideGroup class="grid grid-cols-2 gap-4">
+
+<CodePanel language="ts">
+
+```ts
+// packages/hoge/vite.config.ts
+pack: {
+  entry: ["./src/index.ts"],
+  format: ["esm", "cjs"],
+  dts: true,        // 型定義も出力
+  sourcemap: true,
+  minify: true,
+  deps: {
+    // react 系は peer で external、それ以外はバンドル
+    alwaysBundle: ["clsx", "tailwind-merge", "dayjs"],
+  },
+}
+```
+
+</CodePanel>
+
+<CodePanel language="text">
+
+```text
+             Before              After
+             vp build(Vite/lib)  vp pack(tsdown)
+  ESM  gzip   117KB         →     36KB   (459KB→144KB)
+  CJS  gzip   102KB         →     36KB   (340KB→148KB)
+  build       ~1.59s        →     ~1.0s
+  型定義      vite-plugin-dts →    tsdown 内蔵
+```
+
+</CodePanel>
+
+</SlideGroup>
+
+- `dts: true` の1行で型定義（**`vite-plugin-dts` 不要**）、React 系は **external 扱い**
+- rollup → **tsdown** で gzip **ESM 117KB → 36KB（約1/3）**
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "22/0"
+layout: content
 ---
 
-<div class="slide-body"><div class="flex h-full flex-col justify-center"><h2 class="text-left text-white">良かった⑥ 個別ツールが要らない</h2><div class="text-left text-white"><div class="sh-code"><div class="sh-code__bar"><span class="sh-code__lang">ts</span></div><pre v-pre class="sh-code__pre"><code><span class="sh__line"><span class="sh__token--comment" style="color:var(--sh-comment)">// vite.config.ts ← lefthook.yml を置き換え</span></span>&#10;<span class="sh__line"><span class="sh__token--comment" style="color:var(--sh-comment)"></span><span class="sh__token--identifier" style="color:var(--sh-identifier)">staged</span><span class="sh__token--sign" style="color:var(--sh-sign)">:</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--sign" style="color:var(--sh-sign)">{</span></span>&#10;<span class="sh__line"><span class="sh__token--space" style="color:var(--sh-space)">  </span><span class="sh__token--string" style="color:var(--sh-string)">"</span><span class="sh__token--string" style="color:var(--sh-string)">*.{ts,tsx,js,jsx,mjs}</span><span class="sh__token--string" style="color:var(--sh-string)">"</span><span class="sh__token--sign" style="color:var(--sh-sign)">:</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--string" style="color:var(--sh-string)">"</span><span class="sh__token--string" style="color:var(--sh-string)">vp lint --fix</span><span class="sh__token--string" style="color:var(--sh-string)">"</span><span class="sh__token--sign" style="color:var(--sh-sign)">,</span></span>&#10;<span class="sh__line"><span class="sh__token--space" style="color:var(--sh-space)">  </span><span class="sh__token--string" style="color:var(--sh-string)">"</span><span class="sh__token--string" style="color:var(--sh-string)">*.{ts,tsx,css,md,json,yml}</span><span class="sh__token--string" style="color:var(--sh-string)">"</span><span class="sh__token--sign" style="color:var(--sh-sign)">:</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--string" style="color:var(--sh-string)">"</span><span class="sh__token--string" style="color:var(--sh-string)">vp fmt</span><span class="sh__token--string" style="color:var(--sh-string)">"</span><span class="sh__token--sign" style="color:var(--sh-sign)">,</span></span>&#10;<span class="sh__line"><span class="sh__token--sign" style="color:var(--sh-sign)">}</span></span>&#10;<span class="sh__line"></span>&#10;<span class="sh__line"><span class="sh__token--comment" style="color:var(--sh-comment)">// vp config が hooks を生成 → .vite-hooks/pre-commit の中身は1行</span></span>&#10;<span class="sh__line"><span class="sh__token--comment" style="color:var(--sh-comment)"></span><span class="sh__token--identifier" style="color:var(--sh-identifier)">vp</span><span class="sh__token--space" style="color:var(--sh-space)"> </span><span class="sh__token--identifier" style="color:var(--sh-identifier)">staged</span></span></code></pre></div><ul>&#10;<li>git hooks も <strong><code>vp</code> 同梱</strong>（<code>staged</code> に書くだけ）→ <strong>husky / lefthook 不要</strong></li>&#10;<li>独自の pre-commit は <strong><code>.vite-hooks/</code></strong> で対応</li>&#10;<li>Node も <strong><code>.node-version</code> だけ</strong>（今回の用途では mise / volta 不要）</li>&#10;</ul></div></div></div>
+## 良かった⑥ 個別ツールが要らない
+
+<CodePanel language="ts">
+
+```ts
+// vite.config.ts ← lefthook.yml を置き換え
+staged: {
+  "*.{ts,tsx,js,jsx,mjs}": "vp lint --fix",
+  "*.{ts,tsx,css,md,json,yml}": "vp fmt",
+}
+
+// vp config が hooks を生成 → .vite-hooks/pre-commit の中身は1行
+vp staged
+```
+
+</CodePanel>
+
+- git hooks も **`vp` 同梱**（`staged` に書くだけ）→ **husky / lefthook 不要**
+- 独自の pre-commit は **`.vite-hooks/`** で対応
+- Node も **`.node-version` だけ**（今回の用途では mise / volta 不要）
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "23/0"
+layout: statement
+contentClass: "statement-prose"
 ---
 
-<div class="slide-body"><div class="flex h-full items-center justify-center"><h1 class="whitespace-pre-line text-center"><p>もちろん辛みもあった</p></h1></div></div>
+# もちろん辛みもあった
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "24/0"
+layout: content
 ---
 
-<div class="slide-body"><div class="flex h-full flex-col justify-center"><h2 class="text-left text-white">辛かった① lefthook使用時にmigrateされない</h2><div class="text-left text-white"><ul>&#10;<li><code>vp migrate</code> 時、<strong>lefthook</strong> は自動移行されず警告のみ</li>&#10;<li>気づかず <strong>pre-commit が壊れていた</strong> → 設定を手動修正</li>&#10;<li>自動移行されたのは <strong>husky / lint-staged</strong> だけ</li>&#10;</ul></div></div></div>
+## 辛かった① lefthook使用時にmigrateされない
+
+- `vp migrate` 時、**lefthook** は自動移行されず警告のみ
+- 気づかず **pre-commit が壊れていた** → 設定を手動修正
+- 自動移行されたのは **husky / lint-staged** だけ
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "25/0"
+layout: content
 ---
 
-<div class="slide-body"><div class="flex h-full flex-col justify-center"><h2 class="text-left text-white">その後 → 実は仕様でした</h2><div class="text-left text-white"><ul>&#10;<li><strong>バグだと思って issue 起票</strong>（<a href="https://github.com/voidzero-dev/vite-plus/issues/1854">#1854</a>）</li>&#10;<li>よく見ると <strong>仕様だった</strong>（RFC に記載あり）</li>&#10;<li>→ <strong>Migration Guide に追記</strong>する形で対応（<a href="https://github.com/voidzero-dev/vite-plus/pull/1901">PR #1901</a>・マージ済み）</li>&#10;</ul></div></div></div>
+## その後 → 実は仕様でした
+
+- **バグだと思って issue 起票**（[#1854](https://github.com/voidzero-dev/vite-plus/issues/1854)）
+- よく見ると **仕様だった**（RFC に記載あり）
+- → **Migration Guide に追記**する形で対応（[PR #1901](https://github.com/voidzero-dev/vite-plus/pull/1901)・マージ済み）
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "26/0"
+layout: content
 ---
 
-<div class="slide-body"><div class="flex h-full flex-col justify-center"><h2 class="text-left text-white">辛かった② Astro がよく壊れた</h2><div class="text-left text-white"><ul>&#10;<li>&#10;<p>直後に <strong>Astro 6 へ手動移行</strong>（#198）</p>&#10;</li>&#10;<li>&#10;<p><code>core@0.1.14</code> で Astro 互換リグレッション → <strong>0.1.15 で解消</strong></p>&#10;</li>&#10;<li>&#10;<p><code>overrides.vite</code> が Astro 内部の Vite まで置換 → <strong>Release 失敗</strong></p>&#10;<p>→AstroV7でVite8がデフォになったり、同じCloudflareになったことで上手いこと行くことに期待</p>&#10;</li>&#10;</ul></div></div></div>
+## 辛かった② Astro がよく壊れた
+
+- 直後に **Astro 6 へ手動移行**（#198）
+- `core@0.1.14` で Astro 互換リグレッション → **0.1.15 で解消**
+- `overrides.vite` が Astro 内部の Vite まで置換 → **Release 失敗**
+  →AstroV7でVite8がデフォになったり、同じCloudflareになったことで上手いこと行くことに期待
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "27/0"
+layout: content
 ---
 
-<div class="slide-body"><div class="flex h-full flex-col justify-center"><h2 class="text-left text-white">気をつけた③ AI が vp を知らない</h2><div class="text-left text-white"><ul>&#10;<li><strong>AI が <code>Vite+</code> / <code>vp</code> を知らない</strong>ことが多い</li>&#10;<li>α版ゆえ学習データに無く、提案を外しがち</li>&#10;<li><strong><code>npx</code> で実行しがち</strong></li>&#10;</ul><p>→<code>AGENTS.md</code> / <code>CLAUDE.md</code> / Cursor rules などに <strong><code>vp</code> 前提の運用を書く</strong></p></div></div></div>
+## 気をつけた③ AI が vp を知らない
+
+- **AI が `Vite+` / `vp` を知らない**ことが多い
+- α版ゆえ学習データに無く、提案を外しがち
+- **`npx` で実行しがち**
+
+→`AGENTS.md` / `CLAUDE.md` / Cursor rules などに **`vp` 前提の運用を書く**
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "28/0"
+layout: content
 ---
 
-<div class="slide-body"><div class="flex h-full flex-col justify-center"><h2 class="text-left text-white">導入しやすい / 注意したい条件</h2><div class="text-left text-white"><ul>&#10;<li>&#10;<p><strong>導入しやすい</strong></p>&#10;<ul>&#10;<li>Vite / Vitest / Oxlint / Oxfmt を <strong>すでに使っている</strong></li>&#10;<li><strong>新規リポジトリ</strong>、または本格運用前</li>&#10;</ul>&#10;</li>&#10;<li>&#10;<p><strong>注意したい</strong></p>&#10;</li>&#10;<li>&#10;<p>framework 側の Vite 依存</p>&#10;</li>&#10;<li>&#10;<p>α版の破壊的変更を追えない</p>&#10;</li>&#10;</ul></div></div></div>
+## 導入しやすい / 注意したい条件
+
+- **導入しやすい**
+  - Vite / Vitest / Oxlint / Oxfmt を **すでに使っている**
+  - **新規リポジトリ**、または本格運用前
+- **注意したい**
+- framework 側の Vite 依存
+- α版の破壊的変更を追えない
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "29/0"
+layout: statement
+contentClass: "statement-prose"
 ---
 
-<div class="slide-body"><div class="flex h-full items-center justify-center"><h1 class="whitespace-pre-line text-center"><p>余談：このスライドも Vite+ です</p></h1></div></div>
+# 余談：このスライドも Vite+ です
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "30/0"
+layout: content
 ---
 
-<div class="slide-body"><div class="flex h-full flex-col justify-center"><h2 class="text-left text-white">Next 製でも Vite+ に乗れる</h2><div class="text-left text-white"><img :src="'/slides/vite-plus-retro/assets/pr-220.png'" alt="mySlides を Vite+ へ移行した PR #220（build: Vite+ への移行・ツールチェーン統合、26 files・+10366 -285）" width="1200" height="600" style="margin:0 auto 1rem;display:block;width:1000px;height:auto;max-width:100%;max-height:500px;border-radius:8px"><ul>&#10;<li>この LT スライド（mySlides）自体も Vite+ へ移行（<a href="https://github.com/Koutaro-Hanabusa/myslides/pull/220">PR #220</a>）</li>&#10;<li>web は <strong>Next 製</strong>（OGP を <code>opengraph-image.tsx</code> で組みたくて採用）、ビルドは <strong>Next のまま</strong></li>&#10;<li><code>vp</code> は <strong>lint / fmt / task / staged</strong> 担当 → 名前は Vite+ でも中身は <strong>バンドラ非依存</strong></li>&#10;</ul></div></div></div>
+## Next 製でも Vite+ に乗れる
+
+![mySlides を Vite+ へ移行した PR #220（build: Vite+ への移行・ツールチェーン統合、26 files・+10366 -285）](/slides/vite-plus-retro/assets/pr-220.png){width="1200" height="600" style="margin:0 auto 1rem;display:block;width:1000px;height:auto;max-width:100%;max-height:500px;border-radius:8px"}
+
+- この LT スライド（mySlides）自体も Vite+ へ移行（[PR #220](https://github.com/Koutaro-Hanabusa/myslides/pull/220)）
+- web は **Next 製**（OGP を `opengraph-image.tsx` で組みたくて採用）、ビルドは **Next のまま**
+- `vp` は **lint / fmt / task / staged** 担当 → 名前は Vite+ でも中身は **バンドラ非依存**
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "31/0"
+layout: content
 ---
 
-<div class="slide-body"><div class="flex h-full flex-col justify-center"><h2 class="text-left text-white">そして Vite+ の沼へ</h2><div class="text-left text-white"><img :src="'/slides/vite-plus-retro/assets/vite-plus-bad-spiral.png'" alt="Vite+への熱中がさらに深まっていく様子を表した悪循環ポスター" width="515" height="645" style="margin:0 auto 0.5rem;display:block;width:600px;height:auto;max-width:100%;max-height:720px;border-radius:8px"><p>［<a href="https://furandon-pig.github.io/fpig_sample/hobby/bad_spiral/">悪循環画像ジェネレータ</a>で作成］</p></div></div></div>
+## そして Vite+ の沼へ
+
+![Vite+への熱中がさらに深まっていく様子を表した悪循環ポスター](/slides/vite-plus-retro/assets/vite-plus-bad-spiral.png){width="515" height="645" style="margin:0 auto 0.5rem;display:block;width:600px;height:auto;max-width:100%;max-height:720px;border-radius:8px"}
+
+［[悪循環画像ジェネレータ](https://furandon-pig.github.io/fpig_sample/hobby/bad_spiral/)で作成］
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "32/0"
+layout: content
 ---
 
-<div class="slide-body"><div class="flex h-full flex-col justify-center"><h2 class="text-left text-white">まとめ</h2><div class="text-left text-white"><ul>&#10;<li>設定を <strong><code>vite.config.ts</code> 一つに集約</strong>できるのが最高</li>&#10;<li>Vite / Vitest / Oxlint / Oxfmt を使っているなら、<strong>導入価値はかなり高い</strong></li>&#10;<li>新規リポジトリや本格運用前なら、<strong>早めに試す価値あり</strong></li>&#10;<li>α 版なので注意は必要だが、今回の辛みは <strong>改善・運用で吸収できる範囲</strong></li>&#10;</ul></div></div></div>
+## まとめ
+
+- 設定を **`vite.config.ts` 一つに集約**できるのが最高
+- Vite / Vitest / Oxlint / Oxfmt を使っているなら、**導入価値はかなり高い**
+- 新規リポジトリや本格運用前なら、**早めに試す価値あり**
+- α 版なので注意は必要だが、今回の辛みは **改善・運用で吸収できる範囲**
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 legacyHash: "33/0"
+layout: statement
+contentClass: "statement-prose"
 ---
 
-<div class="slide-body"><div class="flex h-full items-center justify-center"><h1 class="whitespace-pre-line text-center"><p>ご清聴ありがとうございました</p></h1></div></div>
+# ご清聴ありがとうございました

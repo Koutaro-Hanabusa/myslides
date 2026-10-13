@@ -10,6 +10,7 @@ const require = createRequire(import.meta.url);
 const cliRequire = createRequire(require.resolve("@slidev/cli/package.json"));
 const { parse } = await import(cliRequire.resolve("@slidev/parser/core"));
 const publicDir = resolve(root, "../web/public");
+const decks = JSON.parse(await readFile(resolve(root, "decks.json"), "utf8"));
 const server = createServer(async (req, res) => {
   try {
     let file = resolve(
@@ -85,12 +86,12 @@ try {
     );
     results.push(`${kind}: initial focus, focus trap, Escape, restored focus`);
   }
-  for (const slug of ["vite-plus-retro", "tanstack-router-dir-structure", "oss-and-community-v2"]) {
-    const parsed = await parse(await readFile(resolve(root, `${slug}.md`), "utf8"));
+  for (const [slug, deck] of Object.entries(decks)) {
+    const parsed = await parse(await readFile(resolve(root, deck.file), "utf8"));
     for (const [i, slide] of parsed.slides.entries()) {
       if (!slide.content.includes('v-click.hide="1"')) continue;
       await page.goto(`${base}/presentations/${slug}/#/${i + 1}`);
-      const images = page.locator(`[data-slidev-no="${i + 1}"] .r-stack img`).first();
+      const images = page.locator(`[data-slidev-no="${i + 1}"] .image-stack img`).first();
       await images.waitFor({ state: "visible" });
       const pair = page.locator(`[data-slidev-no="${i + 1}"] img[data-fragment-index="0"]`);
       assert(await pair.first().evaluate((el) => getComputedStyle(el).opacity !== "0"));
