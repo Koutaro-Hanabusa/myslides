@@ -1,0 +1,24 @@
+{
+  "name": "@mySlides/decks",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "slidev",
+    "export": "slidev export",
+    "test": "vp test --root ../..",
+    "test:browser": "node scripts/test-browser.mjs",
+    "build:slides": "node scripts/build.mjs",
+    "test:interactions": "node scripts/test-interactions.mjs"
+  },
+  "dependencies": {
+    "@slidev/cli": "52.20.1",
+    "@slidev/client": "52.20.1",
+    "reka-ui": "2.11.0",
+    "vue": "3.5.43",
+    "vue-router": "5.4.0"
+  },
+  "devDependencies": {
+    "playwright": "1.64.0",
+    "playwright-chromium": "1.64.0"
+  }
+}

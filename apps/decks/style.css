@@ -1,0 +1,263 @@
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url("/fonts/slide-source-sans-pro/source-sans-pro-regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url("/fonts/slide-source-sans-pro/source-sans-pro-semibold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url("/fonts/slide-source-sans-pro/source-sans-pro-italic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url("/fonts/slide-source-sans-pro/source-sans-pro-semibolditalic.woff") format("woff");
+  font-weight: 600;
+  font-style: italic;
+}
+.myslides-layout {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  color: white;
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
+  font-size: 42px;
+  line-height: 1.3;
+  text-align: center;
+}
+.myslides-content {
+  position: relative;
+  width: 1920px;
+  flex-shrink: 0;
+  transform: scale(0.96);
+  padding: 20px 0;
+}
+.myslides-content.h-full {
+  height: 1080px;
+}
+.large-type {
+  font-size: 48px;
+}
+.myslides-content h1,
+.myslides-content h2,
+.myslides-content h3,
+.myslides-content h4 {
+  margin: 0 0 20px;
+  font-weight: 600;
+  line-height: 1.2;
+  overflow-wrap: break-word;
+}
+.myslides-content h1 {
+  font-size: 2.5em;
+}
+.myslides-content h2 {
+  font-size: 1.6em;
+}
+.myslides-content h3 {
+  font-size: 1.3em;
+}
+.myslides-content h4 {
+  font-size: 1em;
+}
+.myslides-content p {
+  margin: 20px 0;
+  line-height: 1.3;
+}
+.myslides-content h1:last-child,
+.myslides-content h2:last-child,
+.myslides-content h3:last-child,
+.myslides-content h4:last-child {
+  margin-bottom: 0;
+}
+.myslides-content ul,
+.myslides-content ol {
+  display: inline-block;
+  text-align: left;
+  margin: 0 0 0 1em;
+}
+.myslides-content ul {
+  list-style: disc;
+}
+.myslides-content ol {
+  list-style: decimal;
+}
+.myslides-content li > ul,
+.myslides-content li > ol {
+  display: block;
+}
+.myslides-content img {
+  display: inline-block;
+  margin: 20px 0;
+  max-width: 95%;
+  max-height: 950px;
+  object-fit: contain;
+}
+.myslides-content .r-stretch {
+  max-width: none;
+  max-height: none;
+}
+.myslides-content strong {
+  font-weight: 700;
+}
+.myslides-content a {
+  color: #42affa;
+  text-decoration: none;
+}
+.myslides-content a:hover {
+  color: #5ebbfc;
+}
+.myslides-content pre {
+  display: block;
+  width: 90%;
+  margin: 20px auto;
+  text-align: left;
+  font-size: 0.55em;
+  font-family: monospace;
+  line-height: 1.2;
+  white-space: pre-wrap;
+}
+.myslides-content pre code {
+  display: block;
+  padding: 5px;
+  max-height: 800px;
+  overflow: auto;
+}
+.myslides-content blockquote {
+  width: 70%;
+  margin: 20px auto;
+  padding: 5px;
+  font-style: italic;
+  background: #ffffff0d;
+}
+.myslides-content table {
+  margin: auto;
+  border-collapse: collapse;
+  font-size: inherit;
+}
+.myslides-content th,
+.myslides-content td {
+  text-align: left;
+  padding: 0.2em 0.5em;
+  border-bottom: 1px solid;
+}
+.r-stack {
+  display: grid;
+}
+.r-stack > * {
+  grid-area: 1 / 1;
+  align-self: center;
+  justify-self: center;
+}
+.nix-deck code {
+  font-size: 1em;
+}
+.nix-deck .sh-code__pre {
+  padding: 0.6em 0.7em;
+  font-size: 48px;
+  line-height: 1.35;
+}
+/* コードブロック — sugar-high のトークン色は --sh-* で定義 */
+.sh-code {
+  --sh-code-bg: #1e1e2e;
+  --sh-code-bar: #181825;
+  --sh-code-border: rgba(255, 255, 255, 0.08);
+  --sh-identifier: #cdd6f4;
+  --sh-keyword: #cba6f7;
+  --sh-string: #a6e3a1;
+  --sh-class: #f9e2af;
+  --sh-property: #89b4fa;
+  --sh-entity: #89b4fa;
+  --sh-jsxliterals: #f5c2e7;
+  --sh-sign: #9399b2;
+  --sh-comment: #6c7086;
+
+  display: block;
+  margin: 0.7em auto;
+  max-width: 92%;
+  overflow: hidden;
+  border: 1px solid var(--sh-code-border);
+  border-radius: 14px;
+  background: var(--sh-code-bg);
+  box-shadow:
+    0 30px 60px -20px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(0, 0, 0, 0.25);
+  text-align: left;
+}
+.sh-code__bar {
+  display: flex;
+  align-items: center;
+  padding: 0.5em 1.1em;
+  background: var(--sh-code-bar);
+  border-bottom: 1px solid var(--sh-code-border);
+}
+.sh-code__lang {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.72em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #7f849c;
+}
+
+.myslides-content .sh-code__pre,
+.sh-code__pre {
+  margin: 0;
+  width: auto;
+  max-width: none;
+  padding: 1.15em 1.4em;
+  background: transparent;
+  box-shadow: none;
+  overflow-x: auto;
+  overflow-y: visible;
+  font-size: 0.5em;
+  line-height: 1.7;
+  tab-size: 2;
+}
+.myslides-content .sh-code__pre code,
+.sh-code__pre code {
+  display: block;
+  font-family: var(--font-geist-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color: var(--sh-identifier);
+  background: transparent;
+  white-space: pre;
+  text-shadow: none;
+
+  max-height: none;
+  overflow: visible;
+}
+.sh-code .sh__token--comment {
+  font-style: italic;
+}
+
+/* インラインコード */
+.myslides-inline-code {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.85em;
+  padding: 0.12em 0.4em;
+  border-radius: 0.35em;
+  background: rgba(203, 166, 247, 0.16);
+  color: #cba6f7;
+  white-space: nowrap;
+}
+
+/* Keep the release screenshot and both service links inside the canvas. */
+.release-demo h1 {
+  font-size: 70px;
+}
+.release-demo p {
+  font-size: 48px;
+}
+.release-demo img {
+  max-height: 600px;
+}

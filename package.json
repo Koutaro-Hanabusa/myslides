@@ -37,15 +37,17 @@
     "db:push": "vp run -F @mySlides/db db:push",
     "db:studio": "vp run -F @mySlides/db db:studio",
     "db:generate": "vp run -F @mySlides/db db:generate",
-    "db:migrate": "vp run -F @mySlides/db db:migrate"
+    "db:migrate": "vp run -F @mySlides/db db:migrate",
+    "slides:dev": "vp run -F @mySlides/decks dev",
+    "slides:build": "vp run -F @mySlides/decks build:slides",
+    "slides:test": "vp test",
+    "slides:test:browser": "vp run -F @mySlides/decks test:browser"
   },
   "dependencies": {
     "dotenv": "^17.2.2",
     "zod": "^4.1.11"
   },
   "devDependencies": {
-    "@mdx-js/loader": "^3.1.1",
-    "@types/mdx": "^2.0.13",
     "@types/node": "^22.13.11",
     "cf": "catalog:",
     "vite": "catalog:",

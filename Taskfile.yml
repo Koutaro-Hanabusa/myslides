@@ -7,18 +7,18 @@ tasks:
       - task --list
     silent: true
 
-  new-mdxslide:
-    desc: Create a personal MDX presentation
+  new-slide:
+    desc: Create a personal Slidev presentation
     cmds:
-      - node scripts/new-mdxslide.mjs personal {{.CLI_ARGS}}
+      - node scripts/new-slide.mjs personal {{.CLI_ARGS}}
 
-  new-mdxslide-corp:
-    desc: Create a corporate MDX presentation
+  new-slide-corp:
+    desc: Create a corporate Slidev presentation
     cmds:
-      - node scripts/new-mdxslide.mjs corporate {{.CLI_ARGS}}
+      - node scripts/new-slide.mjs corporate {{.CLI_ARGS}}
 
   pdf:
-    desc: Export a presentation to PDF using decktape
+    desc: Export a presentation to PDF using Slidev
     summary: |
       Usage:
         task pdf -- <slide-name>
@@ -29,6 +29,6 @@ tasks:
         task pdf -- better-t-stack my-slides.pdf
 
       Requirements:
-        - decktape must be installed: npm install -g decktape
+        - Chromium must be installed: vp exec playwright install chromium
     cmds:
       - ./scripts/pdf-export.sh {{.CLI_ARGS}}

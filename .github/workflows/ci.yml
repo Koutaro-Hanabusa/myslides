@@ -36,3 +36,18 @@ jobs:
         run: vp lint
       - name: Format check
         run: vp fmt --check
+      - name: Slidev source and generator tests
+        run: vp run slides:test
+      - name: Install browser for slide verification
+        working-directory: apps/decks
+        run: vp exec playwright install --with-deps chromium
+      - name: Verify every slide on desktop and mobile
+        run: |
+          vp run slides:test:browser
+          vp run -F @mySlides/decks test:interactions
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: slidev-verification
+          path: apps/decks/test-results/
+          retention-days: 7

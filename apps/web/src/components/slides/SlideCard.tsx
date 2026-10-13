@@ -3,7 +3,6 @@
 import type { Route } from "next";
 import Link from "next/link";
 import { Fragment, useEffect, useRef, useState } from "react";
-import RevealPresentation from "@/components/reveal-presentation";
 
 interface SlideCardProps {
   href: Route;
@@ -11,7 +10,7 @@ interface SlideCardProps {
   date: string;
   event?: string | string[];
   url?: string | string[];
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 function toEventEntries(
@@ -24,7 +23,7 @@ function toEventEntries(
   return names.filter((name) => name).map((name, i) => ({ name, url: urls[i] || undefined }));
 }
 
-export default function SlideCard({ href, title, date, event, url, children }: SlideCardProps) {
+export default function SlideCard({ href, title, date, event, url }: SlideCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const eventEntries = toEventEntries(event, url);
@@ -63,7 +62,14 @@ export default function SlideCard({ href, title, date, event, url, children }: S
       >
         <div className="relative aspect-video cursor-pointer">
           {isVisible ? (
-            <RevealPresentation embedded>{children}</RevealPresentation>
+            <iframe
+              src={`/presentations${href}/?embedded=true#/1`}
+              title={`${title} の表紙`}
+              className="pointer-events-none h-full w-full border-0"
+              loading="lazy"
+              tabIndex={-1}
+              aria-hidden="true"
+            />
           ) : (
             <div className="flex h-full w-full items-center justify-center bg-neutral-900 text-gray-500">
               Loading...
