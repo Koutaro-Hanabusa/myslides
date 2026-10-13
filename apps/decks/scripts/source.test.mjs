@@ -10,7 +10,7 @@ const { parse } = await import(cliRequire.resolve("@slidev/parser/core"));
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const decks = JSON.parse(await readFile(resolve(root, "decks.json"), "utf8"));
 const manifest = JSON.parse(await readFile(resolve(root, "migration-manifest.json"), "utf8"));
-test("all migrated slides retain their order, old deep links and local assets", async () => {
+test("Markdown decks retain their order, old deep links and local assets", async () => {
   for (const [slug, deck] of Object.entries(decks)) {
     const md = await readFile(resolve(root, deck.file), "utf8");
     const parsed = await parse(md, deck.file);
@@ -27,10 +27,20 @@ test("all migrated slides retain their order, old deep links and local assets", 
       manifest[slug].map((slide, i) => [`${slide.h}/${slide.v}`, i + 1]),
     );
     assert.deepEqual(deck.legacy, expected, slug);
-    for (const url of [...md.matchAll(/(?::src="'|src="|background: ")([^"'<>]+)/g)].map(
-      (match) => match[1],
-    )) {
+    const prose = md.replace(/^(`{3,})[^\n]*\n[\s\S]*?^\1\s*$/gm, "");
+    assert.doesNotMatch(
+      prose,
+      /<(?:div|h[1-6]|p|ul|ol|li|table|pre|code|img|strong|small)\b/i,
+      `${slug}: prose must use Markdown, not serialized HTML`,
+    );
+    const urls = [
+      ...prose.matchAll(/!\[[^\]]*\]\(([^\s)]+)\)/g),
+      ...prose.matchAll(/^background: "([^"\n]+)"/gm),
+    ].map((match) => match[1]);
+    for (const url of urls) {
       if (url.startsWith("/")) await access(resolve(root, "../web/public", url.slice(1)));
     }
+    for (const slide of parsed.slides)
+      await access(resolve(root, "layouts", `${slide.frontmatter.layout || "default"}.vue`));
   }
 });

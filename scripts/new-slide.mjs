@@ -71,9 +71,59 @@ export async function createSlide(root, slug, kind) {
     kind === "personal"
       ? "/slides/templates/af4e26a78715.png"
       : "/slides/templates/1e9b011d7127.png";
-  let md = `---\ntheme: none\ntitle: "${slug}"\nlayout: migrated\ncanvasWidth: 1920\naspectRatio: 16/9\nrouterMode: hash\nwakeLock: false\npreloadImages: false\ntransition: slide-left\nfonts:\n  provider: none\n  sans: Source Sans Pro, Helvetica, sans-serif\ndefaults:\n  layout: migrated\nbackground: "${cover}"\n---\n\n# ${slug}\n\nぶりお @burio_16\n\n---\nbackground: "${background}"\n---\n\n## 自己紹介\n\n- 名前・所属\n- 自己紹介の項目\n\n---\nbackground: "${background}"\n---\n\n# 見出し\n\n---\nbackground: "${background}"\n---\n\n## 本文タイトル\n\n- 項目1\n- 項目2\n- 項目3\n`;
+  let md = `---
+theme: none
+title: "${slug}"
+layout: cover
+canvasWidth: 1920
+aspectRatio: 16/9
+routerMode: hash
+wakeLock: false
+preloadImages: false
+transition: slide-left
+mdc: true
+fonts:
+  provider: none
+  sans: Source Sans Pro, Helvetica, sans-serif
+defaults:
+  layout: content
+background: "${cover}"
+---
+
+### イベント名
+
+# ${slug}
+
+### ぶりお @burio_16
+
+---
+background: "${background}"
+---
+
+## 自己紹介
+
+- 名前・所属
+- 自己紹介の項目
+
+---
+layout: statement
+background: "${background}"
+---
+
+# 見出し
+
+---
+background: "${background}"
+---
+
+## 本文タイトル
+
+- 項目1
+- 項目2
+- 項目3
+`;
   if (kind === "corporate") {
-    const company = `---\nbackground: "/slides/templates/1e8424e4716c.png"\n---\n\n<div></div>\n\n---\nbackground: "/slides/templates/02c1527ee49d.png"\n---\n\n<div></div>\n\n`;
+    const company = `---\nlayout: blank\nbackground: "/slides/templates/1e8424e4716c.png"\n---\n\n\n---\nlayout: blank\nbackground: "/slides/templates/02c1527ee49d.png"\n---\n\n`;
     md = md.replace(
       `---\nbackground: "${background}"\n---\n\n## 自己紹介`,
       company + `---\nbackground: "${background}"\n---\n\n## 自己紹介`,
@@ -82,7 +132,7 @@ export async function createSlide(root, slug, kind) {
       `background: "${background}"\n`,
       `background: "${background}"\ncontentStyle: "color: black"\n`,
     );
-    md += `\n---\nbackground: "/slides/templates/fa74e1541fa0.png"\n---\n\n<div></div>\n`;
+    md += `\n---\nlayout: blank\nbackground: "/slides/templates/fa74e1541fa0.png"\n---\n`;
   }
   let targetCreated = false;
   let assetsCreated = false;

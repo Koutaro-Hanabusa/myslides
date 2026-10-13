@@ -67,8 +67,13 @@ async function checkDeck(slug, deck, mobile) {
         }, i + 1);
       const slide = page.locator(`[data-slidev-no="${i + 1}"] .myslides-content`).first();
       await slide.waitFor({ state: "visible" });
+      // Vue adds transition classes after rendering; wait for that update before inspecting.
+      await page.evaluate(async () => {
+        await new Promise(requestAnimationFrame);
+        await new Promise(requestAnimationFrame);
+      });
       await page.waitForFunction(
-        () => !document.querySelector(".slide-left-enter-active, .slide-left-leave-active"),
+        () => !document.querySelector('[class*="-enter-active"], [class*="-leave-active"]'),
       );
       const expected = manifest[slug]?.[i];
       const actual = await slide.evaluate((el) => ({
@@ -107,6 +112,15 @@ async function checkDeck(slug, deck, mobile) {
             img.src = url;
           });
       });
+      const crampedCode = await slide.evaluate((el) =>
+        [...el.querySelectorAll(".slidev-code")]
+          .filter((code) => {
+            const style = getComputedStyle(code);
+            return Number.parseFloat(style.lineHeight) < Number.parseFloat(style.fontSize) * 1.1;
+          })
+          .map((code) => code.textContent.slice(0, 100)),
+      );
+      if (crampedCode.length) failures.push({ slug, slide: i + 1, mobile, crampedCode });
       const overflow = await slide.evaluate((el) => {
         const canvas = el.closest(".slidev-slide-container") || el.closest(".slidev-slide");
         if (!canvas) return [];

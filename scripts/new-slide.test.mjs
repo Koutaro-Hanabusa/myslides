@@ -5,7 +5,11 @@ import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createSlide } from "./new-slide.mjs";
+import { createRequire } from "node:module";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
+const deckRequire = createRequire(join(root, "apps/decks/package.json"));
+const cliRequire = createRequire(deckRequire.resolve("@slidev/cli/package.json"));
+const { parse } = await import(cliRequire.resolve("@slidev/parser/core"));
 const registry = [
   "apps/web/src/lib/slides/config.ts",
   "apps/web/src/app/page.tsx",
@@ -34,6 +38,10 @@ for (const kind of ["personal", "corporate"]) {
       assert.match(md, /theme: none/);
       assert.match(md, /## 本文タイトル\n\n- 項目1/);
       assert.doesNotMatch(md, /reveal|React|MDX/);
+      assert.doesNotMatch(md, /<(?:div|h[1-6]|ul|li)\b/);
+      const parsed = await parse(md);
+      assert.equal(parsed.slides.length, kind === "corporate" ? 7 : 4);
+      assert.equal(parsed.slides[0].frontmatter.layout, "cover");
       assert.match(
         await readFile(join(dir, "apps/web/src/app", slug, "page.tsx"), "utf8"),
         /SlidevPresentation/,
