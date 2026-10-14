@@ -1,15 +1,13 @@
-import RevealPresentation from "@/components/reveal-presentation";
-import Cover from "./slides/cover";
-import SlidesContent from "./slides.mdx";
-import styles from "./slides.module.css";
+import SlidevPresentation from "@/components/slidev-presentation";
+import { getSlideConfig, getSlideTitle } from "@/lib/slides/config";
 
 export default function PresentationPage() {
   return (
-    <div className={`${styles.deck} h-full w-full`}>
-      <RevealPresentation transition="slide">
-        <Cover />
-        <SlidesContent />
-      </RevealPresentation>
+    <div className="relative h-full w-full">
+      <SlidevPresentation
+        slug="nix-for-everyone"
+        title={getSlideTitle(getSlideConfig("nix-for-everyone"))}
+      />
     </div>
   );
 }

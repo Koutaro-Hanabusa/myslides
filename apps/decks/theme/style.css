@@ -1,0 +1,339 @@
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url("/fonts/slide-source-sans-pro/source-sans-pro-regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url("/fonts/slide-source-sans-pro/source-sans-pro-semibold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url("/fonts/slide-source-sans-pro/source-sans-pro-italic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url("/fonts/slide-source-sans-pro/source-sans-pro-semibolditalic.woff") format("woff");
+  font-weight: 600;
+  font-style: italic;
+}
+.myslides-layout {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  color: white;
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
+  font-size: 42px;
+  line-height: 1.3;
+  text-align: center;
+}
+.myslides-content {
+  position: relative;
+  width: 1920px;
+  flex-shrink: 0;
+  transform: scale(0.96);
+  padding: 20px 0;
+}
+.myslides-content.h-full {
+  height: 1080px;
+}
+.large-type {
+  font-size: 48px;
+}
+.myslides-content h1,
+.myslides-content h2,
+.myslides-content h3,
+.myslides-content h4 {
+  margin: 0 0 20px;
+  font-weight: 600;
+  line-height: 1.2;
+  overflow-wrap: break-word;
+}
+.myslides-content h1 {
+  font-size: 2.5em;
+}
+.myslides-content h2 {
+  font-size: 1.6em;
+}
+.myslides-content h3 {
+  font-size: 1.3em;
+}
+.myslides-content h4 {
+  font-size: 1em;
+}
+.myslides-content p {
+  margin: 20px 0;
+  line-height: 1.3;
+}
+.myslides-content h1:last-child,
+.myslides-content h2:last-child,
+.myslides-content h3:last-child,
+.myslides-content h4:last-child {
+  margin-bottom: 0;
+}
+.myslides-content ul,
+.myslides-content ol {
+  display: inline-block;
+  text-align: left;
+  margin: 0 0 0 1em;
+}
+.myslides-content ul {
+  list-style: disc;
+}
+.myslides-content ol {
+  list-style: decimal;
+}
+.myslides-content li > ul,
+.myslides-content li > ol {
+  display: block;
+}
+.myslides-content img {
+  display: inline-block;
+  margin: 20px 0;
+  max-width: 95%;
+  max-height: 950px;
+  object-fit: contain;
+}
+.myslides-content .natural-image {
+  max-width: none;
+  max-height: none;
+}
+.myslides-content strong {
+  font-weight: 700;
+}
+.myslides-content a {
+  color: #42affa;
+  text-decoration: none;
+}
+.myslides-content a:hover {
+  color: #5ebbfc;
+}
+.myslides-content pre {
+  display: block;
+  width: 90%;
+  margin: 20px auto;
+  text-align: left;
+  font-size: 0.55em;
+  font-family: monospace;
+  line-height: 1.2;
+  white-space: pre-wrap;
+}
+.myslides-content pre code {
+  display: block;
+  padding: 5px;
+  max-height: 800px;
+  overflow: auto;
+}
+.myslides-content blockquote {
+  width: 70%;
+  margin: 20px auto;
+  padding: 5px;
+  font-style: italic;
+  background: #ffffff0d;
+}
+.myslides-content table {
+  margin: auto;
+  border-collapse: collapse;
+  font-size: inherit;
+}
+.myslides-content th,
+.myslides-content td {
+  text-align: left;
+  padding: 0.2em 0.5em;
+  border-bottom: 1px solid;
+}
+.image-stack {
+  display: grid;
+}
+.image-stack > * {
+  grid-area: 1 / 1;
+  align-self: center;
+  justify-self: center;
+}
+.nix-deck code {
+  font-size: 1em;
+}
+/* Markdown code fences use Slidev's native Shiki renderer. */
+.myslides-content .slidev-code-wrapper {
+  --slidev-code-margin: 0;
+  --slidev-code-font-size: calc(var(--slide-font-size) * 0.55);
+  --slidev-code-line-height: 1.2;
+  --slidev-code-font-family: monospace;
+  --slidev-code-padding: 0;
+  --slidev-code-radius: 0;
+}
+.myslides-content .slidev-code {
+  width: 90%;
+  margin: 20px auto;
+  padding: 0;
+  font-size: 0.55em;
+  font-family: monospace;
+  line-height: 1.2;
+  border-radius: 0;
+  white-space: pre-wrap;
+}
+.myslides-content .slidev-code code {
+  white-space: inherit;
+}
+.code-panel {
+  display: block;
+  width: 92%;
+  margin: 0.7em auto;
+  max-width: 92%;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  background: #1e1e2e;
+  box-shadow:
+    0 30px 60px -20px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(0, 0, 0, 0.25);
+  text-align: left;
+}
+.code-panel-bar {
+  display: flex;
+  align-items: center;
+  padding: 0.5em 1.1em;
+  background: #181825;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.code-panel-bar span {
+  font-family: ui-monospace, monospace;
+  font-size: 0.72em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #7f849c;
+}
+.myslides-content .code-panel .slidev-code {
+  margin: 0;
+  width: auto;
+  max-width: none;
+  padding: 1.15em 1.4em;
+  background: transparent !important;
+  box-shadow: none;
+  overflow-x: auto;
+  overflow-y: visible;
+  font-size: 0.5em;
+  line-height: 1.7;
+  tab-size: 2;
+}
+.code-panel .slidev-code-wrapper {
+  --slidev-code-font-size: calc(var(--slide-font-size) * 0.5);
+  --slidev-code-line-height: 1.7;
+  --slidev-code-font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --slidev-code-padding: 1.15em 1.4em;
+}
+.myslides-content .code-panel .slidev-code code {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  max-height: none;
+  overflow: visible;
+  white-space: pre;
+}
+.slide-note {
+  font-size: 0.6em;
+}
+.myslides-content {
+  --slide-font-size: 42px;
+}
+.myslides-content.large-type {
+  --slide-font-size: 48px;
+}
+.slide-cover {
+  text-align: left;
+}
+.slide-cover h3:first-child,
+.slide-cover h1 {
+  margin-bottom: calc(20px + var(--slide-font-size) * 1.3);
+}
+.slide-cover.compact-cover h3:first-child {
+  margin-bottom: 20px;
+}
+.slide-content {
+  text-align: left;
+}
+.slide-statement.statement-prose h1 {
+  line-height: 1.3;
+}
+.slide-profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.profile-details {
+  display: flex;
+  flex-direction: column;
+}
+.profile-details ul {
+  padding-left: 1.5rem;
+}
+.profile-details li + li {
+  margin-top: 1.5rem;
+}
+.profile-photo > p,
+.split-image > p,
+.image-stack > p {
+  margin: 0;
+}
+.image-stack > p {
+  display: contents;
+}
+.image-stack img {
+  grid-area: 1 / 1;
+  align-self: center;
+  justify-self: center;
+}
+.slide-split {
+  height: 1080px;
+  display: flex;
+  align-items: center;
+}
+.split-copy {
+  width: 50%;
+  padding-right: 3rem;
+  text-align: left;
+}
+.split-copy > h2:has(+ p) {
+  margin-bottom: 40px;
+}
+.split-image {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 50%;
+  aspect-ratio: 1;
+  transform: translateY(-50%);
+}
+.split-image > p {
+  height: 100%;
+}
+.myslides-content .split-image img {
+  margin: 0;
+}
+.slide-group-bare > p {
+  margin: 0;
+}
+/* A Markdown image paragraph should keep its image as the flex/grid item. */
+.myslides-content :is(.flex, .grid) > p:has(> img:only-child),
+.myslides-content .image-stack > p {
+  display: contents;
+}
+
+/* Keep the release screenshot and both service links inside the canvas. */
+.release-demo h1 {
+  font-size: 70px;
+}
+.release-demo p {
+  font-size: 48px;
+}
+.release-demo img {
+  max-height: 600px;
+}

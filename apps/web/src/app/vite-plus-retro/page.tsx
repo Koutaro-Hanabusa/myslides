@@ -1,14 +1,13 @@
-import RevealPresentation from "@/components/reveal-presentation";
-import Cover from "./slides/cover";
-import SlidesContent from "./slides.mdx";
+import SlidevPresentation from "@/components/slidev-presentation";
+import { getSlideConfig, getSlideTitle } from "@/lib/slides/config";
 
 export default function PresentationPage() {
   return (
-    <div className="h-full w-full">
-      <RevealPresentation transition="slide">
-        <Cover />
-        <SlidesContent />
-      </RevealPresentation>
+    <div className="relative h-full w-full">
+      <SlidevPresentation
+        slug="vite-plus-retro"
+        title={getSlideTitle(getSlideConfig("vite-plus-retro"))}
+      />
     </div>
   );
 }

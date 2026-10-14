@@ -49,3 +49,7 @@ coverage
 .cache
 tmp
 temp
+
+# Generated Slidev decks
+apps/web/public/presentations/
+apps/decks/test-results/
