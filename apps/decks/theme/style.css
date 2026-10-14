@@ -293,6 +293,8 @@
 }
 .slide-split {
   height: 1080px;
+  display: flex;
+  align-items: center;
 }
 .split-copy {
   width: 50%;

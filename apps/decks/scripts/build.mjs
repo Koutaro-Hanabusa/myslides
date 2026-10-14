@@ -23,7 +23,17 @@ async function buildDeck(slug, deck) {
   await new Promise((done, fail) => {
     const child = spawn(
       process.execPath,
-      [cli, "build", deck.file, "--base", `/presentations/${slug}/`, "--out", output],
+      [
+        cli,
+        "build",
+        deck.file,
+        "--theme",
+        "../theme",
+        "--base",
+        `/presentations/${slug}/`,
+        "--out",
+        output,
+      ],
       { cwd: root, stdio: "inherit" },
     );
     child.on("error", fail);

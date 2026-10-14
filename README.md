@@ -127,7 +127,7 @@ task new-slide -- my-talk       # 個人用テンプレート
 task new-slide-corp -- my-talk  # 会社テンプレート
 ```
 
-本文は `apps/decks/<slug>.md` に書きます。既存18資料も、見出し・箇条書き・リンク・画像・表・コードフェンスをMarkdownで記述しています。SlidevではMarkdown内にVueコンポーネントを配置できるため、React用のMDXは不要です。タイトル・日付・イベント名・OGPは `apps/web/src/lib/slides/config.ts`、本文と表紙の文言は各Markdownで編集してください。画像は `apps/web/public/slides/<slug>/assets/` に置けます。
+本文は `apps/decks/slides/<slug>.md` に書きます。共有レイアウト・コンポーネント・スタイルは `apps/decks/theme/` にまとめています。既存18資料も、見出し・箇条書き・リンク・画像・表・コードフェンスをMarkdownで記述しています。SlidevではMarkdown内にVueコンポーネントを配置できるため、React用のMDXは不要です。タイトル・日付・イベント名・OGPは `apps/web/src/lib/slides/config.ts`、本文と表紙の文言は各Markdownで編集してください。画像は `apps/web/public/slides/<slug>/assets/` に置けます。
 
 `layout`で`cover`（表紙）、`content`（左揃えの本文）、`statement`（大見出し）、`profile`（自己紹介）、`split`（左右分割）、`blank`（背景のみ）を選べます。省略時は各資料の`defaults.layout`に従います。自己紹介の画像は`::photo::`、左右分割の画像は`::right::`の名前付きスロットに書きます。
 
@@ -148,7 +148,7 @@ background: "/slides/templates/af4e26a78715.png"
 画像のサイズなどにはSlidevのMDC記法（`mdc: true`）による`{width="600" class="rounded-lg"}`を使えます。複雑な配置は`SlideGroup`、言語ラベル付きコード枠は`CodePanel`、操作可能なデモは専用のVueコンポーネントに分けています。コード自体はコードフェンスで記述し、Slidev標準のShikiで表示します。
 
 ```sh
-vp run slides:dev -- nix-for-everyone.md   # Slidevで編集・プレビュー
+vp run slides:dev slides/nix-for-everyone.md   # Slidevで編集・プレビュー
 vp run slides:build                       # 全資料を静的ビルド
 vp run slides:test                        # 資料構成・画像・新規資料生成を検査
 cd apps/decks && vp exec playwright install chromium && cd ../..

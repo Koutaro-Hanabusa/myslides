@@ -48,7 +48,7 @@ layout: default
 
 <SlideGroup class="flex h-full flex-row items-center justify-center">
 
-<SlideGroup class="pr-12 text-left text-black">
+<SlideGroup class="pr-12 text-left">
 
 [https://slide.burio16.com](https://slide.burio16.com/)
 

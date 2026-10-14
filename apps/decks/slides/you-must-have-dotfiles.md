@@ -186,7 +186,7 @@ layout: content
 color: black
 ---
 
-## chezmoiとは
+## chezmoiとは {class="pl-24"}
 
 <SlideGroup class="flex flex-row gap-8 items-center">
 

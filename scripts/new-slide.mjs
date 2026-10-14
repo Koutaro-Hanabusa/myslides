@@ -18,7 +18,7 @@ export async function createSlide(root, slug, kind) {
     throw new Error("template は personal または corporate を指定してください");
   const target = join(root, "apps/web/src/app", slug);
   const assets = join(root, "apps/web/public/slides", slug);
-  const deckFile = join(root, "apps/decks", `${slug}.md`);
+  const deckFile = join(root, "apps/decks/slides", `${slug}.md`);
   if ([target, assets, deckFile].some(existsSync))
     throw new Error(`'${slug}' の資料または assets は既に存在します`);
   const paths = {
@@ -36,7 +36,7 @@ export async function createSlide(root, slug, kind) {
     throw new Error(`'${slug}' は既に登録されています`);
   const decks = JSON.parse(original.decks);
   decks[slug] = {
-    file: `${slug}.md`,
+    file: `slides/${slug}.md`,
     count: kind === "corporate" ? 7 : 4,
     legacy: Object.fromEntries(
       Array.from({ length: kind === "corporate" ? 7 : 4 }, (_, i) => [`${i}/0`, i + 1]),
@@ -148,6 +148,7 @@ background: "${background}"
       join(target, "layout.tsx"),
       `import {createSlideMetadata} from "@/lib/slides/config";\nexport const metadata=createSlideMetadata("${slug}");\nexport default function Layout({children}:{children:React.ReactNode}){return <div className="fixed inset-0 h-dvh w-full overflow-hidden">{children}</div>;}\n`,
     );
+    await mkdir(dirname(deckFile), { recursive: true });
     await writeFile(deckFile, md, { flag: "wx" });
     deckCreated = true;
     await mkdir(join(assets, "assets"), { recursive: true });

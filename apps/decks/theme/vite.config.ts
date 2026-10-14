@@ -17,7 +17,7 @@ export default defineConfig({
     {
       name: "myslides-shared-assets",
       configureServer(server) {
-        const publicDir = resolve(import.meta.dirname, "../web/public");
+        const publicDir = resolve(import.meta.dirname, "../../web/public");
         server.middlewares.use(async (req, res, next) => {
           const pathname = decodeURIComponent((req.url || "").split("?")[0]);
           if (!/^\/(slides|fonts|assets)\//.test(pathname)) return next();

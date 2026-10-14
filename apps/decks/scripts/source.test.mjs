@@ -41,6 +41,6 @@ test("Markdown decks retain their order, old deep links and local assets", async
       if (url.startsWith("/")) await access(resolve(root, "../web/public", url.slice(1)));
     }
     for (const slide of parsed.slides)
-      await access(resolve(root, "layouts", `${slide.frontmatter.layout || "default"}.vue`));
+      await access(resolve(root, "theme/layouts", `${slide.frontmatter.layout || "default"}.vue`));
   }
 });

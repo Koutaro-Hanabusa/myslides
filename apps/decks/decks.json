@@ -1,6 +1,6 @@
 {
   "vite-plus-retro-v2/en": {
-    "file": "vite-plus-retro-v2-en.md",
+    "file": "slides/vite-plus-retro-v2-en.md",
     "count": 24,
     "legacy": {
       "0/0": 1,
@@ -30,7 +30,7 @@
     }
   },
   "vite-plus-retro-v2": {
-    "file": "vite-plus-retro-v2.md",
+    "file": "slides/vite-plus-retro-v2.md",
     "count": 24,
     "legacy": {
       "0/0": 1,
@@ -60,7 +60,7 @@
     }
   },
   "nix-for-everyone": {
-    "file": "nix-for-everyone.md",
+    "file": "slides/nix-for-everyone.md",
     "count": 21,
     "legacy": {
       "0/0": 1,
@@ -87,7 +87,7 @@
     }
   },
   "my-favorite-thing": {
-    "file": "my-favorite-thing.md",
+    "file": "slides/my-favorite-thing.md",
     "count": 19,
     "legacy": {
       "0/0": 1,
@@ -112,7 +112,7 @@
     }
   },
   "tacos-spanish": {
-    "file": "tacos-spanish.md",
+    "file": "slides/tacos-spanish.md",
     "count": 33,
     "legacy": {
       "0/0": 1,
@@ -151,7 +151,7 @@
     }
   },
   "community-and-me": {
-    "file": "community-and-me.md",
+    "file": "slides/community-and-me.md",
     "count": 14,
     "legacy": {
       "0/0": 1,
@@ -171,7 +171,7 @@
     }
   },
   "times-working-out-aloud": {
-    "file": "times-working-out-aloud.md",
+    "file": "slides/times-working-out-aloud.md",
     "count": 22,
     "legacy": {
       "0/0": 1,
@@ -199,7 +199,7 @@
     }
   },
   "vite-plus-retro": {
-    "file": "vite-plus-retro.md",
+    "file": "slides/vite-plus-retro.md",
     "count": 34,
     "legacy": {
       "0/0": 1,
@@ -239,7 +239,7 @@
     }
   },
   "tanstack-router-dir-structure": {
-    "file": "tanstack-router-dir-structure.md",
+    "file": "slides/tanstack-router-dir-structure.md",
     "count": 43,
     "legacy": {
       "0/0": 1,
@@ -288,7 +288,7 @@
     }
   },
   "autofocus-correct-usage": {
-    "file": "autofocus-correct-usage.md",
+    "file": "slides/autofocus-correct-usage.md",
     "count": 26,
     "legacy": {
       "0/0": 1,
@@ -320,7 +320,7 @@
     }
   },
   "oss-and-community-v2": {
-    "file": "oss-and-community-v2.md",
+    "file": "slides/oss-and-community-v2.md",
     "count": 22,
     "legacy": {
       "0/0": 1,
@@ -348,7 +348,7 @@
     }
   },
   "oss-and-community": {
-    "file": "oss-and-community.md",
+    "file": "slides/oss-and-community.md",
     "count": 23,
     "legacy": {
       "0/0": 1,
@@ -377,7 +377,7 @@
     }
   },
   "25-graduate": {
-    "file": "25-graduate.md",
+    "file": "slides/25-graduate.md",
     "count": 18,
     "legacy": {
       "0/0": 1,
@@ -401,7 +401,7 @@
     }
   },
   "you-must-have-dotfiles": {
-    "file": "you-must-have-dotfiles.md",
+    "file": "slides/you-must-have-dotfiles.md",
     "count": 25,
     "legacy": {
       "0/0": 1,
@@ -432,7 +432,7 @@
     }
   },
   "revealjs-slideDeck": {
-    "file": "revealjs-slideDeck.md",
+    "file": "slides/revealjs-slideDeck.md",
     "count": 11,
     "legacy": {
       "0/0": 1,
@@ -449,7 +449,7 @@
     }
   },
   "tacotuesday": {
-    "file": "tacotuesday.md",
+    "file": "slides/tacotuesday.md",
     "count": 30,
     "legacy": {
       "0/0": 1,
@@ -485,7 +485,7 @@
     }
   },
   "better-t-stack": {
-    "file": "better-t-stack.md",
+    "file": "slides/better-t-stack.md",
     "count": 25,
     "legacy": {
       "0/0": 1,
@@ -516,7 +516,7 @@
     }
   },
   "react-three-fiber": {
-    "file": "react-three-fiber.md",
+    "file": "slides/react-three-fiber.md",
     "count": 37,
     "legacy": {
       "0/0": 1,

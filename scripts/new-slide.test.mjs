@@ -34,7 +34,7 @@ for (const kind of ["personal", "corporate"]) {
     fixture(async (dir) => {
       const slug = `new-${kind}`;
       await createSlide(dir, slug, kind);
-      const md = await readFile(join(dir, "apps/decks", `${slug}.md`), "utf8");
+      const md = await readFile(join(dir, "apps/decks/slides", `${slug}.md`), "utf8");
       assert.match(md, /theme: none/);
       assert.match(md, /## 本文タイトル\n\n- 項目1/);
       assert.doesNotMatch(md, /reveal|React|MDX/);
@@ -48,10 +48,9 @@ for (const kind of ["personal", "corporate"]) {
       );
       for (const file of registry)
         assert.match(await readFile(join(dir, file), "utf8"), new RegExp(slug));
-      assert.equal(
-        JSON.parse(await readFile(join(dir, registry[3]), "utf8"))[slug].count,
-        kind === "corporate" ? 7 : 4,
-      );
+      const registeredDeck = JSON.parse(await readFile(join(dir, registry[3]), "utf8"))[slug];
+      assert.equal(registeredDeck.file, `slides/${slug}.md`);
+      assert.equal(registeredDeck.count, kind === "corporate" ? 7 : 4);
       await assert.rejects(createSlide(dir, slug, kind), /既に存在/);
     }));
 }
@@ -66,5 +65,5 @@ test("invalid slugs and missing markers never leave partial decks", async () =>
     );
     await writeFile(join(dir, registry[2]), "no marker");
     await assert.rejects(createSlide(dir, "safe-deck", "personal"), /OGP/);
-    await assert.rejects(readFile(join(dir, "apps/decks/safe-deck.md")));
+    await assert.rejects(readFile(join(dir, "apps/decks/slides/safe-deck.md")));
   }));

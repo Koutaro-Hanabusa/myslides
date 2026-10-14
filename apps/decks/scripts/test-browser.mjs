@@ -121,6 +121,29 @@ async function checkDeck(slug, deck, mobile) {
           .map((code) => code.textContent.slice(0, 100)),
       );
       if (crampedCode.length) failures.push({ slug, slide: i + 1, mobile, crampedCode });
+      const splitAlignment = await slide.evaluate((el) => {
+        if (!el.classList.contains("slide-split")) return null;
+        const copy = el.querySelector(":scope > .split-copy");
+        const image = el.querySelector(":scope > .split-image");
+        if (!copy || !image) return { missing: true };
+        const slideBox = el.getBoundingClientRect();
+        const copyBox = copy.getBoundingClientRect();
+        const imageBox = image.getBoundingClientRect();
+        return {
+          centerDelta: Math.abs(
+            copyBox.top + copyBox.height / 2 - (imageBox.top + imageBox.height / 2),
+          ),
+          copyWithinSlide: copyBox.top >= slideBox.top - 2 && copyBox.bottom <= slideBox.bottom + 2,
+        };
+      });
+      if (
+        splitAlignment !== null &&
+        ("missing" in splitAlignment ||
+          splitAlignment.centerDelta > 2 ||
+          !splitAlignment.copyWithinSlide)
+      ) {
+        failures.push({ slug, slide: i + 1, mobile, splitAlignment });
+      }
       const overflow = await slide.evaluate((el) => {
         const canvas = el.closest(".slidev-slide-container") || el.closest(".slidev-slide");
         if (!canvas) return [];
