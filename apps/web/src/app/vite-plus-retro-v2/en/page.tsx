@@ -1,16 +1,20 @@
-import RevealPresentation from "@/components/reveal-presentation";
-import LanguageSwitch from "../language-switch";
-import Cover from "./slides/cover";
-import SlidesContent from "./slides.mdx";
+import Link from "next/link";
+import SlidevPresentation from "@/components/slidev-presentation";
+import { getSlideConfig, getSlideTitle } from "@/lib/slides/config";
 
-export default function EnglishPresentationPage() {
+export default function PresentationPage() {
   return (
-    <div className="h-full w-full [--r-main-font-size:48px]">
-      <LanguageSwitch href="/vite-plus-retro-v2" label="日本語" />
-      <RevealPresentation transition="slide">
-        <Cover />
-        <SlidesContent />
-      </RevealPresentation>
+    <div className="relative h-full w-full">
+      <Link
+        href="/vite-plus-retro-v2"
+        className="absolute right-4 top-4 z-50 rounded bg-black/70 px-3 py-2 text-white"
+      >
+        日本語
+      </Link>
+      <SlidevPresentation
+        slug="vite-plus-retro-v2/en"
+        title={getSlideTitle(getSlideConfig("vite-plus-retro-v2/en"))}
+      />
     </div>
   );
 }
