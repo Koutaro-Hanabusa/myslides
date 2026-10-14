@@ -18,8 +18,9 @@ export async function createSlide(root, slug, kind) {
     throw new Error("template は personal または corporate を指定してください");
   const target = join(root, "apps/web/src/app", slug);
   const assets = join(root, "apps/web/public/slides", slug);
-  const deckFile = join(root, "apps/decks/slides", `${slug}.md`);
-  if ([target, assets, deckFile].some(existsSync))
+  const deckDir = join(root, "apps/decks/slides", slug);
+  const deckFile = join(deckDir, "slides.md");
+  if ([target, assets, deckDir].some(existsSync))
     throw new Error(`'${slug}' の資料または assets は既に存在します`);
   const paths = {
     config: join(root, "apps/web/src/lib/slides/config.ts"),
@@ -36,7 +37,7 @@ export async function createSlide(root, slug, kind) {
     throw new Error(`'${slug}' は既に登録されています`);
   const decks = JSON.parse(original.decks);
   decks[slug] = {
-    file: `slides/${slug}.md`,
+    file: `slides/${slug}/slides.md`,
     count: kind === "corporate" ? 7 : 4,
     legacy: Object.fromEntries(
       Array.from({ length: kind === "corporate" ? 7 : 4 }, (_, i) => [`${i}/0`, i + 1]),
@@ -148,9 +149,34 @@ background: "${background}"
       join(target, "layout.tsx"),
       `import {createSlideMetadata} from "@/lib/slides/config";\nexport const metadata=createSlideMetadata("${slug}");\nexport default function Layout({children}:{children:React.ReactNode}){return <div className="fixed inset-0 h-dvh w-full overflow-hidden">{children}</div>;}\n`,
     );
-    await mkdir(dirname(deckFile), { recursive: true });
-    await writeFile(deckFile, md, { flag: "wx" });
+    await mkdir(deckDir, { recursive: true });
     deckCreated = true;
+    await writeFile(deckFile, md, { flag: "wx" });
+    await writeFile(
+      join(deckDir, "package.json"),
+      JSON.stringify(
+        {
+          name: `@mySlides/slide-${slug}`,
+          private: true,
+          type: "module",
+          scripts: {
+            dev: "slidev slides.md --theme ../../theme",
+            export: "slidev export slides.md --theme ../../theme",
+            "build:slidev": `slidev build slides.md --theme ../../theme --base /presentations/${slug}/ && node ../../scripts/publish.mjs`,
+          },
+          dependencies: {
+            "@slidev/cli": "52.20.1",
+            "@slidev/client": "52.20.1",
+            "reka-ui": "2.11.0",
+            vue: "3.5.43",
+            "vue-router": "5.4.0",
+          },
+        },
+        null,
+        2,
+      ) + "\n",
+      { flag: "wx" },
+    );
     await mkdir(join(assets, "assets"), { recursive: true });
     assetsCreated = true;
     await writeFile(join(assets, "assets/.gitkeep"), "");
@@ -164,7 +190,7 @@ background: "${background}"
     for (const [key, path] of Object.entries(paths)) await writeFile(path, original[key]);
     if (targetCreated) await rm(target, { recursive: true, force: true });
     if (assetsCreated) await rm(assets, { recursive: true, force: true });
-    if (deckCreated) await rm(deckFile, { force: true });
+    if (deckCreated) await rm(deckDir, { recursive: true, force: true });
     throw error;
   }
   return deckFile;
@@ -177,7 +203,16 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
     rl.close();
   }
   try {
-    console.log(`Created ${await createSlide(ROOT, slug, process.argv[2])}`);
+    const deckFile = await createSlide(ROOT, slug, process.argv[2]);
+    console.log(`Created ${deckFile}`);
+    try {
+      execFileSync("vp", ["install"], { cwd: ROOT, stdio: "inherit" });
+    } catch {
+      console.error(
+        "資料の生成は完了しましたが、workspaceの依存関係を更新できませんでした。ルートで `vp install` を再実行してください。",
+      );
+      process.exitCode = 1;
+    }
   } catch (error) {
     console.error(error.message);
     process.exitCode = 1;

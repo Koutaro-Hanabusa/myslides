@@ -34,7 +34,8 @@ for (const kind of ["personal", "corporate"]) {
     fixture(async (dir) => {
       const slug = `new-${kind}`;
       await createSlide(dir, slug, kind);
-      const md = await readFile(join(dir, "apps/decks/slides", `${slug}.md`), "utf8");
+      const deckDir = join(dir, "apps/decks/slides", slug);
+      const md = await readFile(join(deckDir, "slides.md"), "utf8");
       assert.match(md, /theme: none/);
       assert.match(md, /## 本文タイトル\n\n- 項目1/);
       assert.doesNotMatch(md, /reveal|React|MDX/);
@@ -49,8 +50,15 @@ for (const kind of ["personal", "corporate"]) {
       for (const file of registry)
         assert.match(await readFile(join(dir, file), "utf8"), new RegExp(slug));
       const registeredDeck = JSON.parse(await readFile(join(dir, registry[3]), "utf8"))[slug];
-      assert.equal(registeredDeck.file, `slides/${slug}.md`);
+      assert.equal(registeredDeck.file, `slides/${slug}/slides.md`);
       assert.equal(registeredDeck.count, kind === "corporate" ? 7 : 4);
+      const deckPackage = JSON.parse(await readFile(join(deckDir, "package.json"), "utf8"));
+      assert.equal(deckPackage.name, `@mySlides/slide-${slug}`);
+      assert.equal(
+        deckPackage.scripts["build:slidev"],
+        `slidev build slides.md --theme ../../theme --base /presentations/${slug}/ && node ../../scripts/publish.mjs`,
+      );
+      assert.equal(deckPackage.dependencies["@slidev/cli"], "52.20.1");
       await assert.rejects(createSlide(dir, slug, kind), /既に存在/);
     }));
 }
@@ -65,5 +73,5 @@ test("invalid slugs and missing markers never leave partial decks", async () =>
     );
     await writeFile(join(dir, registry[2]), "no marker");
     await assert.rejects(createSlide(dir, "safe-deck", "personal"), /OGP/);
-    await assert.rejects(readFile(join(dir, "apps/decks/slides/safe-deck.md")));
+    await assert.rejects(readFile(join(dir, "apps/decks/slides/safe-deck/slides.md")));
   }));

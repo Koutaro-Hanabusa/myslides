@@ -40,7 +40,7 @@ page.on("pageerror", (error) => errors.push(error.message));
 const results = [];
 try {
   const autofocus = await parse(
-    await readFile(resolve(root, "slides/autofocus-correct-usage.md"), "utf8"),
+    await readFile(resolve(root, "slides/autofocus-correct-usage/slides.md"), "utf8"),
   );
   for (const kind of ["login", "cancel", "radix"]) {
     const slide =

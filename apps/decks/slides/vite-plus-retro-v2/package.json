@@ -1,0 +1,17 @@
+{
+  "name": "@mySlides/slide-vite-plus-retro-v2",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "slidev slides.md --theme ../../theme",
+    "export": "slidev export slides.md --theme ../../theme",
+    "build:slidev": "slidev build slides.md --theme ../../theme --base /presentations/vite-plus-retro-v2/ && node ../../scripts/publish.mjs"
+  },
+  "dependencies": {
+    "@slidev/cli": "52.20.1",
+    "@slidev/client": "52.20.1",
+    "reka-ui": "2.11.0",
+    "vue": "3.5.43",
+    "vue-router": "5.4.0"
+  }
+}

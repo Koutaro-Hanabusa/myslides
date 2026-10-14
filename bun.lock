@@ -28,6 +28,186 @@
         "playwright-chromium": "1.64.0",
       },
     },
+    "apps/decks/slides/25-graduate": {
+      "name": "@mySlides/slide-25-graduate",
+      "dependencies": {
+        "@slidev/cli": "52.20.1",
+        "@slidev/client": "52.20.1",
+        "reka-ui": "2.11.0",
+        "vue": "3.5.43",
+        "vue-router": "5.4.0",
+      },
+    },
+    "apps/decks/slides/autofocus-correct-usage": {
+      "name": "@mySlides/slide-autofocus-correct-usage",
+      "dependencies": {
+        "@slidev/cli": "52.20.1",
+        "@slidev/client": "52.20.1",
+        "reka-ui": "2.11.0",
+        "vue": "3.5.43",
+        "vue-router": "5.4.0",
+      },
+    },
+    "apps/decks/slides/better-t-stack": {
+      "name": "@mySlides/slide-better-t-stack",
+      "dependencies": {
+        "@slidev/cli": "52.20.1",
+        "@slidev/client": "52.20.1",
+        "reka-ui": "2.11.0",
+        "vue": "3.5.43",
+        "vue-router": "5.4.0",
+      },
+    },
+    "apps/decks/slides/community-and-me": {
+      "name": "@mySlides/slide-community-and-me",
+      "dependencies": {
+        "@slidev/cli": "52.20.1",
+        "@slidev/client": "52.20.1",
+        "reka-ui": "2.11.0",
+        "vue": "3.5.43",
+        "vue-router": "5.4.0",
+      },
+    },
+    "apps/decks/slides/my-favorite-thing": {
+      "name": "@mySlides/slide-my-favorite-thing",
+      "dependencies": {
+        "@slidev/cli": "52.20.1",
+        "@slidev/client": "52.20.1",
+        "reka-ui": "2.11.0",
+        "vue": "3.5.43",
+        "vue-router": "5.4.0",
+      },
+    },
+    "apps/decks/slides/nix-for-everyone": {
+      "name": "@mySlides/slide-nix-for-everyone",
+      "dependencies": {
+        "@slidev/cli": "52.20.1",
+        "@slidev/client": "52.20.1",
+        "reka-ui": "2.11.0",
+        "vue": "3.5.43",
+        "vue-router": "5.4.0",
+      },
+    },
+    "apps/decks/slides/oss-and-community": {
+      "name": "@mySlides/slide-oss-and-community",
+      "dependencies": {
+        "@slidev/cli": "52.20.1",
+        "@slidev/client": "52.20.1",
+        "reka-ui": "2.11.0",
+        "vue": "3.5.43",
+        "vue-router": "5.4.0",
+      },
+    },
+    "apps/decks/slides/oss-and-community-v2": {
+      "name": "@mySlides/slide-oss-and-community-v2",
+      "dependencies": {
+        "@slidev/cli": "52.20.1",
+        "@slidev/client": "52.20.1",
+        "reka-ui": "2.11.0",
+        "vue": "3.5.43",
+        "vue-router": "5.4.0",
+      },
+    },
+    "apps/decks/slides/react-three-fiber": {
+      "name": "@mySlides/slide-react-three-fiber",
+      "dependencies": {
+        "@slidev/cli": "52.20.1",
+        "@slidev/client": "52.20.1",
+        "reka-ui": "2.11.0",
+        "vue": "3.5.43",
+        "vue-router": "5.4.0",
+      },
+    },
+    "apps/decks/slides/revealjs-slideDeck": {
+      "name": "@mySlides/slide-revealjs-slideDeck",
+      "dependencies": {
+        "@slidev/cli": "52.20.1",
+        "@slidev/client": "52.20.1",
+        "reka-ui": "2.11.0",
+        "vue": "3.5.43",
+        "vue-router": "5.4.0",
+      },
+    },
+    "apps/decks/slides/tacos-spanish": {
+      "name": "@mySlides/slide-tacos-spanish",
+      "dependencies": {
+        "@slidev/cli": "52.20.1",
+        "@slidev/client": "52.20.1",
+        "reka-ui": "2.11.0",
+        "vue": "3.5.43",
+        "vue-router": "5.4.0",
+      },
+    },
+    "apps/decks/slides/tacotuesday": {
+      "name": "@mySlides/slide-tacotuesday",
+      "dependencies": {
+        "@slidev/cli": "52.20.1",
+        "@slidev/client": "52.20.1",
+        "reka-ui": "2.11.0",
+        "vue": "3.5.43",
+        "vue-router": "5.4.0",
+      },
+    },
+    "apps/decks/slides/tanstack-router-dir-structure": {
+      "name": "@mySlides/slide-tanstack-router-dir-structure",
+      "dependencies": {
+        "@slidev/cli": "52.20.1",
+        "@slidev/client": "52.20.1",
+        "reka-ui": "2.11.0",
+        "vue": "3.5.43",
+        "vue-router": "5.4.0",
+      },
+    },
+    "apps/decks/slides/times-working-out-aloud": {
+      "name": "@mySlides/slide-times-working-out-aloud",
+      "dependencies": {
+        "@slidev/cli": "52.20.1",
+        "@slidev/client": "52.20.1",
+        "reka-ui": "2.11.0",
+        "vue": "3.5.43",
+        "vue-router": "5.4.0",
+      },
+    },
+    "apps/decks/slides/vite-plus-retro": {
+      "name": "@mySlides/slide-vite-plus-retro",
+      "dependencies": {
+        "@slidev/cli": "52.20.1",
+        "@slidev/client": "52.20.1",
+        "reka-ui": "2.11.0",
+        "vue": "3.5.43",
+        "vue-router": "5.4.0",
+      },
+    },
+    "apps/decks/slides/vite-plus-retro-v2": {
+      "name": "@mySlides/slide-vite-plus-retro-v2",
+      "dependencies": {
+        "@slidev/cli": "52.20.1",
+        "@slidev/client": "52.20.1",
+        "reka-ui": "2.11.0",
+        "vue": "3.5.43",
+        "vue-router": "5.4.0",
+      },
+    },
+    "apps/decks/slides/vite-plus-retro-v2-en": {
+      "name": "@mySlides/slide-vite-plus-retro-v2-en",
+      "dependencies": {
+        "@slidev/cli": "52.20.1",
+        "@slidev/client": "52.20.1",
+        "reka-ui": "2.11.0",
+        "vue": "3.5.43",
+        "vue-router": "5.4.0",
+      },
+    },
+    "apps/decks/slides/you-must-have-dotfiles": {
+      "name": "@mySlides/slide-you-must-have-dotfiles",
+      "dependencies": {
+        "@slidev/cli": "52.20.1",
+        "@slidev/client": "52.20.1",
+        "reka-ui": "2.11.0",
+        "vue": "3.5.43",
+        "vue-router": "5.4.0",
+      },
+    },
     "apps/server": {
       "name": "server",
       "dependencies": {
@@ -466,6 +646,42 @@
     "@mySlides/db": ["@mySlides/db@workspace:packages/db"],
 
     "@mySlides/decks": ["@mySlides/decks@workspace:apps/decks"],
+
+    "@mySlides/slide-25-graduate": ["@mySlides/slide-25-graduate@workspace:apps/decks/slides/25-graduate"],
+
+    "@mySlides/slide-autofocus-correct-usage": ["@mySlides/slide-autofocus-correct-usage@workspace:apps/decks/slides/autofocus-correct-usage"],
+
+    "@mySlides/slide-better-t-stack": ["@mySlides/slide-better-t-stack@workspace:apps/decks/slides/better-t-stack"],
+
+    "@mySlides/slide-community-and-me": ["@mySlides/slide-community-and-me@workspace:apps/decks/slides/community-and-me"],
+
+    "@mySlides/slide-my-favorite-thing": ["@mySlides/slide-my-favorite-thing@workspace:apps/decks/slides/my-favorite-thing"],
+
+    "@mySlides/slide-nix-for-everyone": ["@mySlides/slide-nix-for-everyone@workspace:apps/decks/slides/nix-for-everyone"],
+
+    "@mySlides/slide-oss-and-community": ["@mySlides/slide-oss-and-community@workspace:apps/decks/slides/oss-and-community"],
+
+    "@mySlides/slide-oss-and-community-v2": ["@mySlides/slide-oss-and-community-v2@workspace:apps/decks/slides/oss-and-community-v2"],
+
+    "@mySlides/slide-react-three-fiber": ["@mySlides/slide-react-three-fiber@workspace:apps/decks/slides/react-three-fiber"],
+
+    "@mySlides/slide-revealjs-slideDeck": ["@mySlides/slide-revealjs-slideDeck@workspace:apps/decks/slides/revealjs-slideDeck"],
+
+    "@mySlides/slide-tacos-spanish": ["@mySlides/slide-tacos-spanish@workspace:apps/decks/slides/tacos-spanish"],
+
+    "@mySlides/slide-tacotuesday": ["@mySlides/slide-tacotuesday@workspace:apps/decks/slides/tacotuesday"],
+
+    "@mySlides/slide-tanstack-router-dir-structure": ["@mySlides/slide-tanstack-router-dir-structure@workspace:apps/decks/slides/tanstack-router-dir-structure"],
+
+    "@mySlides/slide-times-working-out-aloud": ["@mySlides/slide-times-working-out-aloud@workspace:apps/decks/slides/times-working-out-aloud"],
+
+    "@mySlides/slide-vite-plus-retro": ["@mySlides/slide-vite-plus-retro@workspace:apps/decks/slides/vite-plus-retro"],
+
+    "@mySlides/slide-vite-plus-retro-v2": ["@mySlides/slide-vite-plus-retro-v2@workspace:apps/decks/slides/vite-plus-retro-v2"],
+
+    "@mySlides/slide-vite-plus-retro-v2-en": ["@mySlides/slide-vite-plus-retro-v2-en@workspace:apps/decks/slides/vite-plus-retro-v2-en"],
+
+    "@mySlides/slide-you-must-have-dotfiles": ["@mySlides/slide-you-must-have-dotfiles@workspace:apps/decks/slides/you-must-have-dotfiles"],
 
     "@neon-rs/load": ["@neon-rs/load@0.0.4", "", {}, "sha512-kTPhdZyTQxB+2wpiRcFWrDcejc4JI6tkPuS7UZCG4l6Zvc5kU/gGQ/ozvHTh1XR5tS+UlfAfGuPajjzQjCiHCw=="],
 

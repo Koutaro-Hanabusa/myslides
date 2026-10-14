@@ -2,7 +2,7 @@ import { defineConfig } from "vite-plus";
 
 export default defineConfig({
   // Generic Markdown formatters treat per-slide YAML as prose and split slides.
-  fmt: { ignorePatterns: ["apps/decks/slides/*.md"] },
+  fmt: { ignorePatterns: ["apps/decks/slides/**/*.md"] },
   staged: {
     "*.{ts,tsx,js,jsx,mjs}": "vp lint --fix",
     "*.{ts,tsx,css,md,json,yml}": "vp fmt",

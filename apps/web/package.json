@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "vinext dev --port=3001",
     "generate:ogp": "bun scripts/generate-ogp.tsx",
-    "prebuild": "cf workers types && node ../decks/scripts/build.mjs && bun scripts/generate-ogp.tsx",
+    "prebuild": "cf workers types && vp run -F mySlides slides:build && bun scripts/generate-ogp.tsx",
     "build": "vinext build",
-    "prebuild:staging": "cf workers types && node ../decks/scripts/build.mjs && bun scripts/generate-ogp.tsx",
+    "prebuild:staging": "cf workers types && vp run -F mySlides slides:build && bun scripts/generate-ogp.tsx",
     "build:staging": "vinext build --mode staging",
     "start": "vp preview",
     "deploy": "vp run build && cf deploy --prebuilt --mode production",
@@ -16,8 +16,8 @@
     "cf-typegen": "cf workers types",
     "test:ogp": "vp run build && bun scripts/test-ogp.ts",
     "test:ogp:remote": "bun scripts/test-ogp.ts",
-    "slides:build": "node ../decks/scripts/build.mjs",
-    "predev": "node ../decks/scripts/build.mjs"
+    "slides:build": "vp run -F mySlides slides:build",
+    "predev": "vp run -F mySlides slides:build"
   },
   "dependencies": {
     "@mySlides/api": "workspace:*",

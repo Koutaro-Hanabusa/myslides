@@ -4,6 +4,7 @@
   "workspaces": {
     "packages": [
       "apps/*",
+      "apps/decks/slides/*",
       "packages/*"
     ],
     "catalog": {
@@ -24,7 +25,7 @@
   "scripts": {
     "check": "vp lint && vp fmt --write",
     "prepare": "vp config",
-    "dev": "vp run --parallel --filter '*' --filter '!@mySlides/decks' dev",
+    "dev": "vp run --parallel --filter '*' --filter '!@mySlides/decks' --filter '!@mySlides/slide-*' dev",
     "prebuild": "vp run -F server cf-typegen && vp run -F web cf-typegen",
     "build": "vp run -r --cache build",
     "build:cloudflare": "vp run -F server cf-typegen && vp run -F web cf-typegen && vp run -F @mySlides/db build && vp run -F @mySlides/api build && vp run -F server build && vp run -F web build",
@@ -38,8 +39,7 @@
     "db:studio": "vp run -F @mySlides/db db:studio",
     "db:generate": "vp run -F @mySlides/db db:generate",
     "db:migrate": "vp run -F @mySlides/db db:migrate",
-    "slides:dev": "vp run -F @mySlides/decks dev",
-    "slides:build": "vp run -F @mySlides/decks build:slides",
+    "slides:build": "vp run --filter '@mySlides/slide-*' --fail-if-no-match --concurrency-limit 2 build:slidev",
     "slides:test": "vp test",
     "slides:test:browser": "vp run -F @mySlides/decks test:browser"
   },
