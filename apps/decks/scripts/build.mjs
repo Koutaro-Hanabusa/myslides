@@ -47,10 +47,7 @@ async function buildDeck(slug, deck) {
   await cp(output, target, { recursive: true });
 }
 
-async function worker() {
-  while (queue.length) {
-    const [slug, deck] = queue.shift();
-    await buildDeck(slug, deck);
-  }
+// Slidev writes virtual modules to a shared user-root cache, so builds must not overlap.
+for (const [slug, deck] of queue) {
+  await buildDeck(slug, deck);
 }
-await Promise.all(Array.from({ length: Math.min(3, queue.length) }, () => worker()));
