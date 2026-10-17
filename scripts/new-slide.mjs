@@ -16,16 +16,14 @@ export async function createSlide(root, slug, kind) {
     throw new Error("slug は小文字英数字と単一のハイフンによる kebab-case にしてください");
   if (!["personal", "corporate"].includes(kind))
     throw new Error("template は personal または corporate を指定してください");
-  const target = join(root, "apps/web/src/app", slug);
   const assets = join(root, "apps/web/public/slides", slug);
   const deckDir = join(root, "apps/decks/slides", slug);
   const deckFile = join(deckDir, "slides.md");
-  if ([target, assets, deckDir].some(existsSync))
+  if ([assets, deckDir].some(existsSync))
     throw new Error(`'${slug}' の資料または assets は既に存在します`);
   const paths = {
     config: join(root, "apps/web/src/lib/slides/config.ts"),
     home: join(root, "apps/web/src/app/page.tsx"),
-    ogp: join(root, "apps/web/scripts/generate-ogp.tsx"),
     decks: join(root, "apps/decks/decks.json"),
   };
   const original = Object.fromEntries(
@@ -39,9 +37,6 @@ export async function createSlide(root, slug, kind) {
   decks[slug] = {
     file: `slides/${slug}/slides.md`,
     count: kind === "corporate" ? 7 : 4,
-    legacy: Object.fromEntries(
-      Array.from({ length: kind === "corporate" ? 7 : 4 }, (_, i) => [`${i}/0`, i + 1]),
-    ),
   };
   const updated = {
     config: insertOnce(
@@ -56,12 +51,6 @@ export async function createSlide(root, slug, kind) {
       `  { config: SLIDES_CONFIG["${slug}"] },\n`,
       "home",
     ),
-    ogp: insertOnce(
-      original.ogp,
-      "const SPECS: Spec[] = [\n",
-      `  { slug: "${slug}", cover: "${kind === "personal" ? "burio" : "chi"}" },\n`,
-      "OGP",
-    ),
     decks: JSON.stringify(decks, null, 2) + "\n",
   };
   const cover =
@@ -75,6 +64,20 @@ export async function createSlide(root, slug, kind) {
   let md = `---
 theme: none
 title: "${slug}"
+titleTemplate: "%s | イベント名"
+lang: ja
+favicon: "/assets/favicon.ico"
+seoMeta:
+  ogTitle: "${slug}"
+  ogDescription: "イベント名での発表資料 by ぶりお @burio_16"
+  ogImage: "https://slide.burio16.com/${slug}/og-image.png"
+  ogUrl: "https://slide.burio16.com/${slug}/"
+  twitterCard: "summary_large_image"
+  twitterTitle: "${slug}"
+  twitterDescription: "イベント名での発表資料 by ぶりお @burio_16"
+  twitterImage: "https://slide.burio16.com/${slug}/og-image.png"
+  twitterSite: "@burio_16"
+  twitterUrl: "https://slide.burio16.com/${slug}/"
 layout: cover
 canvasWidth: 1920
 aspectRatio: 16/9
@@ -135,20 +138,9 @@ background: "${background}"
     );
     md += `\n---\nlayout: blank\nbackground: "/slides/templates/fa74e1541fa0.png"\n---\n`;
   }
-  let targetCreated = false;
   let assetsCreated = false;
   let deckCreated = false;
   try {
-    await mkdir(target);
-    targetCreated = true;
-    await writeFile(
-      join(target, "page.tsx"),
-      `import SlidevPresentation from "@/components/slidev-presentation";\nimport {getSlideConfig, getSlideTitle} from "@/lib/slides/config";\nexport default function PresentationPage(){return <SlidevPresentation slug="${slug}" title={getSlideTitle(getSlideConfig("${slug}"))}/>;}\n`,
-    );
-    await writeFile(
-      join(target, "layout.tsx"),
-      `import {createSlideMetadata} from "@/lib/slides/config";\nexport const metadata=createSlideMetadata("${slug}");\nexport default function Layout({children}:{children:React.ReactNode}){return <div className="fixed inset-0 h-dvh w-full overflow-hidden">{children}</div>;}\n`,
-    );
     await mkdir(deckDir, { recursive: true });
     deckCreated = true;
     await writeFile(deckFile, md, { flag: "wx" });
@@ -162,7 +154,9 @@ background: "${background}"
           scripts: {
             dev: "slidev slides.md --theme ../../theme",
             export: "slidev export slides.md --theme ../../theme",
-            "build:slidev": `slidev build slides.md --theme ../../theme --base /presentations/${slug}/ && node ../../scripts/publish.mjs`,
+            "generate:ogp":
+              "slidev export slides.md --theme ../../theme --format png --range 1 --output .slidev-og-image --wait-until networkidle && cp .slidev-og-image/1.png og-image.png && rm -rf .slidev-og-image",
+            "build:slidev": `vp run generate:ogp && slidev build slides.md --theme ../../theme --base /${slug}/ && cp og-image.png dist/og-image.png && node ../../scripts/publish.mjs`,
           },
           dependencies: {
             "@slidev/cli": "52.20.1",
@@ -181,14 +175,9 @@ background: "${background}"
     assetsCreated = true;
     await writeFile(join(assets, "assets/.gitkeep"), "");
     for (const [key, path] of Object.entries(paths)) await writeFile(path, updated[key]);
-    execFileSync(
-      "vp",
-      ["fmt", ...Object.values(paths), join(target, "page.tsx"), join(target, "layout.tsx")],
-      { cwd: ROOT, stdio: "pipe" },
-    );
+    execFileSync("vp", ["fmt", ...Object.values(paths)], { cwd: ROOT, stdio: "pipe" });
   } catch (error) {
     for (const [key, path] of Object.entries(paths)) await writeFile(path, original[key]);
-    if (targetCreated) await rm(target, { recursive: true, force: true });
     if (assetsCreated) await rm(assets, { recursive: true, force: true });
     if (deckCreated) await rm(deckDir, { recursive: true, force: true });
     throw error;

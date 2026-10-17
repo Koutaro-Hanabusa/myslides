@@ -1,6 +1,20 @@
 ---
 theme: "none"
-title: "vite-plus-retro-v2/en"
+title: "We Tried Adopting Vite+ Into Our Design System at Breakneck Speed"
+titleTemplate: "%s | Vue Fes Japan 2026"
+lang: "en"
+favicon: "/assets/favicon.ico"
+seoMeta:
+  ogTitle: "We Tried Adopting Vite+ Into Our Design System at Breakneck Speed"
+  ogDescription: "Slides presented at Vue Fes Japan 2026 by Burio @burio_16"
+  ogImage: "https://slide.burio16.com/vite-plus-retro-v2/en/og-image.png"
+  ogUrl: "https://slide.burio16.com/vite-plus-retro-v2/en/"
+  twitterCard: "summary_large_image"
+  twitterTitle: "We Tried Adopting Vite+ Into Our Design System at Breakneck Speed"
+  twitterDescription: "Slides presented at Vue Fes Japan 2026 by Burio @burio_16"
+  twitterImage: "https://slide.burio16.com/vite-plus-retro-v2/en/og-image.png"
+  twitterSite: "@burio_16"
+  twitterUrl: "https://slide.burio16.com/vite-plus-retro-v2/en/"
 layout: cover
 canvasWidth: 1920
 aspectRatio: "16/9"
@@ -14,7 +28,6 @@ fonts: { "sans": "Source Sans Pro, Helvetica, sans-serif", "mono": "monospace", 
 defaults: { "layout": "default" }
 highlighter: "shiki"
 background: "/slides/templates/4830e1037835.png"
-legacyHash: "0/0"
 contentClass: "large-type"
 mdc: true
 ---
@@ -27,7 +40,6 @@ mdc: true
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "1/0"
 contentClass: "large-type"
 layout: content
 ---
@@ -40,7 +52,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "2/0"
 contentClass: "large-type"
 layout: profile
 color: white
@@ -59,7 +70,6 @@ color: white
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "3/0"
 contentClass: "large-type statement-prose"
 layout: statement
 ---
@@ -68,7 +78,6 @@ layout: statement
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "4/0"
 contentClass: "large-type"
 layout: content
 ---
@@ -81,7 +90,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "5/0"
 contentClass: "large-type"
 layout: content
 ---
@@ -94,7 +102,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "6/0"
 contentClass: "large-type statement-prose"
 layout: statement
 ---
@@ -103,7 +110,6 @@ layout: statement
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "7/0"
 contentClass: "large-type"
 layout: content
 ---
@@ -117,7 +123,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "8/0"
 contentClass: "large-type statement-prose"
 layout: statement
 ---
@@ -126,7 +131,6 @@ layout: statement
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "9/0"
 contentClass: "large-type statement-prose"
 layout: statement
 ---
@@ -135,7 +139,6 @@ layout: statement
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "10/0"
 contentClass: "large-type statement-prose"
 layout: statement
 ---
@@ -144,7 +147,6 @@ layout: statement
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "11/0"
 contentClass: "large-type statement-prose"
 layout: statement
 ---
@@ -153,7 +155,6 @@ layout: statement
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "12/0"
 contentClass: "large-type statement-prose"
 layout: statement
 ---
@@ -162,7 +163,6 @@ layout: statement
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "13/0"
 contentClass: "large-type"
 layout: content
 ---
@@ -175,7 +175,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "14/0"
 contentClass: "large-type"
 layout: content
 ---
@@ -203,7 +202,6 @@ export default defineConfig({
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "15/0"
 contentClass: "large-type"
 layout: content
 ---
@@ -252,7 +250,6 @@ pack: {
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "16/0"
 contentClass: "large-type statement-prose"
 layout: statement
 ---
@@ -261,7 +258,6 @@ layout: statement
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "17/0"
 contentClass: "large-type"
 layout: content
 ---
@@ -274,7 +270,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "18/0"
 contentClass: "large-type"
 layout: content
 ---
@@ -287,7 +282,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "19/0"
 contentClass: "large-type"
 layout: content
 ---
@@ -308,7 +302,6 @@ When Vite+ was enabled, the `vite` override was applied. The test used no integr
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "20/0"
 contentClass: "large-type"
 layout: content
 ---
@@ -321,7 +314,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "21/0"
 contentClass: "large-type statement-prose"
 layout: statement
 ---
@@ -330,7 +322,6 @@ layout: statement
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "22/0"
 contentClass: "large-type"
 layout: content
 ---
@@ -358,7 +349,6 @@ $ vp run -r build      # second run (no changes)
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "23/0"
 contentClass: "large-type"
 layout: content
 ---

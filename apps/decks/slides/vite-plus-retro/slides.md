@@ -1,6 +1,20 @@
 ---
 theme: "none"
-title: "vite-plus-retro"
+title: "Vite+を爆速で社内デザインシステムに導入してみた"
+titleTemplate: "%s | TSKaigi 2026事後勉強会"
+lang: "ja"
+favicon: "/assets/favicon.ico"
+seoMeta:
+  ogTitle: "Vite+を爆速で社内デザインシステムに導入してみた"
+  ogDescription: "TSKaigi 2026事後勉強会 での発表資料 by ぶりお @burio_16"
+  ogImage: "https://slide.burio16.com/vite-plus-retro/og-image.png"
+  ogUrl: "https://slide.burio16.com/vite-plus-retro/"
+  twitterCard: "summary_large_image"
+  twitterTitle: "Vite+を爆速で社内デザインシステムに導入してみた"
+  twitterDescription: "TSKaigi 2026事後勉強会 での発表資料 by ぶりお @burio_16"
+  twitterImage: "https://slide.burio16.com/vite-plus-retro/og-image.png"
+  twitterSite: "@burio_16"
+  twitterUrl: "https://slide.burio16.com/vite-plus-retro/"
 layout: cover
 canvasWidth: 1920
 aspectRatio: "16/9"
@@ -14,7 +28,6 @@ fonts: { "sans": "Source Sans Pro, Helvetica, sans-serif", "mono": "monospace", 
 defaults: { "layout": "default" }
 highlighter: "shiki"
 background: "/slides/templates/4830e1037835.png"
-legacyHash: "0/0"
 mdc: true
 ---
 
@@ -26,7 +39,6 @@ mdc: true
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "1/0"
 layout: profile
 color: white
 ---
@@ -44,7 +56,6 @@ color: white
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "2/0"
 layout: content
 ---
 
@@ -62,7 +73,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "3/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -71,7 +81,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "4/0"
 layout: content
 ---
 
@@ -83,7 +92,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "5/0"
 layout: content
 ---
 
@@ -95,7 +103,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "6/0"
 layout: content
 ---
 
@@ -122,7 +129,6 @@ After: vite.config.ts に寄せられた
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "7/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -131,7 +137,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "8/0"
 layout: content
 ---
 
@@ -143,7 +148,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "9/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -152,7 +156,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "10/0"
 layout: content
 ---
 
@@ -163,7 +166,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "11/0"
 layout: content
 ---
 
@@ -175,7 +177,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "12/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -184,7 +185,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "13/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -193,7 +193,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "14/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -202,7 +201,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "15/0"
 layout: content
 ---
 
@@ -215,7 +213,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "16/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -224,7 +221,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "17/0"
 layout: content
 ---
 
@@ -236,7 +232,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "18/0"
 layout: content
 ---
 
@@ -263,7 +258,6 @@ export default defineConfig({
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "19/0"
 layout: content
 ---
 
@@ -290,7 +284,6 @@ run: {
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "20/0"
 layout: content
 ---
 
@@ -317,7 +310,6 @@ $ vp run -r build      # 2回目（変更なし）
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "21/0"
 layout: content
 ---
 
@@ -364,7 +356,6 @@ pack: {
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "22/0"
 layout: content
 ---
 
@@ -391,7 +382,6 @@ vp staged
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "23/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -400,7 +390,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "24/0"
 layout: content
 ---
 
@@ -412,7 +401,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "25/0"
 layout: content
 ---
 
@@ -424,7 +412,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "26/0"
 layout: content
 ---
 
@@ -437,7 +424,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "27/0"
 layout: content
 ---
 
@@ -451,7 +437,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "28/0"
 layout: content
 ---
 
@@ -466,7 +451,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "29/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -475,7 +459,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "30/0"
 layout: content
 ---
 
@@ -489,7 +472,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "31/0"
 layout: content
 ---
 
@@ -501,7 +483,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "32/0"
 layout: content
 ---
 
@@ -514,7 +495,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "33/0"
 layout: statement
 contentClass: "statement-prose"
 ---

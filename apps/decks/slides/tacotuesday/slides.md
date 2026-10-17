@@ -1,6 +1,20 @@
 ---
 theme: "none"
-title: "tacotuesday"
+title: "全人類タコスを食え"
+titleTemplate: "%s | 社内LT会"
+lang: "ja"
+favicon: "/assets/favicon.ico"
+seoMeta:
+  ogTitle: "全人類タコスを食え"
+  ogDescription: "社内LT会 での発表資料 by ぶりお @burio_16"
+  ogImage: "https://slide.burio16.com/tacotuesday/og-image.png"
+  ogUrl: "https://slide.burio16.com/tacotuesday/"
+  twitterCard: "summary_large_image"
+  twitterTitle: "全人類タコスを食え"
+  twitterDescription: "社内LT会 での発表資料 by ぶりお @burio_16"
+  twitterImage: "https://slide.burio16.com/tacotuesday/og-image.png"
+  twitterSite: "@burio_16"
+  twitterUrl: "https://slide.burio16.com/tacotuesday/"
 layout: cover
 canvasWidth: 1920
 aspectRatio: "16/9"
@@ -14,7 +28,6 @@ fonts: { "sans": "Source Sans Pro, Helvetica, sans-serif", "mono": "monospace", 
 defaults: { "layout": "default" }
 highlighter: "shiki"
 background: "/slides/templates/4830e1037835.png"
-legacyHash: "0/0"
 mdc: true
 contentClass: "compact-cover"
 ---
@@ -28,7 +41,6 @@ contentClass: "compact-cover"
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
-legacyHash: "1/0"
 layout: default
 ---
 
@@ -37,7 +49,6 @@ layout: default
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
-legacyHash: "2/0"
 layout: default
 ---
 
@@ -46,7 +57,6 @@ layout: default
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
-legacyHash: "3/0"
 layout: default
 ---
 
@@ -55,7 +65,6 @@ layout: default
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
-legacyHash: "4/0"
 layout: default
 ---
 
@@ -64,7 +73,6 @@ layout: default
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
-legacyHash: "5/0"
 layout: default
 ---
 
@@ -73,7 +81,6 @@ layout: default
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
-legacyHash: "6/0"
 layout: default
 ---
 
@@ -82,7 +89,6 @@ layout: default
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
-legacyHash: "7/0"
 layout: default
 ---
 
@@ -91,7 +97,6 @@ layout: default
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
-legacyHash: "8/0"
 layout: default
 ---
 
@@ -101,7 +106,6 @@ layout: default
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
-legacyHash: "9/0"
 layout: default
 ---
 
@@ -112,7 +116,6 @@ layout: default
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white; text-align: left;"
-legacyHash: "10/0"
 layout: default
 ---
 
@@ -124,7 +127,6 @@ layout: default
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white; text-align: left;"
-legacyHash: "11/0"
 layout: default
 ---
 
@@ -137,7 +139,6 @@ layout: default
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
-legacyHash: "12/0"
 layout: default
 ---
 
@@ -149,7 +150,6 @@ layout: default
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
-legacyHash: "13/0"
 layout: default
 ---
 
@@ -161,7 +161,6 @@ layout: default
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
-legacyHash: "14/0"
 layout: default
 ---
 
@@ -173,7 +172,6 @@ layout: default
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white; text-align: left;"
-legacyHash: "15/0"
 layout: default
 ---
 
@@ -186,7 +184,6 @@ layout: default
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
-legacyHash: "16/0"
 layout: default
 ---
 
@@ -195,7 +192,6 @@ layout: default
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentStyle: "color: white;"
-legacyHash: "17/0"
 layout: default
 ---
 
@@ -203,7 +199,6 @@ layout: default
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "18/0"
 layout: statement
 ---
 
@@ -211,7 +206,6 @@ layout: statement
 
 ---
 background: "/slides/templates/4830e1037835.png"
-legacyHash: "19/0"
 layout: cover
 ---
 
@@ -223,7 +217,6 @@ layout: cover
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "20/0"
 layout: statement
 ---
 
@@ -231,7 +224,6 @@ layout: statement
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "21/0"
 layout: statement
 ---
 
@@ -239,7 +231,6 @@ layout: statement
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "22/0"
 layout: default
 ---
 
@@ -260,7 +251,6 @@ layout: default
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "23/0"
 layout: statement
 ---
 
@@ -268,7 +258,6 @@ layout: statement
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "24/0"
 layout: default
 ---
 
@@ -292,7 +281,6 @@ layout: default
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "25/0"
 layout: default
 ---
 
@@ -324,7 +312,6 @@ layout: default
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "26/0"
 layout: default
 ---
 
@@ -379,7 +366,6 @@ layout: default
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "26/1"
 layout: default
 ---
 
@@ -387,7 +373,6 @@ layout: default
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "27/0"
 layout: default
 ---
 
@@ -409,7 +394,6 @@ layout: default
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "28/0"
 layout: default
 ---
 

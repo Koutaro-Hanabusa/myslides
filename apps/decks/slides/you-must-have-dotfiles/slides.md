@@ -1,6 +1,20 @@
 ---
 theme: "none"
-title: "you-must-have-dotfiles"
+title: "Vim使いでなくてもdotfilesを管理しよう"
+titleTemplate: "%s | Yoriai.cafe 二日間限定オープン！"
+lang: "ja"
+favicon: "/assets/favicon.ico"
+seoMeta:
+  ogTitle: "Vim使いでなくてもdotfilesを管理しよう"
+  ogDescription: "Yoriai.cafe 二日間限定オープン！ での発表資料 by ぶりお @burio_16"
+  ogImage: "https://slide.burio16.com/you-must-have-dotfiles/og-image.png"
+  ogUrl: "https://slide.burio16.com/you-must-have-dotfiles/"
+  twitterCard: "summary_large_image"
+  twitterTitle: "Vim使いでなくてもdotfilesを管理しよう"
+  twitterDescription: "Yoriai.cafe 二日間限定オープン！ での発表資料 by ぶりお @burio_16"
+  twitterImage: "https://slide.burio16.com/you-must-have-dotfiles/og-image.png"
+  twitterSite: "@burio_16"
+  twitterUrl: "https://slide.burio16.com/you-must-have-dotfiles/"
 layout: cover
 canvasWidth: 1920
 aspectRatio: "16/9"
@@ -14,7 +28,6 @@ fonts: { "sans": "Source Sans Pro, Helvetica, sans-serif", "mono": "monospace", 
 defaults: { "layout": "default" }
 highlighter: "shiki"
 background: "/slides/templates/ce83e2a9c143.png"
-legacyHash: "0/0"
 mdc: true
 ---
 
@@ -26,7 +39,6 @@ mdc: true
 
 ---
 background: "/slides/templates/1e8424e4716c.png"
-legacyHash: "1/0"
 layout: blank
 ---
 
@@ -34,7 +46,6 @@ layout: blank
 
 ---
 background: "/slides/templates/02c1527ee49d.png"
-legacyHash: "2/0"
 layout: blank
 ---
 
@@ -42,7 +53,6 @@ layout: blank
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "3/0"
 layout: profile
 color: black
 ---
@@ -60,7 +70,6 @@ color: black
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "4/0"
 layout: content
 color: black
 ---
@@ -73,7 +82,6 @@ Nixを使ってdotfilesをやりたい方は、[2026年にnixを始める方法]
 
 ---
 background: "/slides/templates/ee839a2ae1b8.png"
-legacyHash: "5/0"
 layout: statement
 ---
 
@@ -81,7 +89,6 @@ layout: statement
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "6/0"
 layout: content
 color: black
 ---
@@ -96,7 +103,6 @@ color: black
 
 ---
 background: "/slides/templates/ee839a2ae1b8.png"
-legacyHash: "7/0"
 layout: statement
 ---
 
@@ -104,7 +110,6 @@ layout: statement
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "8/0"
 layout: content
 color: black
 ---
@@ -121,7 +126,6 @@ color: black
 
 ---
 background: "/slides/templates/ee839a2ae1b8.png"
-legacyHash: "9/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -130,7 +134,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/ee839a2ae1b8.png"
-legacyHash: "10/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -139,7 +142,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "11/0"
 layout: content
 color: black
 ---
@@ -152,7 +154,6 @@ color: black
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "12/0"
 layout: content
 color: black
 ---
@@ -165,7 +166,6 @@ color: black
 
 ---
 background: "/slides/templates/ee839a2ae1b8.png"
-legacyHash: "13/0"
 layout: statement
 ---
 
@@ -173,7 +173,6 @@ layout: statement
 
 ---
 background: "/slides/templates/ee839a2ae1b8.png"
-legacyHash: "14/0"
 layout: statement
 ---
 
@@ -181,7 +180,6 @@ layout: statement
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "15/0"
 layout: content
 color: black
 ---
@@ -200,7 +198,6 @@ color: black
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "16/0"
 layout: content
 color: black
 ---
@@ -227,7 +224,6 @@ brew install chezmoi
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "17/0"
 layout: content
 color: black
 ---
@@ -262,7 +258,6 @@ chezmoi managed
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "18/0"
 layout: content
 color: black
 ---
@@ -284,7 +279,6 @@ pwd
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "19/0"
 layout: content
 color: black
 ---
@@ -299,7 +293,6 @@ chezmoi init --apply https://github.com/username/dotfiles.git
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "20/0"
 layout: content
 color: black
 ---
@@ -312,7 +305,6 @@ color: black
 
 ---
 background: "/slides/templates/ee839a2ae1b8.png"
-legacyHash: "21/0"
 layout: statement
 ---
 
@@ -320,7 +312,6 @@ layout: statement
 
 ---
 background: "/slides/templates/ee839a2ae1b8.png"
-legacyHash: "22/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -329,7 +320,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/ee839a2ae1b8.png"
-legacyHash: "23/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -338,6 +328,5 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/fa74e1541fa0.png"
-legacyHash: "24/0"
 layout: blank
 ---

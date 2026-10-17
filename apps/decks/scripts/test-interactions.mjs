@@ -48,7 +48,7 @@ try {
         slide.content.includes(`AutofocusDemo kind="${kind}"`),
       ) + 1;
     assert(slide > 0);
-    await page.goto(`${base}/presentations/autofocus-correct-usage/#/${slide}`);
+    await page.goto(`${base}/autofocus-correct-usage/#/${slide}`);
     const demo = page
       .locator(`[data-slidev-no="${slide}"] .autofocus-demo[data-kind="${kind}"]`)
       .first();
@@ -90,7 +90,7 @@ try {
     const parsed = await parse(await readFile(resolve(root, deck.file), "utf8"));
     for (const [i, slide] of parsed.slides.entries()) {
       if (!slide.content.includes('v-click.hide="1"')) continue;
-      await page.goto(`${base}/presentations/${slug}/#/${i + 1}`);
+      await page.goto(`${base}/${slug}/#/${i + 1}`);
       const images = page.locator(`[data-slidev-no="${i + 1}"] .image-stack img`).first();
       await images.waitFor({ state: "visible" });
       const pair = page.locator(`[data-slidev-no="${i + 1}"] img[data-fragment-index="0"]`);
