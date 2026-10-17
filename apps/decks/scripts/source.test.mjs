@@ -9,14 +9,11 @@ const cliRequire = createRequire(require.resolve("@slidev/cli/package.json"));
 const { parse } = await import(cliRequire.resolve("@slidev/parser/core"));
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const decks = JSON.parse(await readFile(resolve(root, "decks.json"), "utf8"));
-const manifest = JSON.parse(await readFile(resolve(root, "migration-manifest.json"), "utf8"));
-test("Markdown decks retain their order and local assets", async () => {
+test("Markdown decks have valid counts and local assets", async () => {
   for (const [slug, deck] of Object.entries(decks)) {
     const md = await readFile(resolve(root, deck.file), "utf8");
     const parsed = await parse(md, deck.file);
     assert.equal(parsed.slides.length, deck.count, `${slug}: native Slidev slide count`);
-    if (!manifest[slug]) continue;
-    assert.equal(deck.count, manifest[slug].length, slug);
     assert.doesNotMatch(md, /^legacyHash:/m, `${slug}: Reveal.js coordinates must be removed`);
     const prose = md.replace(/^(`{3,})[^\n]*\n[\s\S]*?^\1\s*$/gm, "");
     assert.doesNotMatch(

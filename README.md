@@ -161,4 +161,4 @@ task pdf -- nix-for-everyone slides.pdf   # SlidevでPDF出力（クリック段
 
 Webの開発・ビルド時にSlidev資料を `apps/web/public/presentations/<slug>/` へ生成します。このディレクトリは生成物なのでGit管理しません。既存の `/<slug>`、`#/横番号/縦番号`、OGP URLは維持し、サイトのReact部分から独立したVue/Slidevの資料をiframeで表示します。英語版の切り替え、キーボード操作、タッチ操作、発表者表示は引き続き利用できます。
 
-背景8点は同じR2画像を `public/slides/templates/` に保存しました。元URLは `apps/decks/background-sources.json` に記録しています。`migration-manifest.json` は移行時点の451枚の順序・文言・画像を検証するための記録です。
+背景8点は同じR2画像を `public/slides/templates/` に保存しました。元URLは `apps/decks/background-sources.json` に記録しています。
