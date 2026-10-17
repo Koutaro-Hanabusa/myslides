@@ -24,7 +24,12 @@ preloadImages: false
 transition: "slide-left"
 download: false
 drawings: { "enabled": false }
-fonts: { "sans": "Source Sans Pro, Helvetica, sans-serif", "mono": "monospace", "provider": "none" }
+fonts:
+  {
+    "sans": "Source Sans Pro, Helvetica, sans-serif",
+    "mono": "monospace",
+    "provider": "none",
+  }
 defaults: { "layout": "default" }
 highlighter: "shiki"
 background: "/slides/templates/4830e1037835.png"
@@ -42,6 +47,7 @@ mdc: true
 background: "/slides/templates/af4e26a78715.png"
 contentClass: "h-full large-type"
 layout: split
+
 ---
 
 ## English
@@ -65,6 +71,7 @@ background: "/slides/templates/af4e26a78715.png"
 contentClass: "large-type"
 layout: profile
 color: white
+
 ---
 
 ## 自己紹介
@@ -82,6 +89,7 @@ color: white
 background: "/slides/templates/af4e26a78715.png"
 contentClass: "large-type statement-prose"
 layout: statement
+
 ---
 
 # そもそも Vite+ って？
@@ -90,30 +98,33 @@ layout: statement
 background: "/slides/templates/af4e26a78715.png"
 contentClass: "large-type"
 layout: content
+
 ---
 
 ## Vite+ とは
 
-- test / lint / fmt / task などを `vp` ひとつに束ねる統合ツールチェイン
-- 中身は Vite / Vitest / Oxlint / Oxfmt / tsdown / Vite Task（VoidZero 製）
+- test / lint / fmt / task などをひとつに束ねる統合ツールチェイン
+- 中身は Vite / Vitest / Oxlint / Oxfmt / Vite Task（VoidZero 製）
 - 2026/3/13 公開
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentClass: "large-type"
 layout: content
+
 ---
 
 ## Vite+ が解決する課題
 
 - 他の言語：統合ツールチェインが当たり前
 - JS：ツールの選択肢が多く、環境ごとにバラバラになりがち
-- → その課題をVite+ が解決
+  → その課題をVite+ が解決
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentClass: "large-type statement-prose"
 layout: statement
+
 ---
 
 # どこに導入した？
@@ -122,6 +133,7 @@ layout: statement
 background: "/slides/templates/af4e26a78715.png"
 contentClass: "large-type"
 layout: content
+
 ---
 
 ## 社内デザインシステム
@@ -135,6 +147,7 @@ layout: content
 background: "/slides/templates/af4e26a78715.png"
 contentClass: "large-type statement-prose"
 layout: statement
+
 ---
 
 # 爆速(当社比)で移行
@@ -143,6 +156,7 @@ layout: statement
 background: "/slides/templates/af4e26a78715.png"
 contentClass: "large-type statement-prose"
 layout: statement
+
 ---
 
 # マネージャー<br>「ビルドできれば<br>いいんじゃない？」
@@ -151,6 +165,7 @@ layout: statement
 background: "/slides/templates/af4e26a78715.png"
 contentClass: "large-type statement-prose"
 layout: statement
+
 ---
 
 # ほな導入したろか！
@@ -159,6 +174,7 @@ layout: statement
 background: "/slides/templates/af4e26a78715.png"
 contentClass: "large-type statement-prose"
 layout: statement
+
 ---
 
 # 爆速！！(当社比)![Vite+ への移行 PR #135（Turborepo 廃止・ツールチェーン統合、25 commits を main にマージ）](/slides/vite-plus-retro/assets/pr-135.png){width="1069" height="254" style="margin:1.5rem auto 0;display:block;width:1600px;height:auto;max-width:100%;max-height:520px;border-radius:8px"}Vite+ 0.1.13
@@ -167,6 +183,7 @@ layout: statement
 background: "/slides/templates/af4e26a78715.png"
 contentClass: "large-type statement-prose"
 layout: statement
+
 ---
 
 # 実際どうだった？
@@ -175,18 +192,21 @@ layout: statement
 background: "/slides/templates/af4e26a78715.png"
 contentClass: "large-type"
 layout: content
+
 ---
 
 ## 良かった① vp migrate が最高
 
 - 既存プロジェクトを Vite+ に移行するための スタート地点
-- 依存関係・import・設定・scripts を まとめて更新し、既存ツールを統合
-- テスト import は `vite-plus/test`、CI は `voidzero-dev/setup-vp` へ移行
+- 依存関係・import・設定を まとめて更新し、既存ツールを統合
+- 加えてCI は `voidzero-dev/setup-vp` へ移行
+  [vp migrate](https://viteplus.dev/guide/migrate)
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentClass: "large-type"
 layout: content
+
 ---
 
 ## 良かった② 設定が一箇所に
@@ -197,23 +217,23 @@ layout: content
 // vite.config.ts （実物）
 export default defineConfig({
   test:   { … },  // Vitest
-  staged: { … },  // git hooks（pre-commit）
   fmt:    { … },  // Oxfmt
-  run:    { … },  // タスク実行（キャッシュ付き）
   lint:   { … },  // Oxlint
+  run:    { … },  // タスク実行（キャッシュ付き）
+
 });
 ```
 
 </CodePanel>
 
 - test / staged / fmt / run / lint を `vite.config.ts` に集約
-- hooks は `staged`、Node は `.node-version` で管理
 - `vp lint` で type linting（oxlint-tsgolint）まで実行
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentClass: "large-type"
 layout: content
+
 ---
 
 ## 良かった③ vp pack でライブラリビルドを改善
@@ -261,6 +281,7 @@ pack: {
 background: "/slides/templates/af4e26a78715.png"
 contentClass: "large-type statement-prose"
 layout: statement
+
 ---
 
 # もちろん辛みもあった
@@ -269,40 +290,59 @@ layout: statement
 background: "/slides/templates/af4e26a78715.png"
 contentClass: "large-type"
 layout: content
+
 ---
 
 ## 辛かった① lefthook使用時にmigrateされない
 
 - `vp migrate` 時、lefthook は自動移行されず警告のみ
 - 気づかず pre-commit が壊れていた → 設定を手動修正
-- バグだと思い [Issue #1854](https://github.com/voidzero-dev/vite-plus/issues/1854) を起票 → 実は仕様で、[PR #1901](https://github.com/voidzero-dev/vite-plus/pull/1901) で Migration Guide に追記
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentClass: "large-type"
 layout: content
+
+---
+
+## 実は仕様でした
+
+- バグだと思い [Issue #1854](https://github.com/voidzero-dev/vite-plus/issues/1854) を起票
+- 実は仕様で、[PR #1901](https://github.com/voidzero-dev/vite-plus/pull/1901) で Migration Guide に追記していただいた
+
+---
+background: "/slides/templates/af4e26a78715.png"
+contentClass: "large-type"
+layout: content
+
 ---
 
 ## 辛かった② Astro のビルドが壊れた
+
+<details>
+<summary>詳細</summary>
 
 - docサイトに使用してるAstro 6 は Vite 7 前提。`overrides.vite` で Vite+ の Vite 8 系に置換
 - dev-toolbar が使う esbuild API の互換処理で `Not implemented` が発生し、ビルド失敗していた
 - override を外し、Astro が使う Vite 7 に戻して復旧
 
+</details>
+
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentClass: "large-type"
 layout: content
+
 ---
 
 ## 最小構成で再現して比較
 
-| Astro | Vite+ | ビルド結果 |
-| --- | --- | --- |
-| 6.1.10 | 未使用（Vite 7.3.3） | 成功 |
-| 6.1.10 | 0.1.19 | 失敗（`Not implemented`） |
-| 7.0.0-beta.3 | 0.1.19 | 成功 |
-| 7.0.0-beta.3 | 0.1.24 | 成功 |
+| Astro        | Vite+                | ビルド結果                |
+| ------------ | -------------------- | ------------------------- |
+| 6.1.10       | 未使用（Vite 7.3.3） | 成功                      |
+| 6.1.10       | 0.1.19               | 失敗（`Not implemented`） |
+| 7.0.0-beta.3 | 0.1.19               | 成功                      |
+| 7.0.0-beta.3 | 0.1.24               | 成功                      |
 
 この最小構成では、Vite+ 0.1.19 のまま Astro 7 beta へ更新すると成功
 Vite+ 使用時は `vite` override を適用。integration なし・1ページで検証。
@@ -313,18 +353,29 @@ Vite+ 使用時は `vite` override を適用。integration なし・1ページ�
 background: "/slides/templates/af4e26a78715.png"
 contentClass: "large-type"
 layout: content
+
 ---
 
 ## まとめ
 
 - vite.config.tsに全ての設定を記述でき、体験が良い
 - 9/28 Vite+ 1.0リリース今回紹介したつらみも、解消済み
-- Vite / Vitest / Oxlint / Oxfmt を使うなら、もう Vite+ にフルベットしよう
+- OSSの仕様をしっかり読んでみるきっかけにもなった
 
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentClass: "large-type statement-prose"
 layout: statement
+
+---
+
+# Vite+ にフルベットしよう
+
+---
+background: "/slides/templates/af4e26a78715.png"
+contentClass: "large-type statement-prose"
+layout: statement
+
 ---
 
 # 余談
@@ -333,6 +384,7 @@ layout: statement
 background: "/slides/templates/af4e26a78715.png"
 contentClass: "large-type"
 layout: content
+
 ---
 
 ## Vite Task：自動キャッシュ
@@ -360,6 +412,7 @@ $ vp run -r build      # 2回目（変更なし）
 background: "/slides/templates/af4e26a78715.png"
 contentClass: "large-type"
 layout: content
+
 ---
 
 ## Viteに依存しているわけではない
