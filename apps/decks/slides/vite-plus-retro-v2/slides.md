@@ -118,7 +118,6 @@ layout: content
 
 - 他の言語：統合ツールチェインが当たり前
 - JS：ツールの選択肢が多く、環境ごとにバラバラになりがち
-  → その課題をVite+ が解決
 
 ---
 background: "/slides/templates/af4e26a78715.png"
