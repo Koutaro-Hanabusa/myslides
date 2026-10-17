@@ -4,9 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "slidev slides.md --theme ../../theme",
-    "export": "slidev export slides.md --theme ../../theme",
-    "generate:ogp": "slidev export slides.md --theme ../../theme --format png --range 1 --output .slidev-og-image --wait-until networkidle && cp .slidev-og-image/1.png og-image.png && rm -rf .slidev-og-image",
-    "build:slidev": "vp run generate:ogp && slidev build slides.md --theme ../../theme --base /oss-and-community/ && cp og-image.png dist/og-image.png && node ../../scripts/publish.mjs"
+    "export": "slidev export slides.md --theme ../../theme"
   },
   "dependencies": {
     "@slidev/cli": "52.20.1",

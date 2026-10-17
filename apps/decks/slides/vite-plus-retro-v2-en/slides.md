@@ -84,8 +84,8 @@ layout: content
 
 ## What Is Vite+?
 
-- A unified toolchain that brings test / lint / fmt / task and more under one `vp` command
-- Built on Vite / Vitest / Oxlint / Oxfmt / tsdown / Vite Task, all by VoidZero
+- A unified toolchain that brings together test / lint / fmt / task and more
+- Built on Vite / Vitest / Oxlint / Oxfmt / Vite Task, all by VoidZero
 - Released on March 13, 2026
 
 ---
@@ -98,7 +98,7 @@ layout: content
 
 - Other languages commonly have unified toolchains
 - JavaScript offers many tools, so every environment tends to use a different setup
-- → Vite+ solves this fragmentation
+  → Vite+ solves this fragmentation
 
 ---
 background: "/slides/templates/af4e26a78715.png"
@@ -170,8 +170,9 @@ layout: content
 ## Win 1: vp migrate Is Excellent
 
 - A starting point for migrating an existing project to Vite+
-- Updates dependencies, imports, config, and scripts together while unifying the existing tools
-- Moved test imports to `vite-plus/test` and CI to `voidzero-dev/setup-vp`
+- Updates dependencies, imports, and config together while unifying the existing tools
+- Also migrated CI to `voidzero-dev/setup-vp`
+  [vp migrate](https://viteplus.dev/guide/migrate)
 
 ---
 background: "/slides/templates/af4e26a78715.png"
@@ -187,17 +188,15 @@ layout: content
 // vite.config.ts (from the actual project)
 export default defineConfig({
   test:   { … },  // Vitest
-  staged: { … },  // git hooks (pre-commit)
   fmt:    { … },  // Oxfmt
-  run:    { … },  // cached task runner
   lint:   { … },  // Oxlint
+  run:    { … },  // cached task runner
 });
 ```
 
 </CodePanel>
 
 - test / staged / fmt / run / lint all live in `vite.config.ts`
-- Hooks are managed through `staged`, while Node is managed through `.node-version`
 - `vp lint` even runs type-aware linting with oxlint-tsgolint
 
 ---
@@ -221,7 +220,6 @@ pack: {
   sourcemap: true,
   minify: true,
   deps: {
-    // Externalize React peer deps
     alwaysBundle: ["clsx", "tailwind-merge", "dayjs"],
   },
 }
@@ -266,7 +264,17 @@ layout: content
 
 - During `vp migrate`, lefthook was not migrated automatically; we only got a warning
 - We missed it and our pre-commit hook broke, so we fixed the config manually
-- We opened [issue #1854](https://github.com/voidzero-dev/vite-plus/issues/1854), then learned it was intentional; [PR #1901](https://github.com/voidzero-dev/vite-plus/pull/1901) added it to the Migration Guide
+
+---
+background: "/slides/templates/af4e26a78715.png"
+contentClass: "large-type"
+layout: content
+---
+
+## It Was by Design
+
+- We thought it was a bug and opened [issue #1854](https://github.com/voidzero-dev/vite-plus/issues/1854)
+- It turned out to be intentional, and the maintainers documented it in the Migration Guide via [PR #1901](https://github.com/voidzero-dev/vite-plus/pull/1901)
 
 ---
 background: "/slides/templates/af4e26a78715.png"
@@ -276,9 +284,14 @@ layout: content
 
 ## Pain 2: The Astro Build Broke
 
-- Astro 6 expects Vite 7, but `overrides.vite` replaced it with the Vite 8 version bundled by Vite+
+<details>
+<summary>Details</summary>
+
+- Our documentation site used Astro 6, which expects Vite 7, but `overrides.vite` replaced it with the Vite 8 version bundled by Vite+
 - Compatibility code for an esbuild API used by dev-toolbar threw `Not implemented`, breaking the build
 - Removing the override restored Astro's Vite 7 and fixed the build
+
+</details>
 
 ---
 background: "/slides/templates/af4e26a78715.png"
@@ -310,7 +323,15 @@ layout: content
 
 - The experience is excellent: every setting can live in `vite.config.ts`
 - Vite+ 1.0 was released on September 28, and the pain points covered here have already been resolved
-- If you use Vite / Vitest / Oxlint / Oxfmt, it is time to go all in on Vite+
+- It also prompted us to read OSS documentation more carefully
+
+---
+background: "/slides/templates/af4e26a78715.png"
+contentClass: "large-type statement-prose"
+layout: statement
+---
+
+# Let's Go All In on Vite+
 
 ---
 background: "/slides/templates/af4e26a78715.png"

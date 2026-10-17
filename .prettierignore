@@ -1,0 +1,2 @@
+# Generic Markdown formatting breaks Slidev's per-slide frontmatter blocks.
+apps/decks/slides/**/*.md
