@@ -15,28 +15,36 @@ try {
   await page.getByRole("heading", { name: "Burio's slide deck" }).waitFor();
   await page.locator("iframe").first().waitFor();
   for (const [slug, deck] of Object.entries(decks)) {
-    const last = Object.keys(deck.legacy).at(-1);
-    await page.goto(`${base}/${slug}#/${last}`);
-    const frame = page.locator("iframe").first();
-    await frame.waitFor();
-    const inner = page.frameLocator("iframe").first();
-    await inner
+    const direct = Boolean(deck.publicPath);
+    const route = direct ? `/${deck.publicPath}/` : `/${slug}`;
+    if (direct) {
+      await page.goto(`${base}${route}`);
+      await page.locator('[data-slidev-no="1"] .myslides-content').first().waitFor();
+      assert.equal(await page.locator("iframe").count(), 0);
+      assert.notEqual(await page.evaluate(() => location.hash), "#/0/0");
+    }
+    await page.goto(`${base}${route}#/${deck.count}`);
+    if (!direct) await page.locator("iframe").first().waitFor();
+    const slides = direct ? page : page.frameLocator("iframe").first();
+    await slides
       .locator(`[data-slidev-no="${deck.count}"] .myslides-content`)
       .first()
       .waitFor({ state: "visible" });
+    await page.waitForFunction((hash) => location.hash === hash, `#/${deck.count}`);
     assert.match(await page.title(), /mySlides|\S/);
     const og = await page.locator('meta[property="og:image"]').first().getAttribute("content");
     console.log("OG", slug, og);
-    assert(og?.includes(`/${slug}/opengraph-image`));
-    assert.equal((await page.request.get(`${base}/${slug}/opengraph-image.png`)).status(), 200);
+    const ogPath = direct ? `/${deck.publicPath}/og-image.png` : `/${slug}/opengraph-image.png`;
+    assert(og?.includes(direct ? "og-image.png" : `/${slug}/opengraph-image`));
+    assert.equal((await page.request.get(`${base}${ogPath}`)).status(), 200);
     await page.evaluate(() => {
       window.msgs = [];
       window.addEventListener("message", (e) => window.msgs.push(e.data));
     });
-    const before = Object.keys(deck.legacy)[deck.count - 2];
-    await inner.locator("body").press("ArrowLeft");
+    const before = `#/${deck.count - 1}`;
+    await slides.locator("body").press("ArrowLeft");
     try {
-      await page.waitForFunction((hash) => location.hash === hash, `#/${before}`, {
+      await page.waitForFunction((hash) => location.hash === hash, before, {
         timeout: 3000,
       });
     } catch (e) {
@@ -49,13 +57,14 @@ try {
       throw e;
     }
     await page.evaluate(() => {
-      location.hash = "#/0";
+      location.hash = "#/1";
     });
-    await inner
+    await slides
       .locator('[data-slidev-no="1"] .myslides-content')
       .first()
       .waitFor({ state: "visible" });
-    console.log("✓", slug, "metadata, OGP, legacy URL and iframe navigation");
+    assert.equal(await page.evaluate(() => location.hash), "#/1");
+    console.log("✓", slug, "metadata, OGP and navigation", direct ? "(direct)" : "(iframe)");
   }
   assert.deepEqual(errors, []);
   await writeFile(

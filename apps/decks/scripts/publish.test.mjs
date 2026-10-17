@@ -17,7 +17,14 @@ test("publishing a parent slug replaces its assets and preserves a nested locale
     await mkdir(join(target, "en"), { recursive: true });
     await writeFile(
       join(decksRoot, "decks.json"),
-      JSON.stringify({ talk: { file: "slides/talk/slides.md", count: 1, legacy: {} } }),
+      JSON.stringify({
+        talk: { file: "slides/talk/slides.md", count: 1 },
+        direct: {
+          file: "slides/direct/slides.md",
+          count: 1,
+          publicPath: "direct",
+        },
+      }),
     );
     await writeFile(join(cwd, "dist/index.html"), "new");
     await writeFile(join(cwd, "dist/assets/new.js"), "new asset");
@@ -29,6 +36,16 @@ test("publishing a parent slug replaces its assets and preserves a nested locale
     assert.equal(await readFile(join(target, "assets/new.js"), "utf8"), "new asset");
     await assert.rejects(readFile(join(target, "assets/stale.js")));
     assert.equal(await readFile(join(target, "en/index.html"), "utf8"), "english");
+
+    const directCwd = join(decksRoot, "slides/direct");
+    const directTarget = join(webRoot, "public/direct");
+    await mkdir(join(directCwd, "dist"), { recursive: true });
+    await mkdir(join(webRoot, "public/presentations/direct"), { recursive: true });
+    await writeFile(join(webRoot, "public/presentations/direct/index.html"), "stale");
+    await writeFile(join(directCwd, "dist/index.html"), "direct");
+    assert.equal(await publishDeck({ cwd: directCwd, decksRoot, webRoot }), directTarget);
+    assert.equal(await readFile(join(directTarget, "index.html"), "utf8"), "direct");
+    await assert.rejects(readFile(join(webRoot, "public/presentations/direct/index.html")));
   } finally {
     await rm(root, { recursive: true, force: true });
   }

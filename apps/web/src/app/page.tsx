@@ -49,6 +49,7 @@ export default function Home() {
             date={config.date}
             event={config.event}
             url={config.eventUrl}
+            previewBase={config.slug === "nix-for-everyone" ? "/nix-for-everyone" : undefined}
           ></SlideCard>
         ))}
       </div>

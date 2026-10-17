@@ -39,9 +39,6 @@ export async function createSlide(root, slug, kind) {
   decks[slug] = {
     file: `slides/${slug}/slides.md`,
     count: kind === "corporate" ? 7 : 4,
-    legacy: Object.fromEntries(
-      Array.from({ length: kind === "corporate" ? 7 : 4 }, (_, i) => [`${i}/0`, i + 1]),
-    ),
   };
   const updated = {
     config: insertOnce(

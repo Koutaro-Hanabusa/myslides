@@ -52,4 +52,7 @@ temp
 
 # Generated Slidev decks
 apps/web/public/presentations/
+apps/web/public/nix-for-everyone/
+apps/decks/slides/nix-for-everyone/.slidev-og-image/
+apps/decks/slides/nix-for-everyone/og-image.png
 apps/decks/test-results/
