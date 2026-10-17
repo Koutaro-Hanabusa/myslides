@@ -1,6 +1,20 @@
 ---
 theme: "none"
-title: "25-graduate"
+title: "アウトプット、怖くないですか？"
+titleTemplate: "%s | 【25卒】新卒のつまずきを糧にしNight"
+lang: "ja"
+favicon: "/assets/favicon.ico"
+seoMeta:
+  ogTitle: "アウトプット、怖くないですか？"
+  ogDescription: "【25卒】新卒のつまずきを糧にしNight での発表資料 by ぶりお @burio_16"
+  ogImage: "https://slide.burio16.com/25-graduate/og-image.png"
+  ogUrl: "https://slide.burio16.com/25-graduate/"
+  twitterCard: "summary_large_image"
+  twitterTitle: "アウトプット、怖くないですか？"
+  twitterDescription: "【25卒】新卒のつまずきを糧にしNight での発表資料 by ぶりお @burio_16"
+  twitterImage: "https://slide.burio16.com/25-graduate/og-image.png"
+  twitterSite: "@burio_16"
+  twitterUrl: "https://slide.burio16.com/25-graduate/"
 layout: cover
 canvasWidth: 1920
 aspectRatio: "16/9"
@@ -14,7 +28,6 @@ fonts: { "sans": "Source Sans Pro, Helvetica, sans-serif", "mono": "monospace", 
 defaults: { "layout": "default" }
 highlighter: "shiki"
 background: "/slides/templates/ce83e2a9c143.png"
-legacyHash: "0/0"
 mdc: true
 ---
 
@@ -26,7 +39,6 @@ mdc: true
 
 ---
 background: "/slides/templates/1e8424e4716c.png"
-legacyHash: "1/0"
 layout: blank
 ---
 
@@ -34,7 +46,6 @@ layout: blank
 
 ---
 background: "/slides/templates/02c1527ee49d.png"
-legacyHash: "2/0"
 layout: blank
 ---
 
@@ -42,7 +53,6 @@ layout: blank
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "3/0"
 layout: profile
 color: black
 ---
@@ -61,7 +71,6 @@ color: black
 
 ---
 background: "/slides/templates/ee839a2ae1b8.png"
-legacyHash: "4/0"
 layout: statement
 ---
 
@@ -69,7 +78,6 @@ layout: statement
 
 ---
 background: "/slides/templates/ee839a2ae1b8.png"
-legacyHash: "5/0"
 layout: statement
 ---
 
@@ -77,7 +85,6 @@ layout: statement
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "6/0"
 layout: content
 color: black
 ---
@@ -90,7 +97,6 @@ color: black
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "7/0"
 layout: content
 color: black
 ---
@@ -103,7 +109,6 @@ color: black
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "8/0"
 layout: content
 color: black
 ---
@@ -119,7 +124,6 @@ color: black
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "9/0"
 layout: content
 color: black
 ---
@@ -132,7 +136,6 @@ color: black
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "10/0"
 layout: content
 color: black
 ---
@@ -145,7 +148,6 @@ color: black
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "11/0"
 layout: content
 color: black
 ---
@@ -159,7 +161,6 @@ color: black
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "12/0"
 layout: content
 color: black
 ---
@@ -177,7 +178,6 @@ color: black
 
 ---
 background: "/slides/templates/ee839a2ae1b8.png"
-legacyHash: "13/0"
 layout: statement
 ---
 
@@ -185,7 +185,6 @@ layout: statement
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "14/0"
 layout: content
 color: black
 ---
@@ -200,7 +199,6 @@ color: black
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "15/0"
 layout: content
 color: black
 ---
@@ -214,7 +212,6 @@ color: black
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "16/0"
 layout: content
 color: black
 ---
@@ -227,6 +224,5 @@ color: black
 
 ---
 background: "/slides/templates/fa74e1541fa0.png"
-legacyHash: "17/0"
 layout: blank
 ---

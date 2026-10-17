@@ -7,6 +7,9 @@ const slides = [
     config: SLIDES_CONFIG["vite-plus-retro-v2"],
   },
   {
+    config: SLIDES_CONFIG["vite-plus-retro-v2/en"],
+  },
+  {
     config: SLIDES_CONFIG["nix-for-everyone"],
   },
   {

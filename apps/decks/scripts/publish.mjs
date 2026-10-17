@@ -16,7 +16,8 @@ export async function publishDeck({
 
   const [slug] = entry;
   const output = resolve(cwd, "dist");
-  const target = resolve(webRoot, "public/presentations", slug);
+  await rm(resolve(webRoot, "public/presentations", slug), { recursive: true, force: true });
+  const target = resolve(webRoot, "public", slug);
   await rm(resolve(target, "assets"), { recursive: true, force: true });
   await mkdir(target, { recursive: true });
   await cp(output, target, { recursive: true });

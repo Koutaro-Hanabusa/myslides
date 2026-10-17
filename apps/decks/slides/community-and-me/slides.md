@@ -1,6 +1,20 @@
 ---
 theme: "none"
-title: "community-and-me"
+title: "コミュニティと私"
+titleTemplate: "%s | 湘.なんか #5"
+lang: "ja"
+favicon: "/assets/favicon.ico"
+seoMeta:
+  ogTitle: "コミュニティと私"
+  ogDescription: "湘.なんか #5 での発表資料 by ぶりお @burio_16"
+  ogImage: "https://slide.burio16.com/community-and-me/og-image.png"
+  ogUrl: "https://slide.burio16.com/community-and-me/"
+  twitterCard: "summary_large_image"
+  twitterTitle: "コミュニティと私"
+  twitterDescription: "湘.なんか #5 での発表資料 by ぶりお @burio_16"
+  twitterImage: "https://slide.burio16.com/community-and-me/og-image.png"
+  twitterSite: "@burio_16"
+  twitterUrl: "https://slide.burio16.com/community-and-me/"
 layout: cover
 canvasWidth: 1920
 aspectRatio: "16/9"
@@ -14,7 +28,6 @@ fonts: { "sans": "Source Sans Pro, Helvetica, sans-serif", "mono": "monospace", 
 defaults: { "layout": "default" }
 highlighter: "shiki"
 background: "/slides/templates/4830e1037835.png"
-legacyHash: "0/0"
 mdc: true
 ---
 
@@ -26,7 +39,6 @@ mdc: true
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "1/0"
 layout: profile
 color: white
 ---
@@ -43,7 +55,6 @@ color: white
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "2/0"
 layout: content
 ---
 
@@ -61,7 +72,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "3/0"
 layout: content
 ---
 
@@ -85,7 +95,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "4/0"
 layout: content
 ---
 
@@ -102,7 +111,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "5/0"
 layout: content
 ---
 
@@ -120,7 +128,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "6/0"
 layout: content
 ---
 
@@ -138,7 +145,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "7/0"
 layout: statement
 ---
 
@@ -146,7 +152,6 @@ layout: statement
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "8/0"
 layout: content
 ---
 
@@ -163,7 +168,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "9/0"
 layout: statement
 ---
 
@@ -171,7 +175,6 @@ layout: statement
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "10/0"
 layout: statement
 ---
 
@@ -179,7 +182,6 @@ layout: statement
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "11/0"
 layout: statement
 ---
 
@@ -187,7 +189,6 @@ layout: statement
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "12/0"
 layout: statement
 ---
 
@@ -195,7 +196,6 @@ layout: statement
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "13/0"
 layout: statement
 ---
 

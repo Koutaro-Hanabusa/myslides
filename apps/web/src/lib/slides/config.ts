@@ -1,5 +1,3 @@
-import type { Metadata } from "next";
-
 export interface SlideConfig {
   slug: string;
   /**
@@ -26,11 +24,6 @@ export function formatEvent(event: string | string[] | undefined): string {
 /** 一覧カード・メタデータ・OGP 用のフラットなタイトル（表紙用の改行 `\n` を除去）。 */
 export function getSlideTitle(config: SlideConfig): string {
   return config.title.replace(/\n/g, "");
-}
-
-/** 表紙用のタイトル行配列（`\n` で分割）。 */
-export function getSlideTitleLines(config: SlideConfig): string[] {
-  return config.title.split("\n");
 }
 
 export const SLIDES_CONFIG: Record<string, SlideConfig> = {
@@ -222,79 +215,3 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
     eventUrl: "https://2026.frontend-conf.osaka.jp/",
   },
 };
-
-export function getSlideConfig(slug: string): SlideConfig {
-  const config = SLIDES_CONFIG[slug];
-  if (!config) {
-    throw new Error(`Slide config not found for slug: ${slug}`);
-  }
-  return config;
-}
-
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3001";
-
-function getAuthorHandle(authorUrl: string): string {
-  return authorUrl.split("/").pop() ?? "";
-}
-
-export function createSlideMetadata(slug: string): Metadata {
-  const config = getSlideConfig(slug);
-  const title = getSlideTitle(config);
-  const handle = getAuthorHandle(config.authorUrl);
-  const eventLabel = formatEvent(config.event);
-  const ogDescription = eventLabel
-    ? config.locale === "en"
-      ? `Slides presented at ${eventLabel} by ${config.author} @${handle}`
-      : `${eventLabel} での発表資料 by ${config.author} @${handle}`
-    : config.description;
-
-  const ogpImageUrl = `${BASE_URL}/${slug}/opengraph-image.png`;
-  return {
-    title: eventLabel ? `${title} | ${eventLabel}` : `${title} | mySlides`,
-    description: config.description,
-    alternates:
-      slug === "vite-plus-retro-v2/en"
-        ? {
-            canonical: "/vite-plus-retro-v2/en",
-            languages: { ja: "/vite-plus-retro-v2", en: "/vite-plus-retro-v2/en" },
-          }
-        : slug === "vite-plus-retro-v2"
-          ? {
-              canonical: "/vite-plus-retro-v2",
-              languages: { ja: "/vite-plus-retro-v2", en: "/vite-plus-retro-v2/en" },
-            }
-          : undefined,
-    openGraph: {
-      title,
-      description: ogDescription,
-      type: "website",
-      ...(config.locale ? { locale: config.locale === "en" ? "en_US" : "ja_JP" } : {}),
-      images: [{ url: ogpImageUrl, width: 1200, height: 630, alt: title }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description: ogDescription,
-      images: [ogpImageUrl],
-    },
-  };
-}
-
-export interface OgpProps {
-  alt: string;
-  title: string;
-  event: string;
-  author: string;
-}
-
-export function createOgpProps(slug: string): OgpProps {
-  const config = getSlideConfig(slug);
-  const title = getSlideTitle(config);
-  const handle = getAuthorHandle(config.authorUrl);
-  return {
-    alt: title,
-    title,
-    event: formatEvent(config.event),
-    author: `${config.author} @${handle}`,
-  };
-}

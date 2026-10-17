@@ -57,7 +57,7 @@ async function checkDeck(slug, deck, mobile) {
     if (response.status() >= 400) errors.push(`${response.status()} ${response.url()}`);
   });
   try {
-    await page.goto(`${base}/presentations/${slug}/#/1`);
+    await page.goto(`${base}/${slug}/#/1`);
     await page.locator(".myslides-content").first().waitFor();
     await page.evaluate(() => document.fonts.ready);
     for (let i = 0; i < deck.count; i++) {

@@ -63,7 +63,7 @@ export default function SlideCard({ href, title, date, event, url }: SlideCardPr
         <div className="relative aspect-video cursor-pointer">
           {isVisible ? (
             <iframe
-              src={`/presentations${href}/?embedded=true#/1`}
+              src={`${href}/?embedded=true#/1`}
               title={`${title} の表紙`}
               className="pointer-events-none h-full w-full border-0"
               loading="lazy"
