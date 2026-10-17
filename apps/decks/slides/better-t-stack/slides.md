@@ -1,6 +1,20 @@
 ---
 theme: "none"
-title: "better-t-stack"
+title: "より良い技術スタックでcloudflareにデプロイしよう"
+titleTemplate: "%s | Cloudflare Meet-up Tokyo Vol.9"
+lang: "ja"
+favicon: "/assets/favicon.ico"
+seoMeta:
+  ogTitle: "より良い技術スタックでcloudflareにデプロイしよう"
+  ogDescription: "Cloudflare Meet-up Tokyo Vol.9 での発表資料 by ぶりお @burio_16"
+  ogImage: "https://slide.burio16.com/better-t-stack/og-image.png"
+  ogUrl: "https://slide.burio16.com/better-t-stack/"
+  twitterCard: "summary_large_image"
+  twitterTitle: "より良い技術スタックでcloudflareにデプロイしよう"
+  twitterDescription: "Cloudflare Meet-up Tokyo Vol.9 での発表資料 by ぶりお @burio_16"
+  twitterImage: "https://slide.burio16.com/better-t-stack/og-image.png"
+  twitterSite: "@burio_16"
+  twitterUrl: "https://slide.burio16.com/better-t-stack/"
 layout: cover
 canvasWidth: 1920
 aspectRatio: "16/9"
@@ -14,7 +28,6 @@ fonts: { "sans": "Source Sans Pro, Helvetica, sans-serif", "mono": "monospace", 
 defaults: { "layout": "default" }
 highlighter: "shiki"
 background: "/slides/templates/ce83e2a9c143.png"
-legacyHash: "0/0"
 mdc: true
 ---
 
@@ -26,7 +39,6 @@ mdc: true
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "1/0"
 layout: profile
 color: black
 ---
@@ -44,7 +56,6 @@ color: black
 
 ---
 background: "/slides/templates/1e8424e4716c.png"
-legacyHash: "2/0"
 layout: blank
 ---
 
@@ -52,7 +63,6 @@ layout: blank
 
 ---
 background: "/slides/templates/02c1527ee49d.png"
-legacyHash: "3/0"
 layout: blank
 ---
 
@@ -60,7 +70,6 @@ layout: blank
 
 ---
 background: "/slides/templates/ee839a2ae1b8.png"
-legacyHash: "4/0"
 layout: statement
 ---
 
@@ -68,7 +77,6 @@ layout: statement
 
 ---
 background: "/slides/templates/ee839a2ae1b8.png"
-legacyHash: "5/0"
 layout: statement
 ---
 
@@ -76,7 +84,6 @@ layout: statement
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "6/0"
 layout: default
 ---
 
@@ -91,7 +98,6 @@ Cloudflareにデプロイしました
 
 ---
 background: "/slides/templates/ee839a2ae1b8.png"
-legacyHash: "7/0"
 layout: statement
 ---
 
@@ -99,7 +105,6 @@ layout: statement
 
 ---
 background: "/slides/templates/fa74e1541fa0.png"
-legacyHash: "8/0"
 layout: blank
 ---
 
@@ -107,7 +112,6 @@ layout: blank
 
 ---
 background: "/slides/templates/ee839a2ae1b8.png"
-legacyHash: "9/0"
 layout: statement
 ---
 
@@ -115,7 +119,6 @@ layout: statement
 
 ---
 background: "/slides/templates/ee839a2ae1b8.png"
-legacyHash: "10/0"
 layout: statement
 ---
 
@@ -123,7 +126,6 @@ layout: statement
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "11/0"
 layout: default
 ---
 
@@ -131,7 +133,6 @@ layout: default
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "12/0"
 layout: default
 ---
 
@@ -161,7 +162,6 @@ TypeScriptを使用して開発するためのプロジェクトビルダー
 
 ---
 background: "/slides/templates/ee839a2ae1b8.png"
-legacyHash: "13/0"
 layout: statement
 ---
 
@@ -171,7 +171,6 @@ layout: statement
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "14/0"
 layout: content
 color: black
 ---
@@ -185,7 +184,6 @@ color: black
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "15/0"
 layout: content
 color: black
 ---
@@ -200,7 +198,6 @@ color: black
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "15/1"
 layout: default
 ---
 
@@ -214,7 +211,6 @@ vercelのOSS支援プログラムに選ばれていました🔥
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "16/0"
 layout: default
 ---
 
@@ -232,7 +228,6 @@ issue建ててみました。
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "17/0"
 layout: default
 ---
 
@@ -250,7 +245,6 @@ layout: default
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "18/0"
 layout: default
 ---
 
@@ -268,7 +262,6 @@ Twitterで釣ろうとしてみました。
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "19/0"
 layout: default
 ---
 
@@ -287,7 +280,6 @@ layout: default
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "20/0"
 layout: default
 ---
 
@@ -306,7 +298,6 @@ layout: default
 
 ---
 background: "/slides/templates/ee839a2ae1b8.png"
-legacyHash: "21/0"
 layout: statement
 ---
 
@@ -314,7 +305,6 @@ layout: statement
 
 ---
 background: "/slides/templates/1e9b011d7127.png"
-legacyHash: "22/0"
 layout: content
 color: black
 ---
@@ -330,6 +320,5 @@ color: black
 
 ---
 background: "/slides/templates/fa74e1541fa0.png"
-legacyHash: "23/0"
 layout: blank
 ---

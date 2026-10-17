@@ -7,6 +7,9 @@ const slides = [
     config: SLIDES_CONFIG["vite-plus-retro-v2"],
   },
   {
+    config: SLIDES_CONFIG["vite-plus-retro-v2/en"],
+  },
+  {
     config: SLIDES_CONFIG["nix-for-everyone"],
   },
   {
@@ -49,7 +52,6 @@ export default function Home() {
             date={config.date}
             event={config.event}
             url={config.eventUrl}
-            previewBase={config.slug === "nix-for-everyone" ? "/nix-for-everyone" : undefined}
           ></SlideCard>
         ))}
       </div>

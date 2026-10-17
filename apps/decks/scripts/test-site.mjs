@@ -13,58 +13,46 @@ page.on("pageerror", (e) => errors.push(e.message));
 try {
   await page.goto(`${base}/`);
   await page.getByRole("heading", { name: "Burio's slide deck" }).waitFor();
-  await page.locator("iframe").first().waitFor();
+  for (const slug of Object.keys(decks)) {
+    const card = page.locator(`a[href="/${slug}"]`).first();
+    assert.equal(await card.count(), 1, `${slug}: missing from the home page`);
+    await card.scrollIntoViewIfNeeded();
+    await card.locator("iframe").waitFor({ state: "attached" });
+    await card
+      .frameLocator("iframe")
+      .locator('[data-slidev-no="1"] .myslides-content')
+      .first()
+      .waitFor({ state: "visible" });
+  }
   for (const [slug, deck] of Object.entries(decks)) {
-    const direct = Boolean(deck.publicPath);
-    const route = direct ? `/${deck.publicPath}/` : `/${slug}`;
-    if (direct) {
-      await page.goto(`${base}${route}`);
-      await page.locator('[data-slidev-no="1"] .myslides-content').first().waitFor();
-      assert.equal(await page.locator("iframe").count(), 0);
-      assert.notEqual(await page.evaluate(() => location.hash), "#/0/0");
-    }
+    const route = `/${slug}/`;
+    await page.goto(`${base}${route}`);
+    await page.locator('[data-slidev-no="1"] .myslides-content').first().waitFor();
+    assert.equal(await page.locator("iframe").count(), 0);
+    assert.notEqual(await page.evaluate(() => location.hash), "#/0/0");
     await page.goto(`${base}${route}#/${deck.count}`);
-    if (!direct) await page.locator("iframe").first().waitFor();
-    const slides = direct ? page : page.frameLocator("iframe").first();
-    await slides
+    await page
       .locator(`[data-slidev-no="${deck.count}"] .myslides-content`)
       .first()
       .waitFor({ state: "visible" });
     await page.waitForFunction((hash) => location.hash === hash, `#/${deck.count}`);
     assert.match(await page.title(), /mySlides|\S/);
     const og = await page.locator('meta[property="og:image"]').first().getAttribute("content");
-    console.log("OG", slug, og);
-    const ogPath = direct ? `/${deck.publicPath}/og-image.png` : `/${slug}/opengraph-image.png`;
-    assert(og?.includes(direct ? "og-image.png" : `/${slug}/opengraph-image`));
+    const ogPath = `/${slug}/og-image.png`;
+    assert(og?.includes(ogPath));
     assert.equal((await page.request.get(`${base}${ogPath}`)).status(), 200);
-    await page.evaluate(() => {
-      window.msgs = [];
-      window.addEventListener("message", (e) => window.msgs.push(e.data));
-    });
     const before = `#/${deck.count - 1}`;
-    await slides.locator("body").press("ArrowLeft");
-    try {
-      await page.waitForFunction((hash) => location.hash === hash, before, {
-        timeout: 3000,
-      });
-    } catch (e) {
-      console.log(
-        "NAV",
-        JSON.stringify(await page.evaluate(() => ({ hash: location.hash, msgs: window.msgs }))),
-        page.frames().map((f) => f.url()),
-        before,
-      );
-      throw e;
-    }
+    await page.locator("body").press("ArrowLeft");
+    await page.waitForFunction((hash) => location.hash === hash, before);
     await page.evaluate(() => {
       location.hash = "#/1";
     });
-    await slides
+    await page
       .locator('[data-slidev-no="1"] .myslides-content')
       .first()
       .waitFor({ state: "visible" });
     assert.equal(await page.evaluate(() => location.hash), "#/1");
-    console.log("✓", slug, "metadata, OGP and navigation", direct ? "(direct)" : "(iframe)");
+    console.log("✓", slug, "direct route, metadata, OGP and navigation");
   }
   assert.deepEqual(errors, []);
   await writeFile(

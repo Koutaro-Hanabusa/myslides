@@ -1,4 +1,4 @@
-// OGP スモークテスト: 全 opengraph-image ルートを取得し
+// OGP スモークテスト: decks.json に登録された全 Slidev OGP を取得し
 // 200 / image/* / 1KB 超 を満たすか検証する。
 //
 // 使い方:
@@ -7,31 +7,18 @@
 //   TEST_OGP_BASE_URL=https://slide.burio16.com bun run test:ogp  # 本番
 
 import { spawn, type ChildProcess } from "node:child_process";
-import { readdir } from "node:fs/promises";
-import { join } from "node:path";
+import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 
-const APP_DIR = join(fileURLToPath(new URL(".", import.meta.url)), "../src/app");
+const WEB_DIR = fileURLToPath(new URL("../", import.meta.url));
+const DECKS_FILE = fileURLToPath(new URL("../../decks/decks.json", import.meta.url));
 const PORT = Number(process.env.TEST_OGP_PORT ?? 3099);
 const STARTUP_TIMEOUT_MS = 30_000;
 const REQUEST_TIMEOUT_MS = 15_000;
 const MIN_BODY_BYTES = 1024;
 
 async function discoverRoutes(): Promise<string[]> {
-  const routes = new Set<string>();
-  async function walk(dir: string, prefix: string) {
-    const entries = await readdir(dir, { withFileTypes: true });
-    for (const e of entries) {
-      if (e.isDirectory()) {
-        if (e.name.startsWith("_") || e.name.startsWith(".") || e.name === "api") continue;
-        await walk(join(dir, e.name), `${prefix}/${e.name}`);
-      } else if (/^opengraph-image\.(tsx|png|jpg|jpeg|gif)$/.test(e.name)) {
-        routes.add(prefix);
-      }
-    }
-  }
-  await walk(APP_DIR, "");
-  return [...routes].sort();
+  return Object.keys(JSON.parse(await readFile(DECKS_FILE, "utf8"))).sort();
 }
 
 async function waitForServer(url: string): Promise<void> {
@@ -62,7 +49,7 @@ async function startServer(): Promise<{ baseUrl: string; child: ChildProcess }> 
   const baseUrl = `http://localhost:${PORT}`;
   console.log(`▶ Starting Vite preview on ${baseUrl} ...`);
   const child = spawn("vp", ["run", "start", "--", "--port", String(PORT)], {
-    cwd: join(APP_DIR, "../.."),
+    cwd: WEB_DIR,
     detached: process.platform !== "win32",
     stdio: ["ignore", "pipe", "pipe"],
     env: { ...process.env, NODE_ENV: "production" },
@@ -91,7 +78,7 @@ interface Result {
 }
 
 async function probe(baseUrl: string, route: string): Promise<Result> {
-  const url = `${baseUrl}${route}/opengraph-image.png`;
+  const url = `${baseUrl}/${route}/og-image.png`;
   try {
     const res = await fetch(url, { signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS) });
     const buf = await res.arrayBuffer();
@@ -115,10 +102,9 @@ async function probe(baseUrl: string, route: string): Promise<Result> {
 
 async function main(): Promise<void> {
   const routes = await discoverRoutes();
-  if (routes.length === 0)
-    throw new Error("No opengraph-image.{tsx,png,jpg,jpeg,gif} routes found");
+  if (routes.length === 0) throw new Error("No decks found in decks.json");
   console.log(`▶ Discovered ${routes.length} OGP route(s):`);
-  for (const r of routes) console.log(`    ${r}/opengraph-image.png`);
+  for (const r of routes) console.log(`    /${r}/og-image.png`);
   console.log();
 
   const external = process.env.TEST_OGP_BASE_URL;
@@ -154,7 +140,7 @@ async function main(): Promise<void> {
       const detail = r.error
         ? `ERROR ${r.error}`
         : `${r.status} ${r.contentType ?? "-"} ${r.size}B`;
-      console.log(`  ${mark} ${r.route}/opengraph-image.png → ${detail}`);
+      console.log(`  ${mark} /${r.route}/og-image.png → ${detail}`);
       if (!r.ok) failed++;
     }
     console.log();

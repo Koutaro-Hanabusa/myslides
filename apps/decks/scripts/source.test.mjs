@@ -17,18 +17,7 @@ test("Markdown decks retain their order and local assets", async () => {
     assert.equal(parsed.slides.length, deck.count, `${slug}: native Slidev slide count`);
     if (!manifest[slug]) continue;
     assert.equal(deck.count, manifest[slug].length, slug);
-    if (deck.legacy) {
-      assert.deepEqual(
-        parsed.slides.map((slide) => slide.frontmatter.legacyHash),
-        Object.keys(deck.legacy),
-        slug,
-      );
-      assert.equal((md.match(/^legacyHash:/gm) || []).length, manifest[slug].length, slug);
-      const expected = Object.fromEntries(
-        manifest[slug].map((slide, i) => [`${slide.h}/${slide.v}`, i + 1]),
-      );
-      assert.deepEqual(deck.legacy, expected, slug);
-    }
+    assert.doesNotMatch(md, /^legacyHash:/m, `${slug}: Reveal.js coordinates must be removed`);
     const prose = md.replace(/^(`{3,})[^\n]*\n[\s\S]*?^\1\s*$/gm, "");
     assert.doesNotMatch(
       prose,

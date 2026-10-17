@@ -1,6 +1,20 @@
 ---
 theme: "none"
-title: "tacos-spanish"
+title: "タコスから学ぶスペイン語"
+titleTemplate: "%s | 印西LT会"
+lang: "ja"
+favicon: "/assets/favicon.ico"
+seoMeta:
+  ogTitle: "タコスから学ぶスペイン語"
+  ogDescription: "印西LT会 での発表資料 by ぶりお @burio_16"
+  ogImage: "https://slide.burio16.com/tacos-spanish/og-image.png"
+  ogUrl: "https://slide.burio16.com/tacos-spanish/"
+  twitterCard: "summary_large_image"
+  twitterTitle: "タコスから学ぶスペイン語"
+  twitterDescription: "印西LT会 での発表資料 by ぶりお @burio_16"
+  twitterImage: "https://slide.burio16.com/tacos-spanish/og-image.png"
+  twitterSite: "@burio_16"
+  twitterUrl: "https://slide.burio16.com/tacos-spanish/"
 layout: cover
 canvasWidth: 1920
 aspectRatio: "16/9"
@@ -14,7 +28,6 @@ fonts: { "sans": "Source Sans Pro, Helvetica, sans-serif", "mono": "monospace", 
 defaults: { "layout": "default" }
 highlighter: "shiki"
 background: "/slides/templates/4830e1037835.png"
-legacyHash: "0/0"
 mdc: true
 ---
 
@@ -26,7 +39,6 @@ mdc: true
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "1/0"
 layout: profile
 color: white
 ---
@@ -43,7 +55,6 @@ color: white
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "2/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -52,7 +63,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "3/0"
 layout: content
 ---
 
@@ -62,7 +72,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "4/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -71,7 +80,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "5/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -80,7 +88,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "6/0"
 layout: statement
 ---
 
@@ -88,7 +95,6 @@ layout: statement
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "7/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -97,7 +103,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "8/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -106,7 +111,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "9/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -115,7 +119,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "10/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -124,7 +127,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "11/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -133,7 +135,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "12/0"
 layout: statement
 ---
 
@@ -141,7 +142,6 @@ layout: statement
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "13/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -150,7 +150,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "14/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -159,7 +158,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "15/0"
 layout: statement
 ---
 
@@ -167,7 +165,6 @@ layout: statement
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "16/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -176,7 +173,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "17/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -185,7 +181,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "18/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -194,7 +189,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "19/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -203,7 +197,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "20/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -212,7 +205,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "21/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -221,7 +213,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "22/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -230,7 +221,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "23/0"
 layout: statement
 ---
 
@@ -238,7 +228,6 @@ layout: statement
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "24/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -247,7 +236,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "25/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -256,7 +244,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "26/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -265,7 +252,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "27/0"
 layout: content
 ---
 
@@ -276,7 +262,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "28/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -285,7 +270,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "29/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -294,7 +278,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "30/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -303,7 +286,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "31/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -312,7 +294,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "32/0"
 layout: statement
 contentClass: "statement-prose"
 ---

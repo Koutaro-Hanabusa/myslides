@@ -14,11 +14,10 @@ export async function publishDeck({
   const entry = Object.entries(decks).find(([, deck]) => deck.file === deckFile);
   if (!entry) throw new Error(`No deck is registered for ${deckFile}`);
 
-  const [slug, deck] = entry;
+  const [slug] = entry;
   const output = resolve(cwd, "dist");
-  if (deck.publicPath)
-    await rm(resolve(webRoot, "public/presentations", slug), { recursive: true, force: true });
-  const target = resolve(webRoot, "public", deck.publicPath || `presentations/${slug}`);
+  await rm(resolve(webRoot, "public/presentations", slug), { recursive: true, force: true });
+  const target = resolve(webRoot, "public", slug);
   await rm(resolve(target, "assets"), { recursive: true, force: true });
   await mkdir(target, { recursive: true });
   await cp(output, target, { recursive: true });

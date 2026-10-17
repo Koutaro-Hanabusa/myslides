@@ -10,7 +10,6 @@ interface SlideCardProps {
   date: string;
   event?: string | string[];
   url?: string | string[];
-  previewBase?: string;
   children?: React.ReactNode;
 }
 
@@ -24,7 +23,7 @@ function toEventEntries(
   return names.filter((name) => name).map((name, i) => ({ name, url: urls[i] || undefined }));
 }
 
-export default function SlideCard({ href, title, date, event, url, previewBase }: SlideCardProps) {
+export default function SlideCard({ href, title, date, event, url }: SlideCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const eventEntries = toEventEntries(event, url);
@@ -64,7 +63,7 @@ export default function SlideCard({ href, title, date, event, url, previewBase }
         <div className="relative aspect-video cursor-pointer">
           {isVisible ? (
             <iframe
-              src={`${previewBase ?? `/presentations${href}`}/?embedded=true#/1`}
+              src={`${href}/?embedded=true#/1`}
               title={`${title} の表紙`}
               className="pointer-events-none h-full w-full border-0"
               loading="lazy"

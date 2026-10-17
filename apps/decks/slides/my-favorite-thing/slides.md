@@ -1,6 +1,20 @@
 ---
 theme: "none"
-title: "my-favorite-thing"
+title: "大好きなアレをMCPにしてみた"
+titleTemplate: "%s | MOSH Tech Meetup #5 あなたが「好きなこと」× エンジニアリング"
+lang: "ja"
+favicon: "/assets/favicon.ico"
+seoMeta:
+  ogTitle: "大好きなアレをMCPにしてみた"
+  ogDescription: "MOSH Tech Meetup #5 あなたが「好きなこと」× エンジニアリング での発表資料 by ぶりお @burio_16"
+  ogImage: "https://slide.burio16.com/my-favorite-thing/og-image.png"
+  ogUrl: "https://slide.burio16.com/my-favorite-thing/"
+  twitterCard: "summary_large_image"
+  twitterTitle: "大好きなアレをMCPにしてみた"
+  twitterDescription: "MOSH Tech Meetup #5 あなたが「好きなこと」× エンジニアリング での発表資料 by ぶりお @burio_16"
+  twitterImage: "https://slide.burio16.com/my-favorite-thing/og-image.png"
+  twitterSite: "@burio_16"
+  twitterUrl: "https://slide.burio16.com/my-favorite-thing/"
 layout: cover
 canvasWidth: 1920
 aspectRatio: "16/9"
@@ -14,7 +28,6 @@ fonts: { "sans": "Source Sans Pro, Helvetica, sans-serif", "mono": "monospace", 
 defaults: { "layout": "default" }
 highlighter: "shiki"
 background: "/slides/templates/4830e1037835.png"
-legacyHash: "0/0"
 mdc: true
 ---
 
@@ -26,7 +39,6 @@ mdc: true
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "1/0"
 layout: profile
 color: white
 ---
@@ -43,7 +55,6 @@ color: white
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "2/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -52,7 +63,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "3/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -61,7 +71,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "4/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -70,7 +79,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "5/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -79,7 +87,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "6/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -88,7 +95,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "7/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -97,7 +103,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "8/0"
 contentClass: "release-demo"
 layout: statement
 ---
@@ -106,7 +111,6 @@ layout: statement
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "9/0"
 layout: content
 ---
 
@@ -118,7 +122,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "10/0"
 layout: content
 ---
 
@@ -132,7 +135,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "11/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -141,7 +143,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "12/0"
 layout: content
 ---
 
@@ -154,7 +155,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "13/0"
 layout: content
 ---
 
@@ -186,7 +186,6 @@ registerAppTool(
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "14/0"
 layout: content
 ---
 
@@ -219,7 +218,6 @@ registerAppResource(
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "15/0"
 layout: content
 ---
 
@@ -233,7 +231,6 @@ layout: content
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "16/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -242,7 +239,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "17/0"
 layout: statement
 contentClass: "statement-prose"
 ---
@@ -251,7 +247,6 @@ contentClass: "statement-prose"
 
 ---
 background: "/slides/templates/af4e26a78715.png"
-legacyHash: "18/0"
 layout: statement
 contentClass: "statement-prose"
 ---
