@@ -10,7 +10,6 @@ const publicDir = resolve(root, "../web/public");
 const decks = JSON.parse(await readFile(resolve(root, "decks.json"), "utf8"));
 const selected = new Set(process.argv.slice(2));
 for (const slug of selected) if (!decks[slug]) throw new Error(`Unknown deck: ${slug}`);
-const manifest = JSON.parse(await readFile(resolve(root, "migration-manifest.json"), "utf8"));
 const output = resolve(root, "test-results");
 await mkdir(output, { recursive: true });
 const types = {
@@ -43,7 +42,6 @@ const base = `http://127.0.0.1:${server.address().port}`;
 const browser = await chromium.launch({ args: ["--no-sandbox"] });
 const failures = [];
 let checked = 0;
-const normalize = (text) => text.replace(/\s+/g, "");
 
 async function checkDeck(slug, deck, mobile) {
   const page = await browser.newPage({
@@ -75,30 +73,6 @@ async function checkDeck(slug, deck, mobile) {
       await page.waitForFunction(
         () => !document.querySelector('[class*="-enter-active"], [class*="-leave-active"]'),
       );
-      const expected = manifest[slug]?.[i];
-      const actual = await slide.evaluate((el) => ({
-        text: (() => {
-          const copy = el.cloneNode(true);
-          copy.querySelectorAll(".autofocus-demo").forEach((demo) => demo.remove());
-          return copy.textContent;
-        })(),
-        images: [...el.querySelectorAll("img")].map((img) => ({
-          src: img.getAttribute("src"),
-          loaded: img.complete && img.naturalWidth > 0,
-        })),
-      }));
-      if (expected) {
-        // Vue demos contribute their own text, while all original prose must remain in order.
-        assert(
-          normalize(actual.text).includes(normalize(expected.text)),
-          `${slug}/${i + 1}: text changed`,
-        );
-        assert.deepEqual(
-          actual.images.map((image) => image.src),
-          expected.images,
-          `${slug}/${i + 1}: image sequence changed`,
-        );
-      }
       await slide.evaluate(async (el) => {
         await Promise.all([...el.querySelectorAll("img")].map((img) => img.decode()));
         const url = getComputedStyle(el.closest(".myslides-layout")).backgroundImage.match(

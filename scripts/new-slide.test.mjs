@@ -54,12 +54,12 @@ for (const kind of ["personal", "corporate"]) {
       assert.equal(registeredDeck.count, kind === "corporate" ? 7 : 4);
       const deckPackage = JSON.parse(await readFile(join(deckDir, "package.json"), "utf8"));
       assert.equal(deckPackage.name, `@mySlides/slide-${slug}`);
-      assert.equal(
-        deckPackage.scripts["build:slidev"],
-        `vp run generate:ogp && slidev build slides.md --theme ../../theme --base /${slug}/ && cp og-image.png dist/og-image.png && node ../../scripts/publish.mjs`,
-      );
-      assert.match(deckPackage.scripts["generate:ogp"], /^slidev export /);
+      assert.deepEqual(Object.keys(deckPackage.scripts), ["dev", "export"]);
       assert.equal(deckPackage.dependencies["@slidev/cli"], "52.20.1");
+      assert.equal(
+        await readFile(join(deckDir, "vite.config.ts"), "utf8"),
+        'export { default } from "../vite.config";\n',
+      );
       await assert.rejects(createSlide(dir, slug, kind), /既に存在/);
     }));
 }
