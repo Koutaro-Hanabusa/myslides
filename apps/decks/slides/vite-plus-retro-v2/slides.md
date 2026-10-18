@@ -103,9 +103,9 @@ layout: content
 
 ## Vite+ とは
 
-- test / lint / fmt / task などをひとつに束ねる統合ツールチェイン
-- 中身は Vite / Vitest / Oxlint / Oxfmt / Vite Task（VoidZero 製）
-- 2026/3/13 公開
+- [test](https://viteplus.dev/guide/test) / [lint](https://viteplus.dev/guide/lint) / [fmt](https://viteplus.dev/guide/fmt) / [task](https://viteplus.dev/guide/run) などをひとつに束ねる統合ツールチェイン
+- 中身は [Vite](https://vite.dev/) / [Vitest](https://vitest.dev/) / [Oxlint](https://oxc.rs/docs/guide/usage/linter.html) / [Oxfmt](https://oxc.rs/docs/guide/usage/formatter.html) / [Vite Task](https://viteplus.dev/guide/run)（VoidZero 製）
+- 2026/3/13 公開（[公式サイト](https://viteplus.dev/)）
 
 ---
 background: "/slides/templates/af4e26a78715.png"
@@ -117,7 +117,7 @@ layout: content
 ## Vite+ が解決する課題
 
 - 他の言語：統合ツールチェインが当たり前
-- JS：ツールの選択肢が多く、環境ごとにバラバラになりがち
+- JS：ツールの選択肢が多く、環境ごとにバラバラになりがち（[Why Vite+?](https://viteplus.dev/guide/why)）
 
 ---
 background: "/slides/templates/af4e26a78715.png"
@@ -196,10 +196,10 @@ layout: content
 
 ## 良かった① vp migrate が最高
 
-- 既存プロジェクトを Vite+ に移行するための スタート地点
+- 既存プロジェクトを Vite+ に移行するためのコマンド
 - 依存関係・import・設定を まとめて更新し、既存ツールを統合
-- 加えてCI は `voidzero-dev/setup-vp` へ移行
-  [vp migrate](https://viteplus.dev/guide/migrate)
+- 加えてCI は [`voidzero-dev/setup-vp`](https://viteplus.dev/guide/ci) へ移行
+- 参考:[vp migrate](https://viteplus.dev/guide/migrate)
 
 ---
 background: "/slides/templates/af4e26a78715.png"
@@ -225,8 +225,8 @@ export default defineConfig({
 
 </CodePanel>
 
-- test / staged / fmt / run / lint を `vite.config.ts` に集約
-- `vp lint` で type linting（oxlint-tsgolint）まで実行
+- [test](https://viteplus.dev/config/test) / [staged](https://viteplus.dev/config/staged) / [fmt](https://viteplus.dev/config/fmt) / [run](https://viteplus.dev/config/run) / [lint](https://viteplus.dev/config/lint) を [`vite.config.ts`](https://viteplus.dev/config/) に集約
+- [`vp lint`](https://viteplus.dev/guide/lint#type-aware-linting) で type linting（oxlint-tsgolint）まで実行
 
 ---
 background: "/slides/templates/af4e26a78715.png"
@@ -272,8 +272,8 @@ pack: {
 
 </SlideGroup>
 
-- `vp build`（Vite Library Mode）→ [vp pack](https://viteplus.dev/guide/pack)（tsdown）へ移行
-- `dts: true` だけで型定義を生成。`vite-plugin-dts` の追加インストール・設定が不要
+- vp build（Vite Library Mode）→ [vp pack](https://viteplus.dev/guide/pack)（tsdown）へ移行
+- dts: trueだけで型定義を生成。`vite-plugin-dts` の追加インストール・設定が不要
 - 移行設定込みの実測で、gzip ESM 117KB → 36KB（約1/3）、ビルド時間 約1.59s → 約1.0s(※ 4月時点)
 
 ---
@@ -294,8 +294,8 @@ layout: content
 
 ## 辛かった① lefthook使用時にmigrateされない
 
-- `vp migrate` 時、lefthook は自動移行されず警告のみ
-- 気づかず pre-commit が壊れていた → 設定を手動修正
+- [`vp migrate`](https://viteplus.dev/guide/migrate#git-hook-tools) 時、lefthook は自動移行されず警告のみ
+- 気づかずpre-commitが壊れていた → 設定を手動修正
 
 ---
 background: "/slides/templates/af4e26a78715.png"
@@ -306,9 +306,11 @@ layout: content
 
 ## 実は仕様でした
 
-- バグだと思い [Issue #1854](https://github.com/voidzero-dev/vite-plus/issues/1854) を起票
-- 実は仕様で、[PR #1901](https://github.com/voidzero-dev/vite-plus/pull/1901) で Migration Guide に追記していただいた
+- バグだと思い [Issue #1854](https://github.com/voidzero-dev/vite-plus/issues/1854) を起票 → [RFC](https://github.com/voidzero-dev/vite-plus/blob/main/rfcs/config-and-staged-commands.md#migration-edge-cases) に明記されていた
+- [PR #1901](https://github.com/voidzero-dev/vite-plus/pull/1901) で [Migration Guide](https://viteplus.dev/guide/migrate#git-hook-tools) にも追記していただいた
 
+
+![RFC の Migration Edge Cases：「simple-git-hooks・lefthook・yorkie は警告してスキップ」と明記されていた](/slides/vite-plus-retro-v2/assets/migration-edge-cases.png){width="1057" height="422" style="margin:1rem auto;display:block;width:1500px;height:auto;max-width:100%;max-height:600px;border-radius:8px"}
 ---
 background: "/slides/templates/af4e26a78715.png"
 contentClass: "large-type"
@@ -318,14 +320,10 @@ layout: content
 
 ## 辛かった② Astro のビルドが壊れた
 
-<details>
-<summary>詳細</summary>
-
-- docサイトに使用してるAstro 6 は Vite 7 前提。`overrides.vite` で Vite+ の Vite 8 系に置換
-- dev-toolbar が使う esbuild API の互換処理で `Not implemented` が発生し、ビルド失敗していた
-- override を外し、Astro が使う Vite 7 に戻して復旧
-
-</details>
+- Astro 6 のドキュメントサイトが、`Not implemented` でビルド失敗
+- overrides.viteが、Astro v6の Vite 7 まで Vite 8 に置き換えていた
+- [Dev Toolbar](https://docs.astro.build/en/guides/dev-toolbar/)が使う API が、当時の Vite 8 では未対応
+- override を外し、Astro v6は Vite 7 を使う構成に戻して復旧
 
 ---
 background: "/slides/templates/af4e26a78715.png"
@@ -343,7 +341,7 @@ layout: content
 | 7.0.0-beta.3 | 0.1.19               | 成功                      |
 | 7.0.0-beta.3 | 0.1.24               | 成功                      |
 
-この最小構成では、Vite+ 0.1.19 のまま Astro 7 beta へ更新すると成功
+Vite+ 0.1.19 のまま Astro 7 beta へ更新すると成功
 Vite+ 使用時は `vite` override を適用。integration なし・1ページで検証。
 
 [検証コード・実行手順（GitHub）](https://github.com/Koutaro-Hanabusa/astro-vite-plus-repro)
@@ -358,8 +356,8 @@ layout: content
 ## まとめ
 
 - vite.config.tsに全ての設定を記述でき、体験が良い
-- 9/28 Vite+ 1.0リリース今回紹介したつらみも、解消済み
 - OSSの仕様をしっかり読んでみるきっかけにもなった
+- 9/28にv1がリリースされ、完全体に
 
 ---
 background: "/slides/templates/af4e26a78715.png"
@@ -402,7 +400,7 @@ $ vp run -r build      # 2回目（変更なし）
 
 </CodePanel>
 
-- 使ったファイルを 自動追跡 → 変化なしなら 実行せずリプレイ
+- 使ったファイルを [自動追跡](https://viteplus.dev/guide/automatic-data-tracking) → 変化なしなら 実行せず[リプレイ](https://viteplus.dev/guide/cache)
 - 実測で 4/5 cache hit・27.38s 短縮
 - 詳しくはこちらがとても参考になります
   - [https://zenn.dev/herp_inc/articles/strange-task-runner](https://zenn.dev/herp_inc/articles/strange-task-runner)
@@ -420,4 +418,4 @@ layout: content
 
 - 初期導入では、Next.js の `next build` を維持したまま Vite+ へ移行（[PR #220](https://github.com/Koutaro-Hanabusa/myslides/pull/220)）
 - アプリのビルドを Vite へ移行しなくても導入できる
-- lint / fmt / task / staged を `vp` に統一。既存の build は `vp run build` で実行できる
+- [lint](https://viteplus.dev/guide/lint) / [fmt](https://viteplus.dev/guide/fmt) / [task](https://viteplus.dev/guide/run) / [staged](https://viteplus.dev/guide/commit-hooks) を `vp` に統一。既存の build は [`vp run build`](https://viteplus.dev/guide/run#built-in-commands-vs-scripts) で実行できる

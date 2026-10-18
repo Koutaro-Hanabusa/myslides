@@ -196,6 +196,9 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   try {
     const deckFile = await createSlide(ROOT, slug, process.argv[2]);
     console.log(`Created ${deckFile}`);
+    console.log(
+      `表紙の編集後に vp run -F @mySlides/slide-${slug} generate:ogp を実行し、og-image.png もコミットしてください。`,
+    );
     try {
       execFileSync("vp", ["install"], { cwd: ROOT, stdio: "inherit" });
     } catch {
