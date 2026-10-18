@@ -318,14 +318,11 @@ layout: content
 
 ## 辛かった② Astro のビルドが壊れた
 
-<details>
-<summary>詳細</summary>
 
 - docサイトに使用してるAstro 6 は Vite 7 前提。`overrides.vite` で Vite+ の Vite 8 系に置換
 - dev-toolbar が使う esbuild API の互換処理で `Not implemented` が発生し、ビルド失敗していた
 - override を外し、Astro が使う Vite 7 に戻して復旧
 
-</details>
 
 ---
 background: "/slides/templates/af4e26a78715.png"
@@ -358,8 +355,8 @@ layout: content
 ## まとめ
 
 - vite.config.tsに全ての設定を記述でき、体験が良い
-- 9/28 Vite+ 1.0リリース今回紹介したつらみも、解消済み
 - OSSの仕様をしっかり読んでみるきっかけにもなった
+- 9/28にv1がリリースされ、完全体に
 
 ---
 background: "/slides/templates/af4e26a78715.png"
