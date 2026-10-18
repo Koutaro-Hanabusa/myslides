@@ -56,5 +56,4 @@ apps/web/public/*/
 !apps/web/public/fonts/
 !apps/web/public/slides/
 apps/decks/slides/*/.slidev-og-image/
-apps/decks/slides/*/og-image.png
 apps/decks/test-results/

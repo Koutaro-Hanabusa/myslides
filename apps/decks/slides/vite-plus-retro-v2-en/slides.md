@@ -84,9 +84,9 @@ layout: content
 
 ## What Is Vite+?
 
-- A unified toolchain that brings together test / lint / fmt / task and more
-- Built on Vite / Vitest / Oxlint / Oxfmt / Vite Task, all by VoidZero
-- Released on March 13, 2026
+- A unified toolchain that brings together [test](https://viteplus.dev/guide/test) / [lint](https://viteplus.dev/guide/lint) / [fmt](https://viteplus.dev/guide/fmt) / [task](https://viteplus.dev/guide/run) and more
+- Built on [Vite](https://vite.dev/) / [Vitest](https://vitest.dev/) / [Oxlint](https://oxc.rs/docs/guide/usage/linter.html) / [Oxfmt](https://oxc.rs/docs/guide/usage/formatter.html) / [Vite Task](https://viteplus.dev/guide/run), all by VoidZero
+- Released on March 13, 2026 ([official website](https://viteplus.dev/))
 
 ---
 background: "/slides/templates/af4e26a78715.png"
@@ -97,8 +97,7 @@ layout: content
 ## The Problem Vite+ Solves
 
 - Other languages commonly have unified toolchains
-- JavaScript offers many tools, so every environment tends to use a different setup
-  → Vite+ solves this fragmentation
+- JavaScript offers many tools, so setups tend to vary by environment ([Why Vite+?](https://viteplus.dev/guide/why))
 
 ---
 background: "/slides/templates/af4e26a78715.png"
@@ -169,10 +168,10 @@ layout: content
 
 ## Win 1: vp migrate Is Excellent
 
-- A starting point for migrating an existing project to Vite+
+- A command for migrating an existing project to Vite+
 - Updates dependencies, imports, and config together while unifying the existing tools
-- Also migrated CI to `voidzero-dev/setup-vp`
-  [vp migrate](https://viteplus.dev/guide/migrate)
+- Also migrated CI to [`voidzero-dev/setup-vp`](https://viteplus.dev/guide/ci)
+- See [vp migrate](https://viteplus.dev/guide/migrate)
 
 ---
 background: "/slides/templates/af4e26a78715.png"
@@ -196,8 +195,8 @@ export default defineConfig({
 
 </CodePanel>
 
-- test / staged / fmt / run / lint all live in `vite.config.ts`
-- `vp lint` even runs type-aware linting with oxlint-tsgolint
+- [test](https://viteplus.dev/config/test) / [staged](https://viteplus.dev/config/staged) / [fmt](https://viteplus.dev/config/fmt) / [run](https://viteplus.dev/config/run) / [lint](https://viteplus.dev/config/lint) all live in [`vite.config.ts`](https://viteplus.dev/config/)
+- [`vp lint`](https://viteplus.dev/guide/lint#type-aware-linting) even runs type-aware linting with oxlint-tsgolint
 
 ---
 background: "/slides/templates/af4e26a78715.png"
@@ -242,9 +241,9 @@ pack: {
 
 </SlideGroup>
 
-- Migrated from `vp build` (Vite Library Mode) to [vp pack](https://viteplus.dev/guide/pack) (tsdown)
-- `dts: true` generates type declarations with no need to install or configure `vite-plugin-dts`
-- Migration results: gzipped ESM 117KB → 36KB (~1/3); build time ~1.59s → ~1.0s (April)
+- Migrated from [`vp build`](https://viteplus.dev/guide/build) (Vite Library Mode) to [vp pack](https://viteplus.dev/guide/pack) (tsdown)
+- [`dts: true`](https://viteplus.dev/config/pack) generates type declarations with no need to install or configure `vite-plugin-dts`
+- Measured with the migration configuration: gzipped ESM 117KB → 36KB (~1/3); build time ~1.59s → ~1.0s (April)
 
 ---
 background: "/slides/templates/af4e26a78715.png"
@@ -262,8 +261,8 @@ layout: content
 
 ## Pain 1: lefthook Was Not Migrated
 
-- During `vp migrate`, lefthook was not migrated automatically; we only got a warning
-- We missed it and our pre-commit hook broke, so we fixed the config manually
+- During [`vp migrate`](https://viteplus.dev/guide/migrate#git-hook-tools), lefthook was not migrated automatically; we only got a warning
+- We missed it and our [pre-commit hook](https://viteplus.dev/guide/commit-hooks) broke, so we fixed the config manually
 
 ---
 background: "/slides/templates/af4e26a78715.png"
@@ -273,8 +272,10 @@ layout: content
 
 ## It Was by Design
 
-- We thought it was a bug and opened [issue #1854](https://github.com/voidzero-dev/vite-plus/issues/1854)
-- It turned out to be intentional, and the maintainers documented it in the Migration Guide via [PR #1901](https://github.com/voidzero-dev/vite-plus/pull/1901)
+- We opened [issue #1854](https://github.com/voidzero-dev/vite-plus/issues/1854) thinking it was a bug → it was already in the [RFC](https://github.com/voidzero-dev/vite-plus/blob/main/rfcs/config-and-staged-commands.md#migration-edge-cases)
+- The maintainers also added it to the [Migration Guide](https://viteplus.dev/guide/migrate#git-hook-tools) via [PR #1901](https://github.com/voidzero-dev/vite-plus/pull/1901)
+
+![The RFC's Migration Edge Cases explicitly say that simple-git-hooks, lefthook, and yorkie warn and skip](/slides/vite-plus-retro-v2/assets/migration-edge-cases.png){width="1057" height="422" style="margin:1rem auto;display:block;width:1500px;height:auto;max-width:100%;max-height:600px;border-radius:8px"}
 
 ---
 background: "/slides/templates/af4e26a78715.png"
@@ -284,14 +285,10 @@ layout: content
 
 ## Pain 2: The Astro Build Broke
 
-<details>
-<summary>Details</summary>
-
-- Our documentation site used Astro 6, which expects Vite 7, but `overrides.vite` replaced it with the Vite 8 version bundled by Vite+
-- Compatibility code for an esbuild API used by dev-toolbar threw `Not implemented`, breaking the build
-- Removing the override restored Astro's Vite 7 and fixed the build
-
-</details>
+- Our Astro 6 documentation site failed to build with `Not implemented`
+- `overrides.vite` replaced even Astro 6's Vite 7 with Vite 8
+- The [Dev Toolbar](https://docs.astro.build/en/guides/dev-toolbar/) used an API unsupported by Vite 8 at the time
+- Removing the override restored Astro 6 to Vite 7 and fixed the build
 
 ---
 background: "/slides/templates/af4e26a78715.png"
@@ -321,9 +318,9 @@ layout: content
 
 ## Takeaways
 
-- The experience is excellent: every setting can live in `vite.config.ts`
-- Vite+ 1.0 was released on September 28, and the pain points covered here have already been resolved
-- It also prompted us to read OSS documentation more carefully
+- The experience is excellent: every setting can live in [`vite.config.ts`](https://viteplus.dev/config/)
+- It also prompted us to read the OSS spec more carefully
+- Vite+ 1.0 was released on September 28, completing the toolchain
 
 ---
 background: "/slides/templates/af4e26a78715.png"
@@ -363,7 +360,7 @@ $ vp run -r build      # second run (no changes)
 
 </CodePanel>
 
-- Automatically tracks files used by a task; if nothing changes, it skips execution and replays the result
+- [Automatically tracks](https://viteplus.dev/guide/automatic-data-tracking) files used by a task; if nothing changes, it skips execution and [replays the result](https://viteplus.dev/guide/cache)
 - In our measurement, 4/5 tasks hit the cache, saving 27.38 seconds
 - This article provides an excellent explanation:
   - [https://zenn.dev/herp_inc/articles/strange-task-runner](https://zenn.dev/herp_inc/articles/strange-task-runner)
@@ -380,4 +377,4 @@ layout: content
 
 - In our initial adoption, we migrated to Vite+ while keeping Next.js's `next build` ([PR #220](https://github.com/Koutaro-Hanabusa/myslides/pull/220))
 - You can adopt Vite+ without moving your app build to Vite
-- We unified lint / fmt / task / staged under `vp`; the existing build still runs through `vp run build`
+- We unified [lint](https://viteplus.dev/guide/lint) / [fmt](https://viteplus.dev/guide/fmt) / [task](https://viteplus.dev/guide/run) / [staged](https://viteplus.dev/guide/commit-hooks) under `vp`; the existing build still runs through [`vp run build`](https://viteplus.dev/guide/run#built-in-commands-vs-scripts)
