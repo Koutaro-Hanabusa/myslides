@@ -152,7 +152,7 @@ vp run --filter @mySlides/slide-nix-for-everyone dev          # 1資料を編集
 vp run --filter @mySlides/slide-nix-for-everyone build:slidev # 1資料を静的ビルドして公開先へコピー
 vp run slides:build                                         # 全資料を静的ビルド
 vp run slides:test                                          # 資料構成・画像・新規資料生成を検査
-cd apps/decks && vp exec playwright install chromium && cd ../..
+vp run -F @mySlides/decks setup:browser                       # ブラウザ検証だけを単独実行する際の準備
 vp run slides:test:browser                # 全ページをPC幅・スマホ幅で検証
 task pdf -- nix-for-everyone slides.pdf   # SlidevでPDF出力（クリック段階を含む）
 ```

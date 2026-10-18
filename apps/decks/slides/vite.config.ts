@@ -5,6 +5,7 @@ export default defineConfig({
     tasks: {
       "build:slidev": {
         command: "node ../../scripts/build-slidev.mjs",
+        dependsOn: ["@mySlides/decks#setup:browser"],
         cache: {
           input: [
             "slides.md",

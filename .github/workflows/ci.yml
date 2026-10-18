@@ -24,9 +24,6 @@ jobs:
         run: |
           vp run -F server cf-typegen
           vp run -F web cf-typegen
-      - name: Install browser for slide build and verification
-        working-directory: apps/decks
-        run: vp exec playwright install --with-deps chromium
       # build を先に実行: next build が next-env.d.ts / .next/types を生成し、
       # 後段の type-aware lint で *.png 等のモジュール型を解決できるようにする。
       - name: Build
