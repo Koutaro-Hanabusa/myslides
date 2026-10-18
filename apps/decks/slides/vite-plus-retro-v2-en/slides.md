@@ -97,8 +97,7 @@ layout: content
 ## The Problem Vite+ Solves
 
 - Other languages commonly have unified toolchains
-- JavaScript offers many tools, so every environment tends to use a different setup
-  → [Vite+](https://viteplus.dev/guide/why) solves this fragmentation
+- JavaScript offers many tools, so setups tend to vary by environment ([Why Vite+?](https://viteplus.dev/guide/why))
 
 ---
 background: "/slides/templates/af4e26a78715.png"
@@ -169,10 +168,10 @@ layout: content
 
 ## Win 1: vp migrate Is Excellent
 
-- A starting point for migrating an existing project to Vite+
+- A command for migrating an existing project to Vite+
 - Updates dependencies, imports, and config together while unifying the existing tools
 - Also migrated CI to [`voidzero-dev/setup-vp`](https://viteplus.dev/guide/ci)
-  [vp migrate](https://viteplus.dev/guide/migrate)
+- See [vp migrate](https://viteplus.dev/guide/migrate)
 
 ---
 background: "/slides/templates/af4e26a78715.png"
@@ -244,7 +243,7 @@ pack: {
 
 - Migrated from [`vp build`](https://viteplus.dev/guide/build) (Vite Library Mode) to [vp pack](https://viteplus.dev/guide/pack) (tsdown)
 - [`dts: true`](https://viteplus.dev/config/pack) generates type declarations with no need to install or configure `vite-plugin-dts`
-- Migration results: gzipped ESM 117KB → 36KB (~1/3); build time ~1.59s → ~1.0s (April)
+- Measured with the migration configuration: gzipped ESM 117KB → 36KB (~1/3); build time ~1.59s → ~1.0s (April)
 
 ---
 background: "/slides/templates/af4e26a78715.png"
@@ -273,10 +272,10 @@ layout: content
 
 ## It Was by Design
 
-![The RFC's Migration Edge Cases explicitly say that simple-git-hooks, lefthook, and yorkie warn and skip](/slides/vite-plus-retro-v2/assets/migration-edge-cases.png){width="1057" height="422" style="margin:1rem auto;display:block;width:1500px;height:auto;max-width:100%;max-height:600px;border-radius:8px"}
-
 - We opened [issue #1854](https://github.com/voidzero-dev/vite-plus/issues/1854) thinking it was a bug → it was already in the [RFC](https://github.com/voidzero-dev/vite-plus/blob/main/rfcs/config-and-staged-commands.md#migration-edge-cases)
 - The maintainers also added it to the [Migration Guide](https://viteplus.dev/guide/migrate#git-hook-tools) via [PR #1901](https://github.com/voidzero-dev/vite-plus/pull/1901)
+
+![The RFC's Migration Edge Cases explicitly say that simple-git-hooks, lefthook, and yorkie warn and skip](/slides/vite-plus-retro-v2/assets/migration-edge-cases.png){width="1057" height="422" style="margin:1rem auto;display:block;width:1500px;height:auto;max-width:100%;max-height:600px;border-radius:8px"}
 
 ---
 background: "/slides/templates/af4e26a78715.png"
@@ -286,14 +285,10 @@ layout: content
 
 ## Pain 2: The Astro Build Broke
 
-<details>
-<summary>Details</summary>
-
-- Our documentation site used Astro 6, which expects Vite 7, but [`overrides.vite`](https://viteplus.dev/guide/migrate-rules#vite-and-overrides) replaced it with the Vite 8 version bundled by Vite+
-- Compatibility code for an esbuild API used by dev-toolbar threw `Not implemented`, breaking the build
-- Removing the override restored Astro's Vite 7 and fixed the build
-
-</details>
+- Our Astro 6 documentation site failed to build with `Not implemented`
+- `overrides.vite` replaced even Astro 6's Vite 7 with Vite 8
+- The [Dev Toolbar](https://docs.astro.build/en/guides/dev-toolbar/) used an API unsupported by Vite 8 at the time
+- Removing the override restored Astro 6 to Vite 7 and fixed the build
 
 ---
 background: "/slides/templates/af4e26a78715.png"
@@ -324,8 +319,8 @@ layout: content
 ## Takeaways
 
 - The experience is excellent: every setting can live in [`vite.config.ts`](https://viteplus.dev/config/)
-- Vite+ 1.0 was released on September 28, and the pain points covered here have already been resolved
-- It also prompted us to read OSS documentation more carefully
+- It also prompted us to read the OSS spec more carefully
+- Vite+ 1.0 was released on September 28, completing the toolchain
 
 ---
 background: "/slides/templates/af4e26a78715.png"

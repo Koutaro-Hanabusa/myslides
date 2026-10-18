@@ -322,6 +322,7 @@ layout: content
 
 - Astro 6 のドキュメントサイトが、`Not implemented` でビルド失敗
 - overrides.viteが、Astro v6の Vite 7 まで Vite 8 に置き換えていた
+- [Dev Toolbar](https://docs.astro.build/en/guides/dev-toolbar/)が使う API が、当時の Vite 8 では未対応
 - override を外し、Astro v6は Vite 7 を使う構成に戻して復旧
 
 ---
