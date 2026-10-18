@@ -149,6 +149,7 @@ background: "/slides/templates/af4e26a78715.png"
 
 ```sh
 vp run --filter @mySlides/slide-nix-for-everyone dev          # 1資料を編集・プレビュー
+vp run --filter @mySlides/slide-nix-for-everyone generate:ogp # 表紙変更時にOG画像を生成してGitへ保存
 vp run --filter @mySlides/slide-nix-for-everyone build:slidev # 1資料を静的ビルドして公開先へコピー
 vp run slides:build                                         # 全資料を静的ビルド
 vp run slides:test                                          # 資料構成・画像・新規資料生成を検査
@@ -156,6 +157,8 @@ vp run -F @mySlides/decks setup:browser                       # ブラウザ検�
 vp run slides:test:browser                # 全ページをPC幅・スマホ幅で検証
 task pdf -- nix-for-everyone slides.pdf   # SlidevでPDF出力（クリック段階を含む）
 ```
+
+OG画像は各資料の `og-image.png` をGit管理し、通常ビルドではそのままコピーします。新規作成・表紙変更時だけ `generate:ogp` を実行し、生成画像もコミットしてください。
 
 ブラウザ検証はビルド後に実行します。`apps/decks/test-results/` に全ページのスクリーンショットとJSONレポートが出力されます。スライドを追加・削除した場合は `apps/decks/decks.json` の枚数と旧URLの対応表も更新してください。
 
