@@ -154,9 +154,6 @@ background: "${background}"
           scripts: {
             dev: "slidev slides.md --theme ../../theme",
             export: "slidev export slides.md --theme ../../theme",
-            "generate:ogp":
-              "slidev export slides.md --theme ../../theme --format png --range 1 --output .slidev-og-image --wait-until networkidle && cp .slidev-og-image/1.png og-image.png && rm -rf .slidev-og-image",
-            "build:slidev": `vp run generate:ogp && slidev build slides.md --theme ../../theme --base /${slug}/ && cp og-image.png dist/og-image.png && node ../../scripts/publish.mjs`,
           },
           dependencies: {
             "@slidev/cli": "52.20.1",
@@ -169,6 +166,11 @@ background: "${background}"
         null,
         2,
       ) + "\n",
+      { flag: "wx" },
+    );
+    await writeFile(
+      join(deckDir, "vite.config.ts"),
+      'export { default } from "../vite.config";\n',
       { flag: "wx" },
     );
     await mkdir(join(assets, "assets"), { recursive: true });

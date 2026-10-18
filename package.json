@@ -39,7 +39,6 @@
     "db:studio": "vp run -F @mySlides/db db:studio",
     "db:generate": "vp run -F @mySlides/db db:generate",
     "db:migrate": "vp run -F @mySlides/db db:migrate",
-    "slides:build": "vp run --filter '@mySlides/slide-*' --fail-if-no-match --concurrency-limit 2 build:slidev",
     "slides:test": "vp test",
     "slides:test:browser": "vp run -F @mySlides/decks test:browser"
   },
