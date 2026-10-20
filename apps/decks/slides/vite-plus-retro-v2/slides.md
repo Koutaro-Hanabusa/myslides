@@ -295,7 +295,7 @@ layout: content
 ## 辛かった① lefthook使用時にmigrateされない
 
 - [`vp migrate`](https://viteplus.dev/guide/migrate#git-hook-tools) 時、lefthook は自動移行されず警告のみ
-- 気づかずpre-commitが壊れていた → 設定を手動修正
+- 設定を手動修正
 
 ---
 background: "/slides/templates/af4e26a78715.png"
