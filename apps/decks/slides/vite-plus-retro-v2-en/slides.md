@@ -286,7 +286,7 @@ layout: content
 ## Pain 2: The Astro Build Broke
 
 - Our Astro 6 documentation site failed to build with `Not implemented`
-- `overrides.vite` replaced even Astro 6's Vite 7 with Vite 8
+- The override replaced even Astro 6's Vite 7 with Vite 8
 - The [Dev Toolbar](https://docs.astro.build/en/guides/dev-toolbar/) used an API unsupported by Vite 8 at the time
 - Removing the override restored Astro 6 to Vite 7 and fixed the build
 
