@@ -305,12 +305,9 @@
   margin-bottom: 40px;
 }
 .split-image {
-  position: absolute;
-  right: 0;
-  top: 50%;
   width: 50%;
   aspect-ratio: 1;
-  transform: translateY(-50%);
+  flex-shrink: 0;
 }
 .split-image > p {
   height: 100%;

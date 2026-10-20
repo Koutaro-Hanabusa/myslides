@@ -262,7 +262,7 @@ layout: content
 ## Pain 1: lefthook Was Not Migrated
 
 - During [`vp migrate`](https://viteplus.dev/guide/migrate#git-hook-tools), lefthook was not migrated automatically; we only got a warning
-- We missed it and our [pre-commit hook](https://viteplus.dev/guide/commit-hooks) broke, so we fixed the config manually
+- We fixed the config manually
 
 ---
 background: "/slides/templates/af4e26a78715.png"
