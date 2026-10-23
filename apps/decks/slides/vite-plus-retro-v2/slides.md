@@ -83,7 +83,7 @@ color: white
 
 ::photo::
 
-![ぶりおの写真](/slides/react-three-fiber/assets/burio.png){width="500" height="500" class="natural-image"}
+![ぶりおの写真](/slides/vite-plus-retro-v2/assets/profile.jpg){width="500" height="500" class="natural-image" style="height:500px;border-radius:50%;object-fit:cover"}
 
 ---
 background: "/slides/templates/af4e26a78715.png"
