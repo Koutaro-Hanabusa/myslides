@@ -30,7 +30,7 @@ export const SLIDES_CONFIG: Record<string, SlideConfig> = {
   "vitest5-vrt": {
     slug: "vitest5-vrt",
     title: "Vitest 5を使ってみようとしたらVRTがめちゃくちゃ改善しちゃった",
-    description: "Vitest 5を試したことをきっかけにVRTを改善した話（構成案）",
+    description: "Vitest 5を試したことをきっかけにVRTを改善した話",
     author: "ぶりお",
     authorUrl: "https://twitter.com/burio_16",
     date: "10/30",
