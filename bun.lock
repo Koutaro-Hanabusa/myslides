@@ -198,6 +198,16 @@
         "vue-router": "5.4.0",
       },
     },
+    "apps/decks/slides/vitest5-vrt": {
+      "name": "@mySlides/slide-vitest5-vrt",
+      "dependencies": {
+        "@slidev/cli": "52.20.1",
+        "@slidev/client": "52.20.1",
+        "reka-ui": "2.11.0",
+        "vue": "3.5.43",
+        "vue-router": "5.4.0",
+      },
+    },
     "apps/decks/slides/you-must-have-dotfiles": {
       "name": "@mySlides/slide-you-must-have-dotfiles",
       "dependencies": {
@@ -678,6 +688,8 @@
     "@mySlides/slide-vite-plus-retro-v2": ["@mySlides/slide-vite-plus-retro-v2@workspace:apps/decks/slides/vite-plus-retro-v2"],
 
     "@mySlides/slide-vite-plus-retro-v2-en": ["@mySlides/slide-vite-plus-retro-v2-en@workspace:apps/decks/slides/vite-plus-retro-v2-en"],
+
+    "@mySlides/slide-vitest5-vrt": ["@mySlides/slide-vitest5-vrt@workspace:apps/decks/slides/vitest5-vrt"],
 
     "@mySlides/slide-you-must-have-dotfiles": ["@mySlides/slide-you-must-have-dotfiles@workspace:apps/decks/slides/you-must-have-dotfiles"],
 
