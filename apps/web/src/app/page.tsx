@@ -3,6 +3,7 @@ import { SlideCard } from "@/components/slides";
 import { getSlideTitle, SLIDES_CONFIG } from "@/lib/slides/config";
 
 const slides = [
+  { config: SLIDES_CONFIG["vitest5-vrt"] },
   {
     config: SLIDES_CONFIG["vite-plus-retro-v2"],
   },

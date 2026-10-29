@@ -70,5 +70,9 @@
   "react-three-fiber": {
     "file": "slides/react-three-fiber/slides.md",
     "count": 37
+  },
+  "vitest5-vrt": {
+    "file": "slides/vitest5-vrt/slides.md",
+    "count": 22
   }
 }
