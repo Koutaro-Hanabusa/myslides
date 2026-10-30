@@ -6,12 +6,12 @@ lang: ja
 favicon: "/assets/favicon.ico"
 seoMeta:
   ogTitle: "Vitest 5を使ってみようとしたらVRTがめちゃくちゃ改善しちゃった"
-  ogDescription: "Vitest 5を試したことをきっかけにVRTを改善した話（構成案）"
+  ogDescription: "Vitest 5を試したことをきっかけにVRTを改善した話"
   ogImage: "https://slide.burio16.com/vitest5-vrt/og-image.png"
   ogUrl: "https://slide.burio16.com/vitest5-vrt/"
   twitterCard: "summary_large_image"
   twitterTitle: "Vitest 5を使ってみようとしたらVRTがめちゃくちゃ改善しちゃった"
-  twitterDescription: "Vitest 5を試したことをきっかけにVRTを改善した話（構成案）"
+  twitterDescription: "Vitest 5を試したことをきっかけにVRTを改善した話"
   twitterImage: "https://slide.burio16.com/vitest5-vrt/og-image.png"
   twitterSite: "@burio_16"
   twitterUrl: "https://slide.burio16.com/vitest5-vrt/"
@@ -47,6 +47,7 @@ color: white
 - ぶりお [@burio_16](https://x.com/burio_16)
 - タコスとTottenham Hotspur FCが好き
 - 先日Vue Fes Japan 2026にてLT登壇しました(スタッフも)
+- Vitestのファイル名判定の正規表現に、`-`を追加するPRを出したことがある
 
 ::photo::
 
