@@ -29,11 +29,11 @@ export function getSlideTitle(config: SlideConfig): string {
 export const SLIDES_CONFIG: Record<string, SlideConfig> = {
   "vitest5-vrt": {
     slug: "vitest5-vrt",
-    title: "Vitest 5を使ってみようとしたらVRTがめちゃくちゃ改善しちゃった",
+    title: "Vitest 5を使ってみようとしたらVRTがめちゃくちゃ改善しちゃったので話したい",
     description: "Vitest 5を試したことをきっかけにVRTを改善した話",
     author: "ぶりお",
     authorUrl: "https://twitter.com/burio_16",
-    date: "10/30",
+    date: "2026/10/30",
     event: "Vue Fes Japan 2026 After Talk",
     eventUrl: "https://uniquevision.connpass.com/event/409085/",
   },
