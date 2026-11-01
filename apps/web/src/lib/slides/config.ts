@@ -29,8 +29,8 @@ export function getSlideTitle(config: SlideConfig): string {
 export const SLIDES_CONFIG: Record<string, SlideConfig> = {
   "is-my-architecture-the-strongest": {
     slug: "is-my-architecture-the-strongest",
-    title: "is-my-architecture-the-strongest",
-    description: "is-my-architecture-the-strongest の発表資料",
+    title: "「ぼくの考えた最強のTanstack Routerディレクトリ構成 」は最強だったのか",
+    description: "Vue Fesでのセッションを聞いて自分が考えたものを振り返る",
     author: "ぶりお",
     authorUrl: "https://twitter.com/burio_16",
     date: "2026/11/16",
