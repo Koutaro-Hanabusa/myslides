@@ -239,7 +239,7 @@ layout: statement
 background: "/slides/templates/af4e26a78715.png"
 ---
 
-# 最強 ≒ 決定論的
+# 自分が思った最強 ≒ つじさんの決定論的
 
 - 人には意図が明確で理解しやすい
 -  AIに指示が明確で同じ内容が生成される
