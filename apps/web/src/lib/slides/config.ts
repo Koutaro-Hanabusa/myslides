@@ -27,6 +27,15 @@ export function getSlideTitle(config: SlideConfig): string {
 }
 
 export const SLIDES_CONFIG: Record<string, SlideConfig> = {
+  "is-my-architecture-the-strongest": {
+    slug: "is-my-architecture-the-strongest",
+    title: "is-my-architecture-the-strongest",
+    description: "is-my-architecture-the-strongest の発表資料",
+    author: "ぶりお",
+    authorUrl: "https://twitter.com/burio_16",
+    date: "2026/11/16",
+    event: "社内LT会",
+  },
   "vitest5-vrt": {
     slug: "vitest5-vrt",
     title: "Vitest 5を使ってみようとしたらVRTがめちゃくちゃ改善しちゃったので話したい",

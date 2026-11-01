@@ -68,6 +68,16 @@
         "vue-router": "5.4.0",
       },
     },
+    "apps/decks/slides/is-my-architecture-the-strongest": {
+      "name": "@mySlides/slide-is-my-architecture-the-strongest",
+      "dependencies": {
+        "@slidev/cli": "52.20.1",
+        "@slidev/client": "52.20.1",
+        "reka-ui": "2.11.0",
+        "vue": "3.5.43",
+        "vue-router": "5.4.0",
+      },
+    },
     "apps/decks/slides/my-favorite-thing": {
       "name": "@mySlides/slide-my-favorite-thing",
       "dependencies": {
@@ -662,6 +672,8 @@
     "@mySlides/slide-better-t-stack": ["@mySlides/slide-better-t-stack@workspace:apps/decks/slides/better-t-stack"],
 
     "@mySlides/slide-community-and-me": ["@mySlides/slide-community-and-me@workspace:apps/decks/slides/community-and-me"],
+
+    "@mySlides/slide-is-my-architecture-the-strongest": ["@mySlides/slide-is-my-architecture-the-strongest@workspace:apps/decks/slides/is-my-architecture-the-strongest"],
 
     "@mySlides/slide-my-favorite-thing": ["@mySlides/slide-my-favorite-thing@workspace:apps/decks/slides/my-favorite-thing"],
 

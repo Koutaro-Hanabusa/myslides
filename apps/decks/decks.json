@@ -74,5 +74,9 @@
   "vitest5-vrt": {
     "file": "slides/vitest5-vrt/slides.md",
     "count": 22
+  },
+  "is-my-architecture-the-strongest": {
+    "file": "slides/is-my-architecture-the-strongest/slides.md",
+    "count": 24
   }
 }
